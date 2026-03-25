@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ExoMind DevLog</title>
+<title>ExoMind 开发日志</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -43,6 +43,17 @@ a:hover{opacity:.8}
   cursor:pointer;
 }
 .report-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow);transform:translateY(-1px)}
+/* Latest report highlight */
+.report-card.latest{
+  border-color:var(--accent);
+  background:linear-gradient(135deg,rgba(88,166,255,.06),rgba(137,87,229,.04));
+  box-shadow:0 0 24px var(--accent-glow);
+  padding:1.4rem 1.6rem;
+}
+.report-card.latest .report-date{font-size:1.3rem}
+.report-card.latest .report-title{font-size:.95rem;color:var(--text)}
+.report-card.latest .report-metric .val{color:var(--text)}
+.latest-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.1rem .5rem;border-radius:3px;background:rgba(88,166,255,.15);color:var(--accent);letter-spacing:.08em;margin-left:.6rem;vertical-align:middle}
 .report-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .report-date{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent)}
 .report-weather{font-size:1.4rem}
@@ -78,12 +89,12 @@ a:hover{opacity:.8}
 <div class="container">
   <header class="header animate">
     <div class="logo">EXOMIND</div>
-    <h1>D E V L O G</h1>
-    <div class="meta">开发日报公开归档 · 项目进展追踪</div>
+    <h1>开 发 日 志</h1>
+    <div class="meta">公开归档 · 项目进展追踪 · 早报 / 午报 / 晚报 / 夜报</div>
   </header>
   <div id="reports" class="loading">加载中...</div>
   <div class="footer">
-    <a href="https://github.com/exomind-team/exomind">ExoMind</a> · 开发日报由 dev-daily Agent 生成
+    <a href="https://github.com/exomind-team/exomind">ExoMind</a> · 开发日志由 dev-daily Agent 生成
   </div>
 </div>
 <script>
@@ -99,15 +110,18 @@ fetch('reports/manifest.json')
     }
     container.className = 'report-list';
     container.innerHTML = reports.map((r, i) => {
+      const isLatest = i === 0;
+      const cls = isLatest ? 'report-card latest animate' : 'report-card animate';
+      const badge = isLatest ? '<span class="latest-badge">LATEST</span>' : '';
       const metrics = (r.metrics || []).map(m =>
         `<span class="report-metric"><span class="val">${m.value}</span>${m.label}<span class="delta ${m.trend || ''}">${m.delta || ''}</span></span>`
       ).join('');
-      return `<a class="report-card animate" style="animation-delay:${i * 0.05}s" href="reports/${r.file}">
+      return `<a class="${cls}" style="animation-delay:${i * 0.05}s" href="reports/${r.file}">
         <div class="report-top">
-          <span class="report-date">${r.date}</span>
+          <span class="report-date">${r.date}${badge}</span>
           <span class="report-weather" title="${r.weather?.label || ''}">${r.weather?.emoji || ''}</span>
         </div>
-        <div class="report-title">${r.title || '开发日报'}</div>
+        <div class="report-title">${r.title || '开发日志'}</div>
         <div class="report-metrics">${metrics}</div>
       </a>`;
     }).join('');
