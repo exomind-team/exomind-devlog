@@ -1,5 +1,42 @@
 {
-  "generated": "",
+  "generated": "2026-03-25T15:33:11.870Z",
   "repo": "exomind-team/exomind",
-  "reports": []
+  "reports": [
+    {
+      "date": "2026-03-25",
+      "title": "开发晚报",
+      "file": "2026-03-25.html",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "晴转多云"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "254",
+          "delta": "↑ 6",
+          "trend": "up"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "6 / 41",
+          "delta": "P1 +1",
+          "trend": "up"
+        },
+        {
+          "label": "今日提交",
+          "value": "13",
+          "delta": "2人",
+          "trend": "neutral"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "5",
+          "delta": "+1 epic",
+          "trend": "up"
+        }
+      ]
+    }
+  ]
 }
