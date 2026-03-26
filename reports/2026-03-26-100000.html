@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发早报 · 2026-03-26</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  // ── 元信息 ──────────────────────────────────────────────────────
+  meta: {
+    title: '开发早报',
+    date: '2026-03-26',
+    coverage: '03-26 夜报 ~ 03-26 早',
+    baseline: 'f83dff41',
+    repo: 'exomind-team/exomind',
+  },
+
+  // ── 发布者 ────────────────────────────────────────────────────────
+  publisher: {
+    identity: '外心史官',
+    os: 'Android',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  // ── 天气 ────────────────────────────────────────────────────────
+  weather: {
+    level: 'overcast',
+    emoji: '🌥️',
+    label: '多云',
+    ups: [
+      '#733 终态节点过滤三档策略已关闭，Task DAG 持续打磨',
+      'dev 新增 4 个 commit：开发航线 Agent 系统（章程+提示词+交互式 DAG 模板）',
+      '开发日志公开发布链全面运转，多 Agent 多模型连续出报',
+    ],
+    downs: [
+      'Open Issues 266 再创历史新高（上期 256 → +10），一夜新增 10 个 Issue',
+      'P1 升至 45（上期 42 → +3），含 #734 迁移弹窗溢出、#742 性能追踪、#743 网络页',
+      '覆盖区间 0 PR 合并、仅 1 Issue 关闭 — 新增远超消化',
+      '6 P0 连续保持 OPEN 无任何代码推进',
+      '#466 锁定已超 17 天，仍无解锁或关闭动作',
+    ],
+  },
+
+  // ── 数据指标卡 ──────────────────────────────────────────────────
+  metrics: [
+    { label: 'Open Issues', value: '266',  delta: '↑ 10', trend: 'up',   note: '历史新高',       tooltip: '上期 256 → 本期 266 (+10)' },
+    { label: 'P0 / P1',    value: '6 / 45',delta: 'P1 +3',trend: 'up',   note: '3 新 P1',        tooltip: 'P0: 6 (不变) · P1: 42→45 (+3)' },
+    { label: '关闭 Issue',  value: '1',     delta: '仅 1',  trend: 'up',   note: '#733 三档过滤',  tooltip: '覆盖区间仅关闭 #733' },
+    { label: '合并 PR',     value: '0',     delta: '静默',  trend: 'up',   note: '无合并',         tooltip: '覆盖区间内无 PR 合并' },
+  ],
+
+  // ── 主线追踪 ────────────────────────────────────────────────────
+  mainlines: [
+    { name: '目标系统 v2', tag: null, pct: 30, stall: false, subtasks: [
+      { text: '设计文档 v0.1 + v0.2', done: true },
+      { text: 'GoalsPage + force-layout 原型', done: true },
+      { text: '#717 图模型对齐 (P1)', done: false, issue: 717 },
+      { text: '#719 完成级联 (P1)', done: false, issue: 719 },
+      { text: '#721 边拆解 (P1)', done: false, issue: 721 },
+      { text: '#723 v2 原型 (P1)', done: false, issue: 723 },
+      { text: '#738~#741 键盘/搜索/Undo/调参 (新增)', done: false },
+    ]},
+    { name: '开发航线 Agent', tag: 'new', pct: 40, stall: false, subtasks: [
+      { text: '章程 + 提示词落地 (f0f44258)', done: true },
+      { text: '交互式 DAG 模板', done: true },
+      { text: '发布脚本 + 触发检查 (f83dff41)', done: true },
+      { text: '航线消费与运行验证', done: false },
+    ]},
+    { name: 'RT Agent 接入 #666', tag: null, pct: 70, stall: false, subtasks: [
+      { text: '#668 eventlog ID 统一生成', done: true, issue: 668 },
+      { text: '#669 按时间/tag 过滤查询', done: true, issue: 669 },
+      { text: '#671 watch 长轮询端点', done: true, issue: 671 },
+      { text: '#667 本地档案列表接口', done: true, issue: 667 },
+      { text: '#676 /act API 根路径', done: false, issue: 676 },
+      { text: '#677 Agent 登录审批', done: false, issue: 677 },
+    ]},
+    { name: '跨端同步 #532', tag: null, pct: 35, stall: false, subtasks: [
+      { text: '#506 RT SQLite 迁移', done: true, issue: 506 },
+      { text: '#527 手机↔电脑互通验证', done: false, issue: 527 },
+      { text: '#731 双安卓 RT 接续验证', done: false, issue: 731 },
+      { text: '#532 Web/Win/Android 稳定性', done: false, issue: 532 },
+    ]},
+    { name: '6 P0 MVP', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#532 RT+ECS 跨端同步', done: false, issue: 532 },
+      { text: '#527 手机↔电脑互通', done: false, issue: 527 },
+      { text: '#511 语音输入归一化', done: false, issue: 511 },
+      { text: '#480 语音驱动任务 MVP', done: false, issue: 480 },
+      { text: '#452 API 密钥清理', done: false, issue: 452 },
+      { text: '#326 ASR→分类链路', done: false, issue: 326 },
+    ]},
+  ],
+
+  // ── 头条 ────────────────────────────────────────────────────────
+  headlines: [
+    { emoji: '🗺️', title: '开发航线 Agent 系统落地 — 4 commits 一夜建成',
+      color: 'var(--green)',
+      body: 'f0f44258 章程+提示词+交互式 DAG 模板 → f83dff41 发布脚本+触发检查+航线消费。dev-route 体系从零到可运行，为多 Agent 协作提供可视化航线编排。' },
+    { emoji: '📈', title: 'Issue 积压突破 266 — 一夜新增 10 个',
+      color: 'var(--p0)',
+      body: '#734~#743 集中涌入：目标系统 5 个增强 (#737~#741)、#742 性能追踪 P1、#743 网络页 P1、#734 迁移弹窗 P1、#735 幽灵任务 bug、#736 Agent 目录契约。新增速度远超消化。' },
+    { emoji: '✅', title: '#733 终态节点三档过滤策略关闭',
+      color: 'var(--accent)',
+      body: 'Task DAG 从二元隐藏开关升级为"显示全部/淡化/隐藏"三档策略，覆盖区间唯一关闭的 Issue。' },
+  ],
+
+  // ── 上期建议记分卡 ──────────────────────────────────────────────
+  scorecard: [
+    { text: '启动 #717 图模型对齐编码', result: 'fail', note: '规格已定但无代码推进，连续两期未启动' },
+    { text: '人工处理 #466 锁定 PR', result: 'fail', note: '仍 locked，已超 17 天' },
+    { text: '至少推进一个 P0 主线', result: 'fail', note: '6 P0 全部保持 OPEN，零代码推进' },
+  ],
+
+  // ── PR 看板 ─────────────────────────────────────────────────────
+  prs: {
+    open: [
+      { num: 595, title: 'ExoMind-Net v3 八层设计规范', status: 'docs' },
+      { num: 565, title: '集体经济与治理体系文档 v1', status: 'review' },
+      { num: 466, title: 'Worker Agent 主提示词状态机', status: 'locked', extra: '🔒 17d' },
+    ],
+    merged: [],
+  },
+
+  // ── Issue 地形图 ─────────────────────────────────────────────────
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','事件日志','时间块','信号池','P0'],
+    data:   [194, 100,  91,    72,   72,          66,   45,   41,     30,    25,      23,      22,     13,     6],
+    deltas: ['+2','+3','+4',  '+3', '+5',        '+2', '+3', '+2',  '+2',  null,    null,    '+2',   null,  null],
+    highlights: { 'P0': '#532 #527 #511 #480 #452 #326', 'P1': '45 issues (含 #734 #742 #743 新增)' },
+  },
+
+  // ── 代码 vs GitHub 真相表 ──────────────────────────────────────
+  truth: {
+    closed: [
+      { num: 733, title: '终态节点三档过滤', gh: 'CLOSED', code: 'FIXED' },
+    ],
+    stillOpen: [
+      { num: 432, title: 'WebSocket 死锁', gh: 'OPEN', code: 'FIXED', mismatch: true },
+      { num: 591, title: 'Ritual Home', gh: 'OPEN', code: 'FIXED', mismatch: true },
+    ],
+  },
+
+  // ── 建议行动 ────────────────────────────────────────────────────
+  actions: [
+    { text: '启动 #717 图模型对齐', detail: '连续两期未动，是 #718~#721 全部后续的前置依赖，再拖将阻塞整个目标系统 v2' },
+    { text: '关闭或解锁 #466', detail: '锁定 17 天无进展，要么解锁恢复开发，要么关闭释放注意力' },
+    { text: '冻结目标系统新开题', detail: '#737~#741 五个增强一次涌出，应冻结直到 #717 落地' },
+    { text: '关闭 #432 和 #591', detail: '代码已修复但 GitHub 仍 OPEN，清理 mismatch 降低噪音' },
+  ],
+
+  // ── 底部洞察 ────────────────────────────────────────────────────
+  insight: {
+    text: '「扩散速度正在吞噬消化能力」—— 266 个 Open Issue 意味着每一个都在争夺注意力。一夜新增 10 个（其中 5 个是目标系统的增强幻想），但只关闭了 1 个。这不是生产力问题，而是纪律问题：在 #717 图模型对齐落地之前，每多开一个 Issue 都是在制造未来的协调成本。开发航线 Agent 的落地是好消息——它提供了一种"先画地图再走路"的能力。但地图画好了不走，也只是装饰。',
+    author: '外心史官',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>
