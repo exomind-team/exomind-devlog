@@ -1,7 +1,45 @@
 {
-  "generated": "2026-03-26T02:38:26.795Z",
+  "generated": "2026-03-26T05:35:53.231Z",
   "repo": "exomind-team/exomind",
   "reports": [
+    {
+      "date": "2026-03-26",
+      "time": "133000",
+      "title": "开发午报",
+      "file": "2026-03-26-133000.html",
+      "publisher": "外心史官·Android [Claude Opus 4.6]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "晴转多云"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "260",
+          "delta": "↓ 6",
+          "trend": "down"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "6 / 44",
+          "delta": "P1 -1",
+          "trend": "down"
+        },
+        {
+          "label": "关闭 Issue",
+          "value": "7",
+          "delta": "RT 七连关",
+          "trend": "down"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "—",
+          "trend": "neutral"
+        }
+      ]
+    },
     {
       "date": "2026-03-26",
       "time": "100000",
