@@ -25,7 +25,7 @@ body{
 }
 a{color:var(--accent);text-decoration:none;transition:opacity .15s}
 a:hover{opacity:.8}
-.container{max-width:900px;margin:0 auto;padding:2rem 1rem 3rem}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1rem 3rem}
 
 /* Header */
 .header{text-align:center;padding:3rem 0 2rem;position:relative}
@@ -34,8 +34,28 @@ a:hover{opacity:.8}
 .header h1{font-size:1.6rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.4em;text-transform:uppercase}
 .header .meta{font-size:.85rem;color:var(--text-faint);margin-top:.5rem}
 
+/* Two-column layout */
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+@media(max-width:900px){.columns{grid-template-columns:1fr}}
+
+.column{min-width:0}
+
+/* Section Title (collapsible) */
+.section-header{
+  font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;
+  margin:0 0 .8rem;display:flex;align-items:center;gap:.5rem;cursor:pointer;
+  padding:.5rem 0;user-select:none;transition:color .15s;
+}
+.section-header:hover{color:var(--text)}
+.section-header .bar{flex:0 0 3px;height:1rem;border-radius:2px}
+.section-header .chevron{margin-left:auto;font-size:.7rem;color:var(--text-faint);transition:transform .2s}
+.section-header .chevron.open{transform:rotate(90deg)}
+.section-body{overflow:hidden;transition:max-height .4s ease}
+.section-body.open{max-height:5000px}
+.section-body.closed{max-height:0}
+
 /* Report Cards */
-.report-list{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem}
+.report-list{display:flex;flex-direction:column;gap:.7rem}
 .report-card{
   display:block;background:var(--card);border:1px solid var(--border);
   border-radius:var(--radius);padding:1.2rem 1.4rem;
@@ -43,7 +63,6 @@ a:hover{opacity:.8}
   cursor:pointer;
 }
 .report-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow);transform:translateY(-1px)}
-/* Latest report highlight */
 .report-card.latest{
   border-color:var(--accent);
   background:linear-gradient(135deg,rgba(88,166,255,.06),rgba(137,87,229,.04));
@@ -67,8 +86,8 @@ a:hover{opacity:.8}
 .report-metric .delta.neutral{color:var(--text-faint)}
 
 /* Empty State */
-.empty{text-align:center;padding:4rem 0;color:var(--text-faint)}
-.empty .icon{font-size:3rem;margin-bottom:1rem}
+.empty{text-align:center;padding:3rem 0;color:var(--text-faint)}
+.empty .icon{font-size:2.5rem;margin-bottom:.8rem}
 
 /* Footer */
 .footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
@@ -92,15 +111,88 @@ a:hover{opacity:.8}
     <h1>开 发 归 档</h1>
     <div class="meta">公开归档 · 项目进展追踪 · 日报 / 航线</div>
   </header>
-  <div class="section-title animate" style="font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem"><span style="flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px;display:inline-block"></span>🗺️ 开发航线</div>
-  <div id="routes" class="loading">加载中...</div>
-  <div class="section-title animate" style="font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem"><span style="flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px;display:inline-block"></span>📋 开发日报</div>
-  <div id="reports" class="loading">加载中...</div>
+
+  <div class="columns">
+    <!-- Left: 开发日报 -->
+    <div class="column">
+      <div class="section-header animate" onclick="toggleSection('reports-body', this)">
+        <span class="bar" style="background:var(--accent)"></span>
+        📋 开发日报
+        <span class="chevron open">▶</span>
+      </div>
+      <div id="reports-body" class="section-body open">
+        <div id="reports" class="loading">加载中...</div>
+      </div>
+    </div>
+
+    <!-- Right: 开发航线 -->
+    <div class="column">
+      <div class="section-header animate" onclick="toggleSection('routes-body', this)">
+        <span class="bar" style="background:#f0883e"></span>
+        🗺️ 开发航线
+        <span class="chevron open">▶</span>
+      </div>
+      <div id="routes-body" class="section-body open">
+        <div id="routes" class="loading">加载中...</div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">
     <a href="https://github.com/exomind-team/exomind">ExoMind</a> · 由 dev-daily / dev-route Agent 生成
   </div>
 </div>
 <script>
+// ── Toggle ──
+function toggleSection(bodyId, header) {
+  const body = document.getElementById(bodyId);
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(() => { body.classList.remove('open'); body.classList.add('closed'); body.style.maxHeight = '0'; });
+    chevron.classList.remove('open');
+  } else {
+    body.classList.remove('closed'); body.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    setTimeout(() => { body.style.maxHeight = ''; }, 400);
+    chevron.classList.add('open');
+  }
+}
+
+// ── Reports ──
+const reportsContainer = document.getElementById('reports');
+
+fetch('reports/manifest.json')
+  .then(r => r.json())
+  .then(data => {
+    const reports = data.reports || [];
+    if (!reports.length) {
+      reportsContainer.innerHTML = '<div class="empty"><div class="icon">📭</div>暂无日报</div>';
+      return;
+    }
+    reportsContainer.className = 'report-list';
+    reportsContainer.innerHTML = reports.map((r, i) => {
+      const isLatest = i === 0;
+      const cls = isLatest ? 'report-card latest animate' : 'report-card animate';
+      const badge = isLatest ? '<span class="latest-badge">LATEST</span>' : '';
+      const metrics = (r.metrics || []).map(m =>
+        `<span class="report-metric"><span class="val">${m.value}</span>${m.label}<span class="delta ${m.trend || ''}">${m.delta || ''}</span></span>`
+      ).join('');
+      return `<a class="${cls}" style="animation-delay:${i * 0.05}s" href="reports/${r.file}">
+        <div class="report-top">
+          <span class="report-date">${r.date}${badge}</span>
+          <span class="report-weather" title="${r.weather?.label || ''}">${r.weather?.emoji || ''}</span>
+        </div>
+        <div class="report-title">${r.title || '开发日志'}</div>
+        <div class="report-metrics">${metrics}</div>
+      </a>`;
+    }).join('');
+  })
+  .catch(() => {
+    reportsContainer.innerHTML = '<div class="empty"><div class="icon">⚠️</div>加载失败</div>';
+  });
+
 // ── Routes ──
 const routesContainer = document.getElementById('routes');
 
@@ -132,39 +224,6 @@ fetch('routes/manifest.json')
   })
   .catch(() => {
     routesContainer.innerHTML = '<div class="empty"><div class="icon">🗺️</div>暂无航线</div>';
-  });
-
-// ── Reports ──
-const container = document.getElementById('reports');
-
-fetch('reports/manifest.json')
-  .then(r => r.json())
-  .then(data => {
-    const reports = data.reports || [];
-    if (!reports.length) {
-      container.innerHTML = '<div class="empty"><div class="icon">📭</div>暂无日报</div>';
-      return;
-    }
-    container.className = 'report-list';
-    container.innerHTML = reports.map((r, i) => {
-      const isLatest = i === 0;
-      const cls = isLatest ? 'report-card latest animate' : 'report-card animate';
-      const badge = isLatest ? '<span class="latest-badge">LATEST</span>' : '';
-      const metrics = (r.metrics || []).map(m =>
-        `<span class="report-metric"><span class="val">${m.value}</span>${m.label}<span class="delta ${m.trend || ''}">${m.delta || ''}</span></span>`
-      ).join('');
-      return `<a class="${cls}" style="animation-delay:${i * 0.05}s" href="reports/${r.file}">
-        <div class="report-top">
-          <span class="report-date">${r.date}${badge}</span>
-          <span class="report-weather" title="${r.weather?.label || ''}">${r.weather?.emoji || ''}</span>
-        </div>
-        <div class="report-title">${r.title || '开发日志'}</div>
-        <div class="report-metrics">${metrics}</div>
-      </a>`;
-    }).join('');
-  })
-  .catch(() => {
-    container.innerHTML = '<div class="empty"><div class="icon">⚠️</div>加载失败</div>';
   });
 </script>
 </body>
