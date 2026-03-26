@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发午报 · 2026-03-26</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  // ── 元信息 ──────────────────────────────────────────────────────
+  meta: {
+    title: '开发午报',
+    date: '2026-03-26',
+    coverage: '03-26 14:30 ~ 03-26 15:00（补充报告）',
+    baseline: '495aa9d',
+    repo: 'exomind-team/exomind',
+  },
+
+  // ── 发布者 ────────────────────────────────────────────────────────
+  publisher: {
+    identity: '外心史官',
+    os: 'Android',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  // ── 天气 ────────────────────────────────────────────────────────
+  weather: {
+    level: 'cloudy',
+    emoji: '⛅',
+    label: '晴转多云',
+    ups: [
+      '批次 N「RT 任务 API 增强」8/8 全部完成 — #687 tag 过滤收官',
+      '批次 N 完成解锁 O/P/Q/W 四个下游批次，航线打开新通道',
+      'Open Issues 降至 259（今日从 266 → 259，累计关 8 个）',
+      'P1 降至 43（较早报 45 净减 2）',
+      '目标系统 v0.3 UI 代码密集推进：edge split / propagation / guide rings',
+    ],
+    downs: [
+      '259 open 仍处历史高位（03-18 起 175→259，八天 +84）',
+      '6 P0 连续十期零代码推进，已成结构性欠账',
+      '#466 锁定 17 天，PR 看板注意力浪费',
+      '#432 #591 连续七期 mismatch 未关闭',
+      '四个下游批次同时解锁，需立即排优先级避免资源分散',
+    ],
+  },
+
+  // ── 数据指标卡 ──────────────────────────────────────────────────
+  metrics: [
+    { label: 'Open Issues', value: '259',  delta: '↓ 1', trend: 'down', note: '较14:30少1',  tooltip: '14:30报 260 → 本期 259（#687 关闭）' },
+    { label: 'P0 / P1',    value: '6 / 43',delta: 'P1 -1',trend: 'down', note: 'P0 不变',     tooltip: 'P0: 6（不变） · P1: 44→43（-1）' },
+    { label: '关闭 Issue',  value: '1',     delta: '#687', trend: 'down', note: '批次N收官',   tooltip: '#687 tag过滤 — 批次N最后一项' },
+    { label: '合并 PR',     value: '0',     delta: '—',    trend: 'neutral', note: '无新合并', tooltip: '覆盖区间内无PR合并' },
+  ],
+
+  // ── 主线追踪 ────────────────────────────────────────────────────
+  mainlines: [
+    { name: '批次 N：RT 任务 API 增强', tag: null, pct: 100, stall: false, subtasks: [
+      { text: '#683 title 冻结讨论', done: true, issue: 683 },
+      { text: '#686 批量状态迁移', done: true, issue: 686 },
+      { text: '#687 tag/status/parent 过滤', done: true, issue: 687 },
+      { text: '#688 快捷跳步 transition', done: true, issue: 688 },
+      { text: '#689 终态 title 拒绝修改', done: true, issue: 689 },
+      { text: '#672 时间块事件自动写入', done: true, issue: 672 },
+      { text: '#673 任务状态变更写入 eventlog', done: true, issue: 673 },
+      { text: '#733 终态过滤三档策略', done: true, issue: 733 },
+    ]},
+    { name: '目标系统 v0.3 UI', tag: 'new', pct: 35, stall: false, subtasks: [
+      { text: '设计文档 v0.1 ~ v0.3 六轮审查定稿', done: true },
+      { text: 'GoalsPage + force-layout 基础', done: true },
+      { text: 'edge split / propagation / guide rings (今日)', done: true },
+      { text: '#717 图模型对齐 (P1)', done: false, issue: 717 },
+      { text: '#744 迁入 RT 替换本地 store', done: false, issue: 744 },
+      { text: '#719 完成级联 (P1)', done: false, issue: 719 },
+      { text: '#723 v2 原型 (P1)', done: false, issue: 723 },
+    ]},
+    { name: 'RT Agent 接入 #666', pct: 75, stall: false, subtasks: [
+      { text: '#668 eventlog ID 统一生成', done: true, issue: 668 },
+      { text: '#669 过滤查询', done: true, issue: 669 },
+      { text: '#671 watch 端点', done: true, issue: 671 },
+      { text: '#667 档案列表接口', done: true, issue: 667 },
+      { text: '#672 #673 eventlog 自动写入', done: true, issue: 672 },
+      { text: '#676 /act API 根路径', done: false, issue: 676 },
+      { text: '#677 Agent 登录审批', done: false, issue: 677 },
+    ]},
+    { name: '开源迁移 #613', pct: 65, stall: false, subtasks: [
+      { text: 'LF 统一 + README 截图', done: true },
+      { text: '#707 合并', done: true, issue: 707 },
+      { text: 'Git 历史清洗', done: false },
+      { text: '仓库创建', done: false },
+    ]},
+    { name: '6 P0 MVP', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#532 RT+ECS 跨端同步', done: false, issue: 532 },
+      { text: '#527 手机↔电脑互通', done: false, issue: 527 },
+      { text: '#511 语音输入归一化', done: false, issue: 511 },
+      { text: '#480 语音驱动任务 MVP', done: false, issue: 480 },
+      { text: '#452 密钥清理', done: false, issue: 452 },
+      { text: '#326 ASR→分类链路', done: false, issue: 326 },
+    ]},
+  ],
+
+  // ── 头条 ────────────────────────────────────────────────────────
+  headlines: [
+    { emoji: '🏁', title: '批次 N 全线完成 — 四条航线解锁',
+      color: 'var(--green)',
+      body: '#687 tag 过滤关闭，批次 N「RT 任务 API 增强」8/8 收官。直接解锁批次 O（目标系统 v2）、P（时间块体验修复）、Q（事件日志增强）、W（RT Auth + Agent 接入）四个下游批次。这是今日最大的航线变化。' },
+    { emoji: '🎨', title: '目标系统 v0.3 UI 密集迭代',
+      color: 'var(--accent)',
+      body: '今日 dev 连续 8 个 goal-system 提交：edge split 对话流、propagation 高亮、cancel 控件扩展、hop-distance 引导环、graph 交互反馈打磨。v0.3 设计稿六轮审查已定稿。' },
+    { emoji: '📊', title: 'Open Issues 今日净减 7',
+      color: 'var(--purple)',
+      body: '从早报 266 → 现在 259。关闭 8 个（批次 N 5项 + #672 #673 eventlog + #733 过滤策略），新增 1 个 (#744 目标系统迁入 RT)。P1 从 45 降至 43。' },
+  ],
+
+  // ── 上期建议记分卡 ──────────────────────────────────────────────
+  scorecard: [
+    { text: '立即启动 #744 迁入 RT', result: 'pass', note: '#744 已创建并开始规划' },
+    { text: '关闭 #432 和 #591', result: 'fail', note: '连续七期 mismatch。两者仍 OPEN' },
+    { text: '关闭或解锁 #466', result: 'fail', note: '仍锁定，已 17 天' },
+  ],
+
+  // ── PR 看板 ─────────────────────────────────────────────────────
+  prs: {
+    open: [
+      { num: 595, title: 'ExoMind-Net v3 八层设计规范', status: 'docs' },
+      { num: 565, title: '集体经济与治理体系文档 v1', status: 'review' },
+      { num: 466, title: 'Worker Agent 主提示词状态机', status: 'locked', extra: '🔒 17天' },
+    ],
+    merged: [],
+  },
+
+  // ── Issue 地形图 (Chart.js 水平条形图) ─────────────────────────
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','事件日志','时间块','信号池','P0'],
+    data:   [190, 100, 91,    72,   72,           60,   43,   41,     30,    25,      22,      21,     13,     6],
+    deltas: ['+3','+8','+9', '+6', '+6',         '-2', '+3', '+5',  '+3',  '+1',    '+2',    '+2',   null,  null],
+    highlights: { 'P0': '#532 #527 #511 #480 #452 #326', 'P1': '43 issues（含 Goal System + 性能分析新增）' },
+  },
+
+  // ── 代码 vs GitHub 真相表 ──────────────────────────────────────
+  truth: {
+    closed: [
+      { num: 687, title: 'tag/status/parent 过滤', gh: 'CLOSED', code: 'FIXED' },
+      { num: 686, title: '批量状态迁移', gh: 'CLOSED', code: 'FIXED' },
+      { num: 688, title: '快捷跳步 transition', gh: 'CLOSED', code: 'FIXED' },
+      { num: 689, title: '终态 title 拒绝修改', gh: 'CLOSED', code: 'FIXED' },
+      { num: 683, title: 'title 冻结讨论', gh: 'CLOSED', code: 'FIXED' },
+      { num: 672, title: '时间块事件写入 eventlog', gh: 'CLOSED', code: 'FIXED' },
+      { num: 673, title: '任务状态变更写入 eventlog', gh: 'CLOSED', code: 'FIXED' },
+      { num: 733, title: '终态过滤三档策略', gh: 'CLOSED', code: 'FIXED' },
+    ],
+    stillOpen: [
+      { num: 432, title: 'WebSocket 死锁', gh: 'OPEN', code: 'FIXED', mismatch: true },
+      { num: 591, title: 'Ritual Home', gh: 'OPEN', code: 'FIXED', mismatch: true },
+    ],
+  },
+
+  // ── 建议行动 (可勾选, localStorage 持久化) ────────────────────
+  actions: [
+    { text: '排定 O/P/Q/W 四批次优先级', detail: '批次 N 完成同时解锁四条航线，立即决定先攻哪条。建议：O（目标系统 v2）最热，P（时间块修复）最痛' },
+    { text: '关闭 #432 和 #591', detail: '连续七期 mismatch，代码早已修复，直接关闭 GitHub Issue 清理真相表' },
+    { text: '关闭或解锁 #466', detail: '锁定 17 天零进展，释放 PR 看板注意力。要么解锁恢复开发，要么关闭 PR' },
+    { text: '推进 #717 图模型对齐', detail: 'v0.3 UI 已大量推进，但 #717 是批次 O 全部后续的前置依赖，需优先落地' },
+  ],
+
+  // ── 底部洞察 ────────────────────────────────────────────────────
+  insight: {
+    text: '「水闸开了」— 批次 N 完成是一个结构性事件。RT 任务 API 从"单条 CRUD"升级到"批量迁移 + 过滤 + 跳步 + eventlog 联动"，这意味着上层功能（目标系统、时间块、事件日志、Agent 接入）终于有了足够粗的水管。四条航线同时解锁，是好消息也是选择焦虑——不排优先级就会四面出击。建议锁定 O+P 双线并行：O 走 #717 图模型对齐（设计已定稿），P 走时间块 P1 修复（用户痛点最直接）。Q 和 W 可以等一轮。',
+    author: '外心史官',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>
