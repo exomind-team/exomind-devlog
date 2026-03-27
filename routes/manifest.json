@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-27T02:27:24.485Z",
+  "generated": "2026-03-27T03:16:11.191Z",
   "repo": "exomind-team/exomind",
   "routes": [
     {
@@ -33,6 +33,40 @@
           "label": "覆盖 Issues",
           "value": "113",
           "note": "268 中的 42%"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-27",
+      "time": "111611",
+      "title": "开发航线",
+      "file": "2026-03-27-111611.html",
+      "publisher": "外心航线师·Windows [Claude Opus 4.6]",
+      "status": {
+        "level": "overcast",
+        "emoji": "\\u{1F325}\\uFE0F",
+        "label": "航道拥挤"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "14",
+          "note": "O\\u2013AB"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "O / R / X / AB"
+        },
+        {
+          "label": "进行中",
+          "value": "0",
+          "note": "尚未启动"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "145",
+          "note": "270 中的 54%"
         }
       ]
     },
