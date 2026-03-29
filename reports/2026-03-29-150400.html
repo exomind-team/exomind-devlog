@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发午报 · 2026-03-29</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  meta: {
+    title: '开发午报',
+    date: '2026-03-29',
+    coverage: '03-29 早 → 03-29 午（6h）',
+    baseline: 'b671fba',
+    repo: 'exomind-team/exomind',
+  },
+
+  publisher: {
+    identity: '外心史官',
+    os: 'Windows',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  weather: {
+    level: 'cloudy',
+    emoji: '⛅',
+    label: '晴转多云',
+    ups: [
+      '开发工具链改善：日报/航线发布系统完善——导航修复 + 三处同步规则文档化 + 5 个 skills 入库',
+      '#747 Goal System E2E 测试持续加固：viewport 稳定性 + 布局覆盖 + 单元测试修复',
+      'dev 分支持续活跃：5 个新提交，工具链与测试双线推进',
+    ],
+    downs: [
+      '7 个 P0 仍全部开放，#452 安全密钥清理无任何推进',
+      'Open Issues 276→277，仍在缓慢增长，无关闭动作',
+      '0 个 PR 合并——开发节奏处于测试/文档/工具期，非功能交付期',
+      'PR #758 #755 待 review 无进展',
+    ],
+  },
+
+  metrics: [
+    { label: 'Open Issues', value: '277',  delta: '↑ 1',  trend: 'up',      note: '缓慢增长',        tooltip: '早报 276 → 午报 277' },
+    { label: 'Open PRs',    value: '5',    delta: '→ 0',  trend: 'neutral', note: '无变化',           tooltip: '与早报一致' },
+    { label: '新增 Issue',   value: '1',    delta: '—',    trend: 'neutral', note: '半天仅 1 个',      tooltip: '节奏放缓' },
+    { label: '合并 PR',      value: '0',    delta: '—',    trend: 'neutral', note: '静默',             tooltip: '上次合并 #727 在 03-25' },
+  ],
+
+  mainlines: [
+    { name: 'RT Task/EventLog 闭环', pct: 80, stall: false, subtasks: [
+      { text: '#683 title 冻结讨论', done: true, issue: 683 },
+      { text: '#686 批量状态迁移', done: true, issue: 686 },
+      { text: '#687 服务端过滤查询', done: true, issue: 687 },
+      { text: '#688 快捷跳步', done: true, issue: 688 },
+      { text: '#689 终态 title 拒绝', done: true, issue: 689 },
+      { text: '#672 时间块→eventlog', done: true, issue: 672 },
+      { text: '#673 任务→eventlog', done: true, issue: 673 },
+      { text: '#460 任务完整 CRUD', done: false, issue: 460 },
+    ]},
+    { name: 'Goal System v2', tag: 'new', pct: 18, stall: false, subtasks: [
+      { text: '#747 渲染稳定性 P0（E2E 持续加固中）', done: false, issue: 747 },
+      { text: '#717 对齐图数据模型', done: false, issue: 717 },
+      { text: '#718 新建目标自动边', done: false, issue: 718 },
+      { text: '#719 入边纯推导 + 级联重算', done: false, issue: 719 },
+      { text: '#720 匿名边收口', done: false, issue: 720 },
+      { text: '#721 边拆解中间目标', done: false, issue: 721 },
+      { text: '#723 v2 原型开发', done: false, issue: 723 },
+    ]},
+    { name: 'Today Planner', tag: 'new', pct: 10, stall: false, subtasks: [
+      { text: '#751 epic: 手动今日计划时间块', done: false, issue: 751 },
+      { text: '#752 计划时间块模型', done: false, issue: 752 },
+      { text: '#753 feature API', done: false, issue: 753 },
+      { text: '#754 UI 升级', done: false, issue: 754 },
+      { text: 'PR #755 timeline scheduling', done: false },
+    ]},
+    { name: '跨端同步 ECS', tag: 'stall', pct: 25, stall: true, subtasks: [
+      { text: '#366 ECS 实施总计划', done: false, issue: 366 },
+      { text: '#532 RT+ECS 跨端同步 P0', done: false, issue: 532 },
+      { text: '#527 手机↔电脑 SQLite 互通 P0', done: false, issue: 527 },
+      { text: '#368 Transport 抽象', done: false, issue: 368 },
+    ]},
+    { name: '安全修复', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#452 硬编码 API 密钥清理 P0', done: false, issue: 452 },
+      { text: '#534 死代码清理', done: false, issue: 534 },
+      { text: '#519 前端环境变量收敛', done: false, issue: 519 },
+      { text: '#457 消除 unsafe unwrap', done: false, issue: 457 },
+    ]},
+  ],
+
+  headlines: [
+    { emoji: '🔧', title: '开发工具链改善 — 日报/航线发布系统完善',
+      color: 'var(--accent)',
+      body: '航线页面补齐「← DevLog 归档」导航链接。新增「三处同步规则」文档化到 dev-daily/dev-route AGENTS.md。5 个 project-local skills 首次入库（dev-daily, dev-route, issue-tracking, issue-triage, review-agent）。' },
+    { emoji: '🏔️', title: '#747 Goal System E2E 持续加固',
+      color: 'var(--purple)',
+      body: '3 个新提交覆盖 viewport 移动稳定性、目标布局覆盖率、单元测试警告修复。该 P0 进入稳定收尾阶段。' },
+  ],
+
+  scorecard: [
+    { text: '优先推进 #452 安全密钥清理', result: 'fail', note: '无推进' },
+    { text: 'Review 并合并 PR #758', result: 'fail', note: '无推进' },
+    { text: '推进 #747 修复到合并', result: 'partial', note: 'E2E 仍在加固，尚未提 PR' },
+  ],
+
+  prs: {
+    open: [
+      { num: 758, title: '迁移 runtime-backed 设置到 SQLite config', status: 'review' },
+      { num: 755, title: 'Today Planner 时间线调度窗口', status: 'review' },
+      { num: 595, title: 'ExoMind-Net v3 八层设计规范', status: 'docs' },
+      { num: 565, title: '集体经济与治理体系文档 v1', status: 'docs' },
+      { num: 466, title: 'Worker Agent 主提示词状态机', status: 'locked', extra: '🔒 20天' },
+    ],
+    merged: [],
+  },
+
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','时间块','事件日志','信号池','sync','P0','documentation'],
+    data:   [198, 109, 101,   80,   73,          69,   51,   44,     32,   29,     29,      23,      13,     9,    7,    7],
+    deltas: ['+1', null,'+1', null,  null,       '+1', null, '+1',  null, null,   null,    null,    null,  '+1', null, null],
+    highlights: {
+      'P0': '#747 目标页回归 / #452 密钥清理 / #532 #527 同步 / #511 #480 #326 语音',
+      'P1': '51 个不变，涵盖 goal-system / today-planner / settings / 移动端',
+    },
+  },
+
+  truth: {
+    closed: [],
+    stillOpen: [],
+  },
+
+  actions: [
+    { text: '推进 #747 提 PR 并合并', detail: 'E2E 已充分覆盖 viewport/布局/节点/连边/圈层场景，可进入 PR 阶段关闭此 P0' },
+    { text: '启动 #452 安全密钥清理', detail: 'P0 已挂 21 天，用预置 grep pattern 一次性扫描 src/ crates/' },
+    { text: 'Review PR #758 设置迁移', detail: 'RT 化关键路径，解锁下游时间块/Android/同步批次' },
+  ],
+
+  insight: {
+    text: '午间静默期——没有功能交付，但地基在加固。#747 E2E 覆盖从 8 轮增至 11 轮，Goal System 的测试护城河越来越深。工具链方面，日报/航线发布系统的「三处同步规则」被文档化，skills 正式入库，这是 Agent 可复现工作流的基础设施。下一步的节奏取决于 #747 何时提 PR——一旦这个 P0 合并，Goal System v2 的 #717~#723 将批量解锁。',
+    author: '外心史官·Windows [Claude Opus 4.6]',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>
