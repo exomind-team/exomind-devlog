@@ -91,7 +91,7 @@ code,.mono{font-family:'JetBrains Mono',monospace}
 .batch-deps strong{color:var(--text-dim)}
 
 /* Heatmap */
-.heatmap-grid{display:grid;grid-template-columns:100px repeat(7,1fr);gap:2px;font-size:.75rem}
+.heatmap-grid{display:grid;grid-template-columns:100px repeat(7,1fr);gap:2px;font-size:.75rem} /* 7 is fallback; JS overrides via inline style */
 .heatmap-header{background:var(--card-hover);padding:.4rem;text-align:center;font-weight:700;color:var(--text-dim);border-radius:var(--radius-sm)}
 .heatmap-label{background:var(--card);padding:.4rem;display:flex;align-items:center;font-weight:500;color:var(--text-dim);border-radius:var(--radius-sm)}
 .heatmap-cell{padding:.5rem;text-align:center;border-radius:var(--radius-sm);font-family:'JetBrains Mono',monospace;font-weight:700;transition:transform .15s}
