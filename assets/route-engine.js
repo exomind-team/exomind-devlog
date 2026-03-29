@@ -452,7 +452,8 @@ function renderFooter() {
   return `
     <div class="footer">
       ExoMind 开发航线 · ${R.meta.date} · 数据驱动，航段变化时更新
-    </div>`;
+    </div>
+    <div class="devlog-nav"><a href="../">← DevLog 归档</a></div>`;
 }
 
 // Assemble

@@ -117,6 +117,8 @@ code,.mono{font-family:'JetBrains Mono',monospace}
 
 /* Footer */
 .footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+.devlog-nav{text-align:center;padding:1rem 0;font-size:.85rem}
+.devlog-nav a{color:var(--accent);font-family:'JetBrains Mono',monospace}
 
 /* Responsive */
 @media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
