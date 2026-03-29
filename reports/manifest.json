@@ -1,7 +1,19 @@
 {
-  "generated": "2026-03-27T02:28:52.353Z",
+  "generated": "2026-03-29T03:33:21.138Z",
   "repo": "exomind-team/exomind",
   "reports": [
+    {
+      "date": "2026-03-29",
+      "time": "083800",
+      "title": "开发早报",
+      "file": "2026-03-29-083800.html",
+      "publisher": "外心史官·Windows [Claude Opus 4.6]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "晴转多云"
+      }
+    },
     {
       "date": "2026-03-27",
       "time": "102456",

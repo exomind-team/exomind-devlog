@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发日报模板</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;
+  --radius:10px;--radius-sm:6px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.8}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2.5rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:2.2rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.3em;text-transform:uppercase}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Top Row */
+.top-row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;margin:1.5rem 0}
+.weather-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s}
+.weather-card:hover{transform:scale(1.01)}
+.weather-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.12),transparent 60%)}
+.weather-emoji{font-size:2.5rem;position:relative}
+.weather-label{font-size:1.3rem;font-weight:700;margin-top:.3rem;position:relative}
+.weather-sub{font-size:.85rem;opacity:.85;margin-top:.3rem;position:relative}
+.weather-details{max-height:0;overflow:hidden;transition:max-height .4s ease;position:relative}
+.weather-details.open{max-height:500px}
+.weather-details ul{list-style:none;margin-top:.8rem;font-size:.82rem;line-height:1.8}
+.weather-details li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.5rem;vertical-align:middle}
+.weather-details .up li::before{background:#2ea043}
+.weather-details .down li::before{background:var(--p1)}
+
+/* Metrics */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:1.05rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;margin:.3rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .delta{font-size:1.08rem;font-family:'JetBrains Mono',monospace;font-weight:700}
+.metric-card .delta.up{color:var(--p1)}
+.metric-card .delta.down{color:var(--green)}
+.metric-card .delta.neutral{color:var(--text-faint)}
+.metric-card .note{font-size:.75rem;color:var(--text-dim);margin-top:.2rem}
+.metric-card .tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1c2128;border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem .7rem;font-size:.82rem;white-space:nowrap;z-index:10;color:var(--text-dim)}
+.metric-card:hover .tooltip{display:block}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Mainlines */
+.mainline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:.6rem;cursor:pointer;transition:border-color .2s}
+.mainline:hover{border-color:var(--accent)}
+.mainline-header{display:flex;align-items:center;justify-content:space-between}
+.mainline-name{font-weight:500;font-size:.92rem}
+.mainline-name .tag{display:inline-block;font-size:.75rem;padding:.1rem .4rem;border-radius:3px;margin-left:.5rem;vertical-align:middle;font-weight:700;letter-spacing:.05em}
+.mainline-name .tag.new{background:rgba(46,160,67,.2);color:var(--green)}
+.mainline-name .tag.stall{background:rgba(248,81,73,.15);color:var(--p0)}
+.mainline-pct{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent)}
+.mainline-bar{height:6px;background:var(--border);border-radius:3px;margin-top:.6rem;overflow:hidden}
+.mainline-fill{height:100%;border-radius:3px;transition:width .8s ease;background:linear-gradient(90deg,var(--green-dim),var(--green))}
+.mainline-fill.stall{background:linear-gradient(90deg,#6e4020,var(--p1))}
+.mainline-subtasks{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mainline-subtasks.open{max-height:600px}
+.mainline-subtasks ul{list-style:none;margin-top:.7rem;font-size:.8rem;color:var(--text-dim)}
+.mainline-subtasks li{padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.mainline-subtasks .done{color:var(--green)}
+.mainline-subtasks .pending{color:var(--text-faint)}
+.mainline-chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.mainline-chevron.open{transform:rotate(90deg)}
+
+/* Headlines */
+.headline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;border-left:3px solid var(--accent);transition:border-color .2s}
+.headline-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+.headline-body{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+.gh-link{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);border-bottom:1px dotted rgba(88,166,255,.3)}
+
+/* Collapsibles */
+.collapsible{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.6rem;overflow:hidden}
+.collapsible-header{padding:.8rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:.88rem;transition:background .15s}
+.collapsible-header:hover{background:var(--card-hover)}
+.collapsible-header .chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.collapsible-header .chevron.open{transform:rotate(90deg)}
+.collapsible-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.collapsible-body.open{max-height:2000px}
+.collapsible-content{padding:0 1.2rem 1rem}
+
+/* Scorecard */
+.score-row{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.score-row:last-child{border-bottom:none}
+.score-badge{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700}
+.score-badge.pass{background:rgba(46,160,67,.15);color:var(--green)}
+.score-badge.fail{background:rgba(248,81,73,.12);color:var(--p0)}
+.score-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.score-text{flex:1;color:var(--text-dim)}
+.score-note{font-size:.82rem;color:var(--text-faint)}
+
+/* PR Table */
+.pr-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.pr-table th{text-align:left;color:var(--text-faint);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.pr-table td{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.pr-table .num{font-family:'JetBrains Mono',monospace;color:var(--accent)}
+.pr-status{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.pr-status.locked{background:rgba(248,81,73,.12);color:var(--p0)}
+.pr-status.review{background:rgba(88,166,255,.12);color:var(--accent)}
+.pr-status.merged{background:rgba(46,160,67,.15);color:var(--green)}
+.pr-status.docs{background:rgba(110,118,129,.15);color:var(--text-dim)}
+
+/* Chart */
+.chart-wrap{height:280px;position:relative}
+
+/* Truth Table */
+.truth-group-title{font-size:.85rem;color:var(--text-faint);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:1rem 0 .5rem}
+.truth-row{display:grid;grid-template-columns:60px 1fr 100px 100px;gap:.5rem;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.truth-row:last-child{border-bottom:none}
+.truth-num{font-family:'JetBrains Mono',monospace}
+.truth-badge{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.78rem;font-weight:700;text-align:center}
+.truth-badge.open{background:rgba(248,81,73,.12);color:var(--p0)}
+.truth-badge.closed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.fixed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.none{background:rgba(110,118,129,.12);color:var(--text-faint)}
+.truth-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.truth-mismatch{background:rgba(210,153,34,.06);border-radius:var(--radius-sm)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.97rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.97rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.82rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.truth-row{grid-template-columns:50px 1fr;gap:.3rem}.truth-row>:nth-child(3),.truth-row>:nth-child(4){grid-column:span 1}.logo{font-size:2rem}.header h1{font-size:1.4rem}.collapsible-body.open{max-height:3000px}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发日报 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 修改下方 REPORT 对象中的数据                                 ║
+// ║  2. 在浏览器中打开此文件即可                                     ║
+// ║  3. 所有 HTML 由 JS 从 REPORT 数据自动渲染                       ║
+// ║                                                                  ║
+// ║  天气等级:                                                       ║
+// ║    sun    = ☀️ 晴        (无阻塞)                                ║
+// ║    cloudy = ⛅ 晴转多云  (有关注项)                               ║
+// ║    overcast = 🌥️ 多云   (多项阻塞)                               ║
+// ║    rain   = 🌧️ 阵雨     (关键路径受阻)                           ║
+// ║    storm  = ⛈️ 雷暴      (生产事故)                               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT = {
+
+  meta: {
+    title: '开发早报',
+    date: '2026-03-29',
+    coverage: '03-27 早 → 03-29 早（2 天）',
+    baseline: '0160c98',
+    repo: 'exomind-team/exomind',
+  },
+
+  publisher: {
+    identity: '外心史官',
+    os: 'Windows',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  weather: {
+    level: 'cloudy',
+    emoji: '⛅',
+    label: '晴转多云',
+    ups: [
+      'RT Task/EventLog API 大批交付：3/26 一天关闭 14 个 Issue（#683 #686 #687 #688 #689 #672 #673 等）',
+      'Goal System E2E 测试密集推进——#747 回归覆盖已有 8 次提交入 dev',
+      '#727 Ritual Home 移除 + / 重定向 /eventlog，入口简化完成',
+      '#748 版本号显示 bug 修复 + #733 终态节点三档过滤策略上线',
+    ],
+    downs: [
+      '7 个 P0 仍开放，#452 安全密钥清理已挂 20+ 天',
+      'Open Issues 268→276，新增 34 个 Issue vs 合并 1 个 PR——积压持续扩大',
+      'Sync/ECS 双 P0（#532 #527）长期停滞，无近期 commit',
+      'Today Planner PR #755 开放但无 review 推进',
+      '#466 Worker Agent PR 锁定已超 20 天',
+    ],
+  },
+
+  metrics: [
+    { label: 'Open Issues', value: '276',  delta: '↑ 8',  trend: 'up',      note: '历史新高',        tooltip: '上期 268 → 本期 276' },
+    { label: 'Open PRs',    value: '5',    delta: '→ 0',  trend: 'neutral', note: '1 locked + 2 docs', tooltip: '#466 被 Agent 锁定 20 天' },
+    { label: '新增 Issue',   value: '34',   delta: '↑',    trend: 'up',      note: '2天涌入',          tooltip: '日均 17 个，远超消化速度' },
+    { label: '合并 PR',      value: '1',    delta: '—',    trend: 'neutral', note: '#727 仅一个',       tooltip: '#727 Ritual Home 移除 (03-25)' },
+  ],
+
+  mainlines: [
+    { name: 'RT Task/EventLog 闭环', pct: 80, stall: false, subtasks: [
+      { text: '#683 title 冻结讨论', done: true, issue: 683 },
+      { text: '#686 批量状态迁移', done: true, issue: 686 },
+      { text: '#687 服务端过滤查询', done: true, issue: 687 },
+      { text: '#688 快捷跳步', done: true, issue: 688 },
+      { text: '#689 终态 title 拒绝', done: true, issue: 689 },
+      { text: '#672 时间块→eventlog', done: true, issue: 672 },
+      { text: '#673 任务→eventlog', done: true, issue: 673 },
+      { text: '#460 任务完整 CRUD', done: false, issue: 460 },
+    ]},
+    { name: 'Goal System v2', tag: 'new', pct: 15, stall: false, subtasks: [
+      { text: '#747 渲染稳定性 P0（E2E 密集覆盖中）', done: false, issue: 747 },
+      { text: '#717 对齐图数据模型', done: false, issue: 717 },
+      { text: '#718 新建目标自动边', done: false, issue: 718 },
+      { text: '#719 入边纯推导 + 级联重算', done: false, issue: 719 },
+      { text: '#720 匿名边收口', done: false, issue: 720 },
+      { text: '#721 边拆解中间目标', done: false, issue: 721 },
+      { text: '#723 v2 原型开发', done: false, issue: 723 },
+    ]},
+    { name: 'Today Planner', tag: 'new', pct: 10, stall: false, subtasks: [
+      { text: '#751 epic: 手动今日计划时间块', done: false, issue: 751 },
+      { text: '#752 计划时间块模型', done: false, issue: 752 },
+      { text: '#753 feature API', done: false, issue: 753 },
+      { text: '#754 UI 升级', done: false, issue: 754 },
+      { text: 'PR #755 timeline scheduling', done: false },
+    ]},
+    { name: '跨端同步 ECS', tag: 'stall', pct: 25, stall: true, subtasks: [
+      { text: '#366 ECS 实施总计划', done: false, issue: 366 },
+      { text: '#532 RT+ECS 跨端同步 P0', done: false, issue: 532 },
+      { text: '#527 手机↔电脑 SQLite 互通 P0', done: false, issue: 527 },
+      { text: '#368 Transport 抽象', done: false, issue: 368 },
+    ]},
+    { name: '安全修复', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#452 硬编码 API 密钥清理 P0', done: false, issue: 452 },
+      { text: '#534 死代码清理', done: false, issue: 534 },
+      { text: '#519 前端环境变量收敛', done: false, issue: 519 },
+      { text: '#457 消除 unsafe unwrap', done: false, issue: 457 },
+    ]},
+  ],
+
+  headlines: [
+    { emoji: '🧬', title: 'RT Task/EventLog API 批量交付 — 8 个功能 Issue 一天清零',
+      color: 'var(--green)',
+      body: '3/26 集中关闭 #683（title 冻结讨论）、#686（批量迁移）、#687（服务端过滤）、#688（快捷跳步）、#689（终态拒绝修改）、#672（时间块→eventlog）、#673（任务→eventlog）。RT 任务子系统基本闭环。' },
+    { emoji: '🏔️', title: 'Goal System #747 稳定性回归密集覆盖 — E2E 连续 8 轮提交',
+      color: 'var(--purple)',
+      body: 'dev 分支最近 10 个提交中 8 个针对 #747 目标页渲染回归，覆盖节点隐藏、连边裁切、星形分离力、圈层叠加等场景。该 P0 正被积极治理。' },
+    { emoji: '🚀', title: 'Today Planner 新系统浮出水面 — epic #751 + PR #755',
+      color: 'var(--accent)',
+      body: '5 个新 Issue（#751-#755）定义了手动今日计划时间块系统：一等计划对象、feature API、UI 升级。PR #755 已提交时间线调度窗口功能。' },
+  ],
+
+  scorecard: [
+    { text: '优先 #717 图模型对齐', result: 'fail', note: '未推进，Goal System 精力集中在 #747 E2E 稳定性' },
+    { text: '推进 #676 /act API', result: 'fail', note: '未推进' },
+    { text: '冻结目标系统新开题', result: 'fail', note: '反而新开 Today Planner 5 个 Issue' },
+  ],
+
+  prs: {
+    open: [
+      { num: 758, title: '迁移 runtime-backed 设置到 SQLite config', status: 'review' },
+      { num: 755, title: 'Today Planner 时间线调度窗口', status: 'review' },
+      { num: 595, title: 'ExoMind-Net v3 八层设计规范', status: 'docs' },
+      { num: 565, title: '集体经济与治理体系文档 v1', status: 'docs' },
+      { num: 466, title: 'Worker Agent 主提示词状态机', status: 'locked', extra: '🔒 20天' },
+    ],
+    merged: [
+      { num: 727, title: '移除 Ritual Home，/ 重定向 /eventlog', date: '03-25' },
+    ],
+  },
+
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','时间块','research','事件日志','信号池','sync','P0','documentation'],
+    data:   [197, 109, 100,   80,   73,          68,   51,   43,     32,   29,     28,      23,      13,     8,    7,    7],
+    deltas: ['+10','+17','+18','+14','+7',       '+6', '+3', '+7',  '+5', null,   '+4',    '+3',    null,  null, '+1', null],
+    highlights: {
+      'P0': '#747 目标页回归 / #452 密钥清理 / #532 #527 同步 / #511 #480 #326 语音',
+      'P1': '51 个，涵盖 goal-system / today-planner / settings / 移动端',
+    },
+  },
+
+  truth: {
+    closed: [
+      { num: 748, title: '版本号显示 vv0.3.5', gh: 'CLOSED', code: 'FIXED' },
+      { num: 733, title: '终态节点三档过滤', gh: 'CLOSED', code: 'FIXED' },
+      { num: 703, title: 'UI Shell 收口', gh: 'CLOSED', code: 'FIXED' },
+      { num: 689, title: 'RT 终态 title 拒绝', gh: 'CLOSED', code: 'FIXED' },
+      { num: 688, title: 'RT 快捷跳步', gh: 'CLOSED', code: 'FIXED' },
+      { num: 687, title: 'RT 服务端过滤查询', gh: 'CLOSED', code: 'FIXED' },
+      { num: 686, title: 'RT 批量状态迁移', gh: 'CLOSED', code: 'FIXED' },
+      { num: 683, title: 'title 冻结讨论', gh: 'CLOSED', code: 'FIXED' },
+      { num: 673, title: '任务→eventlog', gh: 'CLOSED', code: 'FIXED' },
+      { num: 672, title: '时间块→eventlog', gh: 'CLOSED', code: 'FIXED' },
+    ],
+    stillOpen: [],
+  },
+
+  actions: [
+    { text: '优先推进 #452 安全密钥清理', detail: 'P0 已挂 20+ 天，grep 预置 pattern 扫描后一次性清理，解锁语音/Agent 批次' },
+    { text: 'Review 并合并 PR #758', detail: '设置迁移到 SQLite 是 RT 化关键路径，完成后解锁时间块/Android/同步 3 个后续批次' },
+    { text: '推进 #747 修复到合并', detail: 'E2E 覆盖已有 8 轮提交，尝试提 PR 关闭此 P0' },
+  ],
+
+  insight: {
+    text: 'RT 子系统在 3/26 完成了一次集中交付——任务和事件日志的 API 基本闭环，这是 ExoMind 后端成熟度的标志性节点。但新 Issue 涌入速度（日均 17 个）远超消化速度，Open Issues 从 268 增至 276。Goal System 和 Today Planner 两条新航线同时启动，资源分散风险值得关注。安全线 P0 #452 和同步线 P0 #532/#527 需要专项突击——它们是解锁语音和跨端两大产品方向的门槛。',
+    author: '外心史官·Windows [Claude Opus 4.6]',
+  },
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  以下为渲染引擎 · 修改数据请改上方 REPORT，无需改动下方代码      ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const GH_BASE = `https://github.com/${REPORT.meta.repo}/issues/`;
+const GH_PR = `https://github.com/${REPORT.meta.repo}/pull/`;
+const STORAGE_KEY = `exomind-actions-${REPORT.meta.date}`;
+
+function ghLink(num) { return `<a class="gh-link" href="${GH_BASE}${num}">#${num}</a>`; }
+function prLink(num) { return `<a class="gh-link" href="${GH_PR}${num}">#${num}</a>`; }
+
+// Auto-linkify #xxx in plain text
+function autoLink(text) {
+  return text.replace(/#(\d+)/g, (_, n) => ghLink(n));
+}
+
+// Weather gradient map
+const WEATHER_GRADIENTS = {
+  sun:      'linear-gradient(135deg, #f0a500, #ff6b00)',
+  cloudy:   'linear-gradient(135deg, #58a6ff, #8957e5)',
+  overcast: 'linear-gradient(135deg, #6e7681, #484f58)',
+  rain:     'linear-gradient(135deg, #6e40c9, #f85149)',
+  storm:    'linear-gradient(135deg, #f85149, #da3633)',
+};
+
+const HEADLINE_COLORS = ['var(--green)', 'var(--accent)', 'var(--purple)', 'var(--orange)', 'var(--p0)', 'var(--text-dim)'];
+
+function render() {
+  const R = REPORT;
+  const app = document.getElementById('app');
+  document.title = `ExoMind ${R.meta.title} · ${R.meta.date}`;
+
+  let html = '';
+
+  // ── Header ──
+  html += `<header class="header animate">
+    <div class="logo">EXOMIND</div>
+    <h1>${R.meta.title}</h1>
+    <div class="meta">${R.meta.date} · 覆盖 ${R.meta.coverage} · 基线 <span class="mono">${R.meta.baseline}</span></div>
+  </header>`;
+
+  // ── Weather + Metrics ──
+  const wGrad = WEATHER_GRADIENTS[R.weather.level] || WEATHER_GRADIENTS.cloudy;
+  html += `<div class="top-row">
+    <div class="weather-card animate d1" style="background:${wGrad}" onclick="toggleWeather()">
+      <div class="weather-emoji">${R.weather.emoji}</div>
+      <div class="weather-label">${R.weather.label}</div>
+      <div class="weather-sub">点击查看详情 ▾</div>
+      <div class="weather-details" id="weatherDetails">
+        <div class="up"><ul>${R.weather.ups.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+        <div class="down"><ul>${R.weather.downs.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      ${R.metrics.map((m, i) => `<div class="metric-card animate d${i+2}">
+        <div class="tooltip">${m.tooltip}</div>
+        <div class="label">${m.label}</div>
+        <div class="value">${m.value}</div>
+        <div class="delta ${m.trend}">${m.delta}</div>
+        <div class="note">${m.note}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // ── Mainlines ──
+  html += `<div class="section-title animate d3">主线追踪</div>`;
+  R.mainlines.forEach((m, i) => {
+    const tag = m.tag === 'new' ? '<span class="tag new">NEW</span>'
+      : m.tag === 'stall' ? '<span class="tag stall">STALL</span>' : '';
+    const subs = m.subtasks.map(s => {
+      const icon = s.done ? '<span class="done">✓</span>' : '<span class="pending">○</span>';
+      const link = s.issue ? ` ${ghLink(s.issue)}` : '';
+      return `<li>${icon} ${s.text}${link}</li>`;
+    }).join('');
+    html += `<div class="mainline animate d${Math.min(i+2,6)}">
+      <div class="mainline-header" onclick="toggleMainline(this)">
+        <span class="mainline-name">${m.name} ${tag}</span>
+        <span style="display:flex;align-items:center;gap:.6rem">
+          <span class="mainline-pct">${m.pct}%</span>
+          <span class="mainline-chevron">▶</span>
+        </span>
+      </div>
+      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${m.pct}%"></div></div>
+      <div class="mainline-subtasks"><ul>${subs}</ul></div>
+    </div>`;
+  });
+
+  // ── Headlines ──
+  html += `<div class="section-title animate d4">头条</div>`;
+  R.headlines.forEach((h, i) => {
+    const color = h.color || HEADLINE_COLORS[i] || 'var(--accent)';
+    html += `<div class="headline animate d${Math.min(i+4,6)}" style="border-left-color:${color}">
+      <div class="headline-title">${h.emoji} ${h.title}</div>
+      <div class="headline-body">${autoLink(h.body)}</div>
+    </div>`;
+  });
+
+  // ── Scorecard (collapsible) ──
+  html += renderCollapsible('📋 上期建议执行记分卡', '', 'd5', () => {
+    return R.scorecard.map(s => {
+      const icon = s.result === 'pass' ? '✓' : s.result === 'fail' ? '✗' : '△';
+      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text)}<div class="score-note">${autoLink(s.note)}</div></div></div>`;
+    }).join('');
+  });
+
+  // ── PR Board (collapsible) ──
+  const prSummary = `· Open ${R.prs.open.length} · Merged ${R.prs.merged.length}`;
+  html += renderCollapsible('🚦 PR 看板', prSummary, 'd5', () => {
+    let t = '<table class="pr-table"><tr><th>#</th><th>标题</th><th>状态</th></tr>';
+    R.prs.open.forEach(p => {
+      const extra = p.extra ? ` ${p.extra}` : '';
+      t += `<tr><td class="num"><a href="${GH_BASE}${p.num}">#${p.num}</a></td><td>${p.title}</td><td><span class="pr-status ${p.status}">${p.status}${extra}</span></td></tr>`;
+    });
+    t += '</table>';
+    if (R.prs.merged.length) {
+      t += '<div style="margin-top:.8rem;font-size:.85rem;color:var(--text-dim)">合并: ';
+      t += R.prs.merged.map(p => `${prLink(p.num)} ${p.title} (${p.date})`).join(' · ');
+      t += '</div>';
+    }
+    return t;
+  });
+
+  // ── Terrain (collapsible with chart) ──
+  html += renderCollapsible('🏔️ Issue 地形图', '', 'd5', () => {
+    return '<div class="chart-wrap"><canvas id="terrainChart"></canvas></div>';
+  }, true);
+
+  // ── Truth Table (collapsible) ──
+  html += renderCollapsible('🔬 代码 vs GitHub 真相表', '', 'd6', () => {
+    let t = '<div class="truth-row" style="font-size:.8rem;color:var(--text-faint);font-weight:700;border-bottom:1px solid var(--border)"><div></div><div>ISSUE</div><div>GITHUB</div><div>CODE</div></div>';
+    if (R.truth.closed.length) t += renderTruthGroup('已关闭 · 代码验证通过', R.truth.closed);
+    if (R.truth.stillOpen.length) t += renderTruthGroup('仍 OPEN · 代码已修复 ⚠️', R.truth.stillOpen);
+    return t;
+  });
+
+  // ── Actions ──
+  html += `<div class="section-title animate d6">建议行动</div>`;
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  html += `<div id="actions" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem">`;
+  R.actions.forEach((a, i) => {
+    const checked = stored[i] ? 'checked' : '';
+    html += `<div class="action-item">
+      <input type="checkbox" class="action-check" ${checked} onchange="saveAction(${i}, this.checked)">
+      <div><div class="action-text">${autoLink(a.text)}</div><div class="action-detail">${autoLink(a.detail)}</div></div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // ── Insight ──
+  html += `<div class="insight animate d6">
+    <p>${autoLink(R.insight.text)}</p>
+    <div class="author">— ${R.insight.author} · ${R.meta.date}</div>
+  </div>`;
+
+  // ── Footer ──
+  const pub = R.publisher;
+  const pubStr = pub ? `${pub.identity}·${pub.os} [${pub.model} ${pub.version}]` : 'ExoMind dev-daily agent';
+  html += `<div class="footer">${pubStr}</div>`;
+
+  app.innerHTML = html;
+}
+
+function renderCollapsible(title, subtitle, delay, contentFn, hasChart) {
+  const sub = subtitle ? ` <span style="color:var(--text-faint);font-size:.75rem">${subtitle}</span>` : '';
+  return `<div class="collapsible animate ${delay}">
+    <div class="collapsible-header" onclick="toggleCollapsible(this${hasChart ? ',true' : ''})">
+      <span>${title}${sub}</span><span class="chevron">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="collapsible-content">${contentFn()}</div></div>
+  </div>`;
+}
+
+function renderTruthGroup(title, items) {
+  let h = `<div class="truth-group-title">${title}</div>`;
+  items.forEach(t => {
+    const cls = t.mismatch ? ' truth-mismatch' : '';
+    h += `<div class="truth-row${cls}">
+      <div class="truth-num"><a href="${GH_BASE}${t.num}">#${t.num}</a></div>
+      <div style="color:var(--text-dim)">${t.title}</div>
+      <div><span class="truth-badge ${t.gh.toLowerCase()}">${t.gh}</span></div>
+      <div><span class="truth-badge ${t.code.toLowerCase()}">${t.code}</span></div>
+    </div>`;
+  });
+  return h;
+}
+
+// ── Interactions ──
+function toggleWeather() { document.getElementById('weatherDetails').classList.toggle('open'); }
+function toggleMainline(header) {
+  const card = header.closest('.mainline');
+  card.querySelector('.mainline-subtasks').classList.toggle('open');
+  card.querySelector('.mainline-chevron').classList.toggle('open');
+}
+let chartInstance = null;
+function toggleCollapsible(header, hasChart) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+  if (hasChart && body.classList.contains('open')) setTimeout(renderChart, 50);
+}
+function saveAction(i, checked) {
+  const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  s[i] = checked;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+function renderChart() {
+  const ctx = document.getElementById('terrainChart');
+  if (!ctx) return;
+  if (chartInstance) chartInstance.destroy();
+  const d = REPORT.terrain;
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        data: d.data,
+        backgroundColor: d.labels.map(l => l === 'P0' ? 'rgba(248,81,73,.7)' : l === 'P1' ? 'rgba(210,153,34,.7)' : 'rgba(88,166,255,.4)'),
+        borderColor: d.labels.map(l => l === 'P0' ? '#f85149' : l === 'P1' ? '#d29922' : '#58a6ff'),
+        borderWidth: 1, borderRadius: 3,
+      }],
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: (ctx) => {
+              const label = ctx.label;
+              const delta = d.deltas[d.labels.indexOf(label)];
+              const hl = d.highlights[label];
+              let r = delta ? `变化: ${delta}` : '';
+              if (hl) r += (r ? '\n' : '') + hl;
+              return r;
+            }
+          },
+          backgroundColor: '#1c2128', borderColor: '#30363d', borderWidth: 1,
+          titleColor: '#e6edf3', bodyColor: '#8b949e',
+          titleFont: { family: 'JetBrains Mono' },
+        },
+      },
+      scales: {
+        x: { grid: { color: 'rgba(48,54,61,.5)' }, ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 } } },
+        y: { grid: { display: false }, ticks: { color: '#e6edf3', font: { family: 'Outfit', size: 12 } } },
+      },
+    },
+  });
+}
+
+// Boot
+render();
+</script>
+</body>
+</html>
