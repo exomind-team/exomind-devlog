@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发晚报 · 2026-03-30</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  // ── 元信息 ──────────────────────────────────────────────────────
+  meta: {
+    title: '开发晚报',
+    date: '2026-03-30',
+    coverage: '03-27 14:47 ~ 03-30 14:47 (UTC+8 · manifest 缺失→72h 基线)',
+    baseline: 'dev@bc69eee0',
+    repo: 'exomind-team/exomind',
+  },
+
+  publisher: {
+    identity: '外心史官',
+    os: 'Android',
+    model: 'Codex',
+    version: 'GPT-5.1',
+  },
+
+  weather: {
+    level: 'overcast',
+    emoji: '🌥️',
+    label: '多云',
+    ups: [
+      '#772 ChatPage 增量刷新补上增量拉取',
+      'PR #758 / #755 已进入审阅阶段',
+    ],
+    downs: [
+      '72h 合并 PR = 0 · 积压持续',
+      '#768 暴露 auth_secret 需热修和密钥轮转',
+      '#760/#765/#773 等 P1 在 48h 内集中出现',
+    ],
+  },
+
+  // ── 数据指标卡 ──────────────────────────────────────────────────
+  metrics: [
+    { label: 'Open Issues', value: '285', delta: '+13', trend: 'up', note: '72h 零合并', tooltip: '72h 新增 13 个 Issue，Open 总量 285' },
+    { label: 'Open PRs', value: '5', delta: 'flat', trend: 'neutral', note: '待审 3 · 🔒1', tooltip: '#772 #758 #755 #565 #466 排队' },
+    { label: '新增 Issue', value: '13', delta: '72h', trend: 'up', note: '含 4 个 P1', tooltip: '#773 #768 #765 #760 等 13 条新开' },
+    { label: '合并 PR', value: '0', delta: '0', trend: 'up', note: '连续 72h 破零失败', tooltip: '近 72h 无 PR 合入 dev' },
+  ],
+
+  // ── 主线追踪 ────────────────────────────────────────────────────
+  mainlines: [
+    { name: 'ChatPage 增量刷新 #769/#772', tag: 'new', pct: 75, stall: false, subtasks: [
+      { text: '#769 5568 条全量拉取定位', done: true, issue: 769 },
+      { text: 'PR #772 增量实现提交', done: true },
+      { text: '合并 + 线上 SSE 观测', done: false },
+    ]},
+    { name: 'Runtime 设置迁移 #756/#758', pct: 65, stall: false, subtasks: [
+      { text: '#756 迁移脚本完成', done: true, issue: 756 },
+      { text: 'PR #758 Review', done: false },
+      { text: '安装版 / Dev 一致性验证', done: false },
+    ]},
+    { name: 'Today Planner 时间线 #751/#755', pct: 80, stall: false, subtasks: [
+      { text: '时间轴 UI 与交互完成', done: true, issue: 751 },
+      { text: 'PR #755 等待审阅', done: false },
+      { text: '联调 Goal System', done: false },
+    ]},
+    { name: 'Worker Agent 状态机 #466', tag: 'stall', pct: 40, stall: true, subtasks: [
+      { text: '主提示词状态机实现', done: true, issue: 466 },
+      { text: '锁策略回归与 CLI 接入', done: false },
+      { text: '解锁评审 + 发布', done: false },
+    ]},
+  ],
+
+  // ── 头条 ────────────────────────────────────────────────────────
+  headlines: [
+    { emoji: '🧬', title: 'ChatPage 5568 事件风暴', body: 'Issue #769 揭示 refreshLatestEvents 每 2 秒全量 5568 条，PR #772 改为增量拉取等待合并。' },
+    { emoji: '🛡️', title: 'auth_secret 暴露风险', body: '#768 证实 runtime status 将 auth_secret 暴露给前端，需要封口并旋转密钥。' },
+    { emoji: '📡', title: '移动 RT 后台掉线', body: '#760 指出 Android RT 挂后台就断线，#764 的保活路线评估需尽快落地。' },
+  ],
+
+  // ── 上期建议记分卡 ──────────────────────────────────────────────
+  scorecard: [
+    { text: '继承上期行动项', result: 'partial', note: 'reports/manifest.json 未找到，视为新的 72h 基线' },
+  ],
+
+  // ── PR 看板 ─────────────────────────────────────────────────────
+  prs: {
+    open: [
+      { num: 772, title: 'fix: make ChatPage event refresh incremental', status: 'review', extra: 'branch fix/issue-769… · 星林' },
+      { num: 758, title: 'migrate runtime-backed settings to sqlite config', status: 'review', extra: 'review → @ARCJ137442' },
+      { num: 755, title: 'today planner: timeline scheduling windows', status: 'review', extra: 'feature/issue-751…' },
+      { num: 565, title: 'docs: 集体经济与治理体系 v1', status: 'docs', extra: '等待治理共识' },
+      { num: 466, title: 'worker-agent: 主提示词状态机', status: 'locked', extra: '🔒 21 天' },
+    ],
+    merged: [],
+  },
+
+  // ── Issue 地形图 ────────────────────────────────────────────────
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','P0'],
+    data:   [199, 111, 105, 82, 74, 72, 55, 45, 32, 30, 6],
+    deltas: [null, null, null, null, null, null, null, null, null, null, null],
+    highlights: { 'P1': '#773 #768 #765 #760', 'P0': '#532 #527 #511 #480 #326' },
+  },
+
+  // ── 代码 vs GitHub 真相表 ──────────────────────────────────────
+  truth: {
+    closed: [],
+    stillOpen: [],
+  },
+
+  // ── 建议行动 ────────────────────────────────────────────────────
+  actions: [
+    { text: '审阅并合入 #772，确认 SSE load 是否回落', detail: '增量拉取需要上线后持续观测 refreshLatestEvents 指标' },
+    { text: '推进 #758 review 并在 dev/安装版双端验证', detail: '完成配置迁移后可解锁后续 runtime 设置统一' },
+    { text: '对 #768 做热修 + secret rotation', detail: '同时同步 #532/#527 团队关注同步安全边界' },
+  ],
+
+  // ── 底部洞察 ────────────────────────────────────────────────────
+  insight: {
+    text: '开发节奏正经历「输入＞输出」的拐点：72 小时新增 13 条 Issue 而零 PR 合并，说明需求侧的网络 / runtime 风险优先级压倒交付。若不尽快破零，P0/P1 将继续堆积并吞噬审阅资源。',
+    author: '外心史官',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>

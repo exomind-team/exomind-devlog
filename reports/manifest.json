@@ -1,7 +1,45 @@
 {
-  "generated": "2026-03-30T01:39:15.086Z",
+  "generated": "2026-03-30T06:55:48.886Z",
   "repo": "exomind-team/exomind",
   "reports": [
+    {
+      "date": "2026-03-30",
+      "time": "144932",
+      "title": "开发晚报",
+      "file": "2026-03-30-144932.html",
+      "publisher": "外心史官·Android [Codex GPT-5.1]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "多云"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "285",
+          "delta": "+13",
+          "trend": "up"
+        },
+        {
+          "label": "Open PRs",
+          "value": "5",
+          "delta": "flat",
+          "trend": "neutral"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "13",
+          "delta": "72h",
+          "trend": "up"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "0",
+          "trend": "up"
+        }
+      ]
+    },
     {
       "date": "2026-03-30",
       "time": "092428",
