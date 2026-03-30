@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发夜报 · 2026-03-31</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  // ── 元信息 ──────────────────────────────────────────────────────
+  meta: {
+    title: '测试标题',
+    date: '2026-03-31',
+    time: '04:52',
+    coverage: '03-30 15:30 ~ 03-31 04:52',
+    baseline: '300b691',
+    repo: 'exomind-team/exomind',
+  },
+
+  // ── 发布者 ────────────────────────────────────────────────────────
+  publisher: {
+    identity: '命名测试者',
+    os: 'Android',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  // ── 天气 ────────────────────────────────────────────────────────
+  weather: {
+    level: 'cloudy',
+    emoji: '⛅',
+    label: '晴转多云',
+    ups: [
+      'auth_secret 安全漏洞封口 #778 合并，敏感字段不再暴露前端',
+      'ChatPage 增量刷新 #772 合并，5568 条全量拉取降为增量',
+      'Open Issues 首次回落 285 → 282 → 283，趋势企稳',
+      '时间块 #759 四阶段快速落地（blockType + gap backfill + UI + service 集成）',
+      'RT 端点拆分 /health 和 /version (#cdd9c5c7)，时段标题自动计算 (#cdd9c5c7) 落地',
+    ],
+    downs: [
+      '283 open issues 仍处历史高位区间',
+      '1 P0 + 10 P1 仍未处理',
+      '#466 Worker Agent 锁定超 22 天',
+      '时间块 #759 Phase 4 已提交但未合入 dev 验证',
+      '#780 ActiveBlockData 统一重构刚开题，scope 可能发散',
+    ],
+  },
+
+  // ── 数据指标卡 ──────────────────────────────────────────────────
+  metrics: [
+    { label: 'Open Issues', value: '283',  delta: '↑ 1', trend: 'up',   note: '高位震荡',     tooltip: '上期 282 → 本期 283' },
+    { label: 'Open PRs',    value: '5',    delta: '→',   trend: 'neutral', note: '含 1 Draft',  tooltip: '5 Open（#779 #774 #758 #565 #466）' },
+    { label: '新增 Issue',   value: '7',    delta: '↑',   trend: 'up',   note: '含 #780 重构',  tooltip: '#780 #777 #776 #773 #771 #770 #769' },
+    { label: '合并 PR',      value: '2',    delta: '↑ 2', trend: 'down', note: '#778 + #772',   tooltip: '安全封口 + 增量刷新' },
+  ],
+
+  // ── 主线追踪 ────────────────────────────────────────────────────
+  mainlines: [
+    { name: '时间块 blockType + gap 回填 #759', pct: 90, stall: false, subtasks: [
+      { text: 'Phase 1: blockType 字段 + gap backfill 算法', done: true },
+      { text: 'Phase 2: newBlock 原语 + start/end 守卫', done: true },
+      { text: 'Phase 3: gap block UI + API 过滤', done: true },
+      { text: 'Phase 4: backfillGapBlocks 集成到 service', done: true },
+      { text: '合并到 dev + 线上验证', done: false },
+    ]},
+    { name: 'RT 端点优化与 DevLog 管线', tag: 'new', pct: 60, stall: false, subtasks: [
+      { text: '/health 和 /version 端点拆分', done: true },
+      { text: '时段标题自动计算（夜报/早报/午报/晚报）', done: true },
+      { text: 'devlog:extract 脚本', done: true },
+      { text: 'PUT /timeblocks 标记弃用', done: true },
+      { text: 'POST /timeblocks/:id/describe 端点', done: true },
+      { text: '航线发布管线完善', done: false },
+    ]},
+    { name: 'Runtime 设置迁移 #756/#758', pct: 65, stall: false, subtasks: [
+      { text: '#756 迁移脚本完成', done: true },
+      { text: 'PR #758 提交审阅', done: true },
+      { text: 'Review 完成 + 合并', done: false },
+    ]},
+    { name: '6 P0 MVP', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#747 目标页渲染回归', done: false, issue: 747 },
+      { text: '#532 RT+ECS 跨端同步', done: false, issue: 532 },
+      { text: '#527 手机↔电脑互通', done: false, issue: 527 },
+      { text: '#511 语音输入归一化', done: false, issue: 511 },
+      { text: '#480 语音驱动任务 MVP', done: false, issue: 480 },
+      { text: '#326 ASR→分类链路', done: false, issue: 326 },
+    ]},
+    { name: 'Agent 工作台 #777', tag: 'new', pct: 5, stall: false, subtasks: [
+      { text: '#777 平铺工作台前置抽象', done: false, issue: 777 },
+      { text: '跨窗口联邦通信', done: false },
+    ]},
+  ],
+
+  // ── 头条 ────────────────────────────────────────────────────────
+  headlines: [
+    { emoji: '🛡️', title: 'auth_secret 安全漏洞封口 — PR #778 合并',
+      color: 'var(--p0)',
+      body: '#768 揭示 runtime status 将 auth_secret 暴露到前端 localStorage。PR #778 (commit cb895938) 在 status 返回中剔除敏感字段，已合并到 dev。' },
+    { emoji: '🧬', title: '时间块 #759 四阶段快速落地',
+      color: 'var(--green)',
+      body: '从 blockType 字段定义到 gap backfill 算法、newBlock 原语、gap block UI 渲染、再到 service 集成，4 个 commit (9a3e068a → db56964e) 在单日内完成。待合并验证。' },
+    { emoji: '⚡', title: 'ChatPage 增量刷新 #772 合并 + RT 端点拆分',
+      color: 'var(--accent)',
+      body: 'PR #772 将 refreshLatestEvents 从每 2 秒全量 5568 条改为增量拉取。同时 /health 和 /version 拆为独立端点，时段标题自动计算管线落地。' },
+  ],
+
+  // ── 上期建议记分卡 ──────────────────────────────────────────────
+  scorecard: [
+    { text: '合并 PR #779 Windows 实例隔离', result: 'fail', note: '#779 仍 Open，待审阅' },
+    { text: '关闭 #759 并推进时间块验证', result: 'partial', note: 'Phase 1-4 代码已完成，未合并验证' },
+    { text: '推动 PR #758 审阅完成', result: 'fail', note: '#758 仍 Open' },
+  ],
+
+  // ── PR 看板 ─────────────────────────────────────────────────────
+  prs: {
+    open: [
+      { num: 779, title: 'fix: isolate Windows Tauri dev instance state', status: 'review' },
+      { num: 774, title: 'feat(network): node-first embedded RT mesh', status: 'docs', extra: 'DRAFT' },
+      { num: 758, title: 'fix(issue-756): migrate runtime settings to sqlite', status: 'review' },
+      { num: 565, title: 'docs(governance): 集体经济与治理体系 v1', status: 'review' },
+      { num: 466, title: 'feat(worker-agent): 主提示词状态机', status: 'locked', extra: '🔒 22天' },
+    ],
+    merged: [
+      { num: 778, title: 'fix(security): stop exposing auth_secret', date: '03-30' },
+      { num: 772, title: 'fix: make ChatPage event refresh incremental', date: '03-30' },
+    ],
+  },
+
+  // ── Issue 地形图 ─────────────────────────────────────────────────
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','时间块','事件日志','信号池','sync','P0'],
+    data:   [200, 110, 104,   81,  74,          71,   52,   45,     31,    30,     25,      23,      13,     11,   1],
+    deltas: ['+13','+18','+22','+15','+8','+9','+12','+9','+4','+6','+6','+3',null,null,'-5'],
+    highlights: { 'P0': '#747', 'P1': '52 issues（含目标系统 + 时间块新增）' },
+  },
+
+  // ── 代码 vs GitHub 真相表 ──────────────────────────────────────
+  truth: {
+    closed: [
+      { num: 768, title: 'auth_secret 暴露', gh: 'CLOSED', code: 'FIXED' },
+      { num: 775, title: 'Web 开发模式端口发现缺失', gh: 'CLOSED', code: 'FIXED' },
+      { num: 754, title: 'Today 页升级为计划器', gh: 'CLOSED', code: 'FIXED' },
+      { num: 753, title: '/act/today-planner API', gh: 'CLOSED', code: 'FIXED' },
+      { num: 752, title: '计划时间块一等对象', gh: 'CLOSED', code: 'FIXED' },
+      { num: 751, title: '手动今日计划 epic', gh: 'CLOSED', code: 'FIXED' },
+    ],
+    stillOpen: [
+      { num: 759, title: '时间块 blockType + gap 回填', gh: 'OPEN', code: 'FIXED', mismatch: true },
+    ],
+  },
+
+  // ── 建议行动 ────────────────────────────────────────────────────
+  actions: [
+    { text: '合并 #759 时间块到 dev 并验证', detail: '四阶段代码已就绪，缺最终合并验证' },
+    { text: '审阅并合并 PR #779 Windows 实例隔离', detail: '已 Ready for review，无阻塞' },
+    { text: '推动 PR #758 设置迁移审阅', detail: '设置迁移是多端体验一致性的前置' },
+  ],
+
+  // ── 底部洞察 ────────────────────────────────────────────────────
+  insight: {
+    text: 'Open Issues 在 282-283 之间企稳，这是过去两周持续攀升后的第一次稳态信号。安全封口（#778）和增量刷新（#772）的同日合并表明紧急修复通道畅通。时间块 #759 的四阶段快速交付继续验证"拆分到足够小的 phase、每个 phase 独立提交"的模式。现在的关键转折点在于：如果 P0 阵列（特别是 #747 目标页回归）能在本周得到推进，283 这个数字有望真正开始下行。',
+    author: '命名测试者·Android [Claude Opus 4.6]',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>
