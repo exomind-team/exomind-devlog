@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发航线</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;--cyan:#39d2c0;
+  --radius:10px;--radius-sm:6px;
+  /* Track colors */
+  --track-web:#58a6ff;--track-rt:#d29922;--track-desktop:#8957e5;
+  --track-android:#2ea043;--track-cross:#f778ba;--track-ci:#6e7681;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1200px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:1.6rem;font-weight:500;color:var(--text-dim);margin-top:.3rem;letter-spacing:.4em}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Status + Metrics row */
+.top-row{display:grid;grid-template-columns:1fr 3fr;gap:1rem;margin:1.5rem 0}
+.status-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(88,166,255,.12),rgba(137,87,229,.08));border:1px solid rgba(88,166,255,.15)}
+.status-emoji{font-size:2.5rem}
+.status-label{font-size:1.2rem;font-weight:700;margin-top:.3rem}
+.status-sub{font-size:.82rem;color:var(--text-dim);margin-top:.2rem}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:.85rem;color:var(--text-dim);letter-spacing:.08em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;margin:.2rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .note{font-size:.72rem;color:var(--text-faint)}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Route Map (DAG) */
+.route-map-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative;overflow-x:auto}
+.route-map-canvas{display:block;margin:0 auto}
+
+/* Track Legend */
+.track-legend{display:flex;flex-wrap:wrap;gap:1rem;margin:.8rem 0;font-size:.78rem}
+.track-legend-item{display:flex;align-items:center;gap:.35rem}
+.track-dot{width:10px;height:10px;border-radius:50%}
+
+/* Batch Detail Panel */
+.batch-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-top:.8rem;overflow:hidden;transition:max-height .4s ease,opacity .3s;max-height:0;opacity:0}
+.batch-panel.open{max-height:800px;opacity:1}
+.batch-panel-inner{padding:1.2rem}
+.batch-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.batch-panel-title{font-weight:700;font-size:1.1rem}
+.batch-panel-close{cursor:pointer;color:var(--text-faint);font-size:1.2rem;padding:.2rem .5rem;border-radius:var(--radius-sm);transition:background .15s}
+.batch-panel-close:hover{background:var(--card-hover)}
+.batch-meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;font-size:.78rem}
+.batch-meta-tag{padding:.2rem .6rem;border-radius:3px;font-weight:700;letter-spacing:.05em}
+.batch-meta-tag.platform{background:rgba(88,166,255,.1);color:var(--accent)}
+.batch-meta-tag.priority-p0{background:rgba(248,81,73,.12);color:var(--p0)}
+.batch-meta-tag.priority-p1{background:rgba(210,153,34,.12);color:var(--p1)}
+.batch-meta-tag.priority-p2{background:rgba(110,118,129,.12);color:var(--text-dim)}
+.batch-meta-tag.status-ready{background:rgba(88,166,255,.1);color:var(--accent)}
+.batch-meta-tag.status-active{background:rgba(46,160,67,.15);color:var(--green)}
+.batch-meta-tag.status-done{background:rgba(46,160,67,.3);color:var(--green)}
+.batch-meta-tag.status-blocked{background:rgba(248,81,73,.1);color:var(--p0)}
+.batch-progress{height:6px;background:var(--border);border-radius:3px;margin:.6rem 0;overflow:hidden}
+.batch-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green-dim),var(--green));transition:width .5s}
+.batch-issue-list{list-style:none;margin-top:.5rem}
+.batch-issue-item{display:flex;align-items:center;gap:.6rem;padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.batch-issue-item:last-child{border-bottom:none}
+.batch-issue-num{font-family:'JetBrains Mono',monospace;color:var(--accent);min-width:45px}
+.batch-issue-pri{font-size:.7rem;font-weight:700;padding:.1rem .35rem;border-radius:2px}
+.batch-issue-pri.p0{background:rgba(248,81,73,.15);color:var(--p0)}
+.batch-issue-pri.p1{background:rgba(210,153,34,.15);color:var(--p1)}
+.batch-issue-pri.p2{background:rgba(110,118,129,.15);color:var(--text-dim)}
+.batch-issue-title{color:var(--text-dim);flex:1}
+.batch-deps{font-size:.78rem;color:var(--text-faint);margin-top:.5rem}
+.batch-deps strong{color:var(--text-dim)}
+
+/* Heatmap */
+.heatmap-grid{display:grid;grid-template-columns:100px repeat(7,1fr);gap:2px;font-size:.75rem}
+.heatmap-header{background:var(--card-hover);padding:.4rem;text-align:center;font-weight:700;color:var(--text-dim);border-radius:var(--radius-sm)}
+.heatmap-label{background:var(--card);padding:.4rem;display:flex;align-items:center;font-weight:500;color:var(--text-dim);border-radius:var(--radius-sm)}
+.heatmap-cell{padding:.5rem;text-align:center;border-radius:var(--radius-sm);font-family:'JetBrains Mono',monospace;font-weight:700;transition:transform .15s}
+.heatmap-cell:hover{transform:scale(1.1)}
+.heatmap-cell.heat-0{background:rgba(110,118,129,.08);color:var(--text-faint)}
+.heatmap-cell.heat-1{background:rgba(88,166,255,.1);color:var(--accent)}
+.heatmap-cell.heat-2{background:rgba(210,153,34,.15);color:var(--p1)}
+.heatmap-cell.heat-3{background:rgba(248,81,73,.15);color:var(--p0)}
+.heatmap-cell.heat-4{background:rgba(248,81,73,.25);color:var(--p0)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.78rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.88rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.78rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+.devlog-nav{text-align:center;padding:1rem 0;font-size:.85rem}
+.devlog-nav a{color:var(--accent);font-family:'JetBrains Mono',monospace}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.metrics-grid{grid-template-columns:repeat(2,1fr)}.logo{font-size:2rem}.heatmap-grid{grid-template-columns:80px repeat(7,1fr);font-size:.65rem}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(88,166,255,.4)}50%{box-shadow:0 0 12px 4px rgba(88,166,255,.2)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发航线 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 复制此文件并重命名为 route-YYYY-MM-DD.html                    ║
+// ║  2. 填写下方 ROUTE 对象中的数据                                   ║
+// ║  3. 在浏览器中打开此文件即可                                       ║
+// ║  4. 所有 HTML 由 JS 从 ROUTE 数据自动渲染                         ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const ROUTE = {
+
+  meta: {
+    title: '开发航线',
+    date: '2026-03-30',
+    baseline: 'a7cfc57',
+    repo: 'exomind-team/exomind',
+  },
+
+  publisher: {
+    identity: '航线规划师',
+    os: 'Android',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  status: {
+    level: 'rain',
+    emoji: '🌧️',
+    label: '逆风',
+    summary: '6 P0 中仅 #747 在修（30+ commits），其余 5 个零推进；P1 攀至 54；连续 3 天零关闭零合并',
+  },
+
+  metrics: [
+    { label: '总批次', value: '13', note: 'O~Z + R1' },
+    { label: '就绪', value: '2', note: 'Q / R1' },
+    { label: '进行中', value: '1', note: 'O (#747)' },
+    { label: '覆盖 Issues', value: '168', note: '281 中的 60%' },
+  ],
+
+  tracks: [
+    { id: 'web', name: 'Web-only', color: '#58a6ff', desc: 'Termux/任意开发机可做' },
+    { id: 'rt', name: 'RT Rust', color: '#d29922', desc: '需 Rust 工具链' },
+    { id: 'desktop', name: 'Desktop', color: '#8957e5', desc: '需 Windows/macOS 桌面' },
+    { id: 'android', name: 'Android', color: '#2ea043', desc: '需 Android 真机' },
+    { id: 'cross', name: 'Cross', color: '#f778ba', desc: '需多端协同验证' },
+    { id: 'ci', name: 'CI/Infra', color: '#6e7681', desc: '独立可做' },
+    { id: 'research', name: 'Research', color: '#f0883e', desc: '任意环境可思考' },
+  ],
+
+  batches: [
+    {
+      id: 'O',
+      name: 'P0 紧急修复',
+      track: 'cross',
+      status: 'active',
+      priority: 'P0',
+      pct: 15,
+      deps: [],
+      branch: 'fix/batch-o-p0-urgent',
+      fileDomain: 'src/ui/app/pages/GoalSystem* crates/ src/adapters/',
+      issues: [
+        { num: 747, title: '目标页渲染稳定性回归——节点、连边与圈层异常隐藏/裁切', priority: 'P0', done: false, size: 'M' },
+        { num: 326, title: '语音输入 → ASR → 自动润色 → 分类（EventLog 信号链路）', priority: 'P0', done: false, size: 'XL' },
+        { num: 511, title: '统一语音输入归一化入口、上下文元数据与 EventLog/Signal 链路', priority: 'P0', done: false, size: 'XL' },
+        { num: 480, title: '语音驱动任务成长 MVP（v0.3.6 desktop-first）', priority: 'P0', done: false, size: 'XL' },
+        { num: 527, title: '手机↔电脑 RT SQLite 数据互通端到端验证与打通', priority: 'P0', done: false, size: 'XL' },
+        { num: 532, title: '新 RT + ECS 跨端同步与稳定性（Web/Windows/Android）', priority: 'P0', done: false, size: 'XL' },
+      ],
+    },
+    {
+      id: 'P',
+      name: '目标系统 v2',
+      track: 'web',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'O', reason: '#747 P0 修复后才能推进 v2' }],
+      branch: 'feature/batch-p-goal-system-v2',
+      fileDomain: 'src/ui/app/pages/GoalSystem* crates/exomind-runtime/src/routes/goals*',
+      issues: [
+        { num: 717, title: '对齐 v0.2 图数据模型，分离 MeNode 并补齐 Goal/TaskEdge 字段', priority: 'P1', done: false, size: 'L' },
+        { num: 718, title: '新建目标自动创建 Me→目标匿名边，显化匿名占位语义', priority: 'P1', done: false, size: 'M' },
+        { num: 719, title: '目标完成改为入边纯推导，支持 AND/OR 下游级联重算', priority: 'P1', done: false, size: 'L' },
+        { num: 720, title: '收口匿名边完成限制与目标取消联动语义', priority: 'P1', done: false, size: 'M' },
+        { num: 721, title: '支持边拆解为中间目标，并自动补匿名占位边', priority: 'P1', done: false, size: 'M' },
+        { num: 722, title: 'Me 中心距离标尺与目标完成吸纳动画', priority: 'P1', done: false, size: 'M' },
+        { num: 723, title: 'v2 原型开发——修复 v1 偏离 + 实现约束规则与拆解', priority: 'P1', done: false, size: 'XL' },
+        { num: 744, title: '将 v0.3 原型逻辑迁入 RT 并替换页面本地 store', priority: 'P1', done: false, size: 'L' },
+        { num: 766, title: 'Task 系统事件订阅桥接——goal 完成规则响应 task.statusChanged', priority: 'P2', done: false, size: 'M' },
+        { num: 737, title: '目标系统：任务系统事件集成', priority: 'P2', done: false, size: 'M' },
+        { num: 738, title: '目标系统：键盘快捷键支持', priority: 'P2', done: false, size: 'S' },
+        { num: 739, title: '目标系统：力导向参数调优', priority: 'P2', done: false, size: 'M' },
+      ],
+    },
+    {
+      id: 'Q',
+      name: 'Today Planner',
+      track: 'web',
+      status: 'ready',
+      priority: 'P1',
+      pct: 5,
+      deps: [],
+      branch: 'feature/batch-q-today-planner',
+      fileDomain: 'src/ui/app/pages/Now* crates/exomind-runtime/src/routes/act*',
+      issues: [
+        { num: 751, title: '手动今日计划时间块一等对象（工作块/休息块）', priority: 'P1', done: false, size: 'XL' },
+        { num: 752, title: '计划时间块一等对象与溯源字段', priority: 'P1', done: false, size: 'L' },
+        { num: 753, title: '新增 /act/today-planner feature API 与 curl 契约', priority: 'P1', done: false, size: 'L' },
+        { num: 754, title: 'Today 页升级为可编辑计划器并接入计划块执行', priority: 'P1', done: false, size: 'L' },
+        { num: 756, title: '前端设置迁移到 Runtime/SQLite（PR #758）', priority: 'P1', done: false, size: 'M' },
+      ],
+    },
+    {
+      id: 'R',
+      name: '时间块体验修复',
+      track: 'cross',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'O', reason: '#747 P0 修复后 UI 才稳定' }],
+      branch: 'fix/batch-r-timeblock-polish',
+      fileDomain: 'src/ui/app/pages/Now* src/ui/app/components/TimeBlock*',
+      issues: [
+        { num: 571, title: '专注倒计时在后台结束时不发提示音（手机/电脑）', priority: 'P1', done: false, size: 'M' },
+        { num: 702, title: '主窗口变更关联任务后悬浮窗未同步 active block 状态', priority: 'P1', done: false, size: 'M' },
+        { num: 704, title: '关联任务列表刷新过慢，应 500ms 内更新', priority: 'P1', done: false, size: 'S' },
+        { num: 734, title: '时间块迁移失败错误弹窗溢出导致用户卡死', priority: 'P1', done: false, size: 'S' },
+        { num: 699, title: '本地音频 URI 显示失真且无法播放（Android）', priority: 'P1', done: false, size: 'M' },
+        { num: 761, title: '追加关联任务时首轮会误替换最后一项', priority: 'P2', done: false, size: 'S' },
+        { num: 692, title: '允许空名启动，结束前可修改名称', priority: 'P2', done: false, size: 'M' },
+        { num: 696, title: '任务详情进入时标题被时间块标题污染', priority: 'P2', done: false, size: 'S' },
+        { num: 705, title: '移除关联任务未弹状态弹窗', priority: 'P2', done: false, size: 'S' },
+        { num: 735, title: '结束时间块默认未挂起关联任务', priority: 'P2', done: false, size: 'S' },
+        { num: 745, title: '预选关联任务启动时挂起未转进行中', priority: 'P2', done: false, size: 'S' },
+      ],
+    },
+    {
+      id: 'S',
+      name: 'EventLog 与记录页',
+      track: 'web',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'T', reason: '依赖 RT API 稳定后前端才可消费' }],
+      branch: 'feature/batch-s-eventlog-ui',
+      fileDomain: 'src/ui/app/pages/EventLog* crates/exomind-runtime/src/routes/eventlog*',
+      issues: [
+        { num: 697, title: '手机端 Record 输入栏陷入底部导航/输入法区域', priority: 'P1', done: false, size: 'M' },
+        { num: 575, title: '多实例并发导致 EventLog 重复写入', priority: 'P1', done: false, size: 'M' },
+        { num: 726, title: '任务事件按状态变更分化图标与颜色', priority: 'P2', done: false, size: 'M' },
+        { num: 729, title: '支持快速回到底部并与输入框聚焦联动', priority: 'P2', done: false, size: 'S' },
+        { num: 746, title: 'RT 任务状态变更消息被错误归属为用户', priority: 'P2', done: false, size: 'S' },
+        { num: 678, title: 'Agent 反馈消息支持折叠与已读标记', priority: 'P2', done: false, size: 'M' },
+      ],
+    },
+    {
+      id: 'T',
+      name: 'RT 架构与 Auth',
+      track: 'rt',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'O', reason: '安全修复是 Auth 前置' }],
+      branch: 'feature/batch-t-rt-auth',
+      fileDomain: 'crates/exomind-runtime/src/',
+      issues: [
+        { num: 768, title: 'auth_secret 暴露到 localStorage（安全）', priority: 'P1', done: false, size: 'M' },
+        { num: 666, title: 'RT 外部接入 identity/profile/session/permission 契约', priority: 'P1', done: false, size: 'L' },
+        { num: 676, title: '引入 /act feature API 根路径', priority: 'P1', done: false, size: 'L' },
+        { num: 677, title: '外部 Agent 登录审批与请求箱入口', priority: 'P1', done: false, size: 'L' },
+        { num: 452, title: '安全面收敛——admin secret 暴露与凭据边界', priority: 'P1', done: false, size: 'L' },
+        { num: 569, title: 'MCP 迁移到 RT-only 应用接口', priority: 'P1', done: false, size: 'L' },
+        { num: 749, title: 'Web 全面 RT 化后删除同步服务器与 legacy', priority: 'P1', done: false, size: 'L' },
+        { num: 457, title: '消除不安全 unwrap + Cargo.toml 修正', priority: 'P1', done: false, size: 'M' },
+        { num: 455, title: '核心模块测试覆盖缺口补充', priority: 'P1', done: false, size: 'L' },
+      ],
+    },
+    {
+      id: 'U',
+      name: 'ECS 通信栈',
+      track: 'rt',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'T', reason: '依赖 RT Auth 契约确立' }],
+      branch: 'feature/batch-u-ecs-stack',
+      fileDomain: 'crates/exomind-runtime/src/signal* src/adapters/signal*',
+      issues: [
+        { num: 366, title: 'ECS 实施总计划（优先补 ECS-2/ECS-3）', priority: 'P1', done: false, size: 'XL' },
+        { num: 368, title: '提取 Transport 抽象并统一 HTTP/SSE adapter', priority: 'P1', done: false, size: 'L' },
+        { num: 373, title: '多 RT 协议栈集成测试、故障注入与回归', priority: 'P1', done: false, size: 'L' },
+        { num: 420, title: 'persist RouteTable and Journal in SQLite', priority: 'P1', done: false, size: 'L' },
+        { num: 310, title: 'Phase 3 全信号源接入 + HealthMonitor', priority: 'P2', done: false, size: 'L' },
+        { num: 311, title: 'Phase 4 Webhook + 多输出渠道 + 监控面板', priority: 'P2', done: false, size: 'L' },
+      ],
+    },
+    {
+      id: 'V',
+      name: 'UI 组件收敛',
+      track: 'web',
+      status: 'blocked',
+      priority: 'P2',
+      pct: 0,
+      deps: [{ id: 'P', reason: '目标系统 v2 确定组件形态后再收敛' }],
+      branch: 'refactor/batch-v-ui-system',
+      fileDomain: 'src/ui/app/components/ src/ui/app/pages/Settings*',
+      issues: [
+        { num: 541, title: '从设置页提炼通用组件族并建立复用规范', priority: 'P2', done: false, size: 'XL' },
+        { num: 542, title: 'Phase 1 提取 settings 组件族为共享 primitives', priority: 'P2', done: false, size: 'L' },
+        { num: 543, title: 'Phase 2 在非 settings 页面复用共享组件族', priority: 'P2', done: false, size: 'L' },
+        { num: 684, title: '收敛 Dialog/Drawer/Form/Feedback 模态组件栈', priority: 'P2', done: false, size: 'L' },
+        { num: 535, title: 'AgentsPage.tsx 拆分（4323行→模块化）', priority: 'P2', done: false, size: 'L' },
+        { num: 567, title: '收敛 TSX 中颜色硬编码到语义 token', priority: 'P2', done: false, size: 'M' },
+      ],
+    },
+    {
+      id: 'W',
+      name: '任务 DAG 增强',
+      track: 'web',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'P', reason: '目标系统确定 DAG 模型后再增强' }],
+      branch: 'feature/batch-w-task-dag',
+      fileDomain: 'src/ui/app/pages/TaskDag*',
+      issues: [
+        { num: 501, title: '交互式 DAG — 浏览/连接/执行三模式（epic）', priority: 'P1', done: false, size: 'XL' },
+        { num: 591, title: '图形化交互式功能导航', priority: 'P1', done: false, size: 'L' },
+        { num: 639, title: '支持手动布局并持久化快照', priority: 'P2', done: false, size: 'L' },
+        { num: 653, title: '按标签/领域过滤 DAG 视图', priority: 'P2', done: false, size: 'M' },
+        { num: 660, title: '聚焦任务系列——按连通集弱化非聚焦节点', priority: 'P2', done: false, size: 'M' },
+        { num: 700, title: '连接模式改为编辑模式', priority: 'P2', done: false, size: 'M' },
+        { num: 701, title: '编辑模式支持拖拽创建上下游任务', priority: 'P2', done: false, size: 'L' },
+        { num: 698, title: '任务搜索按状态优先排序', priority: 'P2', done: false, size: 'S' },
+      ],
+    },
+    {
+      id: 'X',
+      name: '移动端原生能力',
+      track: 'android',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 5,
+      deps: [{ id: 'O', reason: '#527/#532 P0 同步修复是移动端前置' }],
+      branch: 'feature/batch-x-mobile-native',
+      fileDomain: 'src-tauri/gen/android/ src/adapters/platform/',
+      issues: [
+        { num: 521, title: '移动端原生能力接入——通知+保活+语音+同步（epic）', priority: 'P1', done: false, size: 'XL' },
+        { num: 760, title: 'RT 挂后台后断连（前台服务已提交 612e5e1d）', priority: 'P1', done: false, size: 'M' },
+        { num: 426, title: '顶部状态栏遮挡页面内容', priority: 'P1', done: false, size: 'S' },
+        { num: 427, title: '0.3.6 build19 导入失败', priority: 'P1', done: false, size: 'M' },
+        { num: 432, title: '外接键盘触发闪退', priority: 'P1', done: false, size: 'M' },
+        { num: 572, title: '根路由返回应直接退出 App', priority: 'P1', done: false, size: 'S' },
+        { num: 731, title: '手机热点下设备互访验证', priority: 'P1', done: false, size: 'L' },
+        { num: 690, title: 'Kotlin 平台事件桥接到 RT', priority: 'P2', done: false, size: 'L' },
+      ],
+    },
+    {
+      id: 'Y',
+      name: '桌面端 + 设置页',
+      track: 'desktop',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'V', reason: '依赖组件库收敛后统一风格' }],
+      branch: 'feature/batch-y-desktop-settings',
+      fileDomain: 'src/ui/app/pages/Settings* src-tauri/',
+      issues: [
+        { num: 765, title: 'PC 悬浮窗透明命中区域大于可视边界', priority: 'P1', done: false, size: 'M' },
+        { num: 763, title: '桌面端最小化/关闭支持托盘驻留', priority: 'P2', done: false, size: 'M' },
+        { num: 725, title: '语音悬浮窗弹出在错误显示器', priority: 'P1', done: false, size: 'M' },
+        { num: 750, title: '悬浮窗全屏后关闭按钮无法点击', priority: 'P2', done: false, size: 'S' },
+        { num: 625, title: '命令面板默认开启', priority: 'P2', done: false, size: 'S' },
+        { num: 538, title: '命令面板与系统命令注册统一', priority: 'P2', done: false, size: 'M' },
+        { num: 618, title: '设置项悬浮高亮与点击态', priority: 'P2', done: false, size: 'S' },
+        { num: 620, title: '横屏设置页导航 sticky', priority: 'P2', done: false, size: 'S' },
+        { num: 622, title: '设置页引入搜索过滤框', priority: 'P2', done: false, size: 'M' },
+        { num: 647, title: '设置页「输入」组按功能拆分', priority: 'P2', done: false, size: 'S' },
+      ],
+    },
+    {
+      id: 'Z',
+      name: 'Agent 接入与网络',
+      track: 'cross',
+      status: 'blocked',
+      priority: 'P1',
+      pct: 0,
+      deps: [{ id: 'T', reason: '依赖 RT Auth 完成' }, { id: 'U', reason: '依赖 ECS 通信栈' }],
+      branch: 'feature/batch-z-agent-network',
+      fileDomain: 'src/ui/app/pages/Agents* crates/exomind-runtime/src/routes/agent*',
+      issues: [
+        { num: 385, title: '接入 Claude CLI/Codex，支持流式会话', priority: 'P1', done: false, size: 'XL' },
+        { num: 743, title: '常驻普通用户网络页', priority: 'P1', done: false, size: 'M' },
+        { num: 767, title: '局域网 mDNS 设备发现链路产品化', priority: 'P2', done: false, size: 'L' },
+        { num: 555, title: '内置 LLM Agent', priority: 'P2', done: false, size: 'L' },
+        { num: 537, title: 'Agent 语义完整命名迁移', priority: 'P2', done: false, size: 'M' },
+        { num: 682, title: '单一 RT 对局域网开放快速入口', priority: 'P2', done: false, size: 'M' },
+      ],
+    },
+    {
+      id: 'R1',
+      name: '研究与设计',
+      track: 'research',
+      status: 'ready',
+      priority: 'P2',
+      pct: 0,
+      deps: [],
+      branch: 'docs/batch-r1-research',
+      fileDomain: 'docs/specs/ docs/architecture/',
+      issues: [
+        { num: 759, title: '间隙时间块补足的分层式时间掌控体系设计', priority: 'P2', done: false, size: 'L' },
+        { num: 764, title: 'RT 后台保活可能性与实现路径评估', priority: 'P2', done: false, size: 'M' },
+        { num: 762, title: 'NARS 数学/法律领域翻译问题与术语结论', priority: 'P2', done: false, size: 'S' },
+        { num: 757, title: '评估 Lightpanda 取代 Chromium', priority: 'P2', done: false, size: 'M' },
+        { num: 730, title: '图片/视频输入存储边界与非文件系统化原则', priority: 'P2', done: false, size: 'M' },
+        { num: 724, title: '目标系统 v3 功能设计研讨', priority: 'P2', done: false, size: 'L' },
+        { num: 695, title: 'jj 版本控制哲学 × ExoMind 事件日志分析', priority: 'P2', done: false, size: 'S' },
+        { num: 661, title: '收敛浏览/连接/执行三模式职责边界', priority: 'P2', done: false, size: 'M' },
+        { num: 651, title: '子图收缩/子任务折叠图论约束', priority: 'P2', done: false, size: 'M' },
+        { num: 646, title: '顶级导航页独立窗口/多窗口模型', priority: 'P2', done: false, size: 'L' },
+        { num: 710, title: '跨平台二维自由截图拼接', priority: 'P2', done: false, size: 'M' },
+      ],
+    },
+  ],
+
+  heatmap: {
+    rows: ['P0', 'P1', 'P2'],
+    cols: ['Web', 'RT', 'Desktop', 'Android', 'Cross', 'CI', 'Research'],
+    data: [
+      [2, 3, 2, 2, 2, 0, 0],
+      [30, 9, 30, 12, 3, 0, 1],
+      [175, 20, 72, 30, 5, 0, 29],
+    ],
+  },
+
+  actions: [
+    { text: '收尾批次 O #747 并提交 PR', detail: '30+ commits 已在 dev，形成 PR 关闭唯一活跃 P0，解锁批次 P/R' },
+    { text: '并行启动批次 Q Today Planner', detail: '5 个高内聚 P1，无外部依赖，PR #755/#758 已就绪可合并' },
+    { text: '批次 R1 研究先行：#759 时间块设计 + #661 DAG 模式', detail: '为后续 Q/W 批次积累设计共识' },
+  ],
+
+  insight: {
+    text: '281 open issue、6 P0、54 P1——数字持续创新高，但本期最值得关注的不是数字本身，而是「带宽结构」的变化。30+ commits 全力修 #747 一个 P0，暴露了单线程修复模式的瓶颈：一个回归吃掉三天所有产出，其余 5 个 P0 和 48 个 P1 完全停滞。从航线结构看，批次 O（P0）是唯一活跃节点，下游 P/R/T/U/X 全部 blocked。打破僵局的关键不是"修更快"，而是"关一个解锁多个"——#747 PR 落地后，P（目标系统 v2）和 R（时间块修复）同时就绪，带宽从单线变双线。同时 Q（Today Planner）完全独立可并行。建议的航向是：收尾 #747 → 同时推进 P + Q → R 作为第三条线补进。',
+    author: '航线规划师·Android [Claude Opus 4.6]',
+  },
+};
+
+// ══════════════════════════════════════════════════════════════
+// Render Engine
+// ══════════════════════════════════════════════════════════════
+
+const R = ROUTE;
+const GH = `https://github.com/${R.meta.repo}/issues/`;
+let selectedBatch = null;
+
+function ghLink(num) {
+  return `<a href="${GH}${num}" target="_blank" class="mono" style="color:var(--accent)">#${num}</a>`;
+}
+
+function renderHeader() {
+  return `
+    <div class="header animate d1">
+      <div class="logo">EXOMIND</div>
+      <h1>开 发 航 线</h1>
+      <div class="meta">
+        ${R.meta.date} · dev@<span class="mono">${R.meta.baseline}</span>
+        · ${R.publisher.identity}·${R.publisher.os} [${R.publisher.model} ${R.publisher.version}]
+      </div>
+    </div>`;
+}
+
+function renderTopRow() {
+  const metricsHtml = R.metrics.map(m => `
+    <div class="metric-card">
+      <div class="label">${m.label}</div>
+      <div class="value">${m.value}</div>
+      <div class="note">${m.note}</div>
+    </div>`).join('');
+
+  return `
+    <div class="top-row animate d2">
+      <div class="status-card">
+        <div class="status-emoji">${R.status.emoji}</div>
+        <div class="status-label">${R.status.label}</div>
+        <div class="status-sub">${R.status.summary}</div>
+      </div>
+      <div class="metrics-grid">${metricsHtml}</div>
+    </div>`;
+}
+
+function renderTrackLegend() {
+  return `
+    <div class="track-legend">
+      ${R.tracks.map(t => `
+        <div class="track-legend-item" title="${t.desc}">
+          <div class="track-dot" style="background:${t.color}"></div>
+          <span style="color:${t.color}">${t.name}</span>
+        </div>`).join('')}
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--green)"></div> 已完成
+      </div>
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--accent);box-shadow:0 0 6px var(--accent)"></div> 就绪
+      </div>
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--text-faint)"></div> 待解锁
+      </div>
+    </div>`;
+}
+
+function getTrackColor(trackId) {
+  const t = R.tracks.find(x => x.id === trackId);
+  return t ? t.color : '#6e7681';
+}
+
+function getStatusColor(status) {
+  switch(status) {
+    case 'done': return 'var(--green)';
+    case 'active': return 'var(--accent)';
+    case 'ready': return 'var(--accent)';
+    case 'blocked': return 'var(--text-faint)';
+    default: return 'var(--text-faint)';
+  }
+}
+
+function renderRouteMap() {
+  // Build dagre graph
+  const g = new dagre.graphlib.Graph();
+  g.setGraph({ rankdir: 'LR', ranksep: 120, nodesep: 50, marginx: 50, marginy: 40 });
+  g.setDefaultEdgeLabel(() => ({}));
+
+  R.batches.forEach(b => {
+    g.setNode(b.id, { label: b.id, width: 140, height: 70 });
+  });
+  R.batches.forEach(b => {
+    b.deps.forEach(dep => {
+      const depId = typeof dep === 'string' ? dep : dep.id;
+      if (R.batches.find(x => x.id === depId)) {
+        g.setEdge(depId, b.id);
+      }
+    });
+  });
+
+  dagre.layout(g);
+
+  const nodes = [];
+  const edges = [];
+  g.nodes().forEach(id => {
+    const n = g.node(id);
+    if (n) nodes.push({ id, x: n.x, y: n.y, w: n.width, h: n.height });
+  });
+  g.edges().forEach(e => {
+    const edge = g.edge(e);
+    edges.push({ from: e.v, to: e.w, points: edge.points });
+  });
+
+  // Calculate canvas size
+  const maxX = Math.max(...nodes.map(n => n.x + n.w / 2)) + 60;
+  const maxY = Math.max(...nodes.map(n => n.y + n.h / 2)) + 60;
+  const canvasW = Math.max(maxX, 600);
+  const canvasH = Math.max(maxY, 200);
+
+  // ExoMind TaskDag-inspired palette
+  const PALETTE = {
+    active:     { border: '#C75B3A', ring: 'rgba(199,91,58,.35)', bg: 'rgba(199,91,58,.08)', text: '#e6edf3' },
+    ready:      { border: '#16A34A', ring: 'rgba(34,197,94,.20)', bg: 'rgba(240,253,244,.06)', text: '#e6edf3' },
+    done:       { border: '#A8A29E', ring: 'rgba(214,211,209,.15)', bg: 'rgba(214,211,209,.06)', text: '#78716C' },
+    blocked:    { border: '#EAB308', ring: 'rgba(234,179,8,.15)', bg: 'rgba(234,179,8,.04)', text: '#8b949e' },
+  };
+  const EDGE_CORNER_RADIUS = 20;
+
+  function drawRoundedRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x + w, y, x + w, y + r, r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+    ctx.lineTo(x + r, y + h);
+    ctx.arcTo(x, y + h, x, y + h - r, r);
+    ctx.lineTo(x, y + r);
+    ctx.arcTo(x, y, x + r, y, r);
+    ctx.closePath();
+  }
+
+  function drawBezierEdge(ctx, pts, color, dashed) {
+    if (pts.length < 2) return;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.25;
+    ctx.setLineDash(dashed ? [7, 5] : []);
+
+    if (pts.length === 2) {
+      // Simple bezier
+      const [p0, p1] = pts;
+      const cpOffset = Math.abs(p1.x - p0.x) * 0.4;
+      ctx.moveTo(p0.x, p0.y);
+      ctx.bezierCurveTo(p0.x + cpOffset, p0.y, p1.x - cpOffset, p1.y, p1.x, p1.y);
+    } else {
+      // Multi-point with rounded corners
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length - 1; i++) {
+        const prev = pts[i-1], cur = pts[i], next = pts[i+1];
+        const r = Math.min(EDGE_CORNER_RADIUS,
+          Math.hypot(cur.x-prev.x, cur.y-prev.y)/2,
+          Math.hypot(next.x-cur.x, next.y-cur.y)/2);
+        const d1 = Math.hypot(cur.x-prev.x, cur.y-prev.y);
+        const d2 = Math.hypot(next.x-cur.x, next.y-cur.y);
+        const cp1x = cur.x - (cur.x-prev.x)/d1*r;
+        const cp1y = cur.y - (cur.y-prev.y)/d1*r;
+        const cp2x = cur.x + (next.x-cur.x)/d2*r;
+        const cp2y = cur.y + (next.y-cur.y)/d2*r;
+        ctx.lineTo(cp1x, cp1y);
+        ctx.quadraticCurveTo(cur.x, cur.y, cp2x, cp2y);
+      }
+      ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Arrow head
+    const last = pts[pts.length - 1];
+    const prev = pts.length >= 2 ? pts[pts.length - 2] : pts[0];
+    const angle = Math.atan2(last.y - prev.y, last.x - prev.x);
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.moveTo(last.x, last.y);
+    ctx.lineTo(last.x - 10 * Math.cos(angle - .35), last.y - 10 * Math.sin(angle - .35));
+    ctx.lineTo(last.x - 10 * Math.cos(angle + .35), last.y - 10 * Math.sin(angle + .35));
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  setTimeout(() => {
+    const canvas = document.getElementById('route-canvas');
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = canvasW * dpr;
+    canvas.height = canvasH * dpr;
+    canvas.style.width = canvasW + 'px';
+    canvas.style.height = canvasH + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    // Draw edges with bezier curves
+    edges.forEach(e => {
+      const toBatch = R.batches.find(b => b.id === e.to);
+      const isBlocked = toBatch && toBatch.status === 'blocked';
+      const color = isBlocked ? 'rgba(234,179,8,.35)' : '#C75B3A';
+      drawBezierEdge(ctx, e.points, color, isBlocked);
+    });
+
+    // Draw nodes (ExoMind TaskDag card style)
+    nodes.forEach(n => {
+      const batch = R.batches.find(b => b.id === n.id);
+      if (!batch) return;
+      const trackColor = getTrackColor(batch.track);
+      const isSelected = selectedBatch === batch.id;
+      const p = PALETTE[batch.status] || PALETTE.blocked;
+      const r = 12; // rounded-xl
+      const x = n.x - n.w/2, y = n.y - n.h/2;
+
+      // Outer ring (glow) for selected or active
+      if (isSelected || batch.status === 'active') {
+        ctx.save();
+        ctx.shadowColor = p.border;
+        ctx.shadowBlur = 12;
+        drawRoundedRect(ctx, x - 2, y - 2, n.w + 4, n.h + 4, r + 2);
+        ctx.strokeStyle = p.ring;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Card background
+      drawRoundedRect(ctx, x, y, n.w, n.h, r);
+      ctx.fillStyle = batch.status === 'blocked' ? 'rgba(13,17,23,.85)' : 'rgba(13,17,23,.95)';
+      ctx.fill();
+
+      // Border (status-driven: blocked=yellow dim, ready=green, active=brown)
+      ctx.strokeStyle = isSelected ? '#C75B3A' : p.border;
+      ctx.lineWidth = isSelected ? 2.5 : 1.8;
+      if (batch.status === 'blocked') { ctx.globalAlpha = 0.6; }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Left track color accent bar (always visible, dimmed if blocked)
+      const barW = 4;
+      ctx.globalAlpha = batch.status === 'blocked' ? 0.6 : 1;
+      drawRoundedRect(ctx, x, y, barW, n.h, [r, 0, 0, r]);
+      ctx.fillStyle = trackColor;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Blocked overlay (subtle dim, preserves track color visibility)
+      if (batch.status === 'blocked') {
+        drawRoundedRect(ctx, x, y, n.w, n.h, r);
+        ctx.fillStyle = 'rgba(6,8,13,.2)';
+        ctx.fill();
+      }
+
+      // Batch ID (large, track-colored, dimmed if blocked)
+      ctx.globalAlpha = batch.status === 'blocked' ? 0.6 : 1;
+      ctx.fillStyle = trackColor;
+      ctx.font = 'bold 18px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(batch.id, n.x, y + 8);
+
+      // Batch name (small, track-colored, dimmed if blocked)
+      ctx.font = '500 10px "Outfit", sans-serif';
+      const nameText = batch.name.length > 14 ? batch.name.slice(0, 13) + '…' : batch.name;
+      ctx.fillText(nameText, n.x, y + 30);
+
+      // Issue count badge
+      ctx.fillStyle = batch.status === 'blocked' ? '#6e7681' : '#8b949e';
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.fillText(`${batch.issues.length} issues`, n.x, y + 44);
+      ctx.globalAlpha = 1;
+
+      // Progress mini-bar (always show)
+      const doneCount = batch.issues.filter(i => i.done).length;
+      const pct = batch.issues.length > 0 ? doneCount / batch.issues.length : 0;
+      if (true) {
+        const barWid = n.w - 24;
+        const barH = 3;
+        const barX = x + 12;
+        const barY = y + n.h - 10;
+        ctx.fillStyle = 'rgba(110,118,129,.2)';
+        ctx.fillRect(barX, barY, barWid, barH);
+        if (pct > 0) {
+          ctx.fillStyle = '#2ea043';
+          ctx.fillRect(barX, barY, barWid * pct, barH);
+        }
+      }
+    });
+
+    // Click handler
+    canvas.onclick = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = (e.clientX - rect.left);
+      const my = (e.clientY - rect.top);
+      let clicked = null;
+      nodes.forEach(n => {
+        if (mx >= n.x - n.w/2 && mx <= n.x + n.w/2 && my >= n.y - n.h/2 && my <= n.y + n.h/2) {
+          clicked = n.id;
+        }
+      });
+      if (clicked) {
+        selectedBatch = selectedBatch === clicked ? null : clicked;
+        renderBatchPanel();
+        // Re-render canvas for selection highlight
+        renderRouteMap();
+      }
+    };
+
+    // Hover cursor
+    canvas.onmousemove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = (e.clientX - rect.left);
+      const my = (e.clientY - rect.top);
+      let hover = false;
+      nodes.forEach(n => {
+        if (mx >= n.x - n.w/2 && mx <= n.x + n.w/2 && my >= n.y - n.h/2 && my <= n.y + n.h/2) {
+          hover = true;
+        }
+      });
+      canvas.style.cursor = hover ? 'pointer' : 'default';
+    };
+
+  }, 50);
+
+  return `
+    <div class="section-title animate d3">🗺️ 航线地图</div>
+    ${renderTrackLegend()}
+    <div class="route-map-wrap animate d3">
+      <canvas id="route-canvas" class="route-map-canvas"></canvas>
+    </div>
+    <div id="batch-panel-container"></div>`;
+}
+
+function renderBatchPanel() {
+  const container = document.getElementById('batch-panel-container');
+  if (!container) return;
+  if (!selectedBatch) {
+    container.innerHTML = '<div class="batch-panel"></div>';
+    return;
+  }
+  const b = R.batches.find(x => x.id === selectedBatch);
+  if (!b) return;
+
+  const doneCount = b.issues.filter(i => i.done).length;
+  const pct = b.issues.length > 0 ? Math.round(doneCount / b.issues.length * 100) : 0;
+
+  const priClass = b.priority === 'P0' ? 'priority-p0' : b.priority === 'P1' ? 'priority-p1' : 'priority-p2';
+  const statusClass = `status-${b.status}`;
+  const statusLabel = { ready: '就绪', active: '进行中', done: '已完成', blocked: '待解锁' }[b.status] || b.status;
+
+  const issuesHtml = b.issues.map(i => {
+    const priCls = i.priority === 'P0' ? 'p0' : i.priority === 'P1' ? 'p1' : 'p2';
+    const icon = i.done ? '✅' : '○';
+    const sizeHtml = i.size ? `<span class="batch-issue-pri" style="background:rgba(137,87,229,.12);color:var(--purple)">${i.size}</span>` : '';
+    return `
+      <li class="batch-issue-item">
+        <span>${icon}</span>
+        <span class="batch-issue-num">${ghLink(i.num)}</span>
+        <span class="batch-issue-pri ${priCls}">${i.priority}</span>
+        ${sizeHtml}
+        <span class="batch-issue-title">${i.title}</span>
+      </li>`;
+  }).join('');
+
+  const depsHtml = b.deps.length > 0
+    ? `<div class="batch-deps"><strong>前置依赖：</strong>${b.deps.map(d => {
+        const depId = typeof d === 'string' ? d : d.id;
+        const reason = typeof d === 'object' && d.reason ? ` <span style="color:var(--text-faint)">(${d.reason})</span>` : '';
+        return `批次 ${depId}${reason}`;
+      }).join(' · ')}</div>`
+    : '';
+
+  container.innerHTML = `
+    <div class="batch-panel open">
+      <div class="batch-panel-inner">
+        <div class="batch-panel-header">
+          <div class="batch-panel-title">批次 ${b.id}：${b.name}</div>
+          <div class="batch-panel-close" onclick="selectedBatch=null;renderBatchPanel()">✕</div>
+        </div>
+        <div class="batch-meta-row">
+          <span class="batch-meta-tag ${statusClass}">${statusLabel}</span>
+          <span class="batch-meta-tag ${priClass}">${b.priority}</span>
+          <span class="batch-meta-tag platform">${R.tracks.find(t=>t.id===b.track)?.name || b.track}</span>
+          <span style="color:var(--text-faint);font-size:.78rem">📁 ${b.fileDomain}</span>
+          <span style="color:var(--text-faint);font-size:.78rem">🌿 ${b.branch}</span>
+        </div>
+        <div class="batch-progress"><div class="batch-progress-fill" style="width:${pct}%"></div></div>
+        <div style="font-size:.78rem;color:var(--text-dim);margin-bottom:.5rem">${doneCount}/${b.issues.length} 完成 (${pct}%)</div>
+        ${depsHtml}
+        <ul class="batch-issue-list">${issuesHtml}</ul>
+      </div>
+    </div>`;
+}
+
+function renderHeatmap() {
+  const H = R.heatmap;
+  const colCount = H.cols.length;
+  let html = `<div class="heatmap-grid" style="grid-template-columns:100px repeat(${colCount},1fr)">`;
+  // Header row
+  html += '<div class="heatmap-header"></div>';
+  H.cols.forEach(c => { html += `<div class="heatmap-header">${c}</div>`; });
+  // Data rows
+  H.rows.forEach((row, ri) => {
+    html += `<div class="heatmap-label">${row}</div>`;
+    H.cols.forEach((_, ci) => {
+      const v = H.data[ri][ci];
+      const heat = v === 0 ? 0 : v <= 2 ? 1 : v <= 5 ? 2 : v <= 10 ? 3 : 4;
+      html += `<div class="heatmap-cell heat-${heat}">${v || '·'}</div>`;
+    });
+  });
+  html += '</div>';
+  return `
+    <div class="section-title animate d5">🔥 优先级 × 平台 热力图</div>
+    <div class="animate d5" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem">
+      ${html}
+      <div style="font-size:.72rem;color:var(--text-faint);margin-top:.6rem;text-align:center">
+        数字 = 该优先级在该平台轨道上的 open issue 数量。颜色越深 = 积压越多
+      </div>
+    </div>`;
+}
+
+function renderActions() {
+  const items = R.actions.map((a, i) => {
+    const key = `action-${i}`;
+    const checked = localStorage.getItem(key) === 'true' ? 'checked' : '';
+    return `
+      <div class="action-item">
+        <input type="checkbox" class="action-check" ${checked} onchange="localStorage.setItem('${key}',this.checked)">
+        <div>
+          <div class="action-text">${a.text}</div>
+          <div class="action-detail">${a.detail}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="section-title animate d6">📌 建议航向</div>
+    <div class="animate d6" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem">
+      ${items}
+    </div>`;
+}
+
+function renderInsight() {
+  return `
+    <div class="insight animate d6">
+      <p>${R.insight.text}</p>
+      <div class="author">— ${R.insight.author}</div>
+    </div>`;
+}
+
+function renderFooter() {
+  return `
+    <div class="footer">
+      ExoMind 开发航线 · ${R.meta.date} · 数据驱动，航段变化时更新
+    </div>
+    <div class="devlog-nav"><a href="../">← DevLog 归档</a></div>`;
+}
+
+// Assemble
+document.getElementById('app').innerHTML = [
+  renderHeader(),
+  renderTopRow(),
+  renderRouteMap(),
+  renderHeatmap(),
+  renderActions(),
+  renderInsight(),
+  renderFooter(),
+].join('');
+
+</script>
+</body>
+</html>

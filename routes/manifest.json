@@ -1,7 +1,41 @@
 {
-  "generated": "2026-03-30T01:40:00.041Z",
+  "generated": "2026-03-30T01:42:22.493Z",
   "repo": "exomind-team/exomind",
   "routes": [
+    {
+      "date": "2026-03-30",
+      "time": "092949",
+      "title": "开发航线",
+      "file": "2026-03-30-092949.html",
+      "publisher": "航线规划师·Android [Claude Opus 4.6]",
+      "status": {
+        "level": "rain",
+        "emoji": "🌧️",
+        "label": "逆风"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "13",
+          "note": "O~Z + R1"
+        },
+        {
+          "label": "就绪",
+          "value": "2",
+          "note": "Q / R1"
+        },
+        {
+          "label": "进行中",
+          "value": "1",
+          "note": "O (#747)"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "168",
+          "note": "281 中的 60%"
+        }
+      ]
+    },
     {
       "date": "2026-03-29",
       "time": "113430",
