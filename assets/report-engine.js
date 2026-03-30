@@ -25,8 +25,24 @@ const WEATHER_GRADIENTS = {
 
 const HEADLINE_COLORS = ['var(--green)', 'var(--accent)', 'var(--purple)', 'var(--orange)', 'var(--p0)', 'var(--text-dim)'];
 
+// Auto-resolve daypart title from time
+function resolveDaypart(meta) {
+  // Priority: URL filename HHmmss > meta.time > HH:mm in coverage
+  let hour = NaN;
+  const urlMatch = location.pathname.match(/\d{4}-\d{2}-\d{2}-(\d{2})/);
+  if (urlMatch) hour = parseInt(urlMatch[1], 10);
+  if (isNaN(hour) && meta.time) hour = parseInt(String(meta.time).substring(0, 2), 10);
+  if (isNaN(hour) && meta.coverage) {
+    const cm = meta.coverage.match(/(\d{2}):\d{2}/);
+    if (cm) hour = parseInt(cm[1], 10);
+  }
+  if (isNaN(hour)) return;
+  meta.title = hour < 6 ? '开发夜报' : hour < 12 ? '开发早报' : hour < 18 ? '开发午报' : '开发晚报';
+}
+
 function render() {
   const R = REPORT;
+  resolveDaypart(R.meta);
   const app = document.getElementById('app');
   document.title = `ExoMind ${R.meta.title} · ${R.meta.date}`;
 
