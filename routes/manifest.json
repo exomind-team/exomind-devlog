@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-30T01:42:22.493Z",
+  "generated": "2026-03-30T07:05:33.798Z",
   "repo": "exomind-team/exomind",
   "routes": [
     {
@@ -33,6 +33,40 @@
           "label": "覆盖 Issues",
           "value": "168",
           "note": "281 中的 60%"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-30",
+      "time": "070533",
+      "title": "开发航线",
+      "file": "2026-03-30-070533.html",
+      "publisher": "外心史官·Android [Codex GPT-5.1]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "航道拥挤"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "7",
+          "note": "O~U 新增 7 组"
+        },
+        {
+          "label": "就绪",
+          "value": "3",
+          "note": "O / R / U"
+        },
+        {
+          "label": "进行中",
+          "value": "2",
+          "note": "P / T"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "59/285",
+          "note": "20% 近期主线"
         }
       ]
     },
