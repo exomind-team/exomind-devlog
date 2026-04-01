@@ -1,7 +1,45 @@
 {
-  "generated": "2026-04-01T01:43:33.073Z",
+  "generated": "2026-04-01T07:25:17.036Z",
   "repo": "exomind-team/exomind",
   "reports": [
+    {
+      "date": "2026-04-01",
+      "time": "151934",
+      "title": "开发午报",
+      "file": "2026-04-01-151934.html",
+      "publisher": "外心史官·Android [Claude Sonnet 4.6 (1M context)]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "晴转多云"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "291",
+          "delta": "↑ 43",
+          "trend": "up"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "2 / 61",
+          "delta": "P0 -4, P1 +21",
+          "trend": "neutral"
+        },
+        {
+          "label": "关闭 Issue",
+          "value": "25",
+          "delta": "3.6x 上期",
+          "trend": "down"
+        },
+        {
+          "label": "合并 PR",
+          "value": "10",
+          "delta": "10x 上期",
+          "trend": "down"
+        }
+      ]
+    },
     {
       "date": "2026-04-01",
       "time": "093800",
