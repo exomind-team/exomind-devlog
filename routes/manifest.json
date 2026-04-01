@@ -1,12 +1,19 @@
 {
-  "generated": "2026-04-01T01:41:36.374Z",
+  "generated": "2026-04-01T11:53:56.204Z",
   "repo": "exomind-team/exomind",
+  "latest": {
+    "file": "2026-04-01-014136.html",
+    "dataFile": "2026-04-01-014136.json",
+    "date": "2026-04-01",
+    "time": "014136"
+  },
   "routes": [
     {
       "date": "2026-04-01",
       "time": "014136",
       "title": "开发航线",
       "file": "2026-04-01-014136.html",
+      "dataFile": "2026-04-01-014136.json",
       "publisher": "航线规划师·Android [Claude Opus 4.6]",
       "status": {
         "level": "rain",
@@ -34,7 +41,9 @@
           "value": "113",
           "note": "287 中的 39%"
         }
-      ]
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-01-014136.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-01-014136.json"
     },
     {
       "date": "2026-03-31",
