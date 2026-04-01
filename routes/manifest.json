@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-01T11:55:04.856Z",
+  "generated": "2026-04-01T12:44:25.609Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-01-014136.html",
@@ -77,7 +77,10 @@
           "value": "156",
           "note": "283 中的 55%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-31-210100.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-31-210100.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-31-210100.json"
     },
     {
       "date": "2026-03-30",
@@ -111,7 +114,10 @@
           "value": "128",
           "note": "282 中的 45%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-155301.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-155301.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-155301.json"
     },
     {
       "date": "2026-03-30",
@@ -145,7 +151,10 @@
           "value": "168",
           "note": "281 中的 60%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-092949.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-092949.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-092949.json"
     },
     {
       "date": "2026-03-30",
@@ -179,7 +188,10 @@
           "value": "59/285",
           "note": "20% 近期主线"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-070533.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-070533.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-30-070533.json"
     },
     {
       "date": "2026-03-29",
@@ -213,7 +225,10 @@
           "value": "98",
           "note": "276 中的 36%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-29-113430.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-29-113430.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-29-113430.json"
     },
     {
       "date": "2026-03-27",
@@ -247,7 +262,10 @@
           "value": "113",
           "note": "268 中的 42%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-180455.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-180455.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-180455.json"
     },
     {
       "date": "2026-03-27",
@@ -281,7 +299,10 @@
           "value": "145",
           "note": "270 中的 54%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-111611.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-111611.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-111611.json"
     },
     {
       "date": "2026-03-27",
@@ -315,7 +336,10 @@
           "value": "156",
           "note": "268 中的 58%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-102426.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-102426.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-102426.json"
     },
     {
       "date": "2026-03-27",
@@ -349,7 +373,10 @@
           "value": "185",
           "note": "268 中的 69%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-013818.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-013818.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-27-013818.json"
     },
     {
       "date": "2026-03-26",
@@ -383,7 +410,10 @@
           "value": "106",
           "note": "266 中的 40%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-210024.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-210024.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-210024.json"
     },
     {
       "date": "2026-03-26",
@@ -417,7 +447,10 @@
           "value": "106",
           "note": "266 中的 40%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-155209.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-155209.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-155209.json"
     },
     {
       "date": "2026-03-26",
@@ -451,7 +484,10 @@
           "value": "109",
           "note": "264 中的 41%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-140607.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-140607.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-140607.json"
     },
     {
       "date": "2026-03-26",
@@ -485,7 +521,10 @@
           "value": "115",
           "note": "263 中的 44%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-120534.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-120534.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-120534.json"
     },
     {
       "date": "2026-03-26",
@@ -519,7 +558,10 @@
           "value": "108",
           "note": "259 中的 42%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-092923.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-092923.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-092923.json"
     },
     {
       "date": "2026-03-26",
@@ -553,7 +595,10 @@
           "value": "105",
           "note": "266 中的 39%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-024800.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-024800.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-024800.json"
     },
     {
       "date": "2026-03-26",
@@ -587,7 +632,10 @@
           "value": "106",
           "note": "266 中的 40%"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-014000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-014000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-014000.json"
     }
   ]
 }

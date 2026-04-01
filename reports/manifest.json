@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-01T11:54:18.982Z",
+  "generated": "2026-04-01T12:44:25.576Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-01-151934.html",
@@ -93,7 +93,10 @@
           "delta": "↑↑",
           "trend": "down"
         }
-      ]
+      ],
+      "dataFile": "2026-04-01-093800.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-093800.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-093800.json"
     },
     {
       "date": "2026-03-31",
@@ -105,7 +108,10 @@
         "level": "cloudy",
         "emoji": "⛅",
         "label": "晴转多云"
-      }
+      },
+      "dataFile": "2026-03-31-104200.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-104200.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-104200.json"
     },
     {
       "date": "2026-03-31",
@@ -117,7 +123,10 @@
         "level": "cloudy",
         "emoji": "⛅",
         "label": "晴转多云"
-      }
+      },
+      "dataFile": "2026-03-31-073900.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-073900.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-073900.json"
     },
     {
       "date": "2026-03-31",
@@ -155,7 +164,10 @@
           "delta": "↑ 2",
           "trend": "down"
         }
-      ]
+      ],
+      "dataFile": "2026-03-31-045200.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-045200.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-31-045200.json"
     },
     {
       "date": "2026-03-30",
@@ -193,7 +205,10 @@
           "delta": "↑ 2",
           "trend": "down"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-153000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-153000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-153000.json"
     },
     {
       "date": "2026-03-30",
@@ -231,7 +246,10 @@
           "delta": "0",
           "trend": "up"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-144932.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-144932.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-144932.json"
     },
     {
       "date": "2026-03-30",
@@ -269,7 +287,10 @@
           "delta": "—",
           "trend": "up"
         }
-      ]
+      ],
+      "dataFile": "2026-03-30-092428.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-092428.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-30-092428.json"
     },
     {
       "date": "2026-03-29",
@@ -281,7 +302,10 @@
         "level": "cloudy",
         "emoji": "⛅",
         "label": "晴转多云"
-      }
+      },
+      "dataFile": "2026-03-29-150400.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-29-150400.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-29-150400.json"
     },
     {
       "date": "2026-03-29",
@@ -293,7 +317,10 @@
         "level": "cloudy",
         "emoji": "⛅",
         "label": "晴转多云"
-      }
+      },
+      "dataFile": "2026-03-29-083800.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-29-083800.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-29-083800.json"
     },
     {
       "date": "2026-03-27",
@@ -331,7 +358,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-102456.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-102456.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-102456.json"
     },
     {
       "date": "2026-03-27",
@@ -369,7 +399,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-040000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-040000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-040000.json"
     },
     {
       "date": "2026-03-27",
@@ -407,7 +440,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-27-020000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-020000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-27-020000.json"
     },
     {
       "date": "2026-03-26",
@@ -445,7 +481,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-220000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-220000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-220000.json"
     },
     {
       "date": "2026-03-26",
@@ -483,7 +522,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-200000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-200000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-200000.json"
     },
     {
       "date": "2026-03-26",
@@ -521,7 +563,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-150000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-150000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-150000.json"
     },
     {
       "date": "2026-03-26",
@@ -559,7 +604,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-143000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-143000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-143000.json"
     },
     {
       "date": "2026-03-26",
@@ -597,7 +645,10 @@
           "delta": "—",
           "trend": "neutral"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-133000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-133000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-133000.json"
     },
     {
       "date": "2026-03-26",
@@ -635,7 +686,10 @@
           "delta": "静默",
           "trend": "up"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-100000.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-100000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-100000.json"
     },
     {
       "date": "2026-03-26",
@@ -647,7 +701,10 @@
         "level": "cloudy",
         "emoji": "⛅",
         "label": "晴转多云"
-      }
+      },
+      "dataFile": "2026-03-26-014404.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-014404.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-014404.json"
     },
     {
       "date": "2026-03-26",
@@ -685,7 +742,10 @@
           "delta": "静默",
           "trend": "up"
         }
-      ]
+      ],
+      "dataFile": "2026-03-26-000300.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-000300.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-26-000300.json"
     },
     {
       "date": "2026-03-25",
@@ -721,7 +781,11 @@
           "delta": "+1 epic",
           "trend": "up"
         }
-      ]
+      ],
+      "time": "000000",
+      "dataFile": "2026-03-25.json",
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-25.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-03-25.json"
     }
   ]
 }

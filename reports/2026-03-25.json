@@ -1,0 +1,395 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.544Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-25",
+    "time": "000000",
+    "file": "2026-03-25.html",
+    "dataFile": "2026-03-25.json"
+  },
+  "meta": {
+    "title": "开发晚报",
+    "date": "2026-03-25",
+    "coverage": "03-25 全天",
+    "baseline": "5b3c53e",
+    "repo": "exomind-team/exomind"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "Goal System v0.3 逻辑模型经 6 轮审查定稿，10 项原则 + 完整 API 设计",
+      "v0.3 UI 交互模型同步重写，与逻辑模型完全对齐",
+      "Ritual Home 页面果断清除（-382 行），根路由重定向 /eventlog",
+      "shortcut_commands Rust 端 Bug 修复 + Pencil UI 设计大迭代（+6700 行）",
+      "开发日报 Agent HTML 仪表盘模板上线（+694 行新工具链）"
+    ],
+    "downs": [
+      "254 open issues 再破纪录（上期 248 → 254，+6）",
+      "P1 升至 41（上期 40 → 41，+1）",
+      "今日 0 个 Issue 关闭、0 个 PR 合并 — 纯设计日，无交付产出",
+      "6 P0 连续九期零代码 — 结构性欠账持续积累",
+      "#466 锁定已达 16 天"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "254",
+      "delta": "↑ 6",
+      "trend": "up",
+      "note": "历史新高",
+      "tooltip": "上期 248 → 本期 254"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 41",
+      "delta": "P1 +1",
+      "trend": "up",
+      "note": "P0 不变",
+      "tooltip": "P0: 6 (不变) · P1: 40→41 (+1)"
+    },
+    {
+      "label": "今日提交",
+      "value": "13",
+      "delta": "2人",
+      "trend": "neutral",
+      "note": "规格+修复",
+      "tooltip": "ARCJ137442: 10 · HailayLin: 3"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "5",
+      "delta": "+1 epic",
+      "trend": "up",
+      "note": "#728 信号网络",
+      "tooltip": "#725 #726 #728 #729 #730"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 #234",
+      "tag": null,
+      "pct": 35,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 + v0.2",
+          "done": true
+        },
+        {
+          "text": "GoalsPage ~1100L + force-layout ~220L",
+          "done": true
+        },
+        {
+          "text": "Me 中心固定 + 连线统一 + 8 issue 修复",
+          "done": true
+        },
+        {
+          "text": "v0.3 逻辑模型 6 轮审查定稿（今日）",
+          "done": true
+        },
+        {
+          "text": "v0.3 UI 交互模型同步重写（今日）",
+          "done": true
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解 (P1)",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 50,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "信号网络编排 #728",
+      "tag": "new",
+      "pct": 0,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "只读拓扑图",
+          "done": false
+        },
+        {
+          "text": "交互式 DAG 编排",
+          "done": false
+        },
+        {
+          "text": "Agent 信号网络可视化",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "任务 DAG + 时间块 UI #501",
+      "pct": 99,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "13 Issue 关闭 (DAG四期+时间块打磨)",
+          "done": true
+        },
+        {
+          "text": "DagreRoutedEdge 跨层边路由",
+          "done": true
+        },
+        {
+          "text": "#694 滚轮缩放 Bug",
+          "done": false,
+          "issue": 694
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 硬编码密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "📐",
+      "title": "Goal System v0.3 规格马拉松 — 逻辑模型 6 轮定稿",
+      "color": "var(--accent)",
+      "body": "从 08:52 到 12:29，10 个 commit 密集打磨。逻辑模型从草稿经 6 轮审查（修复 58 个 issue），UI 模型同步重写对齐。DNF 完成规则、边拆解、级联取消等核心设计全部落地为规格文档。"
+    },
+    {
+      "emoji": "🧹",
+      "title": "Ritual Home 页面清除 — 根路由重定向 /eventlog",
+      "color": "var(--green)",
+      "body": "PR #727 删除 RitualHomePage 及 ritual/ 模块（-382 行）。AI 生成的原型 UX 不明确，果断清理，/ 重定向到当下页面。对应 #591 代码已清除但 Issue 仍 OPEN。"
+    },
+    {
+      "emoji": "🎨",
+      "title": "Pencil UI 设计大迭代 + shortcut_commands 修复",
+      "color": "var(--purple)",
+      "body": "pencil/eventlog-ui-design.pen 增加 6700+ 行设计稿迭代。同步修复 Rust 端 shortcut_commands.rs 一处 Bug（5b3c53ec）。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "优先 #717 图模型对齐",
+      "result": "partial",
+      "note": "v0.3 规格定稿（前置设计完成），代码未开始"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "result": "fail",
+      "note": "今日未推进"
+    },
+    {
+      "text": "冻结目标系统新开题",
+      "result": "pass",
+      "note": "今日 5 个新 Issue 均非目标系统"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 727,
+        "title": "移除 Ritual Home 页面, 重定向 / → /eventlog",
+        "status": "review",
+        "extra": "今日新建"
+      },
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 16天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "P0",
+      "documentation",
+      "sync"
+    ],
+    "data": [
+      192,
+      97,
+      86,
+      69,
+      67,
+      64,
+      41,
+      38,
+      28,
+      25,
+      23,
+      20,
+      13,
+      6,
+      6,
+      6
+    ],
+    "deltas": [
+      "+5",
+      "+5",
+      "+4",
+      "+3",
+      "+1",
+      "+2",
+      "+1",
+      "+2",
+      "+1",
+      "+1",
+      "+3",
+      "+1",
+      null,
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "41 issues (含 7 Goal System + 1 voice 新增)"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "合并 PR #727 并关闭 #591",
+      "detail": "Ritual Home 代码已删除，PR 已提交，尽快合并到 dev 并正式关闭 #591"
+    },
+    {
+      "text": "启动 #717 图模型对齐编码",
+      "detail": "v0.3 逻辑+UI 规格今日已定稿，明日可直接进入 #717 实现阶段"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "detail": "#666 子项 4/8 已关，#676 是 Agent 调用链的核心入口"
+    },
+    {
+      "text": "审视 #466 锁定状态",
+      "detail": "锁定 16 天，确认是否需要人工干预解锁或关闭"
+    }
+  ],
+  "insight": {
+    "text": "「磨刀不误砍柴工」— 今天是一个纯设计日：13 个 commit、0 个 Issue 关闭、0 个 PR 合并。数字看起来\"无产出\"，但 Goal System v0.3 逻辑模型经历 6 轮审查定稿，意味着 #717~#723 的实现有了坚实的设计基础。这种\"设计密集→代码密集\"的节奏在 DAG 系统时期也出现过——v0.1 spec 用了 2 天，之后 13 个 Issue 在一周内连关。明天的重点是把今天磨好的刀用出去：启动 #717 编码。",
+    "author": "ExoMind 编年史官"
+  }
+}

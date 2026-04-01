@@ -1,0 +1,396 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.558Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-27",
+    "time": "102456",
+    "file": "2026-03-27-102456.html",
+    "dataFile": "2026-03-27-102456.json"
+  },
+  "meta": {
+    "title": "开发早报",
+    "date": "2026-03-27",
+    "coverage": "03-27 夜报(04:00) ~ 03-27 早(10:23)",
+    "baseline": "c93ab72",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "目标系统渲染稳定性持续修复：c93ab72 前 10+ 提交密集打磨 #747",
+      "#755 PR 新开——Today Planner 手动计划器进入开发",
+      "#751 epic 完成规划拆解：3 子 Issue (#752 #753 #754) 全带 P1 标签",
+      "日报提示词改用动态时间戳 c93ab720，消除硬编码风险"
+    ],
+    "downs": [
+      "268 Open Issues 持续高位，夜报以来零关闭",
+      "7 P0 连续零代码进展——#452 安全清理已拖欠 18 天",
+      "#466 PR 🔒 锁定 18 天，占用 PR 管道",
+      "#432 #591 mismatch 连续第十二期未关闭",
+      "#750 仍无标签，上期建议未执行"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "268",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "与夜报持平",
+      "tooltip": "夜报 268 → 早报 268"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "7 / 48",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "无变化",
+      "tooltip": "P0: 7 (不变) · P1: 48 (不变)"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "静默期",
+      "tooltip": "覆盖区间内无新增"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "静默期",
+      "tooltip": "覆盖区间内无合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 #234",
+      "tag": null,
+      "pct": 25,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#717 图模型对齐 v0.2 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#718 新建目标自动创建匿名边",
+          "done": false,
+          "issue": 718
+        },
+        {
+          "text": "#719 完成级联推导 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解中间目标",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型开发 (P1)",
+          "done": false,
+          "issue": 723
+        },
+        {
+          "text": "#744 迁入 RT 替换本地 store",
+          "done": false,
+          "issue": 744
+        },
+        {
+          "text": "#747 渲染稳定性 (P0, 10+ 提交修复中)",
+          "done": false,
+          "issue": 747
+        }
+      ]
+    },
+    {
+      "name": "Today Planner #751",
+      "tag": "new",
+      "pct": 5,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#752 计划时间块一等对象 (P1)",
+          "done": false,
+          "issue": 752
+        },
+        {
+          "text": "#753 /act/today-planner API (P1)",
+          "done": false,
+          "issue": 753
+        },
+        {
+          "text": "#754 Today 页升级为计划器 (P1)",
+          "done": false,
+          "issue": 754
+        },
+        {
+          "text": "#755 PR 已开——手动计划器 MVP",
+          "done": false,
+          "issue": 755
+        }
+      ]
+    },
+    {
+      "name": "任务 DAG #501",
+      "tag": null,
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "20/20 子 Issue 全部 CLOSED",
+          "done": true
+        },
+        {
+          "text": "三模式 + 沉浸 + 键盘 + 搜索全部落地",
+          "done": true
+        }
+      ]
+    },
+    {
+      "name": "语音驱动任务 MVP #480",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#502 语音指令模式",
+          "done": false,
+          "issue": 502
+        },
+        {
+          "text": "#326 ASR→分类链路 (P0)",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    },
+    {
+      "name": "7 P0 积压",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#747 目标系统渲染稳定性",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 安全：硬编码密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🎯",
+      "title": "Today Planner epic #751 立项，#755 PR 已开",
+      "color": "var(--green)",
+      "body": "手动今日计划器从 epic 拆解到 PR 一步到位。#752 模型层 + #753 API 层 + #754 UI 层三子 Issue 均标 P1。PR #755 feat: add manual today planner for work and rest blocks 已提交 review。"
+    },
+    {
+      "emoji": "🔧",
+      "title": "目标系统 #747 渲染稳定性密集修复",
+      "color": "var(--accent)",
+      "body": "c93ab720 之前 10+ 提交集中修复节点渲染、连边路由、圈层裁切问题。含 a415a6e9 浏览器边界覆盖、225c6782 布局稳定化、72728cb7 完成吸纳动效等。#747 仍 OPEN，P0。"
+    },
+    {
+      "emoji": "📊",
+      "title": "全局静默：268 Issues / 7 P0 / 48 P1 纹丝不动",
+      "color": "var(--text-dim)",
+      "body": "与 04:00 夜报完全一致。无 Issue 关闭、无 PR 合并、无新增 Issue。开发活动集中在目标系统代码修复和 today planner 规划。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "关闭 #432 和 #591",
+      "result": "fail",
+      "note": "第十二期遗留。两者仍 OPEN，10 秒操作连续 12 期未执行"
+    },
+    {
+      "text": "验证 #747 渲染修复后关闭",
+      "result": "partial",
+      "note": "10+ 提交已推送修复，但 #747 仍 OPEN 未验证关闭"
+    },
+    {
+      "text": "给 #750 加 P2+UI 标签",
+      "result": "fail",
+      "note": "#750 仍无标签"
+    },
+    {
+      "text": "处置 #466 PR：关闭或转 draft",
+      "result": "fail",
+      "note": "#466 仍 OPEN 且 🔒 锁定，已 18 天"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 755,
+        "title": "手动 Today Planner 工作/休息块",
+        "status": "review"
+      },
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 18天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "时间块",
+      "research",
+      "事件日志",
+      "信号池",
+      "P0",
+      "documentation",
+      "sync"
+    ],
+    "data": [
+      192,
+      105,
+      96,
+      78,
+      73,
+      64,
+      48,
+      42,
+      32,
+      26,
+      25,
+      23,
+      13,
+      7,
+      7,
+      7
+    ],
+    "deltas": [
+      "+5",
+      "+13",
+      "+14",
+      "+12",
+      "+7",
+      "+2",
+      "+8",
+      "+6",
+      "+5",
+      "+7",
+      "+1",
+      "+3",
+      null,
+      "+1",
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#747 #532 #527 #511 #480 #452 #326",
+      "P1": "48 issues"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "立即关闭 #432 和 #591",
+      "detail": "执行 gh issue close 432 591。连续 12 期 mismatch，是报告质量污点"
+    },
+    {
+      "text": "验证 #747 目标系统渲染并关闭",
+      "detail": "启动 bun dev，打开目标页验证节点/连边/圈层正常后执行 gh issue close 747"
+    },
+    {
+      "text": "给 #750 加标签 P2+UI",
+      "detail": "执行 gh issue edit 750 --add-label P2,UI"
+    },
+    {
+      "text": "关闭或转 draft #466 PR",
+      "detail": "🔒 锁定 18 天零进展。执行 gh pr close 466 或 gh pr ready 466 --undo 释放管道"
+    }
+  ],
+  "insight": {
+    "text": "「规划快于交付的信号再次出现」—— #751 Today Planner 从 epic 到 3 子 Issue + PR 一气呵成，效率惊人。但 #234 目标系统 9 个子 Issue 全部 OPEN、#747 P0 渲染问题修了 10+ 提交仍未关闭、7 个 P0 连续零进展。项目正处于\"新方向不断涌现、旧债务持续累积\"的典型扩散期。建议：先关掉已修复的 #432 #591（10 秒）、验证 #747（5 分钟），用两个小胜利扭转\"只开不关\"的惯性。",
+    "author": "外心史官"
+  }
+}

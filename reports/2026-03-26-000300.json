@@ -1,0 +1,403 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.546Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-26",
+    "time": "000300",
+    "file": "2026-03-26-000300.html",
+    "dataFile": "2026-03-26-000300.json"
+  },
+  "meta": {
+    "title": "开发夜报",
+    "date": "2026-03-26",
+    "coverage": "03-25 晚 ~ 03-26 夜",
+    "baseline": "8419c84",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "深夜守望者",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "overcast",
+    "emoji": "🌥️",
+    "label": "多云",
+    "ups": [
+      "开发日志公开发布系统上线（8419c842），DevLog GitHub Pages 工具链闭环",
+      "Goal System v0.3 逻辑+UI 规格双定稿，为 #717 编码铺好路",
+      "#727 Ritual Home 清除 PR 已就绪待合并，减少技术债"
+    ],
+    "downs": [
+      "254 open issues 连续两期持平 — 零关闭、零合并的静默期",
+      "6 P0 连续十期零代码，结构性欠账继续累积",
+      "#466 锁定 17 天，无人干预解锁信号",
+      "4 个 Open PR 均未推进，PR 管道完全停滞",
+      "覆盖区间仅 1 个 commit（devlog 工具链），主线功能无产出"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "254",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "连续两期持平",
+      "tooltip": "上期 254 → 本期 254 (不变)"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 41",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "均不变",
+      "tooltip": "P0: 6 (不变) · P1: 41 (不变)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "0",
+      "delta": "静默",
+      "trend": "up",
+      "note": "零关闭",
+      "tooltip": "覆盖区间内无 Issue 关闭"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "静默",
+      "trend": "up",
+      "note": "零合并",
+      "tooltip": "覆盖区间内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 #234",
+      "tag": null,
+      "pct": 35,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 + v0.2",
+          "done": true
+        },
+        {
+          "text": "GoalsPage ~1100L + force-layout ~220L",
+          "done": true
+        },
+        {
+          "text": "Me 中心固定 + 连线统一 + 8 issue 修复",
+          "done": true
+        },
+        {
+          "text": "v0.3 逻辑模型 6 轮审查定稿",
+          "done": true
+        },
+        {
+          "text": "v0.3 UI 交互模型同步重写",
+          "done": true
+        },
+        {
+          "text": "#717 图模型对齐 (P1) — 下一步",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解 (P1)",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 50,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "信号网络编排 #728",
+      "tag": "new",
+      "pct": 0,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "只读拓扑图",
+          "done": false
+        },
+        {
+          "text": "交互式 DAG 编排",
+          "done": false
+        },
+        {
+          "text": "Agent 信号网络可视化",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "任务 DAG + 时间块 UI #501",
+      "pct": 99,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "13 Issue 关闭 (DAG四期+时间块打磨)",
+          "done": true
+        },
+        {
+          "text": "DagreRoutedEdge 跨层边路由",
+          "done": true
+        },
+        {
+          "text": "#694 滚轮缩放 Bug",
+          "done": false,
+          "issue": 694
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 硬编码密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "📡",
+      "title": "DevLog 公开发布系统上线",
+      "color": "var(--accent)",
+      "body": "commit 8419c842 新增 publish-devlog.ts 发布脚本，支持从 temp/ 自动提取 REPORT 数据、生成薄 HTML、更新 manifest.json、提交推送到 exomind-devlog 仓库并等待 GitHub Pages 构建。开发日志正式具备公开可访问能力。"
+    },
+    {
+      "emoji": "⏸️",
+      "title": "覆盖区间零交付 — 连续静默期",
+      "color": "var(--p1)",
+      "body": "03-25 晚至 03-26 夜，0 个 Issue 关闭、0 个 PR 合并、仅 1 个工具链 commit。所有 4 个 Open PR (#727 #595 #565 #466) 均未推进。这是自 03-25 晚报以来第二个连续静默周期。"
+    },
+    {
+      "emoji": "🔒",
+      "title": "#466 锁定进入第 17 天",
+      "color": "var(--p0)",
+      "body": "Worker Agent 主提示词状态机 PR 自 03-09 创建以来持续被 Agent 锁定，无审阅、无更新。已超过两周阈值，需要人工决策：解锁、关闭或重新指派。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "合并 PR #727 并关闭 #591",
+      "result": "fail",
+      "note": "#727 仍 OPEN，#591 仍 OPEN"
+    },
+    {
+      "text": "启动 #717 图模型对齐编码",
+      "result": "fail",
+      "note": "未开始编码"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "result": "fail",
+      "note": "未推进"
+    },
+    {
+      "text": "审视 #466 锁定状态",
+      "result": "fail",
+      "note": "仍锁定，无干预"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 727,
+        "title": "移除 Ritual Home 页面, 重定向 / → /eventlog",
+        "status": "review"
+      },
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 17天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "P0",
+      "documentation",
+      "sync"
+    ],
+    "data": [
+      192,
+      97,
+      86,
+      69,
+      67,
+      64,
+      41,
+      38,
+      28,
+      25,
+      23,
+      20,
+      13,
+      6,
+      6,
+      6
+    ],
+    "deltas": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "41 issues (含 7 Goal System)"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "立即合并 PR #727 并关闭 #591",
+      "detail": "Ritual Home 代码已删除，PR 已就绪两天，无理由继续搁置"
+    },
+    {
+      "text": "启动 #717 图模型对齐编码",
+      "detail": "v0.3 规格已定稿满 24 小时，是目标系统所有后续 (#718~#723) 的前置依赖"
+    },
+    {
+      "text": "人工决策 #466 锁定 PR",
+      "detail": "17 天未活动，三选一：解锁并继续开发、关闭并归档、重新指派给人类开发者"
+    },
+    {
+      "text": "至少推进一个 P0",
+      "detail": "连续十期 P0 零代码。选择 #452 密钥清理（安全类，影响面最小）作为突破口"
+    }
+  ],
+  "insight": {
+    "text": "「静默是信号，不是休息」— 这是连续第二个零交付周期。上一期\"磨刀不误砍柴工\"的判断成立——设计日有价值。但刀磨完了不砍柴，就成了另一个问题。v0.3 规格已定稿超过 24 小时，#727 就绪超过 48 小时，这些都是可以立即推进的低悬果实。254 个 open issues 不会自己减少，6 个 P0 不会自己解决。现在需要的不是更多设计，而是执行力：合并 #727、启动 #717、处理 #466。下一期如果仍然零交付，需要认真审视是否存在阻塞开发节奏的结构性问题。",
+    "author": "ExoMind 深夜守望者"
+  }
+}

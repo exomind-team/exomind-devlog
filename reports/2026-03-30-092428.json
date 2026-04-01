@@ -1,0 +1,444 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.561Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-30",
+    "time": "092428",
+    "file": "2026-03-30-092428.html",
+    "dataFile": "2026-03-30-092428.json"
+  },
+  "meta": {
+    "title": "开发早报",
+    "date": "2026-03-30",
+    "coverage": "03-27 早 ~ 03-30 早",
+    "baseline": "a7cfc57",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "overcast",
+    "emoji": "🌥️",
+    "label": "多云",
+    "ups": [
+      "#747 P0 获 30+ commits 密集修复，目标页稳定性大幅提升",
+      "#760 Android RT 前台服务保活落地 (612e5e1d)",
+      "#452 从 P0 降级为 P1，P0 队列缩短至 6→5 有效项",
+      "新 RT 连接设置页上线 (0160c98e)",
+      "Today Planner epic #751 开题，时间管理体系向前迈进"
+    ],
+    "downs": [
+      "281 open 再创历史新高（268→281，+13），连续 3 天零关闭",
+      "P1 从 48 攀升至 54（+6），Today Planner 四连开贡献 4 个",
+      "连续 3 天零 PR 合并，#747 修复停留在 dev 未形成 PR",
+      "#466 锁定已达 21 天，成为仓库最老阻塞项",
+      "5 P0 连续十余期零代码 — #747 独占全部修复带宽"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "281",
+      "delta": "↑ 13",
+      "trend": "up",
+      "note": "历史新高",
+      "tooltip": "上期 268 → 本期 281 (+13)"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 54",
+      "delta": "P1 +6",
+      "trend": "up",
+      "note": "Planner 四连开",
+      "tooltip": "P0: 7→6 (#452降级) · P1: 48→54 (+6)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "up",
+      "note": "三天零关闭",
+      "tooltip": "覆盖区间内无 Issue 关闭"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "up",
+      "note": "三天零合并",
+      "tooltip": "覆盖区间内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "#747 目标页稳定性 P0",
+      "tag": "new",
+      "pct": 70,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "force-layout 交互稳定性 (E2E)",
+          "done": true
+        },
+        {
+          "text": "hop-ring 视口跟踪与分层",
+          "done": true
+        },
+        {
+          "text": "边细节面板稳定性",
+          "done": true
+        },
+        {
+          "text": "选中/取消/僵尸节点可见性",
+          "done": true
+        },
+        {
+          "text": "重连边持续可见 (52926629)",
+          "done": true
+        },
+        {
+          "text": "heatmap 网格列修复 (40e0d05a)",
+          "done": true
+        },
+        {
+          "text": "完整回归验证与 PR 提交",
+          "done": false,
+          "issue": 747
+        }
+      ]
+    },
+    {
+      "name": "目标系统 v2",
+      "pct": 30,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 + v0.2",
+          "done": true
+        },
+        {
+          "text": "GoalsPage + force-layout 原型",
+          "done": true
+        },
+        {
+          "text": "#747 渲染稳定性修复",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解 (P1)",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "Today Planner #751",
+      "tag": "new",
+      "pct": 5,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#751 epic 定义",
+          "done": true,
+          "issue": 751
+        },
+        {
+          "text": "#752 计划时间块模型 (P1)",
+          "done": false,
+          "issue": 752
+        },
+        {
+          "text": "#753 /act/today-planner API (P1)",
+          "done": false,
+          "issue": 753
+        },
+        {
+          "text": "#754 Today 页升级 (P1)",
+          "done": false,
+          "issue": 754
+        },
+        {
+          "text": "#755 PR: 时间线调度窗口",
+          "done": false,
+          "issue": 755
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 70,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🔧",
+      "title": "#747 P0 密集修复 — 30+ commits 稳定目标页",
+      "color": "var(--accent)",
+      "body": "三天全力治理目标页渲染回归：hop-ring 分层、边细节面板、选中状态、僵尸节点、重连边可见性、heatmap 网格列。E2E 覆盖从零到 15+ 场景。"
+    },
+    {
+      "emoji": "📱",
+      "title": "Android RT 后台保活落地 #760",
+      "color": "var(--green)",
+      "body": "612e5e1d 增加前台服务 foreground service，解决 RT 挂后台后局域网断连问题。"
+    },
+    {
+      "emoji": "🗓️",
+      "title": "Today Planner 新 epic 开题 #751",
+      "color": "var(--purple)",
+      "body": "#751~#754 四连开题：计划时间块一等对象、/act/today-planner API、Today 页升级为可编辑计划器。PR #755 已提交。"
+    },
+    {
+      "emoji": "🔒",
+      "title": "#768 安全发现 — auth_secret 暴露",
+      "color": "var(--p0)",
+      "body": "runtime status 向前端暴露 auth_secret 并写入 localStorage，标为 P1 安全项。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "优先 #717 图模型对齐",
+      "result": "fail",
+      "note": "被 #747 P0 抢占。#747 修复消耗全部带宽，#717 未推进。"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "result": "fail",
+      "note": "未推进。被 #747 阻塞。"
+    },
+    {
+      "text": "冻结目标系统新开题",
+      "result": "fail",
+      "note": "不但未冻结，还新开 #766（Task 事件桥接）。Today Planner 四连开。"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 758,
+        "title": "设置迁移到 SQLite config",
+        "status": "review"
+      },
+      {
+        "num": 755,
+        "title": "Today Planner 时间线调度窗口",
+        "status": "review"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 21天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "sync",
+      "P0"
+    ],
+    "data": [
+      199,
+      110,
+      104,
+      81,
+      73,
+      72,
+      54,
+      44,
+      32,
+      30,
+      23,
+      29,
+      13,
+      10,
+      6
+    ],
+    "deltas": [
+      "+12",
+      "+18",
+      "+22",
+      "+15",
+      "+7",
+      "+10",
+      "+14",
+      "+8",
+      "+5",
+      "+6",
+      "+3",
+      "+10",
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#747 #532 #527 #511 #480 #326",
+      "P1": "54 issues (Today Planner +4, 安全 +1)"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 748,
+        "title": "版本号双v显示",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 747,
+        "title": "目标页渲染稳定性",
+        "gh": "OPEN",
+        "code": "PARTIAL",
+        "mismatch": true
+      },
+      {
+        "num": 760,
+        "title": "Android RT 保活",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "收尾 #747 并提交 PR",
+      "detail": "30+ commits 已在 dev，需要完整回归验证后形成 PR 关闭 P0"
+    },
+    {
+      "text": "合并 #758 设置迁移",
+      "detail": "已 review-ready，是 #756 的交付物，解决 dev 与安装版设置断裂"
+    },
+    {
+      "text": "关闭 #760 #432 #591",
+      "detail": "三个 issue 代码已修复但 GitHub 未关闭，减少 mismatch 积压"
+    }
+  ],
+  "insight": {
+    "text": "「免疫反应」— 这三天的 #747 修复像一次集中的免疫反应：30+ commits 全力治理一个 P0 回归，E2E 覆盖从零到 15+ 场景。代价是其他一切停滞：零关闭、零合并、P1 继续攀升。但修复质量很高——不是绕过问题，而是系统性地为每个交互路径补上稳定性覆盖。问题在于\"免疫反应\"占据了全部带宽，剩余 5 个 P0 依然零推进。281 open 是一个信号：单线程修复 P0 的模式正在被 issue 生成速度超越。收尾 #747 后，需要一个更结构化的方式同时推进多条主线。",
+    "author": "ExoMind 编年史官"
+  }
+}

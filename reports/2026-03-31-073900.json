@@ -1,0 +1,466 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.573Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-31",
+    "time": "073900",
+    "file": "2026-03-31-073900.html",
+    "dataFile": "2026-03-31-073900.json"
+  },
+  "meta": {
+    "title": "",
+    "date": "2026-03-31",
+    "coverage": "03-31 04:52 ~ 03-31 07:39",
+    "baseline": "3f1d5b5",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "深空记录者",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "#780 BlockTransition 11 commit 密集落地 — Rust 路由、双写、EventLog 联动、版本升至 0.3.0",
+      "3 PR 合并（#755 #772 #778），安全封口 + 增量刷新 + 今日计划器",
+      "6 Issue 关闭（含 #751 today-planner epic 四连关 + #768 安全漏洞）",
+      "Open Issues 283 持平上期，首次无净增长"
+    ],
+    "downs": [
+      "P1 升至 52（上期 40，+12）— 时间块 + 网络 + 工作台新增",
+      "#466 锁定 22 天，无解封迹象",
+      "6 P0 连续零代码 — 已成结构性欠账",
+      "#759 时间块设计 issue 仍 OPEN，需合并验证"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "283",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "首次持平",
+      "tooltip": "上期 283 → 本期 283（新增 5，关闭 6，净 −1 但含 reopen）"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 52",
+      "delta": "P1 +12",
+      "trend": "up",
+      "note": "新主线扩散",
+      "tooltip": "P0: 6 (不变) · P1: 40→52 (+12)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "6",
+      "delta": "质量高",
+      "trend": "down",
+      "note": "epic 四连关",
+      "tooltip": "#751 #752 #753 #754 today-planner + #768 安全 + #775 bug"
+    },
+    {
+      "label": "合并 PR",
+      "value": "3",
+      "delta": "↑ 3",
+      "trend": "down",
+      "note": "密集合并",
+      "tooltip": "#755 today-planner · #772 增量刷新 · #778 安全封口"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "时间块 BlockTransition #780",
+      "tag": "new",
+      "pct": 80,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "BlockTransition 类型 + transitions 字段",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "stop/pause/resume/describe 路由",
+          "done": true
+        },
+        {
+          "text": "双写 transitions in service methods",
+          "done": true
+        },
+        {
+          "text": "/end 守卫要求先 /stop",
+          "done": true
+        },
+        {
+          "text": "Rust struct + SQLite + 路由",
+          "done": true
+        },
+        {
+          "text": "start_block/end_block 写 EventLog",
+          "done": true
+        },
+        {
+          "text": "RT adapter route methods",
+          "done": true
+        },
+        {
+          "text": "前端适配 + 合并到 dev",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "时间块基础 #759",
+      "pct": 95,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "blockType 字段 + gap backfill 算法",
+          "done": true
+        },
+        {
+          "text": "newBlock 原语 + start/end 守卫",
+          "done": true
+        },
+        {
+          "text": "gap block UI + API 过滤",
+          "done": true
+        },
+        {
+          "text": "backfillGapBlocks 集成到 service",
+          "done": true
+        },
+        {
+          "text": "合并到 dev + 线上验证",
+          "done": false,
+          "issue": 759
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 70,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "开源迁移 #613",
+      "pct": 65,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "LF 统一 + README 截图/徽章",
+          "done": true
+        },
+        {
+          "text": "CLAUDE.md 精简 + QQ/微信社区入口",
+          "done": true
+        },
+        {
+          "text": "PR #707 合并",
+          "done": true,
+          "issue": 707
+        },
+        {
+          "text": "Git 历史清洗",
+          "done": false
+        },
+        {
+          "text": "仓库创建",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 Android 导入失败",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧬",
+      "title": "#780 BlockTransition 密集落地 — 11 commit 一轮推进",
+      "color": "var(--green)",
+      "body": "从 BlockTransition 类型定义 (86bc57c0) 到 Rust struct+SQLite+路由 (ed6a5525)，再到 EventLog 联动 (f6ae2782) 和 RT adapter (3f1d5b5c)。RT 版本升至 0.3.0，时间块 API breaking changes。含一次 revert→重写循环 (5fea3872→19f6519f)。"
+    },
+    {
+      "emoji": "🛡️",
+      "title": "安全封口 + 增量刷新 + today-planner 三 PR 合并",
+      "color": "var(--accent)",
+      "body": "#778 剔除 auth_secret 暴露（cb895938）· #772 ChatPage 从全量 5568 条改为增量拉取 · #755 today-planner 时间线调度窗口。today-planner epic #751 四个子 issue 同步关闭。"
+    },
+    {
+      "emoji": "📊",
+      "title": "P1 飙升至 52 — 三条新主线同步扩散",
+      "color": "var(--p1)",
+      "body": "#780 时间块重构 · #773 网络 node-first · #777 Agent 工作台。P1 从 40 升至 52，12 个新增分布在时间块、网络架构、工作台三个方向。设计先行的模式持续。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "合并 #759 时间块到 dev 并验证",
+      "result": "partial",
+      "note": "#759 四阶段代码已完成，但 issue 仍 OPEN 未正式合并验证"
+    },
+    {
+      "text": "审阅并合并 PR #779 Windows 实例隔离",
+      "result": "fail",
+      "note": "#779 仍 OPEN，未合并"
+    },
+    {
+      "text": "推动 PR #758 设置迁移审阅",
+      "result": "fail",
+      "note": "#758 仍 OPEN，未合并"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 779,
+        "title": "Windows Tauri 开发实例隔离",
+        "status": "review"
+      },
+      {
+        "num": 774,
+        "title": "网络页 node-first embedded RT mesh",
+        "status": "review",
+        "extra": "DRAFT"
+      },
+      {
+        "num": 758,
+        "title": "runtime 设置迁移到 sqlite config",
+        "status": "review"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 22天"
+      }
+    ],
+    "merged": [
+      {
+        "num": 778,
+        "title": "安全: 停止暴露 auth_secret",
+        "date": "03-30"
+      },
+      {
+        "num": 772,
+        "title": "ChatPage 增量刷新",
+        "date": "03-30"
+      },
+      {
+        "num": 755,
+        "title": "today-planner 时间线调度",
+        "date": "03-30"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "时间块",
+      "事件日志",
+      "信号池",
+      "sync",
+      "P0"
+    ],
+    "data": [
+      200,
+      110,
+      104,
+      81,
+      74,
+      71,
+      52,
+      45,
+      31,
+      30,
+      25,
+      23,
+      13,
+      11,
+      6
+    ],
+    "deltas": [
+      "+13",
+      "+18",
+      "+22",
+      "+15",
+      "+8",
+      "+9",
+      "+12",
+      "+9",
+      "+4",
+      "+6",
+      "+6",
+      "+3",
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "52 issues（+12，含时间块/网络/工作台新增）"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 751,
+        "title": "today-planner epic",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 752,
+        "title": "计划时间块一等对象",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 753,
+        "title": "today-planner API",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 754,
+        "title": "Today 页升级计划器",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 768,
+        "title": "auth_secret 暴露",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 775,
+        "title": "Web 前端连接 RT 缺失",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "完成 #780 前端适配并合并",
+      "detail": "11 commit Rust 侧已完成，前端调用方需适配 0.3.0 breaking changes"
+    },
+    {
+      "text": "合并 PR #779 Windows 实例隔离",
+      "detail": "#776 issue 已就绪，PR 等待审阅"
+    },
+    {
+      "text": "关闭 #432 #591 — 长期 mismatch",
+      "detail": "代码已修复但 Issue 仍 OPEN，第三期遗留，应立即关闭"
+    }
+  ],
+  "insight": {
+    "text": "「从结构到流动」— 过去几天的密集产出揭示了一个模式转换：从\"增加新结构\"（目标系统、任务 DAG）到\"让结构流动起来\"（BlockTransition 状态机、EventLog 联动、增量刷新）。时间块从静态记录变成有状态转换历史的活物，这是 ExoMind 从\"记录工具\"向\"生命体\"进化的关键一步。11 commit 的 revert→重写循环也说明这种转变不是线性的——需要试错。当务之急是把 Rust 侧的完成度转化为前端可体验的功能闭环。",
+    "author": "深空记录者"
+  }
+}

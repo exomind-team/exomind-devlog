@@ -1,0 +1,1093 @@
+{
+  "schema": "exomind-devlog-route",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.597Z",
+  "_published": {
+    "kind": "route",
+    "date": "2026-03-27",
+    "time": "102426",
+    "file": "2026-03-27-102426.html",
+    "dataFile": "2026-03-27-102426.json"
+  },
+  "meta": {
+    "title": "开发航线",
+    "date": "2026-03-27",
+    "baseline": "c93ab72",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "航线规划师",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "status": {
+    "level": "rain",
+    "emoji": "🌧️",
+    "label": "逆风",
+    "summary": "7 个 P0 未关闭，关键路径（安全/同步/信号）受阻；48 个 P1 积压加速"
+  },
+  "metrics": [
+    {
+      "label": "总批次",
+      "value": "13",
+      "note": "O~Z + R1"
+    },
+    {
+      "label": "就绪",
+      "value": "3",
+      "note": "O / Q / R1"
+    },
+    {
+      "label": "进行中",
+      "value": "0",
+      "note": "尚未启动"
+    },
+    {
+      "label": "覆盖 Issues",
+      "value": "156",
+      "note": "268 中的 58%"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "web",
+      "name": "Web-only",
+      "color": "#58a6ff",
+      "desc": "Termux/任意开发机可做"
+    },
+    {
+      "id": "rt",
+      "name": "RT Rust",
+      "color": "#d29922",
+      "desc": "需 Rust 工具链"
+    },
+    {
+      "id": "desktop",
+      "name": "Desktop",
+      "color": "#8957e5",
+      "desc": "需 Windows/macOS 桌面"
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "color": "#2ea043",
+      "desc": "需 Android 真机"
+    },
+    {
+      "id": "cross",
+      "name": "Cross",
+      "color": "#f778ba",
+      "desc": "需多端协同验证"
+    },
+    {
+      "id": "ci",
+      "name": "CI/Infra",
+      "color": "#6e7681",
+      "desc": "独立可做"
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "color": "#f0883e",
+      "desc": "任意环境可思考"
+    }
+  ],
+  "batches": [
+    {
+      "id": "O",
+      "name": "P0 紧急修复",
+      "track": "cross",
+      "status": "ready",
+      "priority": "P0",
+      "pct": 0,
+      "deps": [],
+      "branch": "fix/batch-o-p0-urgent",
+      "fileDomain": "src/ crates/ 安全+信号+同步",
+      "issues": [
+        {
+          "num": 452,
+          "title": "硬编码 API 密钥清理 + ASR 端点认证 + 日志凭据脱敏",
+          "priority": "P0",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 747,
+          "title": "目标页渲染稳定性回归——节点、连边与圈层异常隐藏/裁切",
+          "priority": "P0",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 326,
+          "title": "语音输入 → ASR → 自动润色 → 分类（EventLog 信号链路）",
+          "priority": "P0",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 511,
+          "title": "统一语音输入归一化入口、上下文元数据与 EventLog/Signal 链路",
+          "priority": "P0",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 480,
+          "title": "语音驱动任务成长 MVP（v0.3.6 desktop-first）",
+          "priority": "P0",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 527,
+          "title": "手机↔电脑 RT SQLite 数据互通端到端验证与打通",
+          "priority": "P0",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 532,
+          "title": "新 RT + ECS 跨端同步与稳定性（Web/Windows/Android）",
+          "priority": "P0",
+          "done": false,
+          "size": "XL"
+        }
+      ]
+    },
+    {
+      "id": "P",
+      "name": "目标系统 v2",
+      "track": "web",
+      "status": "ready",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [],
+      "branch": "feature/batch-p-goal-system-v2",
+      "fileDomain": "src/ui/app/pages/GoalSystem* crates/exomind-runtime/src/routes/goals*",
+      "issues": [
+        {
+          "num": 723,
+          "title": "v2 原型开发——修复 v1 偏离 + 实现约束规则与拆解",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 717,
+          "title": "对齐 v0.2 图数据模型，分离 MeNode 并补齐 Goal/TaskEdge 字段",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 718,
+          "title": "新建目标自动创建 Me→目标匿名边，显化匿名占位语义",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 719,
+          "title": "目标完成改为入边纯推导，支持 AND/OR 下游级联重算",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 720,
+          "title": "收口匿名边完成限制与目标取消联动语义",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 721,
+          "title": "支持边拆解为中间目标，并自动补匿名占位边",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 722,
+          "title": "Me 中心距离标尺与目标完成吸纳动画",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 744,
+          "title": "将 v0.3 原型逻辑迁入 RT 并替换页面本地 store",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 737,
+          "title": "目标系统：任务系统事件集成",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 738,
+          "title": "目标系统：键盘快捷键支持",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 739,
+          "title": "目标系统：力导向参数调优",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 740,
+          "title": "目标系统：Undo 撤销能力",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        }
+      ]
+    },
+    {
+      "id": "Q",
+      "name": "Today Planner",
+      "track": "web",
+      "status": "ready",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [],
+      "branch": "feature/batch-q-today-planner",
+      "fileDomain": "src/ui/app/pages/Now* crates/exomind-runtime/src/routes/act*",
+      "issues": [
+        {
+          "num": 751,
+          "title": "手动今日计划时间块一等对象（工作块/休息块）",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 752,
+          "title": "计划时间块一等对象与溯源字段",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 753,
+          "title": "新增 /act/today-planner feature API 与 curl 契约",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 754,
+          "title": "Today 页升级为可编辑计划器并接入计划块执行",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        }
+      ]
+    },
+    {
+      "id": "R",
+      "name": "时间块体验修复",
+      "track": "cross",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "O",
+          "reason": "#747 P0 修复后 UI 才稳定"
+        }
+      ],
+      "branch": "fix/batch-r-timeblock-polish",
+      "fileDomain": "src/ui/app/pages/Now* src/ui/app/components/TimeBlock*",
+      "issues": [
+        {
+          "num": 571,
+          "title": "专注倒计时在后台结束时不发提示音（手机/电脑）",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 702,
+          "title": "主窗口变更关联任务后悬浮窗未同步 active block 状态",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 704,
+          "title": "关联任务列表刷新过慢，应 500ms 内更新",
+          "priority": "P1",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 734,
+          "title": "时间块迁移失败错误弹窗溢出导致用户卡死",
+          "priority": "P1",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 699,
+          "title": "本地音频 URI 显示失真且无法播放（Android）",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 692,
+          "title": "允许空名启动，结束前可修改名称、结束后冻结",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 696,
+          "title": "任务详情进入时标题被时间块标题污染",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 705,
+          "title": "移除关联任务未弹状态弹窗，遗留幽灵任务",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 735,
+          "title": "结束时间块默认未挂起关联任务，遗留幽灵任务",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 745,
+          "title": "预选关联任务启动时挂起任务未转为进行中",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        }
+      ]
+    },
+    {
+      "id": "S",
+      "name": "EventLog 与记录页",
+      "track": "web",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "T",
+          "reason": "依赖 RT API 稳定后前端才可消费"
+        }
+      ],
+      "branch": "feature/batch-s-eventlog-ui",
+      "fileDomain": "src/ui/app/pages/EventLog* crates/exomind-runtime/src/routes/eventlog*",
+      "issues": [
+        {
+          "num": 697,
+          "title": "手机端 Record 输入栏陷入底部导航/输入法区域",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 726,
+          "title": "任务事件按状态变更/关联关系分化图标与颜色",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 729,
+          "title": "当下/记录支持快速回到底部并与输入框聚焦联动",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 746,
+          "title": "RT 任务状态变更消息被错误归属为用户",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 678,
+          "title": "Agent 反馈消息支持默认折叠与已读标记",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 693,
+          "title": "任务标题变更写入 task.renamed 事件",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        }
+      ]
+    },
+    {
+      "id": "T",
+      "name": "RT 架构与 Auth",
+      "track": "rt",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "O",
+          "reason": "#452 安全修复是 Auth 前置"
+        }
+      ],
+      "branch": "feature/batch-t-rt-auth",
+      "fileDomain": "crates/exomind-runtime/src/",
+      "issues": [
+        {
+          "num": 666,
+          "title": "RT 外部接入 identity/profile/session/permission 契约",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 676,
+          "title": "引入 /act feature API 根路径",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 677,
+          "title": "外部 Agent 登录审批、客户端身份登记与请求箱入口",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 569,
+          "title": "MCP 迁移到 RT-only 应用接口并消除 legacy 混合数据源",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 749,
+          "title": "Web 全面 RT 化后删除同步服务器与 legacy 数据源",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 553,
+          "title": "dev-manager up 前台模式——多实例管理+流式日志",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 457,
+          "title": "消除不安全 unwrap + Cargo.toml edition 修正",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 455,
+          "title": "核心模块测试覆盖缺口补充",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        }
+      ]
+    },
+    {
+      "id": "U",
+      "name": "ECS 通信栈",
+      "track": "rt",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "T",
+          "reason": "依赖 RT Auth 契约确立"
+        }
+      ],
+      "branch": "feature/batch-u-ecs-stack",
+      "fileDomain": "crates/exomind-runtime/src/signal* src/adapters/signal*",
+      "issues": [
+        {
+          "num": 366,
+          "title": "ECS 实施总计划（优先补 ECS-2/ECS-3）",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 368,
+          "title": "提取 Transport 抽象并统一 HTTP/SSE adapter",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 373,
+          "title": "多 RT 协议栈集成测试、故障注入与回归基线",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 420,
+          "title": "persist RouteTable and Journal in SQLite for runtime",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 310,
+          "title": "Phase 3 全信号源接入 + HealthMonitor",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 311,
+          "title": "Phase 4 Webhook + 多输出渠道 + 监控面板",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        }
+      ]
+    },
+    {
+      "id": "V",
+      "name": "UI 组件收敛",
+      "track": "web",
+      "status": "blocked",
+      "priority": "P2",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "P",
+          "reason": "目标系统 v2 确定组件形态后再收敛"
+        }
+      ],
+      "branch": "refactor/batch-v-ui-system",
+      "fileDomain": "src/ui/app/components/ src/ui/app/pages/Settings*",
+      "issues": [
+        {
+          "num": 541,
+          "title": "从设置页提炼通用组件族并建立 Agent 复用规范",
+          "priority": "P2",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 542,
+          "title": "Phase 1 提取 settings 组件族为共享 primitives",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 543,
+          "title": "Phase 2 在非 settings 页面复用共享组件族",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 684,
+          "title": "收敛 Dialog/Drawer/Form/Feedback 模态组件栈",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 535,
+          "title": "AgentsPage.tsx 拆分（4323行→模块化）",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 567,
+          "title": "收敛 TSX 中颜色硬编码到语义 token/常量层",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        }
+      ]
+    },
+    {
+      "id": "W",
+      "name": "任务 DAG 增强",
+      "track": "web",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "P",
+          "reason": "目标系统确定 DAG 模型后再增强任务 DAG"
+        }
+      ],
+      "branch": "feature/batch-w-task-dag",
+      "fileDomain": "src/ui/app/pages/TaskDag*",
+      "issues": [
+        {
+          "num": 501,
+          "title": "交互式 DAG — 浏览/连接/执行三模式（epic）",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 591,
+          "title": "基于用户历史与当下状态的图形化交互式功能导航",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 639,
+          "title": "仿照网络拓扑图支持手动布局并持久化快照",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 653,
+          "title": "按标签/领域过滤 DAG 视图，支持跨域幽灵节点",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 660,
+          "title": "聚焦任务系列——按连通集弱化非聚焦节点",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 700,
+          "title": "连接模式改为编辑模式，补清依赖图编辑语义",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 701,
+          "title": "编辑模式支持从卡两端拖到空白处创建上下游任务",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 698,
+          "title": "任务搜索按状态优先排序，等价时按创建时间倒序",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        }
+      ]
+    },
+    {
+      "id": "X",
+      "name": "移动端原生能力",
+      "track": "android",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "O",
+          "reason": "#527/#532 P0 同步修复是移动端前置"
+        }
+      ],
+      "branch": "feature/batch-x-mobile-native",
+      "fileDomain": "src-tauri/gen/android/ src/adapters/platform/",
+      "issues": [
+        {
+          "num": 521,
+          "title": "移动端原生能力接入——通知+后台保活+语音+同步（epic）",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 426,
+          "title": "顶部状态栏遮挡外心页面内容（#142 回归）",
+          "priority": "P1",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 427,
+          "title": "0.3.6 build19 导入失败且流程重启卡顿",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 432,
+          "title": "外接键盘触发闪退，无调试日志",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 572,
+          "title": "根路由返回应直接退出 App 而非反复回退 Web 历史",
+          "priority": "P1",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 690,
+          "title": "Kotlin 平台事件通过 Tauri Mobile Plugin 桥接到 RT",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 681,
+          "title": "外接键盘触发闪退，无调试日志，需 APK 二分定位",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 731,
+          "title": "手机热点下手机↔另一台安卓设备 RT 访问验证",
+          "priority": "P1",
+          "done": false,
+          "size": "L"
+        }
+      ]
+    },
+    {
+      "id": "Y",
+      "name": "设置页与导航",
+      "track": "web",
+      "status": "blocked",
+      "priority": "P2",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "V",
+          "reason": "依赖组件库收敛后统一风格"
+        }
+      ],
+      "branch": "feature/batch-y-settings-nav",
+      "fileDomain": "src/ui/app/pages/Settings* src/ui/app/components/Nav*",
+      "issues": [
+        {
+          "num": 604,
+          "title": "统一当下与任务子路由的页面导航方式",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 614,
+          "title": "点击当前主导航项不应触发子路由回退与重复加载",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 625,
+          "title": "命令面板默认开启并从实验性功能中移出",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 538,
+          "title": "命令面板与外心系统命令注册统一",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 539,
+          "title": "开发者模式自适应路由跳转命令",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 540,
+          "title": "用户自定义命令与网络 Agent 动作触发",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 618,
+          "title": "统一设置项组件的悬浮次级高亮与点击态",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 619,
+          "title": "切换本地档案支持上下键选中",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 620,
+          "title": "横屏设置页导航改为单选枚举风格并 sticky",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 622,
+          "title": "设置页引入页内搜索过滤框",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 647,
+          "title": "设置页「输入」组按功能拆分",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        }
+      ]
+    },
+    {
+      "id": "Z",
+      "name": "Agent 接入与网络",
+      "track": "cross",
+      "status": "blocked",
+      "priority": "P1",
+      "pct": 0,
+      "deps": [
+        {
+          "id": "T",
+          "reason": "依赖 RT Auth 完成后 Agent 才可安全接入"
+        },
+        {
+          "id": "U",
+          "reason": "依赖 ECS 通信栈"
+        }
+      ],
+      "branch": "feature/batch-z-agent-network",
+      "fileDomain": "src/ui/app/pages/Agents* crates/exomind-runtime/src/routes/agent*",
+      "issues": [
+        {
+          "num": 385,
+          "title": "接入 Claude CLI/Codex，支持流式会话与动态 Agent 生命周期",
+          "priority": "P1",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 743,
+          "title": "常驻普通用户网络页，设置项改为高级功能开关",
+          "priority": "P1",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 555,
+          "title": "内置 LLM Agent — 替代 TS Agent CLI",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 537,
+          "title": "Agent 语义完整命名迁移（agent→network）",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 682,
+          "title": "单一 RT 提供对局域网开放快速入口",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 691,
+          "title": "显化 external_source_actor 等 Runtime builtin actor",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        }
+      ]
+    },
+    {
+      "id": "R1",
+      "name": "研究与设计",
+      "track": "research",
+      "status": "ready",
+      "priority": "P2",
+      "pct": 0,
+      "deps": [],
+      "branch": "docs/batch-r1-research",
+      "fileDomain": "docs/specs/ docs/architecture/",
+      "issues": [
+        {
+          "num": 500,
+          "title": "任务计划开始时间/DDL/提醒联动建模方向",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 510,
+          "title": "现实已完成但外心未记录时如何补录",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 638,
+          "title": "与 Hailaylin 讨论任务时间线新 UI 方案",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 644,
+          "title": "梳理表单与组件通用交互语义模式与快捷键",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 646,
+          "title": "顶级导航页逐步独立为窗口/多窗口模型",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 651,
+          "title": "首尾成段的子图收缩/子任务折叠及其图论约束",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 661,
+          "title": "收敛浏览/连接/执行三模式职责边界",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 695,
+          "title": "jj 版本控制哲学 × ExoMind 事件日志分析",
+          "priority": "P2",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 730,
+          "title": "图片/视频输入存储边界与非文件系统化原则",
+          "priority": "P2",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 724,
+          "title": "目标系统 v3 功能设计研讨",
+          "priority": "P2",
+          "done": false,
+          "size": "L"
+        }
+      ]
+    }
+  ],
+  "heatmap": {
+    "rows": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "cols": [
+      "Web",
+      "RT",
+      "Desktop",
+      "Android",
+      "Cross",
+      "CI",
+      "Research"
+    ],
+    "data": [
+      [
+        1,
+        2,
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      [
+        12,
+        8,
+        4,
+        8,
+        3,
+        0,
+        0
+      ],
+      [
+        68,
+        15,
+        8,
+        6,
+        5,
+        6,
+        12
+      ]
+    ]
+  },
+  "actions": [
+    {
+      "text": "立即启动批次 O：#452 安全密钥清理",
+      "detail": "P0 安全红线，7 个 P0 issue 未关闭，直接影响后续 Auth/Agent 批次"
+    },
+    {
+      "text": "并行启动批次 Q：Today Planner",
+      "detail": "4 个高内聚 P1 issue，无外部依赖，可独立在 Termux 完成"
+    },
+    {
+      "text": "批次 R1 研究先行：#661 + #651 为 DAG 批次 W 铺路",
+      "detail": "研究类不占开发资源，结论直接喂给后续实现批次"
+    }
+  ],
+  "insight": {
+    "text": "当前 268 个 open issue 中 P0 占 7 个、P1 占 48 个，安全与同步类 P0 阻塞了移动端(X)、RT Auth(T)、ECS(U) 三条关键路径。目标系统(P) 与 Today Planner(Q) 是两个高内聚、无外部依赖的就绪批次，建议优先并行推进。112 个远期/零散 issue 未纳入本次航线（占 42%），多为 v3.1 里程碑下的长期功能。热力图显示 P2×Web 象限积压最重（68 个），需警惕功能债务持续膨胀。",
+    "author": "航线规划师·Android [Claude Opus 4.6]"
+  }
+}

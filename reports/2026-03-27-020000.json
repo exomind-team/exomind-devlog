@@ -1,0 +1,439 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.556Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-27",
+    "time": "020000",
+    "file": "2026-03-27-020000.html",
+    "dataFile": "2026-03-27-020000.json"
+  },
+  "meta": {
+    "title": "开发夜报",
+    "date": "2026-03-27",
+    "coverage": "03-26 晚 22:00 ~ 03-27 凌晨 02:00",
+    "baseline": "225c678",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "目标系统深夜持续打磨：7 个 goal-system 提交覆盖渲染稳定性、边重连、吸纳动画",
+      "225c678 稳定力导向图渲染——直接回应 #747 P0 回归",
+      "今日计划 epic #751 + 3 子 issue 规划就绪，新产品维度",
+      "#755 PR 已提交，today-planner 从规划进入实现阶段"
+    ],
+    "downs": [
+      "268 open 再创新高（22:00 时 264 → 现 268，+4）",
+      "P0 升至 7（新增 #747 目标页渲染回归）",
+      "P1 升至 48（22:00 时 45 → 48，+3 today-planner）",
+      "覆盖期内 0 Issue 关闭、0 PR 合并——纯规划+打磨期",
+      "#432 #591 mismatch 连续十期未关闭",
+      "#466 锁定已 18 天"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "268",
+      "delta": "↑ 4",
+      "trend": "up",
+      "note": "历史新高",
+      "tooltip": "22:00 晚报 264 → 现 268（+4 today-planner）"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "7 / 48",
+      "delta": "P0+1 P1+3",
+      "trend": "up",
+      "note": "双升",
+      "tooltip": "P0: 6→7（+#747）· P1: 45→48（+3 planner）"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "静默期",
+      "tooltip": "覆盖期内无 Issue 关闭"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "静默期",
+      "tooltip": "覆盖期内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 #234",
+      "tag": null,
+      "pct": 35,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "v0.1 + v0.2 设计文档",
+          "done": true
+        },
+        {
+          "text": "GoalsPage + force-layout 原型",
+          "done": true
+        },
+        {
+          "text": "v0.3 渲染稳定性修复 (225c678)",
+          "done": true
+        },
+        {
+          "text": "边重连 + 吸纳动画 + detail 保存",
+          "done": true
+        },
+        {
+          "text": "#747 渲染回归 P0（部分修复中）",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "今日计划 #751",
+      "tag": "new",
+      "pct": 5,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "epic 规划 + 3 子 issue 拆分",
+          "done": true,
+          "issue": 751
+        },
+        {
+          "text": "#752 计划时间块模型",
+          "done": false,
+          "issue": 752
+        },
+        {
+          "text": "#753 /act/today-planner API",
+          "done": false,
+          "issue": 753
+        },
+        {
+          "text": "#754 Today 页 UI 升级",
+          "done": false,
+          "issue": 754
+        },
+        {
+          "text": "#755 PR 已提交（待审阅）",
+          "done": false,
+          "issue": 755
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "tag": null,
+      "pct": 70,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "开源迁移 #613",
+      "tag": null,
+      "pct": 65,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "LF 统一 + README + CLAUDE.md",
+          "done": true
+        },
+        {
+          "text": "PR #707 合并",
+          "done": true,
+          "issue": 707
+        },
+        {
+          "text": "Git 历史清洗",
+          "done": false
+        },
+        {
+          "text": "仓库创建",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "7 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#747 目标页渲染回归（新增）",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 Android 导入失败",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🎯",
+      "title": "目标系统深夜 7 连提交——从交互打磨走向渲染稳定",
+      "color": "var(--green)",
+      "body": "225c6782 稳定力导向图渲染、72728cb7 吸纳动画、f05895cd 边重连、b725b38f detail 保存。含一次 Revert（d03d08ae 撤回搜索改进后 7a70f2b3 重新实现）。直接回应 #747 P0。"
+    },
+    {
+      "emoji": "📋",
+      "title": "今日计划 epic #751 连夜规划——时间块系统新维度",
+      "color": "var(--accent)",
+      "body": "#751 epic + #752 模型 + #753 API + #754 UI，一次性拆出完整 feature。#755 PR 已提交。工作块/休息块作为一等对象进入时间块体系。"
+    },
+    {
+      "emoji": "⚠️",
+      "title": "P0 升至 7——#747 目标页渲染回归加入欠账行列",
+      "color": "var(--p0)",
+      "body": "#747 节点/连边/圈层异常隐藏。虽有多个修复提交但 Issue 仍 OPEN。7 P0 全部零关闭，结构性欠账持续扩大。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "关闭 #432 和 #591",
+      "result": "fail",
+      "note": "连续十期 mismatch。两者仍 OPEN"
+    },
+    {
+      "text": "启动 #717 图模型对齐",
+      "result": "fail",
+      "note": "晚间 7 个提交围绕 v0.3 UI 稳定，#717 本身未开工"
+    },
+    {
+      "text": "给 #750 分诊加标签",
+      "result": "fail",
+      "note": "未推进"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "result": "fail",
+      "note": "仍锁定，已 18 天"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 755,
+        "title": "手动今日计划 — 工作块/休息块",
+        "status": "review"
+      },
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 18天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "时间块",
+      "research",
+      "事件日志",
+      "信号池",
+      "P0",
+      "documentation",
+      "sync"
+    ],
+    "data": [
+      192,
+      105,
+      96,
+      78,
+      73,
+      64,
+      48,
+      42,
+      32,
+      26,
+      25,
+      23,
+      13,
+      7,
+      7,
+      7
+    ],
+    "deltas": [
+      null,
+      "+2",
+      "+2",
+      "+2",
+      "+1",
+      "+3",
+      "+3",
+      null,
+      "+2",
+      "+4",
+      null,
+      null,
+      null,
+      "+1",
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#747 #532 #527 #511 #480 #452 #326",
+      "P1": "48 issues（+3 today-planner）"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 747,
+        "title": "目标页渲染回归",
+        "gh": "OPEN",
+        "code": "PARTIAL",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "关闭 #432 和 #591",
+      "detail": "连续十期 mismatch，已成项目管理债务标本。明天必须关闭"
+    },
+    {
+      "text": "验证 #747 渲染修复并关闭",
+      "detail": "225c678 等提交已部分修复。验证后关闭，将 P0 从 7 降回 6"
+    },
+    {
+      "text": "给 #750 分诊加标签",
+      "detail": "背景音乐全屏 bug 仍无标签无优先级"
+    },
+    {
+      "text": "解锁或关闭 #466 PR",
+      "detail": "锁定 18 天零进展，明确处置"
+    }
+  ],
+  "insight": {
+    "text": "「深夜的两条线」— 凌晨两点的 dev 分支同时跑着两件事：一条是目标系统 v0.3 的稳定性收敛（7 个提交，含一次 Revert-then-redo），另一条是今日计划 epic 的从零规划。前者是\"把做出来的东西做稳\"，后者是\"想清楚下一个要做什么\"。268 open 的数字看着刺眼，但结构在变好——批次 N 收官、航线锚定、P0 有了针对性修复。真正的风险不是数字大，而是 #432/#591 这种\"代码早已修好但 Issue 不关\"的管理惯性。十期了，该画句号了。",
+    "author": "外心史官"
+  }
+}

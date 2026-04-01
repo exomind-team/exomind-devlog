@@ -1,0 +1,468 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.555Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-26",
+    "time": "220000",
+    "file": "2026-03-26-220000.html",
+    "dataFile": "2026-03-26-220000.json"
+  },
+  "meta": {
+    "title": "开发晚报",
+    "date": "2026-03-26",
+    "coverage": "03-26 20:00 ~ 03-26 22:00（补充报告）",
+    "baseline": "d03d08a",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "目标系统 v0.3 晚间持续推进：边重连 + Revert 修正循环（d03d08a ~ f05895c）",
+      "今日累计关闭 8 Issue（含批次 N 8/8 全线收官 + #748 秒修）",
+      "264 open 较 20:00 报 263 仅 +1，增长趋势显著放缓",
+      "dev 分支晚间活跃：7 个 goal-system 相关提交，边几何与交互持续打磨",
+      "首期+第二版开发航线已发布，团队有结构化路线图"
+    ],
+    "downs": [
+      "264 open 持续历史高位（03-18 起 175→264，九天 +89）",
+      "P1 维持 45 高位不变",
+      "6 P0 连续十二期零代码推进",
+      "#466 锁定 18 天，PR 看板注意力持续浪费",
+      "#432 #591 连续九期 mismatch — 代码已修复但 GitHub 未关闭"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "264",
+      "delta": "↑ 1",
+      "trend": "up",
+      "note": "增速放缓",
+      "tooltip": "20:00报 263 → 本期 264（+1 new, 0 closed）"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 45",
+      "delta": "不变",
+      "trend": "neutral",
+      "note": "连续持平",
+      "tooltip": "P0: 6（不变） · P1: 45（不变）"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "今日累计8",
+      "tooltip": "本窗口无新关闭。全天累计 8 个"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "无新合并",
+      "tooltip": "覆盖区间内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 v0.3 UI",
+      "tag": null,
+      "pct": 45,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 ~ v0.3 六轮定稿",
+          "done": true
+        },
+        {
+          "text": "GoalsPage + force-layout 基础",
+          "done": true
+        },
+        {
+          "text": "edge split / propagation / guide rings",
+          "done": true
+        },
+        {
+          "text": "detail + touch 交互 + 测试覆盖",
+          "done": true
+        },
+        {
+          "text": "边重连 + edge label + Revert 修正（晚间）",
+          "done": true
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#744 迁入 RT 替换本地 store",
+          "done": false,
+          "issue": 744
+        },
+        {
+          "text": "#747 力导向图静止消失 bug",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 75,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#672 #673 eventlog 自动写入",
+          "done": true,
+          "issue": 672
+        },
+        {
+          "text": "#686 #687 #688 #689 任务 API",
+          "done": true,
+          "issue": 686
+        },
+        {
+          "text": "#460 MCP 迁移",
+          "done": true,
+          "issue": 460
+        },
+        {
+          "text": "#670 per-agent token 认证",
+          "done": false,
+          "issue": 670
+        },
+        {
+          "text": "#674 档案密码迁移 RT",
+          "done": false,
+          "issue": 674
+        },
+        {
+          "text": "#675 UI→RT 功能迁移清点",
+          "done": false,
+          "issue": 675
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "开源迁移 #613",
+      "pct": 65,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "LF 统一 + README 截图",
+          "done": true
+        },
+        {
+          "text": "#707 合并",
+          "done": true,
+          "issue": 707
+        },
+        {
+          "text": "Git 历史清洗",
+          "done": false
+        },
+        {
+          "text": "仓库创建",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "批次 N：RT 任务 API 增强",
+      "tag": null,
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#683 title 冻结讨论",
+          "done": true,
+          "issue": 683
+        },
+        {
+          "text": "#686 批量状态迁移",
+          "done": true,
+          "issue": 686
+        },
+        {
+          "text": "#687 tag/status/parent 过滤",
+          "done": true,
+          "issue": 687
+        },
+        {
+          "text": "#688 快捷跳步 transition",
+          "done": true,
+          "issue": 688
+        },
+        {
+          "text": "#689 终态 title 拒绝修改",
+          "done": true,
+          "issue": 689
+        },
+        {
+          "text": "#672 时间块事件自动写入",
+          "done": true,
+          "issue": 672
+        },
+        {
+          "text": "#673 任务状态变更写入 eventlog",
+          "done": true,
+          "issue": 673
+        },
+        {
+          "text": "#733 终态过滤三档策略",
+          "done": true,
+          "issue": 733
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🔗",
+      "title": "目标系统晚间密集推进：边重连 + Revert 循环",
+      "color": "var(--green)",
+      "body": "f05895cd 边重连、7ea78d3c 搜索改进因回归被 d03d08ae Revert。8795d939 hop rings 对齐 + 55d4068e 状态视觉优化。v0.3 从交互打磨进入稳定性收敛。"
+    },
+    {
+      "emoji": "📊",
+      "title": "全天收官：8 Issue 关闭 + 开发航线就位",
+      "color": "var(--accent)",
+      "body": "批次 N 8/8 完成（#683 #686 #687 #688 #689 #672 #673 #733），#748 vv 前缀秒修。今日净增 +15 issue 但有航线框住方向。"
+    },
+    {
+      "emoji": "⚠️",
+      "title": "#750 背景音乐全屏 bug 新增",
+      "color": "var(--orange)",
+      "body": "#750 桌面端悬浮窗选择背景音乐后全屏，关闭按钮无法点击。当前无标签，需分诊归类。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "关闭 #432 和 #591",
+      "result": "fail",
+      "note": "连续九期 mismatch。两者仍 OPEN"
+    },
+    {
+      "text": "启动 #717 图模型对齐",
+      "result": "partial",
+      "note": "v0.3 UI 晚间持续推进但 #717 本身未开工"
+    },
+    {
+      "text": "修复 #747 力导向图消失 bug",
+      "result": "partial",
+      "note": "晚间有相关提交（hop rings 对齐等）但 #747 仍 OPEN"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "result": "fail",
+      "note": "仍锁定，已 18 天"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 18天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "P0"
+    ],
+    "data": [
+      192,
+      103,
+      94,
+      76,
+      72,
+      61,
+      45,
+      42,
+      30,
+      25,
+      23,
+      22,
+      13,
+      6
+    ],
+    "deltas": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "45 issues（含目标系统 + RT 新增）"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "明日首要：关闭 #432 和 #591",
+      "detail": "连续九期 mismatch 是项目管理债务。明天必须关闭，不再拖延"
+    },
+    {
+      "text": "启动 #717 图模型对齐",
+      "detail": "批次 O 全部后续的前置依赖。v0.3 UI 已进入收敛期，数据模型必须跟上"
+    },
+    {
+      "text": "给 #750 分诊加标签",
+      "detail": "新增 bug 无标签无优先级，需归类到批次并评估影响范围"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "detail": "锁定 18 天零进展。明确处置：要么解锁恢复开发，要么关闭 PR"
+    }
+  ],
+  "insight": {
+    "text": "「收敛的夜晚」— 今天是 ExoMind 迄今最密集的一天：8 份日报/航线、8 个 Issue 关闭、15 个新 Issue、批次 N 收官。到了晚间，节奏终于慢下来：两小时内仅 +1 issue，0 关闭，0 合并。但 dev 分支没停——7 个 goal-system 提交说明开发者在「打磨而非扩张」。这是健康信号。264 open 的存量债务需要耐心消化，但方向感已经有了：航线锚定了 O/P/Q/W 四条线，明天的任务很清晰——#717 落地、#432 #591 关闭、#750 分诊。不急不躁，一步一步来。",
+    "author": "外心史官"
+  }
+}

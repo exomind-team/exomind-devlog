@@ -1,0 +1,474 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.559Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-29",
+    "time": "083800",
+    "file": "2026-03-29-083800.html",
+    "dataFile": "2026-03-29-083800.json"
+  },
+  "meta": {
+    "title": "开发早报",
+    "date": "2026-03-29",
+    "coverage": "03-27 早 → 03-29 早（2 天）",
+    "baseline": "0160c98",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Windows",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "RT Task/EventLog API 大批交付：3/26 一天关闭 14 个 Issue（#683 #686 #687 #688 #689 #672 #673 等）",
+      "Goal System E2E 测试密集推进——#747 回归覆盖已有 8 次提交入 dev",
+      "#727 Ritual Home 移除 + / 重定向 /eventlog，入口简化完成",
+      "#748 版本号显示 bug 修复 + #733 终态节点三档过滤策略上线"
+    ],
+    "downs": [
+      "7 个 P0 仍开放，#452 安全密钥清理已挂 20+ 天",
+      "Open Issues 268→276，新增 34 个 Issue vs 合并 1 个 PR——积压持续扩大",
+      "Sync/ECS 双 P0（#532 #527）长期停滞，无近期 commit",
+      "Today Planner PR #755 开放但无 review 推进",
+      "#466 Worker Agent PR 锁定已超 20 天"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "276",
+      "delta": "↑ 8",
+      "trend": "up",
+      "note": "历史新高",
+      "tooltip": "上期 268 → 本期 276"
+    },
+    {
+      "label": "Open PRs",
+      "value": "5",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "1 locked + 2 docs",
+      "tooltip": "#466 被 Agent 锁定 20 天"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "34",
+      "delta": "↑",
+      "trend": "up",
+      "note": "2天涌入",
+      "tooltip": "日均 17 个，远超消化速度"
+    },
+    {
+      "label": "合并 PR",
+      "value": "1",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "#727 仅一个",
+      "tooltip": "#727 Ritual Home 移除 (03-25)"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "RT Task/EventLog 闭环",
+      "pct": 80,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#683 title 冻结讨论",
+          "done": true,
+          "issue": 683
+        },
+        {
+          "text": "#686 批量状态迁移",
+          "done": true,
+          "issue": 686
+        },
+        {
+          "text": "#687 服务端过滤查询",
+          "done": true,
+          "issue": 687
+        },
+        {
+          "text": "#688 快捷跳步",
+          "done": true,
+          "issue": 688
+        },
+        {
+          "text": "#689 终态 title 拒绝",
+          "done": true,
+          "issue": 689
+        },
+        {
+          "text": "#672 时间块→eventlog",
+          "done": true,
+          "issue": 672
+        },
+        {
+          "text": "#673 任务→eventlog",
+          "done": true,
+          "issue": 673
+        },
+        {
+          "text": "#460 任务完整 CRUD",
+          "done": false,
+          "issue": 460
+        }
+      ]
+    },
+    {
+      "name": "Goal System v2",
+      "tag": "new",
+      "pct": 15,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#747 渲染稳定性 P0（E2E 密集覆盖中）",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#717 对齐图数据模型",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#718 新建目标自动边",
+          "done": false,
+          "issue": 718
+        },
+        {
+          "text": "#719 入边纯推导 + 级联重算",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#720 匿名边收口",
+          "done": false,
+          "issue": 720
+        },
+        {
+          "text": "#721 边拆解中间目标",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型开发",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "Today Planner",
+      "tag": "new",
+      "pct": 10,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#751 epic: 手动今日计划时间块",
+          "done": false,
+          "issue": 751
+        },
+        {
+          "text": "#752 计划时间块模型",
+          "done": false,
+          "issue": 752
+        },
+        {
+          "text": "#753 feature API",
+          "done": false,
+          "issue": 753
+        },
+        {
+          "text": "#754 UI 升级",
+          "done": false,
+          "issue": 754
+        },
+        {
+          "text": "PR #755 timeline scheduling",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "跨端同步 ECS",
+      "tag": "stall",
+      "pct": 25,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#366 ECS 实施总计划",
+          "done": false,
+          "issue": 366
+        },
+        {
+          "text": "#532 RT+ECS 跨端同步 P0",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑 SQLite 互通 P0",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#368 Transport 抽象",
+          "done": false,
+          "issue": 368
+        }
+      ]
+    },
+    {
+      "name": "安全修复",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#452 硬编码 API 密钥清理 P0",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#534 死代码清理",
+          "done": false,
+          "issue": 534
+        },
+        {
+          "text": "#519 前端环境变量收敛",
+          "done": false,
+          "issue": 519
+        },
+        {
+          "text": "#457 消除 unsafe unwrap",
+          "done": false,
+          "issue": 457
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧬",
+      "title": "RT Task/EventLog API 批量交付 — 8 个功能 Issue 一天清零",
+      "color": "var(--green)",
+      "body": "3/26 集中关闭 #683（title 冻结讨论）、#686（批量迁移）、#687（服务端过滤）、#688（快捷跳步）、#689（终态拒绝修改）、#672（时间块→eventlog）、#673（任务→eventlog）。RT 任务子系统基本闭环。"
+    },
+    {
+      "emoji": "🏔️",
+      "title": "Goal System #747 稳定性回归密集覆盖 — E2E 连续 8 轮提交",
+      "color": "var(--purple)",
+      "body": "dev 分支最近 10 个提交中 8 个针对 #747 目标页渲染回归，覆盖节点隐藏、连边裁切、星形分离力、圈层叠加等场景。该 P0 正被积极治理。"
+    },
+    {
+      "emoji": "🚀",
+      "title": "Today Planner 新系统浮出水面 — epic #751 + PR #755",
+      "color": "var(--accent)",
+      "body": "5 个新 Issue（#751-#755）定义了手动今日计划时间块系统：一等计划对象、feature API、UI 升级。PR #755 已提交时间线调度窗口功能。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "优先 #717 图模型对齐",
+      "result": "fail",
+      "note": "未推进，Goal System 精力集中在 #747 E2E 稳定性"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "result": "fail",
+      "note": "未推进"
+    },
+    {
+      "text": "冻结目标系统新开题",
+      "result": "fail",
+      "note": "反而新开 Today Planner 5 个 Issue"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 758,
+        "title": "迁移 runtime-backed 设置到 SQLite config",
+        "status": "review"
+      },
+      {
+        "num": 755,
+        "title": "Today Planner 时间线调度窗口",
+        "status": "review"
+      },
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "docs"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 20天"
+      }
+    ],
+    "merged": [
+      {
+        "num": 727,
+        "title": "移除 Ritual Home，/ 重定向 /eventlog",
+        "date": "03-25"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "时间块",
+      "research",
+      "事件日志",
+      "信号池",
+      "sync",
+      "P0",
+      "documentation"
+    ],
+    "data": [
+      197,
+      109,
+      100,
+      80,
+      73,
+      68,
+      51,
+      43,
+      32,
+      29,
+      28,
+      23,
+      13,
+      8,
+      7,
+      7
+    ],
+    "deltas": [
+      "+10",
+      "+17",
+      "+18",
+      "+14",
+      "+7",
+      "+6",
+      "+3",
+      "+7",
+      "+5",
+      null,
+      "+4",
+      "+3",
+      null,
+      null,
+      "+1",
+      null
+    ],
+    "highlights": {
+      "P0": "#747 目标页回归 / #452 密钥清理 / #532 #527 同步 / #511 #480 #326 语音",
+      "P1": "51 个，涵盖 goal-system / today-planner / settings / 移动端"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 748,
+        "title": "版本号显示 vv0.3.5",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 733,
+        "title": "终态节点三档过滤",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 703,
+        "title": "UI Shell 收口",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 689,
+        "title": "RT 终态 title 拒绝",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 688,
+        "title": "RT 快捷跳步",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 687,
+        "title": "RT 服务端过滤查询",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 686,
+        "title": "RT 批量状态迁移",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 683,
+        "title": "title 冻结讨论",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 673,
+        "title": "任务→eventlog",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 672,
+        "title": "时间块→eventlog",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": []
+  },
+  "actions": [
+    {
+      "text": "优先推进 #452 安全密钥清理",
+      "detail": "P0 已挂 20+ 天，grep 预置 pattern 扫描后一次性清理，解锁语音/Agent 批次"
+    },
+    {
+      "text": "Review 并合并 PR #758",
+      "detail": "设置迁移到 SQLite 是 RT 化关键路径，完成后解锁时间块/Android/同步 3 个后续批次"
+    },
+    {
+      "text": "推进 #747 修复到合并",
+      "detail": "E2E 覆盖已有 8 轮提交，尝试提 PR 关闭此 P0"
+    }
+  ],
+  "insight": {
+    "text": "RT 子系统在 3/26 完成了一次集中交付——任务和事件日志的 API 基本闭环，这是 ExoMind 后端成熟度的标志性节点。但新 Issue 涌入速度（日均 17 个）远超消化速度，Open Issues 从 268 增至 276。Goal System 和 Today Planner 两条新航线同时启动，资源分散风险值得关注。安全线 P0 #452 和同步线 P0 #532/#527 需要专项突击——它们是解锁语音和跨端两大产品方向的门槛。",
+    "author": "外心史官·Windows [Claude Opus 4.6]"
+  }
+}

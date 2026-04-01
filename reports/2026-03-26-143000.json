@@ -1,0 +1,403 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.551Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-26",
+    "time": "143000",
+    "file": "2026-03-26-143000.html",
+    "dataFile": "2026-03-26-143000.json"
+  },
+  "meta": {
+    "title": "开发午报",
+    "date": "2026-03-26",
+    "coverage": "03-26 午 13:30 ~ 14:30（补充报告）",
+    "baseline": "39a52b1",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "目标系统 v0.3 UI 从设计稿到可运行代码——d8d41c16 + 3 轮打磨提交",
+      "eventlog 写入职责从前端迁入 RT（119dee5b, 9d96abb6），架构边界更清晰",
+      "Open Issues 维持 260 不变，今日无新增扩散",
+      "13:30 午报 RT 七连关成果仍在生效"
+    ],
+    "downs": [
+      "260 open 仍处历史高位",
+      "P1 44 个，高水位未实质缓解",
+      "覆盖区间 0 Issue 关闭、0 PR 合并——纯编码期",
+      "6 P0 仍全部 OPEN，无任何代码推进",
+      "#466 锁定已超 17 天"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "260",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "持平",
+      "tooltip": "午报 260 → 本期 260 (不变)"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 44",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "不变",
+      "tooltip": "P0: 6 (不变) · P1: 44 (不变)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "纯编码期",
+      "tooltip": "覆盖区间内无 Issue 关闭"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "无合并",
+      "tooltip": "覆盖区间内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "目标系统 v0.3",
+      "tag": null,
+      "pct": 45,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 ~ v0.3 六轮审查定稿",
+          "done": true
+        },
+        {
+          "text": "GoalsPage + force-layout 原型",
+          "done": true
+        },
+        {
+          "text": "v0.3 UI 实现 (d8d41c16)",
+          "done": true
+        },
+        {
+          "text": "UI 交互细节打磨 (e2039a85, 81a37d40, 39a52b16)",
+          "done": true
+        },
+        {
+          "text": "#744 迁入 RT 替换本地 store",
+          "done": false,
+          "issue": 744
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解 (P1)",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "RT eventlog 职责收口",
+      "tag": "new",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "时间块生命周期事件迁入 RT (119dee5b)",
+          "done": true
+        },
+        {
+          "text": "移除前端重复 eventlog 写入 (9d96abb6)",
+          "done": true
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "tag": null,
+      "pct": 75,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#460 EventLog HTTP + MCP",
+          "done": true,
+          "issue": 460
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "开发航线 Agent",
+      "tag": null,
+      "pct": 60,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "章程 + 提示词 + 交互式 DAG 模板",
+          "done": true
+        },
+        {
+          "text": "发布脚本 + 触发检查 + 航线消费",
+          "done": true
+        },
+        {
+          "text": "计划撰写方法论固化 (86ae8a1c)",
+          "done": true
+        },
+        {
+          "text": "首期航线实际运行验证",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 API 密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🎯",
+      "title": "目标系统 v0.3 UI 落地——从设计稿到可运行界面",
+      "color": "var(--green)",
+      "body": "d8d41c16 实现 v0.3 核心 UI，随后 e2039a85 / 81a37d40 / 39a52b16 三轮交互打磨。连续四期建议的 #717 编码虽未启动，但 v0.3 UI 先行落地为数据层对齐铺好了验证环境。"
+    },
+    {
+      "emoji": "🔧",
+      "title": "eventlog 写入职责从前端迁入 RT",
+      "color": "var(--accent)",
+      "body": "119dee5b 将时间块结束 eventlog 写入迁入 runtime，9d96abb6 移除前端重复写入。架构边界收口：RT 统一负责 eventlog 写入，前端只读。"
+    },
+    {
+      "emoji": "📊",
+      "title": "数据全线持平——260 open / 6 P0 / 44 P1 不变",
+      "color": "var(--text-dim)",
+      "body": "本期为纯编码窗口：0 关闭、0 合并、0 新增。所有精力投入目标系统 v0.3 UI 实现，数据指标冻结。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "启动 #717 或 #744 编码",
+      "result": "partial",
+      "note": "未直接启动，但 v0.3 UI 落地为 #744 迁入 RT 创造了前置条件"
+    },
+    {
+      "text": "关闭 #432 和 #591",
+      "result": "fail",
+      "note": "连续五期 mismatch。两者仍 OPEN"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "result": "fail",
+      "note": "仍 locked，已超 17 天"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "result": "fail",
+      "note": "未推进"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 17d"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "P0"
+    ],
+    "data": [
+      190,
+      100,
+      91,
+      72,
+      72,
+      61,
+      44,
+      41,
+      30,
+      25,
+      22,
+      21,
+      13,
+      6
+    ],
+    "deltas": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "44 issues (不变)"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "立即启动 #744 迁入 RT",
+      "detail": "v0.3 UI 已落地，下一步是将页面本地 store 替换为 RT 后端，打通数据持久化"
+    },
+    {
+      "text": "关闭 #432 和 #591",
+      "detail": "连续五期 mismatch，代码早已修复，直接关闭 GitHub Issue"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "detail": "锁定 17 天零进展，释放 PR 看板注意力"
+    }
+  ],
+  "insight": {
+    "text": "「安静的一小时」—— 数据全线冻结，但 dev 分支上 16 个提交密集涌入。目标系统从六轮审查定稿的设计稿，经过 v0.3 UI 实现 + 三轮交互打磨，已经是可运行的界面。同时 eventlog 写入职责完成了从前端到 RT 的迁移，架构边界更清晰。这种「数字不动但代码在跑」的窗口，恰恰是项目最健康的状态——先把东西做出来，再关 Issue。下一步 #744 迁入 RT 是关键：把前端原型连上后端，目标系统才算真正活过来。",
+    "author": "外心史官"
+  }
+}

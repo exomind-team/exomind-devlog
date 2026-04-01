@@ -1,0 +1,475 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.550Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-26",
+    "time": "133000",
+    "file": "2026-03-26-133000.html",
+    "dataFile": "2026-03-26-133000.json"
+  },
+  "meta": {
+    "title": "开发午报",
+    "date": "2026-03-26",
+    "coverage": "03-26 早 ~ 03-26 午",
+    "baseline": "488bbfb",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "7 个 RT Issue 一次性关闭（#683 #689 #686 #688 #460 #673 #672），Open 首次回落",
+      "Open Issues 266→260（-6），打破连续 8 期上涨趋势",
+      "首期开发航线发布，多 Agent 协作有了可视化编排工具",
+      "488bbfb5 批量状态迁移 API 落地，RT 任务管道补全关键一环",
+      "目标系统 v0.3 设计稿六轮交叉审查定稿 (4ad4acd5)"
+    ],
+    "downs": [
+      "260 open 仍处历史高位，回落幅度有限",
+      "P1 44 个（较早报 45 仅 -1），高水位未实质缓解",
+      "覆盖区间 0 PR 合并 — 关闭的都是 Issue 而非 PR",
+      "6 P0 仍全部 OPEN，无任何代码推进",
+      "#466 锁定已超 17 天"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "260",
+      "delta": "↓ 6",
+      "trend": "down",
+      "note": "首次回落!",
+      "tooltip": "早报 266 → 本期 260 (-6)"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 44",
+      "delta": "P1 -1",
+      "trend": "down",
+      "note": "P0 不变",
+      "tooltip": "P0: 6 (不变) · P1: 45→44 (-1)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "7",
+      "delta": "RT 七连关",
+      "trend": "down",
+      "note": "重大清理",
+      "tooltip": "#683 #689 #686 #688 #460 #673 #672"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "无合并",
+      "tooltip": "覆盖区间内无 PR 合并"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "RT 任务 API 补全",
+      "tag": "new",
+      "pct": 85,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#683 title 仅终态冻结（讨论确认）",
+          "done": true,
+          "issue": 683
+        },
+        {
+          "text": "#689 PUT 终态 title 拒绝修改",
+          "done": true,
+          "issue": 689
+        },
+        {
+          "text": "#688 transition 快捷跳步",
+          "done": true,
+          "issue": 688
+        },
+        {
+          "text": "#686 批量状态迁移 API",
+          "done": true,
+          "issue": 686
+        },
+        {
+          "text": "#673 任务状态变更自动写 eventlog",
+          "done": true,
+          "issue": 673
+        },
+        {
+          "text": "#672 时间块生命周期自动写 eventlog",
+          "done": true,
+          "issue": 672
+        },
+        {
+          "text": "#460 EventLog HTTP 端点 + MCP 迁移",
+          "done": true,
+          "issue": 460
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        }
+      ]
+    },
+    {
+      "name": "目标系统 v2",
+      "tag": null,
+      "pct": 35,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "设计文档 v0.1 + v0.2 + v0.3 六轮审查定稿",
+          "done": true
+        },
+        {
+          "text": "GoalsPage + force-layout 原型",
+          "done": true
+        },
+        {
+          "text": "#744 迁入 RT 替换本地 store",
+          "done": false,
+          "issue": 744
+        },
+        {
+          "text": "#717 图模型对齐 (P1)",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联 (P1)",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解 (P1)",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型 (P1)",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "开发航线 Agent",
+      "tag": null,
+      "pct": 60,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "章程 + 提示词 + 交互式 DAG 模板",
+          "done": true
+        },
+        {
+          "text": "发布脚本 + 触发检查 + 航线消费",
+          "done": true
+        },
+        {
+          "text": "计划撰写方法论固化 (86ae8a1c)",
+          "done": true
+        },
+        {
+          "text": "首期航线实际运行验证",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "tag": null,
+      "pct": 75,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#460 EventLog HTTP + MCP",
+          "done": true,
+          "issue": 460
+        },
+        {
+          "text": "#676 /act API 根路径",
+          "done": false,
+          "issue": 676
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 API 密钥清理",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧹",
+      "title": "RT 七连关 — Open Issues 首次回落",
+      "color": "var(--green)",
+      "body": "#683 #689 #686 #688 #460 #673 #672 集中关闭。覆盖任务状态冻结、快捷跳步、批量迁移、eventlog 自动写入、MCP 迁移。Open 从 266 降至 260，打破连续 8 期上涨。"
+    },
+    {
+      "emoji": "🗺️",
+      "title": "首期开发航线发布",
+      "color": "var(--accent)",
+      "body": "开发航线 Agent 系统从零到可运行：章程+提示词+DAG 模板+发布脚本。86ae8a1c 固化计划撰写方法论（从航线批次到执行者 Agent 计划）。批次 M1/N 实施计划已就位 (6593c6ec)。"
+    },
+    {
+      "emoji": "📐",
+      "title": "目标系统 v0.3 设计稿六轮审查定稿",
+      "color": "var(--purple)",
+      "body": "4ad4acd5 六轮交叉审查完成，v0.3 设计从概念走向工程就绪。新增 #744 迁入 RT 替换页面本地 store 作为下一步落地路径。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "启动 #717 图模型对齐编码",
+      "result": "fail",
+      "note": "连续三期未动，v0.3 设计已定稿但编码仍未开始"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "result": "fail",
+      "note": "仍 locked，已超 17 天"
+    },
+    {
+      "text": "至少推进一个 P0 主线",
+      "result": "fail",
+      "note": "6 P0 全部保持 OPEN，零代码推进"
+    },
+    {
+      "text": "关闭 #432 和 #591",
+      "result": "fail",
+      "note": "#432 #591 仍 OPEN，代码已修复但未关闭 GitHub Issue"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 17d"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "P0"
+    ],
+    "data": [
+      190,
+      100,
+      91,
+      72,
+      72,
+      61,
+      44,
+      41,
+      30,
+      25,
+      22,
+      21,
+      13,
+      6
+    ],
+    "deltas": [
+      "-4",
+      "0",
+      "0",
+      "0",
+      "0",
+      "-5",
+      "-1",
+      "0",
+      "0",
+      "0",
+      "-1",
+      "-1",
+      "0",
+      "0"
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "44 issues (较早报 -1)"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 683,
+        "title": "任务 title 终态冻结讨论",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 689,
+        "title": "PUT 终态 title 拒绝修改",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 688,
+        "title": "transition 快捷跳步",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 686,
+        "title": "批量状态迁移 API",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 460,
+        "title": "EventLog HTTP + MCP 迁移",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 673,
+        "title": "任务状态变更自动写 eventlog",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 672,
+        "title": "时间块生命周期自动写 eventlog",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "启动 #717 或 #744 编码",
+      "detail": "连续三期建议未执行。v0.3 已定稿，#744 迁入 RT 是最小可启动单元"
+    },
+    {
+      "text": "关闭 #432 和 #591",
+      "detail": "代码已修复，连续四期 mismatch，直接关闭 GitHub Issue 即可"
+    },
+    {
+      "text": "关闭或解锁 #466",
+      "detail": "锁定 17 天零进展，释放注意力"
+    },
+    {
+      "text": "推进 #676 /act API",
+      "detail": "#666 契约 5/8 已关，/act 是 Agent 自主行动的入口"
+    }
+  ],
+  "insight": {
+    "text": "「第一次回落」—— 连续 8 期上涨后，Open Issues 终于从 266 降到 260。这不是自然消退，而是一次集中清理的结果：7 个 RT Issue 在同一时间关闭，说明 RT 任务管道的「讨论→设计→实现→关闭」链路已经跑通。但回落只有 6 个（新增 1 个抵消），要让曲线真正拐头，需要持续保持这种关闭节奏。开发航线的发布是另一个信号：从「随机挑 Issue 做」到「按航线批次执行」，项目正在从混沌走向有序。下一步的关键不是开更多 Issue，而是沿着航线走完第一个批次。",
+    "author": "外心史官"
+  }
+}

@@ -1,0 +1,426 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.570Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-30",
+    "time": "153000",
+    "file": "2026-03-30-153000.html",
+    "dataFile": "2026-03-30-153000.json"
+  },
+  "meta": {
+    "title": "开发午报",
+    "date": "2026-03-30",
+    "coverage": "03-30 14:47 ~ 03-30 15:30（补充报告）",
+    "baseline": "db56964e",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心观测者",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "PR #778 合并修复 auth_secret 暴露（#768 安全 P0 级），密钥不再泄露到前端",
+      "PR #772 合并解决 ChatPage 5568 条全量拉取问题（#769），改为增量刷新",
+      "时间块 #759 三阶段落地：blockType + newBlock + gap UI + 服务集成共 4 个 commit",
+      "Open Issues 从 285 降至 282（-3），连续增长态势首次逆转",
+      "#775 Web 开发模式 RT 连接缺失已修复并关闭"
+    ],
+    "downs": [
+      "6 P0 仍全部 OPEN，#747 目标页渲染回归尚未根治",
+      "51 个 P1 issue 维持高位，#776 Windows worktree 白屏新增为 P1",
+      "PR #466 Worker Agent 锁定 21 天无进展",
+      "#760 Android RT 后台掉线无保活方案，移动端核心路径受阻"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "282",
+      "delta": "↓ 3",
+      "trend": "down",
+      "note": "首次回落",
+      "tooltip": "上期 285 → 本期 282"
+    },
+    {
+      "label": "Open PRs",
+      "value": "5",
+      "delta": "→",
+      "trend": "neutral",
+      "note": "持平",
+      "tooltip": "上期 5 → 本期 5"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "0",
+      "delta": "—",
+      "trend": "neutral",
+      "note": "短覆盖期",
+      "tooltip": "覆盖仅 ~45 分钟"
+    },
+    {
+      "label": "合并 PR",
+      "value": "2",
+      "delta": "↑ 2",
+      "trend": "down",
+      "note": "#772 #778",
+      "tooltip": "上期 0 → 本期 2（破零！）"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "时间块 blockType + gap 回填 #759",
+      "tag": "new",
+      "pct": 85,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "Phase 1: blockType 字段 + gap backfill 算法",
+          "done": true,
+          "issue": 759
+        },
+        {
+          "text": "Phase 2: newBlock 原语 + start/end 守卫",
+          "done": true
+        },
+        {
+          "text": "Phase 3: gap block UI + API 过滤",
+          "done": true
+        },
+        {
+          "text": "Phase 4: backfillGapBlocks 集成到 service",
+          "done": true
+        },
+        {
+          "text": "合并到 dev + 线上验证",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "ChatPage 增量刷新 #769/#772",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#769 5568 条全量拉取定位",
+          "done": true,
+          "issue": 769
+        },
+        {
+          "text": "PR #772 增量实现提交",
+          "done": true,
+          "issue": 772
+        },
+        {
+          "text": "PR #772 合并",
+          "done": true
+        }
+      ]
+    },
+    {
+      "name": "Runtime 安全封口 #768/#778",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#768 auth_secret 前端暴露定位",
+          "done": true,
+          "issue": 768
+        },
+        {
+          "text": "PR #778 修复提交",
+          "done": true,
+          "issue": 778
+        },
+        {
+          "text": "PR #778 合并 + secret rotation",
+          "done": true
+        }
+      ]
+    },
+    {
+      "name": "Runtime 设置迁移 #756/#758",
+      "pct": 65,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#756 迁移脚本完成",
+          "done": true,
+          "issue": 756
+        },
+        {
+          "text": "PR #758 Review",
+          "done": false,
+          "issue": 758
+        },
+        {
+          "text": "安装版 / Dev 一致性验证",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#747 目标页渲染回归",
+          "done": false,
+          "issue": 747
+        },
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🛡️",
+      "title": "auth_secret 安全漏洞封口 — PR #778 合并",
+      "color": "var(--p0)",
+      "body": "#768 揭示 runtime status 将 auth_secret 暴露到前端 localStorage。PR #778 (commit cb895938) 在 status 返回中剔除敏感字段，已合并。"
+    },
+    {
+      "emoji": "🧬",
+      "title": "时间块 #759 四阶段快速落地",
+      "color": "var(--green)",
+      "body": "从 blockType 字段定义到 gap backfill 算法、newBlock 原语、gap block UI 渲染、再到 service 集成，4 个 commit (9a3e068a → db56964e) 在单日内完成。"
+    },
+    {
+      "emoji": "🔧",
+      "title": "ChatPage 增量刷新 #772 合并 + Issues 首次回落",
+      "color": "var(--accent)",
+      "body": "PR #772 将 refreshLatestEvents 从每 2 秒全量 5568 条改为增量拉取，合并后 Open Issues 首次从 285 回落到 282（含 #768 #775 #751/752/753/754 关闭）。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "审阅并合入 #772，确认 SSE load 回落",
+      "result": "pass",
+      "note": "PR #772 已合并 (03-30 05:28 UTC)"
+    },
+    {
+      "text": "推进 #758 review 并在 dev/安装版双端验证",
+      "result": "partial",
+      "note": "PR #758 仍 OPEN，未见新 review 活动"
+    },
+    {
+      "text": "对 #768 做热修 + secret rotation",
+      "result": "pass",
+      "note": "PR #778 合并封口 (03-30 11:33 UTC)"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 779,
+        "title": "Windows Tauri dev 实例状态隔离",
+        "status": "review"
+      },
+      {
+        "num": 774,
+        "title": "Network node-first embedded RT mesh",
+        "status": "draft",
+        "extra": "📝 DRAFT"
+      },
+      {
+        "num": 758,
+        "title": "Runtime 设置迁移到 SQLite config",
+        "status": "review"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "docs"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 21天"
+      }
+    ],
+    "merged": [
+      {
+        "num": 778,
+        "title": "fix(security): 封口 auth_secret 暴露",
+        "date": "03-30"
+      },
+      {
+        "num": 772,
+        "title": "fix: ChatPage 增量刷新",
+        "date": "03-30"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "时间块",
+      "事件日志",
+      "信号池",
+      "sync",
+      "P0"
+    ],
+    "data": [
+      200,
+      110,
+      104,
+      81,
+      74,
+      70,
+      51,
+      45,
+      31,
+      30,
+      25,
+      23,
+      13,
+      11,
+      6
+    ],
+    "deltas": [
+      "+13",
+      "+18",
+      "+22",
+      "+15",
+      "+8",
+      "+8",
+      "+11",
+      "+9",
+      "+4",
+      "+6",
+      "+6",
+      "+3",
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#747 #532 #527 #511 #480 #326",
+      "P1": "51 issues（含 #776 新增）"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 768,
+        "title": "auth_secret 前端暴露",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 775,
+        "title": "Web 开发模式 RT 连接",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 769,
+        "title": "ChatPage 全量拉取",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 751,
+        "title": "Today Planner epic",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 752,
+        "title": "Today Planner model",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 753,
+        "title": "Today Planner API",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 754,
+        "title": "Today Planner UI",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 747,
+        "title": "目标页渲染回归",
+        "gh": "OPEN",
+        "code": "PARTIAL",
+        "mismatch": true
+      },
+      {
+        "num": 759,
+        "title": "时间块 blockType + gap",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "合并 PR #779 Windows 实例隔离",
+      "detail": "#776 P1 新增，PR 已 ready for review，解决 worktree 多实例白屏"
+    },
+    {
+      "text": "关闭 #759 并推进时间块验证",
+      "detail": "4 阶段代码已全部集成到 service (db56964e)，确认 gap block 在 Today 页正常渲染后关闭"
+    },
+    {
+      "text": "推动 PR #758 审阅完成",
+      "detail": "Runtime 设置迁移连续两期未推进，是 #756 解锁后唯一剩余阻塞"
+    }
+  ],
+  "insight": {
+    "text": "这是一个信号明确的转折点：Open Issues 数量在连续两周的攀升后首次回落（285 → 282），同时两个关键 PR（安全封口 #778 + 性能修复 #772）在同一天合并。时间块 #759 的四阶段快速交付显示出一种值得复制的模式——拆分到足够小的 phase、每个 phase 独立提交并可验证。如果这种节奏能延续到 P0 阵列，积压态势有望在下周实质性扭转。",
+    "author": "外心观测者"
+  }
+}

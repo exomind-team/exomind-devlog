@@ -1,0 +1,385 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.547Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-26",
+    "time": "014404",
+    "file": "2026-03-26-014404.html",
+    "dataFile": "2026-03-26-014404.json"
+  },
+  "meta": {
+    "title": "开发夜报",
+    "date": "2026-03-26",
+    "coverage": "03-26 00:03 ~ 03-26 01:37",
+    "baseline": "9140e92e",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "终端修史者",
+    "os": "Android",
+    "model": "GPT-5",
+    "version": "Codex"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "PR #727 已合并，Ritual Home 清退并将 / 重定向到 /eventlog",
+      "dev 基线推进到 9140e92e，Web 编译与开发服务器链路恢复可用",
+      "新增 #731 与 #732：同步验证范围继续扩面，README 开始接入开发日志公开入口"
+    ],
+    "downs": [
+      "Open Issues 升到 256，再创公开积压新高（上一期 254 → 本期 256）",
+      "P1 从 41 升到 42，新增 #731 同步端到端验证 epic",
+      "覆盖区间内 0 个 Issue 关闭，债务消化速度仍为零",
+      "6 个 P0 仍全部保持 OPEN，#466 继续锁定超过两周"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "256",
+      "delta": "↑ 2",
+      "trend": "up",
+      "note": "再次创新高",
+      "tooltip": "上期 254 → 本期 256 (+2)"
+    },
+    {
+      "label": "Open PRs",
+      "value": "3",
+      "delta": "↓ 1",
+      "trend": "down",
+      "note": "#727 已合并",
+      "tooltip": "上期 4 → 本期 3 (-1)"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "2",
+      "delta": "+1 P1",
+      "trend": "up",
+      "note": "#731 #732",
+      "tooltip": "覆盖区间内新增 #731 sync-e2e、#732 README devlog 链接"
+    },
+    {
+      "label": "合并 PR",
+      "value": "1",
+      "delta": "破静默",
+      "trend": "down",
+      "note": "#727",
+      "tooltip": "覆盖区间内合并 PR #727"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "跨端同步稳定性 #532",
+      "pct": 35,
+      "stall": false,
+      "tag": null,
+      "subtasks": [
+        {
+          "text": "#506 RT SQLite 迁移与统一备份",
+          "done": true,
+          "issue": 506
+        },
+        {
+          "text": "#527 手机↔电脑互通端到端验证",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#731 手机热点下双安卓 RT 接续验证",
+          "done": false,
+          "issue": 731
+        },
+        {
+          "text": "#532 Web/Windows/Android 跨端同步稳定性",
+          "done": false,
+          "issue": 532
+        }
+      ]
+    },
+    {
+      "name": "目标系统 #234",
+      "pct": 40,
+      "stall": false,
+      "tag": null,
+      "subtasks": [
+        {
+          "text": "v0.3 逻辑模型与 UI 交互规格定稿",
+          "done": true
+        },
+        {
+          "text": "#717 图数据模型对齐",
+          "done": false,
+          "issue": 717
+        },
+        {
+          "text": "#719 完成级联重算",
+          "done": false,
+          "issue": 719
+        },
+        {
+          "text": "#721 边拆解为中间目标",
+          "done": false,
+          "issue": 721
+        },
+        {
+          "text": "#723 v2 原型开发",
+          "done": false,
+          "issue": 723
+        }
+      ]
+    },
+    {
+      "name": "开发日志公开发布链 #613",
+      "pct": 75,
+      "stall": false,
+      "tag": "new",
+      "subtasks": [
+        {
+          "text": "8419c842 DevLog GitHub Pages 发布脚本落地",
+          "done": true
+        },
+        {
+          "text": "公开仓库 exomind-devlog 已上线",
+          "done": true
+        },
+        {
+          "text": "#732 README 增加开发日志归档链接",
+          "done": false,
+          "issue": 732
+        },
+        {
+          "text": "#613 Git 历史清洗与公开仓准备",
+          "done": false,
+          "issue": 613
+        }
+      ]
+    },
+    {
+      "name": "信号网络编排 #728",
+      "pct": 5,
+      "stall": false,
+      "tag": "new",
+      "subtasks": [
+        {
+          "text": "需求追踪 issue 已建立",
+          "done": true,
+          "issue": 728
+        },
+        {
+          "text": "从只读拓扑图走向交互式 DAG 编排",
+          "done": false,
+          "issue": 728
+        },
+        {
+          "text": "等待布局/编排算法方案进入实现",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "6 个 P0 主线",
+      "pct": 10,
+      "stall": true,
+      "tag": "stall",
+      "subtasks": [
+        {
+          "text": "#452 API 密钥清理与认证收口",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#511 语音输入统一归一化入口",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务成长 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#326 ASR→分类→EventLog 链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧹",
+      "title": "#727 已合并，Ritual Home 正式退场",
+      "color": "var(--green)",
+      "body": "2026-03-26 覆盖区间内唯一合并 PR 是 #727。主页入口已回到 /eventlog，Open PR 也因此从 4 降到 3。"
+    },
+    {
+      "emoji": "🛠️",
+      "title": "dev@9140e92e 修复 Web 编译与 dev server 链路",
+      "color": "var(--accent)",
+      "body": "基线 commit 9140e92e 直接修复了前端编译与开发服务器故障面，为后续继续在 dev 上联调提供了稳定基座。"
+    },
+    {
+      "emoji": "🔭",
+      "title": "#731 与 #732 新开，验证范围和公开传播继续扩面",
+      "color": "var(--orange)",
+      "body": "#731 把同步验证扩到“手机热点下双安卓 RT 接续”，#732 开始把开发日志公开归档入口接回 README。两条都发生在 2026-03-26 00:30 前后。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "合并 PR #727 并关闭相关旧入口追踪",
+      "result": "partial",
+      "note": "#727 已合并，但部分旧追踪如 #591 已被改造为新议题而非直接关闭"
+    },
+    {
+      "text": "启动 #717 图模型对齐编码",
+      "result": "fail",
+      "note": "规格已定，但本覆盖区间无对应代码推进"
+    },
+    {
+      "text": "人工处理 #466 锁定 PR",
+      "result": "fail",
+      "note": "#466 仍处于 locked 状态，未见解锁或关闭动作"
+    },
+    {
+      "text": "至少推进一个 P0 主线",
+      "result": "fail",
+      "note": "6 个 P0 在本覆盖区间仍全部保持 OPEN"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 595,
+        "title": "ExoMind-Net v3 八层设计规范",
+        "status": "docs"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "docs"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 >14d"
+      }
+    ],
+    "merged": [
+      {
+        "num": 727,
+        "title": "移除 Ritual Home，重定向 / → /eventlog",
+        "date": "03-26"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "信号池",
+      "sync",
+      "P0"
+    ],
+    "data": [
+      192,
+      97,
+      87,
+      69,
+      67,
+      64,
+      42,
+      39,
+      28,
+      25,
+      23,
+      20,
+      13,
+      7,
+      6
+    ],
+    "deltas": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "+1",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "+1",
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "42 issues · 含新增 #731",
+      "sync": "#532 #527 #731"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 452,
+        "title": "硬编码 API 密钥清理与认证收口",
+        "gh": "OPEN",
+        "code": "NONE"
+      },
+      {
+        "num": 532,
+        "title": "RT+ECS 跨端同步稳定性",
+        "gh": "OPEN",
+        "code": "PARTIAL"
+      },
+      {
+        "num": 731,
+        "title": "双安卓热点同步验证",
+        "gh": "OPEN",
+        "code": "NONE"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "优先关闭 #732 的发布闭环",
+      "detail": "本期日志一旦公开可访问，就回填 README 链接并关闭该文档追踪"
+    },
+    {
+      "text": "立即启动 #717 编码",
+      "detail": "目标系统已经连续两期停留在“规格完成、实现未开”的边界上"
+    },
+    {
+      "text": "对 #466 做人工决策",
+      "detail": "继续锁着只会占住 PR 管道；需要解锁、关闭或重派三选一"
+    },
+    {
+      "text": "从 #452 或 #511 中挑一条打破 P0 静默",
+      "detail": "当前最危险的不是慢，而是连续多个周期没有任何 P0 消化"
+    }
+  ],
+  "insight": {
+    "text": "这一小时不是“零变化”，而是“开始回流”。#727 合并、9140e92e 修复构建链路、#732 把开发日志准备接回 README，说明项目开始把过去几天的讨论和清理成果重新沉淀到公开主线上。但 256 个 Open Issues、42 个 P1 和 6 个全开 P0 仍然说明主线债务没有被真正啃动。接下来最有价值的动作不是再开新题，而是把公开传播闭环收口，然后转头打穿 #717 或一个 P0。",
+    "author": "终端修史者"
+  }
+}

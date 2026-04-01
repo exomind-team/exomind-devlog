@@ -1,0 +1,462 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T12:44:25.574Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-03-31",
+    "time": "104200",
+    "file": "2026-03-31-104200.html",
+    "dataFile": "2026-03-31-104200.json"
+  },
+  "meta": {
+    "title": "",
+    "date": "2026-03-31",
+    "coverage": "03-31 07:39 ~ 03-31 10:42",
+    "baseline": "838f2cf2",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "深空记录者",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Opus 4.6"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "#780 BlockTransition 全闭环 — 20 commit 完成时间块状态机重构，Issue 正式关闭",
+      "时间块表合并：completed_timeblocks + active_timeblock → 统一 timeblocks 表 (81468a2e)",
+      "RT SSE 自动通知：EventLog append 后自动触发 watcher，前端无需轮询 (73e1cc90)",
+      "RT Agent 接入 #666 进度升至 10/14 (71%)，任务侧四连关 #686 #687 #688 #689"
+    ],
+    "downs": [
+      "282 open issues，持续高位（上期 283，微降 -1）",
+      "P1 维持 51，高位未回落（上期 52，-1）",
+      "6 P0 连续零代码推进 — 结构性欠账未触碰",
+      "#466 PR 锁定 22 天",
+      "5 个 open PR 中 3 个无本期活动"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "282",
+      "delta": "↓ 1",
+      "trend": "down",
+      "note": "微降",
+      "tooltip": "上期 283 → 本期 282"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "6 / 51",
+      "delta": "P1 -1",
+      "trend": "neutral",
+      "note": "高位持平",
+      "tooltip": "P0: 6 (不变) · P1: 52→51 (-1)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "1",
+      "delta": "#780",
+      "trend": "down",
+      "note": "里程碑",
+      "tooltip": "#780 BlockTransition 闭环"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "→",
+      "trend": "neutral",
+      "note": "收尾期",
+      "tooltip": "本期无 PR 合并，专注 #780 收尾"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "时间块状态机 #780",
+      "tag": null,
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "BlockTransition 类型 + derive 函数",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "Rust struct + SQLite + 路由",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "EventLog 联动 (start/end 写日志)",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "RT adapter 五方法接入",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "Service 层迁移 start/pause/resume/markEnding/end",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "SSE watcher 自动通知",
+          "done": true
+        },
+        {
+          "text": "双表合并 → 统一 timeblocks 表",
+          "done": true,
+          "issue": 780
+        },
+        {
+          "text": "legacy 路径标记废弃 + 测试修复",
+          "done": true,
+          "issue": 780
+        }
+      ]
+    },
+    {
+      "name": "RT Agent 接入 #666",
+      "pct": 71,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#668 eventlog ID 统一生成",
+          "done": true,
+          "issue": 668
+        },
+        {
+          "text": "#669 按时间/tag 过滤查询",
+          "done": true,
+          "issue": 669
+        },
+        {
+          "text": "#671 watch 长轮询端点",
+          "done": true,
+          "issue": 671
+        },
+        {
+          "text": "#667 本地档案列表接口",
+          "done": true,
+          "issue": 667
+        },
+        {
+          "text": "#672 时间块事件自动写 eventlog",
+          "done": true,
+          "issue": 672
+        },
+        {
+          "text": "#673 任务变更自动写 eventlog",
+          "done": true,
+          "issue": 673
+        },
+        {
+          "text": "#686 批量状态迁移",
+          "done": true,
+          "issue": 686
+        },
+        {
+          "text": "#687 服务端过滤查询",
+          "done": true,
+          "issue": 687
+        },
+        {
+          "text": "#688 快捷跳步",
+          "done": true,
+          "issue": 688
+        },
+        {
+          "text": "#689 终态 title 冻结",
+          "done": true,
+          "issue": 689
+        },
+        {
+          "text": "#670 per-agent token 认证",
+          "done": false,
+          "issue": 670
+        },
+        {
+          "text": "#674 档案密码验证迁移",
+          "done": false,
+          "issue": 674
+        },
+        {
+          "text": "#675 UI→RT 功能迁移清点",
+          "done": false,
+          "issue": 675
+        },
+        {
+          "text": "#677 Agent 登录审批",
+          "done": false,
+          "issue": 677
+        }
+      ]
+    },
+    {
+      "name": "网络 node-first #773",
+      "tag": "new",
+      "pct": 5,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "PR #774 Draft 已开",
+          "done": true,
+          "issue": 774
+        },
+        {
+          "text": "epic 设计完成",
+          "done": true,
+          "issue": 773
+        },
+        {
+          "text": "实现 embedded RT mesh",
+          "done": false,
+          "issue": 773
+        }
+      ]
+    },
+    {
+      "name": "开源迁移 #613",
+      "pct": 65,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "LF 统一 + README 截图/徽章",
+          "done": true
+        },
+        {
+          "text": "CLAUDE.md 精简 + 社区入口",
+          "done": true
+        },
+        {
+          "text": "PR #707 合并",
+          "done": true,
+          "issue": 707
+        },
+        {
+          "text": "Git 历史清洗",
+          "done": false
+        },
+        {
+          "text": "仓库创建",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "6 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#511 语音输入归一化",
+          "done": false,
+          "issue": 511
+        },
+        {
+          "text": "#480 语音驱动任务 MVP",
+          "done": false,
+          "issue": 480
+        },
+        {
+          "text": "#452 Android 导入失败",
+          "done": false,
+          "issue": 452
+        },
+        {
+          "text": "#326 ASR→分类链路",
+          "done": false,
+          "issue": 326
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧬",
+      "title": "#780 BlockTransition 全闭环 — 时间块从记录变为有状态的活物",
+      "color": "var(--green)",
+      "body": "20 commit 完整链路：类型定义 (86bc57c0) → Rust struct+SQLite (ed6a5525) → EventLog 联动 (f6ae2782) → RT adapter (3f1d5b5c) → Service 迁移 (203f9ee2) → 双表合并 (81468a2e) → legacy 废弃标记 (70db3d58) → 测试修复 (838f2cf2)。含一次 revert→重写循环。Issue 已关闭。"
+    },
+    {
+      "emoji": "🔧",
+      "title": "时间块存储统一 — 双表合并为单一 timeblocks 表",
+      "color": "var(--accent)",
+      "body": "completed_timeblocks + active_timeblock 合并为统一的 timeblocks 表 (81468a2e)，DELETE /timeblocks/active 标记废弃 (70db3d58)。RT 版本 0.3.0 breaking changes 正式落地。"
+    },
+    {
+      "emoji": "📡",
+      "title": "SSE 自动通知机制完成 — EventLog append 触发 watcher",
+      "color": "var(--purple)",
+      "body": "EventLog append 自动触发 SSE watcher (73e1cc90)，timeblock 事件后同步通知 (c7544c8d)。前端不再需要轮询，实时感知所有后端状态变更。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "完成 #780 前端适配并合并",
+      "result": "pass",
+      "note": "#780 闭环：Service 迁移 + 双表合并 + 测试修复全部完成，Issue 已关闭"
+    },
+    {
+      "text": "合并 PR #779 Windows 实例隔离",
+      "result": "fail",
+      "note": "PR #779 仍 OPEN，未合并"
+    },
+    {
+      "text": "关闭 #432 #591 — 长期 mismatch",
+      "result": "fail",
+      "note": "第七期遗留。两者仍 OPEN。"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 779,
+        "title": "Windows Tauri dev 实例状态隔离",
+        "status": "review"
+      },
+      {
+        "num": 774,
+        "title": "network node-first embedded RT mesh",
+        "status": "docs",
+        "extra": "DRAFT"
+      },
+      {
+        "num": 758,
+        "title": "runtime settings 迁移到 SQLite config",
+        "status": "review"
+      },
+      {
+        "num": 565,
+        "title": "集体经济与治理体系文档 v1",
+        "status": "review"
+      },
+      {
+        "num": 466,
+        "title": "Worker Agent 主提示词状态机",
+        "status": "locked",
+        "extra": "🔒 22天"
+      }
+    ],
+    "merged": []
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "时间块",
+      "事件日志",
+      "信号池",
+      "sync",
+      "P0"
+    ],
+    "data": [
+      200,
+      110,
+      104,
+      81,
+      74,
+      70,
+      51,
+      45,
+      31,
+      30,
+      25,
+      23,
+      13,
+      11,
+      6
+    ],
+    "deltas": [
+      "+13",
+      "+18",
+      "+22",
+      "+15",
+      "+8",
+      "+8",
+      "+11",
+      "+9",
+      "+4",
+      "+6",
+      "+6",
+      "+3",
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#532 #527 #511 #480 #452 #326",
+      "P1": "51 issues"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 780,
+        "title": "BlockTransition 状态转换历史化",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 432,
+        "title": "WebSocket 死锁",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "Ritual Home",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "合并 PR #779 Windows 实例隔离",
+      "detail": "已 ready for review，无依赖阻塞，直接合并"
+    },
+    {
+      "text": "推进 PR #758 runtime settings 迁移",
+      "detail": "阻塞时间块功能全链路验证"
+    },
+    {
+      "text": "关闭 #432 #591",
+      "detail": "第七期遗留，代码已修复但 Issue 仍 OPEN"
+    }
+  ],
+  "insight": {
+    "text": "「活物诞生」— #780 的闭环标志着时间块从\"被动记录\"进化为\"有状态转换历史的活物\"。BlockTransition 是 ExoMind 中第一个完整实现了\"操作生效=留下痕迹\"不可变原则的数据结构。20 commit 包含一次 revert→重写循环，这不是失误而是探索——生命体的成长本就不是线性的。双表合并（completed + active → unified timeblocks）是架构简化的信号：当状态机足够成熟，存储模型自然收敛。下一步的挑战是让前端也能感受到这个\"活物\"的脉搏。",
+    "author": "深空记录者"
+  }
+}
