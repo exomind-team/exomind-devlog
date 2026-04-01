@@ -1,12 +1,19 @@
 {
-  "generated": "2026-04-01T07:25:17.036Z",
+  "generated": "2026-04-01T11:53:38.413Z",
   "repo": "exomind-team/exomind",
+  "latest": {
+    "file": "2026-04-01-151934.html",
+    "dataFile": "2026-04-01-151934.json",
+    "date": "2026-04-01",
+    "time": "151934"
+  },
   "reports": [
     {
       "date": "2026-04-01",
       "time": "151934",
       "title": "开发午报",
       "file": "2026-04-01-151934.html",
+      "dataFile": "2026-04-01-151934.json",
       "publisher": "外心史官·Android [Claude Sonnet 4.6 (1M context)]",
       "weather": {
         "level": "cloudy",
@@ -18,27 +25,37 @@
           "label": "Open Issues",
           "value": "291",
           "delta": "↑ 43",
-          "trend": "up"
+          "trend": "up",
+          "note": "再破纪录",
+          "tooltip": "上期 248 → 本期 291（新增 49，关闭 25）"
         },
         {
           "label": "P0 / P1",
           "value": "2 / 61",
           "delta": "P0 -4, P1 +21",
-          "trend": "neutral"
+          "trend": "neutral",
+          "note": "P0 大清理",
+          "tooltip": "P0: 6→2 (-4) · P1: 40→61 (+21)"
         },
         {
           "label": "关闭 Issue",
           "value": "25",
           "delta": "3.6x 上期",
-          "trend": "down"
+          "trend": "down",
+          "note": "质量高",
+          "tooltip": "上期 7 → 本期 25（含今日 6）"
         },
         {
           "label": "合并 PR",
           "value": "10",
           "delta": "10x 上期",
-          "trend": "down"
+          "trend": "down",
+          "note": "交付潮",
+          "tooltip": "上期 1 → 本期 10（含今日 1）"
         }
-      ]
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-151934.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-151934.json"
     },
     {
       "date": "2026-04-01",

@@ -1,0 +1,551 @@
+{
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-01T11:53:38.410Z",
+  "_published": {
+    "kind": "report",
+    "date": "2026-04-01",
+    "time": "151934",
+    "file": "2026-04-01-151934.html",
+    "dataFile": "2026-04-01-151934.json"
+  },
+  "meta": {
+    "title": "开发午报",
+    "date": "2026-04-01",
+    "coverage": "03-25 早 ~ 04-01 午",
+    "baseline": "ed3f1fa9",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Claude",
+    "version": "Sonnet 4.6 (1M context)"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "晴转多云",
+    "ups": [
+      "1 PR 今日合并 — #798 图标打磨",
+      "6 Issue 今日关闭 — 含 #792 安全修复 · #769 增量刷新 · #761 时间块 Bug",
+      "上期 9 PR 合并潮 — 七天交付量创纪录",
+      "P0 大清理 — 4 个降级为 P1，P0 从 6 降至 2",
+      "今日计划器落地 — 15 分钟时间线规划器"
+    ],
+    "downs": [
+      "Open Issues 暴涨 +41 — 从 248 升至 291（新增 49，关闭 25）",
+      "P1 暴涨 +21 — 从 40 升至 61",
+      "大量架构研究 issue 涌入 — #799 Agent 文件系统 · #797 Agent 调度 · #796 iroh-docs 评估",
+      "2 P0 连续 17 天零代码 — #532 #527",
+      "2 战果未清 — PR #781 #798 已合并但 issue 仍 OPEN"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "291",
+      "delta": "↑ 43",
+      "trend": "up",
+      "note": "再破纪录",
+      "tooltip": "上期 248 → 本期 291（新增 49，关闭 25）"
+    },
+    {
+      "label": "P0 / P1",
+      "value": "2 / 61",
+      "delta": "P0 -4, P1 +21",
+      "trend": "neutral",
+      "note": "P0 大清理",
+      "tooltip": "P0: 6→2 (-4) · P1: 40→61 (+21)"
+    },
+    {
+      "label": "关闭 Issue",
+      "value": "25",
+      "delta": "3.6x 上期",
+      "trend": "down",
+      "note": "质量高",
+      "tooltip": "上期 7 → 本期 25（含今日 6）"
+    },
+    {
+      "label": "合并 PR",
+      "value": "10",
+      "delta": "10x 上期",
+      "trend": "down",
+      "note": "交付潮",
+      "tooltip": "上期 1 → 本期 10（含今日 1）"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "今日计划器 #751",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#751 计划窗口一等对象",
+          "done": true,
+          "issue": 751
+        },
+        {
+          "text": "#752 计划时间块模型",
+          "done": true,
+          "issue": 752
+        },
+        {
+          "text": "#753 /act/today-planner API",
+          "done": true,
+          "issue": 753
+        },
+        {
+          "text": "#754 Today 页升级为可编辑计划器",
+          "done": true,
+          "issue": 754
+        },
+        {
+          "text": "PR #755 合并",
+          "done": true,
+          "issue": 755
+        }
+      ]
+    },
+    {
+      "name": "网络节点优先 #773",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "切换到 node-first embedded RT mesh",
+          "done": true
+        },
+        {
+          "text": "链路验证循环（link proof）",
+          "done": true
+        },
+        {
+          "text": "Windows mDNS 多宿主稳定性",
+          "done": true
+        },
+        {
+          "text": "PR #774 合并",
+          "done": true,
+          "issue": 774
+        }
+      ]
+    },
+    {
+      "name": "安全修复 #768",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "停止向前端暴露 auth_secret",
+          "done": true
+        },
+        {
+          "text": "清理 localStorage 缓存凭据",
+          "done": true
+        },
+        {
+          "text": "强化 embedded runtime auth/CORS",
+          "done": true
+        },
+        {
+          "text": "PR #778 合并",
+          "done": true,
+          "issue": 778
+        }
+      ]
+    },
+    {
+      "name": "RT 配置迁移 #758",
+      "pct": 100,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "localStorage → SQLite 迁移",
+          "done": true
+        },
+        {
+          "text": "External runtime 修复",
+          "done": true
+        },
+        {
+          "text": "PR #784 合并（review）",
+          "done": true,
+          "issue": 784
+        }
+      ]
+    },
+    {
+      "name": "2 P0 MVP",
+      "tag": "stall",
+      "pct": 0,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#532 RT+ECS 跨端同步（17 天）",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#527 手机↔电脑互通（17 天）",
+          "done": false,
+          "issue": 527
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🚀",
+      "title": "9 PR 合并潮 — 七天交付量创纪录",
+      "color": "var(--green)",
+      "body": "#798 图标打磨 · #784 配置迁移 · #781 工作台运行时 · #779 Windows 隔离 · #778 安全修复 · #774 网络节点 · #772 增量刷新 · #755 今日计划器 · #727 移除首页。覆盖网络、安全、计划器、配置等核心领域。"
+    },
+    {
+      "emoji": "🔥",
+      "title": "P0 大清理 — 4 个降级为 P1",
+      "color": "var(--accent)",
+      "body": "#511 语音输入归一化 · #480 语音驱动任务 · #452 Android 导入失败 · #326 ASR→分类链路。P0 从 6 降至 2，只剩 #532 和 #527。"
+    },
+    {
+      "emoji": "📈",
+      "title": "Issue 暴涨 +43 — 新增 49，关闭 25",
+      "color": "var(--orange)",
+      "body": "Open Issues 从 248 升至 291。新增大量架构研究与 RT 迁移 issue（#799 Agent 文件系统 · #797 Agent 调度 · #796 iroh-docs 评估 · #794 移除 Pouch · #793 无头外心）。"
+    },
+    {
+      "emoji": "🏗️",
+      "title": "今日计划器落地 — 15 分钟时间线规划器",
+      "color": "var(--purple)",
+      "body": "PR #755 合并，关闭 #751 #752 #753 #754。支持拖选创建窗口、工作段任务链接、开始执行、当前窗口 reflow。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "关闭 #777 #795",
+      "result": "fail",
+      "note": "PR #781 #798 已合并但 issue 仍 OPEN"
+    },
+    {
+      "text": "推进 #532 #527 两个 P0",
+      "result": "fail",
+      "note": "连续 17 天零代码"
+    },
+    {
+      "text": "控制新 issue 涌入速度",
+      "result": "fail",
+      "note": "新增 49，Open Issues 暴涨 +43"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 790,
+        "title": "session-runtime federation",
+        "status": "docs"
+      }
+    ],
+    "merged": [
+      {
+        "num": 798,
+        "title": "图标打磨",
+        "date": "04-01"
+      },
+      {
+        "num": 784,
+        "title": "RT 配置迁移",
+        "date": "03-31"
+      },
+      {
+        "num": 781,
+        "title": "工作台运行时",
+        "date": "03-31"
+      },
+      {
+        "num": 779,
+        "title": "Windows 隔离",
+        "date": "03-31"
+      },
+      {
+        "num": 778,
+        "title": "安全修复",
+        "date": "03-30"
+      },
+      {
+        "num": 774,
+        "title": "网络节点",
+        "date": "03-31"
+      },
+      {
+        "num": 772,
+        "title": "增量刷新",
+        "date": "03-30"
+      },
+      {
+        "num": 755,
+        "title": "今日计划器",
+        "date": "03-30"
+      },
+      {
+        "num": 727,
+        "title": "移除首页",
+        "date": "03-25"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "Web",
+      "enhancement",
+      "架构",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "事件日志",
+      "时间块",
+      "P0"
+    ],
+    "data": [
+      187,
+      92,
+      82,
+      66,
+      66,
+      62,
+      61,
+      36,
+      27,
+      24,
+      20,
+      19,
+      2
+    ],
+    "deltas": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "+21",
+      null,
+      null,
+      null,
+      null,
+      null,
+      "-4"
+    ],
+    "highlights": {
+      "P0": "#532 #527",
+      "P1": "61 issues (+21 net)"
+    }
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 792,
+        "title": "/config 路由缺少认证",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 769,
+        "title": "ChatPage 全量拉取",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 761,
+        "title": "时间块追加任务误替换",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 747,
+        "title": "目标页渲染稳定性",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 432,
+        "title": "Android 键盘卡住闪退",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      },
+      {
+        "num": 326,
+        "title": "ASR→分类链路",
+        "gh": "CLOSED",
+        "code": "FIXED"
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 777,
+        "title": "工作台运行时",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 795,
+        "title": "图标矢量化",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "poolHealth": {
+    "prIssueMismatch": [
+      {
+        "pr": 781,
+        "issue": 777,
+        "prTitle": "feat(workbench): wire runtime-fed pane handoff",
+        "issueTitle": "工作台运行时"
+      },
+      {
+        "pr": 798,
+        "issue": 795,
+        "prTitle": "chore(icon): polish SVG mascot",
+        "issueTitle": "图标矢量化"
+      }
+    ],
+    "staleHighPriority": [
+      {
+        "num": 532,
+        "title": "RT+ECS 跨端同步",
+        "priority": "P0",
+        "staleDays": 17
+      },
+      {
+        "num": 527,
+        "title": "手机↔电脑互通",
+        "priority": "P0",
+        "staleDays": 17
+      },
+      {
+        "num": 789,
+        "title": "session-runtime federation",
+        "priority": "P1",
+        "staleDays": 1
+      },
+      {
+        "num": 788,
+        "title": "device metadata SQLite",
+        "priority": "P1",
+        "staleDays": 2
+      },
+      {
+        "num": 771,
+        "title": "WeFlow 轮询失败",
+        "priority": "P1",
+        "staleDays": 2
+      },
+      {
+        "num": 770,
+        "title": "useSignalStream SSE 重连泄漏",
+        "priority": "P1",
+        "staleDays": 2
+      },
+      {
+        "num": 765,
+        "title": "PC 悬浮窗透明命中区域过大",
+        "priority": "P1",
+        "staleDays": 4
+      },
+      {
+        "num": 760,
+        "title": "RT 挂后台无法保持运行",
+        "priority": "P1",
+        "staleDays": 5
+      }
+    ],
+    "noPriority": {
+      "current": 0,
+      "previous": 0
+    },
+    "aging": {
+      "oldCount": 61,
+      "total": 291,
+      "pct": 21,
+      "samples": [
+        {
+          "num": 25,
+          "title": "v4架构统一",
+          "ageDays": 50,
+          "priority": "P1"
+        },
+        {
+          "num": 36,
+          "title": "三级运行体系",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 37,
+          "title": "通知拦截转发",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 38,
+          "title": "微信聊天转发",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 43,
+          "title": "本地语音识别",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 44,
+          "title": "本地大语言模型",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 45,
+          "title": "更多外观主题",
+          "ageDays": 49,
+          "priority": "P2"
+        },
+        {
+          "num": 47,
+          "title": "云端语音合成",
+          "ageDays": 49,
+          "priority": "P2"
+        }
+      ]
+    }
+  },
+  "actions": [
+    {
+      "text": "关闭 #777 #795",
+      "detail": "PR #781 #798 已合并，对应 issue 应关闭"
+    },
+    {
+      "text": "推进 #532 #527 两个 P0",
+      "detail": "连续 17 天零代码，需要突破"
+    },
+    {
+      "text": "控制新 issue 涌入速度",
+      "detail": "新增 49，Open Issues 暴涨 +43，需要冻结新开题"
+    },
+    {
+      "text": "清理陈年阵地",
+      "detail": "21% >30d (61/291)，需要定期清理"
+    }
+  ],
+  "insight": {
+    "text": "「交付潮与涌入潮的双重奏」— 七天 9 PR 合并创纪录，覆盖网络、安全、计划器、配置等核心领域，展现出强劲的交付能力。但同时 Open Issues 暴涨 +43，P1 暴涨 +21，大量架构研究与 RT 迁移 issue 涌入（#799 Agent 文件系统 · #797 Agent 调度 · #796 iroh-docs 评估 · #794 移除 Pouch · #793 无头外心）。这是典型的\"交付后扩散\"信号：一个功能落地后，团队立即看到更多可能性，开出大量后续 issue。建议：先消化已有 P0/P1，再展开新架构研究。",
+    "author": "ExoMind 编年史官"
+  }
+}
