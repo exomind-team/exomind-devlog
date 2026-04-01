@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发早报 · 2026-04-01</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="../assets/report-style.css">
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const REPORT = {
+
+  // ── 元信息 ──────────────────────────────────────────────────────
+  meta: {
+    title: '',
+    date: '2026-04-01',
+    coverage: '03-31 早 ~ 04-01 早',
+    baseline: 'a5e435a7',
+    repo: 'exomind-team/exomind',
+  },
+
+  // ── 发布者 ────────────────────────────────────────────────────────
+  publisher: {
+    identity: '深空记录者',
+    os: 'Android',
+    model: 'Claude',
+    version: 'Opus 4.6',
+  },
+
+  // ── 天气 ────────────────────────────────────────────────────────
+  weather: {
+    level: 'cloudy',
+    emoji: '⛅',
+    label: '晴转多云',
+    ups: [
+      '#773 网络 epic 关闭 — node-first embedded RT mesh 正式落地 (#774)',
+      'RT API 清理四连发 — 移除废弃端点 #785 #786 #787，代码瘦身',
+      'PR #779 合并 — Windows 多 worktree 白屏问题解决',
+      'PR #784 合并 — Runtime Config 转向 SQLite 完成 review',
+      '18 commit 推入 dev，覆盖网络/语音/重构/工作台多条主线',
+    ],
+    downs: [
+      '287 open 再创新高（+5），净增速度未减缓',
+      '6 P0 连续九期零代码推进 — 结构性欠账加深',
+      '#466 PR 锁定已超 23 天',
+      'P1 = 49，虽比上期 51 降 2 但仍处高位',
+      '#758 runtime settings PR 仍 OPEN，review 通过但未合并',
+    ],
+  },
+
+  // ── 数据指标卡 ──────────────────────────────────────────────────
+  metrics: [
+    { label: 'Open Issues', value: '287',  delta: '↑ 5', trend: 'up',   note: '历史新高',     tooltip: '上期 282 → 本期 287' },
+    { label: 'P0 / P1',    value: '6 / 49',delta: 'P1 -2',trend: 'neutral',   note: 'P0 含新 #747', tooltip: 'P0: 6 (不变) · P1: 51→49 (-2)' },
+    { label: '关闭 Issue',  value: '4',     delta: '↓ vs 上期',trend: 'neutral', note: '含 #773 epic',    tooltip: '覆盖窗口内关闭: #773 #776 #780 + 早期' },
+    { label: '合并 PR',     value: '6',     delta: '↑↑', trend: 'down', note: '六连合并',  tooltip: '#774 #779 #781 #784 #778 #755' },
+  ],
+
+  // ── 主线追踪 ────────────────────────────────────────────────────
+  mainlines: [
+    { name: '网络/设备联邦 #773', tag: null, pct: 100, stall: false, subtasks: [
+      { text: '#773 epic: node-first embedded RT mesh', done: true, issue: 773 },
+      { text: '#774 switch device/network flow', done: true, issue: 774 },
+      { text: '#777 工作台联邦前置抽象', done: false, issue: 777 },
+      { text: '#789 Session-runtime federation B2', done: false, issue: 789 },
+    ]},
+    { name: 'RT Agent 接入 #666', pct: 75, stall: false, subtasks: [
+      { text: '#668 eventlog ID 统一生成', done: true, issue: 668 },
+      { text: '#669 按时间/tag 过滤查询', done: true, issue: 669 },
+      { text: '#671 watch 长轮询端点', done: true, issue: 671 },
+      { text: '#667 本地档案列表接口', done: true, issue: 667 },
+      { text: '#672 时间块事件自动写入 eventlog', done: true, issue: 672 },
+      { text: '#673 任务状态变更自动写入 eventlog', done: true, issue: 673 },
+      { text: '#686 批量状态迁移', done: true, issue: 686 },
+      { text: '#687 服务端过滤查询', done: true, issue: 687 },
+      { text: '#688 快捷跳步', done: true, issue: 688 },
+      { text: '#689 终态 title 修改拒绝', done: true, issue: 689 },
+      { text: '#670 per-agent token 认证', done: false, issue: 670 },
+      { text: '#674 档案密码验证迁移', done: false, issue: 674 },
+      { text: '#675 UI→RT 迁移清点', done: false, issue: 675 },
+      { text: '#677 Agent 登录审批', done: false, issue: 677 },
+    ]},
+    { name: '目标系统', tag: null, pct: 30, stall: false, subtasks: [
+      { text: 'GoalsPage 原型 ~1100L + force-layout ~220L', done: true },
+      { text: '#717 图模型对齐 (P1)', done: false, issue: 717 },
+      { text: '#719 完成级联 (P1)', done: false, issue: 719 },
+      { text: '#721 边拆解 (P1)', done: false, issue: 721 },
+      { text: '#723 v2 原型 (P1)', done: false, issue: 723 },
+      { text: '#747 渲染稳定性回归 (P0)', done: false, issue: 747 },
+    ]},
+    { name: 'Agent 工作台 #777', tag: 'new', pct: 20, stall: false, subtasks: [
+      { text: '#781 runtime-fed pane handoff', done: true, issue: 781 },
+      { text: '#789 session-runtime federation B2', done: false, issue: 789 },
+      { text: 'PR #790 Draft 已开', done: false },
+    ]},
+    { name: '6 P0 MVP', tag: 'stall', pct: 0, stall: true, subtasks: [
+      { text: '#532 RT+ECS 跨端同步', done: false, issue: 532 },
+      { text: '#527 手机↔电脑互通', done: false, issue: 527 },
+      { text: '#511 语音输入归一化', done: false, issue: 511 },
+      { text: '#480 语音驱动任务 MVP', done: false, issue: 480 },
+      { text: '#452 Android 导入失败', done: false, issue: 452 },
+      { text: '#326 ASR→分类链路', done: false, issue: 326 },
+    ]},
+  ],
+
+  // ── 头条 ────────────────────────────────────────────────────────
+  headlines: [
+    { emoji: '🌐', title: '网络 Epic #773 关闭 — Node-First Embedded RT Mesh 落地',
+      color: 'var(--green)',
+      body: '设备/网络页从「远程连接」范式切换到「每设备一个 embedded RT + peer mesh」。PR #774 (eff8fb03) 合并后 #773 epic 正式关闭。这是 ExoMind 多设备架构的基础性转变。' },
+    { emoji: '🧹', title: 'RT API 大扫除 — 四个废弃端点一次清理',
+      color: 'var(--accent)',
+      body: '#785 简化 /eventlog/events/:id → /eventlog/:id (6c12e5a1) · #786 移除 /eventlog/mirror/* (7b1dadfa) · #787 移除 DELETE /tasks/:id 别名 (4de29c24) + DELETE /timeblocks/active (02edae8c)。API 表面积收缩，维护成本降低。' },
+    { emoji: '🔧', title: 'PR 六连合并 — 覆盖窗口内完成密集交付',
+      color: 'var(--purple)',
+      body: '#774 网络 mesh · #779 Windows 实例隔离 · #781 工作台 pane handoff · #784 runtime config 迁移 review · #778 安全修复 · #755 Today Planner 时间窗。六个 PR 在覆盖窗口内合并，打破前期低流量。' },
+  ],
+
+  // ── 上期建议记分卡 ──────────────────────────────────────────────
+  scorecard: [
+    { text: '合并 PR #779 Windows 实例隔离', result: 'pass', note: '已合并 (95b1a040)，03-31 09:03' },
+    { text: '推进 PR #758 runtime settings 迁移', result: 'partial', note: 'PR #784 review 已合并，但 #758 本身仍 OPEN' },
+    { text: '关闭 #432 #591', result: 'fail', note: '第七期遗留。两者仍 OPEN。' },
+  ],
+
+  // ── PR 看板 ─────────────────────────────────────────────────────
+  prs: {
+    open: [
+      { num: 790, title: 'Session-runtime federation for #789', status: 'draft', extra: '📝 Draft' },
+      { num: 758, title: 'Runtime settings 迁移到 SQLite config', status: 'review' },
+      { num: 565, title: '集体经济与治理体系文档 v1', status: 'docs' },
+      { num: 466, title: 'Worker Agent 主提示词状态机', status: 'locked', extra: '🔒 23天' },
+    ],
+    merged: [
+      { num: 774, title: 'feat(network): node-first embedded RT mesh', date: '03-31' },
+      { num: 784, title: 'review: runtime config migration', date: '03-31' },
+      { num: 781, title: 'feat(workbench): runtime-fed pane handoff', date: '03-31' },
+      { num: 779, title: 'fix: Windows Tauri instance isolation', date: '03-31' },
+      { num: 778, title: 'fix(security): stop exposing RT auth secret', date: '03-30' },
+      { num: 755, title: 'feat(today-planner): timeline scheduling', date: '03-30' },
+    ],
+  },
+
+  // ── Issue 地形图 ─────────────────────────────────────────────────
+  terrain: {
+    labels: ['P2','UI','Tauri','Web','enhancement','架构','P1','移动端','Agent','research','时间块','事件日志','信号池','P0'],
+    data:   [205,  110,  103,    81,   74,          74,   49,   44,     32,    30,      25,      23,      13,     6],
+    deltas: ['+18','+18','+21','+15','+8',         '+12', '-2', '+8',  '+5',  '+6',    '+6',    '+3',   '+13',  null],
+    highlights: { 'P0': '#747 #532 #527 #511 #480 #326', 'P1': '49 issues (含 Goal/Network/Workbench)' },
+  },
+
+  // ── 代码 vs GitHub 真相表 ──────────────────────────────────────
+  truth: {
+    closed: [
+      { num: 773, title: '网络 epic node-first mesh', gh: 'CLOSED', code: 'FIXED' },
+      { num: 776, title: 'Windows 多 worktree 白屏', gh: 'CLOSED', code: 'FIXED' },
+      { num: 780, title: 'BlockTransition 统一', gh: 'CLOSED', code: 'FIXED' },
+    ],
+    stillOpen: [
+      { num: 432, title: 'WebSocket 死锁', gh: 'OPEN', code: 'FIXED', mismatch: true },
+      { num: 591, title: 'Ritual Home', gh: 'OPEN', code: 'FIXED', mismatch: true },
+    ],
+  },
+
+  // ── 建议行动 ────────────────────────────────────────────────────
+  actions: [
+    { text: '合并 PR #758 runtime settings', detail: 'Review PR #784 已通过并合并，#758 本身应可直接合并或关闭' },
+    { text: '关闭 #432 #591', detail: '第七期遗留。代码已修复，GitHub 状态未同步。一分钟可完成。' },
+    { text: '推进 #670 per-agent token 认证', detail: 'RT Agent 接入 10/14 子项已关。#670 是安全层核心，后续 #677 依赖它' },
+  ],
+
+  // ── 底部洞察 ────────────────────────────────────────────────────
+  insight: {
+    text: '「基础设施的春天」— 过去 24 小时的 18 个 commit 几乎全部落在基础设施层：网络 mesh 重构、RT API 瘦身、运行时配置迁移、外部 RT 认证、废弃端点清理。没有一个 commit 是面向用户的新功能，但每一个都在为"多设备协作的 ExoMind"打地基。#773 epic 的关闭标志着从"单机应用"到"联邦节点"的架构跃迁开始兑现。值得警惕的是 287 open issues 仍在攀升，6 个 P0 已连续九期零动作——地基再牢，上层建筑的欠债终需偿还。',
+    author: '深空记录者',
+  },
+};
+</script>
+<script src="../assets/report-engine.js"></script>
+</body>
+</html>
