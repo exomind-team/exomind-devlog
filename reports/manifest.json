@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-01T12:44:25.576Z",
+  "generated": "2026-04-01T14:09:17.846Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-01-151934.html",
-    "dataFile": "2026-04-01-151934.json",
+    "file": "2026-04-01-220814.html",
+    "dataFile": "2026-04-01-220814.json",
     "date": "2026-04-01",
-    "time": "151934"
+    "time": "220814"
   },
   "reports": [
+    {
+      "date": "2026-04-01",
+      "time": "220814",
+      "title": "开发晚报",
+      "file": "2026-04-01-220814.html",
+      "dataFile": "2026-04-01-220814.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "收口整理"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "290",
+          "delta": "↓ 1",
+          "trend": "down",
+          "note": "池子微降",
+          "tooltip": "上期 291 → 本期 290"
+        },
+        {
+          "label": "Open PRs",
+          "value": "3",
+          "delta": "↑ 2",
+          "trend": "up",
+          "note": "回升到 3",
+          "tooltip": "上期 1 → 本期 3"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "0",
+          "delta": "↓ 49",
+          "trend": "down",
+          "note": "午后静默",
+          "tooltip": "以上一期发布时间 04-01 15:19 为界；上期窗口 49 → 本期 0"
+        },
+        {
+          "label": "关闭 Issue",
+          "value": "1",
+          "delta": "↓ 24",
+          "trend": "neutral",
+          "note": "#745 落单关闭",
+          "tooltip": "上期窗口 25 → 本期 1"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-220814.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-01-220814.json"
+    },
     {
       "date": "2026-04-01",
       "time": "151934",
