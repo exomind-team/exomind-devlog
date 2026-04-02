@@ -1,13 +1,50 @@
 {
-  "generated": "2026-04-02T00:43:10.414Z",
+  "generated": "2026-04-02T02:29:44.934Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-02-083633.html",
-    "dataFile": "2026-04-02-083633.json",
+    "file": "2026-04-02-102714.html",
+    "dataFile": "2026-04-02-102714.json",
     "date": "2026-04-02",
-    "time": "083633"
+    "time": "102714"
   },
   "routes": [
+    {
+      "date": "2026-04-02",
+      "time": "102714",
+      "title": "开发航线",
+      "file": "2026-04-02-102714.html",
+      "dataFile": "2026-04-02-102714.json",
+      "publisher": "航线规划师·Android [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "航道拥挤"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "13",
+          "note": "M~Y"
+        },
+        {
+          "label": "就绪",
+          "value": "5",
+          "note": "M / N / W / X / Y"
+        },
+        {
+          "label": "进行中",
+          "value": "2",
+          "note": "R / T"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "117",
+          "note": "288 中的 41%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-02-102714.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-02-102714.json"
+    },
     {
       "date": "2026-04-02",
       "time": "083633",
