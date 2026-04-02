@@ -195,114 +195,114 @@ code,.mono{font-family:'JetBrains Mono',monospace}
 
 const REPORT = {
   "meta": {
-    "title": "????",
+    "title": "开发早报",
     "date": "2026-04-02",
-    "coverage": "04-01 ? ~ 04-02 ?",
+    "coverage": "04-01 晚 ~ 04-02 早",
     "baseline": "c776bc23",
     "repo": "exomind-team/exomind"
   },
   "publisher": {
-    "identity": "????",
+    "identity": "外心史官",
     "os": "Windows",
     "model": "Codex",
     "version": "GPT-5"
   },
   "weather": {
     "level": "overcast",
-    "emoji": "???",
-    "label": "?????",
+    "emoji": "🌥️",
+    "label": "图纸转实装",
     "ups": [
-      "c776bc23 / 9c445486 / 6e6e95fe ?????? Proposal + Agent API ?????????????RT proposal workflow?Proposal Inbox UI?Agent session flow ??????? dev",
-      "#803 / #804 ????#794 ? 2026-04-01 22:24?????????????? Pouch ????????????????????? issue ???",
-      "????????????????? issue ?? 0?Issue ?? 290 ??? 289?????????"
+      "c776bc23 / 9c445486 / 6e6e95fe 在一个夜里把 Proposal + Agent API 从设计文档直接推到实现层：RT proposal workflow、Proposal Inbox UI、Agent session flow 三条线都已落到 dev",
+      "#803 / #804 已合入，#794 在 2026-04-01 22:24（北京时间）关闭，说明“移除 Pouch 主链路”的同步收口开始从文档口径变成代码与 issue 双闭环",
+      "以上一份晚报发布时间为界，今早新增 issue 仍是 0；Issue 池从 290 再降到 289，夜间没有继续扩张"
     ],
     "downs": [
-      "#532 / #527 ?? P0 ???? OPEN??????? 18 ?????????? PR ? commit ??????",
-      "#777 / #795 ??????????issue ?????????????????????????",
-      "Open PR ?? 3?#790 ?? draft?#565 / #466 ??????????????????? PR ??",
-      "60 ? P1 ? 61 ? >30 ??? issue ????????????????????????????"
+      "#532 / #527 两个 P0 继续停在 OPEN，创建时间已到 18 天量级，夜里仍没有新 PR 或 commit 直接指向它们",
+      "#777 / #795 依旧是“代码已到位、issue 未关”的战果未清；状态不一致已经跨了又一个报告窗口",
+      "Open PR 仍是 3：#790 还是 draft，#565 / #466 继续悬挂，真正活跃开发线没有同步体现在 PR 面上",
+      "60 个 P1 和 61 个 >30 天陈年 issue 还在场，说明项目虽然开始写新主线，但治理面并没有同步变轻"
     ]
   },
   "metrics": [
     {
       "label": "Open Issues",
       "value": "289",
-      "delta": "? 1",
+      "delta": "↓ 1",
       "trend": "down",
-      "note": "???? 1",
-      "tooltip": "?? 290 ? ?? 289"
+      "note": "夜里再降 1",
+      "tooltip": "上期 290 → 本期 289"
     },
     {
       "label": "Open PRs",
       "value": "3",
-      "delta": "? 0",
+      "delta": "→ 0",
       "trend": "neutral",
-      "note": "??? 3",
-      "tooltip": "?? 3 ? ?? 3"
+      "note": "仍卡在 3",
+      "tooltip": "上期 3 → 本期 3"
     },
     {
-      "label": "?? Issue",
+      "label": "新增 Issue",
       "value": "0",
-      "delta": "? 0",
+      "delta": "→ 0",
       "trend": "neutral",
-      "note": "??????",
-      "tooltip": "??????? 04-01 22:08 ??????? 0 ? ?? 0"
+      "note": "夜间继续静默",
+      "tooltip": "以上期发布时间 04-01 22:08 为界；上期窗口 0 → 本期 0"
     },
     {
-      "label": "?? Issue",
+      "label": "关闭 Issue",
       "value": "1",
-      "delta": "? 0",
+      "delta": "→ 0",
       "trend": "neutral",
-      "note": "#794 ??",
-      "tooltip": "???? 1 ? ?? 1"
+      "note": "#794 收口",
+      "tooltip": "上期窗口 1 → 本期 1"
     }
   ],
   "mainlines": [
     {
-      "name": "Proposal / Agent API ????",
+      "name": "Proposal / Agent API 进入实现",
       "tag": "new",
       "pct": 35,
       "stall": false,
       "subtasks": [
         {
-          "text": "6e6e95fe proposal RT workflow ?? runtime / routes/proposals",
+          "text": "6e6e95fe proposal RT workflow 落到 runtime / routes/proposals",
           "done": true
         },
         {
-          "text": "9c445486 Proposal Inbox UI + proposal-rt adapter ?????",
+          "text": "9c445486 Proposal Inbox UI + proposal-rt adapter 已接进前端",
           "done": true
         },
         {
-          "text": "c776bc23 Agent API session flow ? agent_sessions ?????",
+          "text": "c776bc23 Agent API session flow 与 agent_sessions 路由已落库",
           "done": true
         },
         {
-          "text": "#677 ?? Agent ???? / ??? issue ? OPEN????????????? issue",
+          "text": "#677 外部 Agent 登录审批 / 请求箱 issue 仍 OPEN，需把实现与验收口径绑定回 issue",
           "done": false,
           "issue": 677
         }
       ]
     },
     {
-      "name": "RT-only ???? / #794",
+      "name": "RT-only 同步收口 / #794",
       "pct": 75,
       "stall": false,
       "subtasks": [
         {
-          "text": "#794 ?? Pouch ??? epic ? CLOSED",
+          "text": "#794 移除 Pouch 主链路 epic 已 CLOSED",
           "done": true,
           "issue": 794
         },
         {
-          "text": "PR #803 cut over reminder ? RT ??? pouch runtime path",
+          "text": "PR #803 cut over reminder 到 RT 并移除 pouch runtime path",
           "done": true
         },
         {
-          "text": "PR #804 ?? pouch URL path ??? RT-only ??",
+          "text": "PR #804 清掉 pouch URL path 并更新 RT-only 文档",
           "done": true
         },
         {
-          "text": "#749 ?? legacy sync server ???????????",
+          "text": "#749 删除 legacy sync server 与旧适配器仍待继续收口",
           "done": false,
           "issue": 749
         }
@@ -314,35 +314,35 @@ const REPORT = {
       "stall": false,
       "subtasks": [
         {
-          "text": "#789 session-runtime federation ????? draft PR #790",
+          "text": "#789 session-runtime federation 主线仍停在 draft PR #790",
           "done": false,
           "issue": 789
         },
         {
-          "text": "#777 Flat Workbench ?????? dev?? issue ???",
+          "text": "#777 Flat Workbench 关联实现已进 dev，但 issue 仍未关",
           "done": false,
           "issue": 777
         },
         {
-          "text": "#565 ?????? PR ??????",
+          "text": "#565 治理体系文档 PR 继续长期悬挂",
           "done": false,
           "issue": 565
         }
       ]
     },
     {
-      "name": "2 P0 ???? MVP",
+      "name": "2 P0 跨端同步 MVP",
       "tag": "stall",
       "pct": 0,
       "stall": true,
       "subtasks": [
         {
-          "text": "#532 ? RT + ECS ????",
+          "text": "#532 新 RT + ECS 跨端同步",
           "done": false,
           "issue": 532
         },
         {
-          "text": "#527 ????? RT SQLite ??",
+          "text": "#527 手机↔电脑 RT SQLite 互通",
           "done": false,
           "issue": 527
         }
@@ -351,50 +351,50 @@ const REPORT = {
   ],
   "headlines": [
     {
-      "emoji": "??",
-      "title": "Proposal / Agent API ???????????? #677",
+      "emoji": "🧬",
+      "title": "Proposal / Agent API 从设计跨到实现，继续对齐 #677",
       "color": "var(--accent)",
-      "body": "6e6e95fe?9c445486?c776bc23 ?????? dev@c776bc23?Proposal RT workflow?Proposal Inbox UI?Agent API session flow ??????? #677 ?????????? docs/plans?"
+      "body": "6e6e95fe、9c445486、c776bc23 连续落在最新 dev@c776bc23：Proposal RT workflow、Proposal Inbox UI、Agent API session flow 同夜上线，说明 #677 相关主线已不再停留在 docs/plans。"
     },
     {
-      "emoji": "??",
-      "title": "#803 / #804 ????#794 ?????",
+      "emoji": "🔄",
+      "title": "#803 / #804 合并后，#794 已正式关闭",
       "color": "var(--green)",
-      "body": "PR #803 ? 22:24?PR #804 ? 23:35???????????GitHub ? #794 ? CLOSED?Pouch ????????????? RT-only?????????"
+      "body": "PR #803 在 22:24、PR #804 在 23:35（北京时间）先后合入；GitHub 上 #794 已 CLOSED，Pouch 主链路移除终于从“计划中的 RT-only”变成已落地事实。"
     },
     {
-      "emoji": "??",
-      "title": "Issue ?????? 289?? P0 ?????",
+      "emoji": "📉",
+      "title": "Issue 池继续回落到 289，但 P0 仍原地踏步",
       "color": "var(--orange)",
-      "body": "????????????? issue 0??? issue 1???? 290 ??? 289?? #532 / #527 ???? 2 ? P0????????????"
+      "body": "以上一份晚报为界，夜里新增 issue 0、关闭 issue 1，池子从 290 再降到 289；但 #532 / #527 仍是仅存 2 个 P0，且都没有夜间推进痕迹。"
     },
     {
-      "emoji": "??",
-      "title": "?????????#777 / #795 ?? OPEN",
+      "emoji": "🚩",
+      "title": "战果未清尾巴还在：#777 / #795 继续 OPEN",
       "color": "var(--p0)",
-      "body": "?? #781 ? #798 ???? dev / merged ??#777 ? #795 ???? OPEN????????????????????????"
+      "body": "即使 #781 与 #798 已经进入 dev / merged 区，#777 和 #795 依旧处于 OPEN；关单语义没有跟上实现收口，继续污染日报真相面。"
     }
   ],
   "scorecard": [
     {
-      "text": "?? #777 / #795",
+      "text": "关闭 #777 / #795",
       "result": "fail",
-      "note": "#777 / #795 ????? OPEN"
+      "note": "#777 / #795 截至今早仍 OPEN"
     },
     {
-      "text": "?? #532 / #527 ?? P0",
+      "text": "推进 #532 / #527 两个 P0",
       "result": "fail",
-      "note": "????? PR / commit ???????"
+      "note": "夜里没有新 PR / commit 直接对应这两项"
     },
     {
-      "text": "? #790 ????",
+      "text": "给 #790 定义落点",
       "result": "fail",
-      "note": "PR #790 ?? draft???? mergeable ??"
+      "note": "PR #790 仍是 draft，未切成 mergeable 片段"
     },
     {
-      "text": "????????",
+      "text": "继续清理陈年阵地",
       "result": "partial",
-      "note": "#794 ???Open Issues -1?? >30d ?? 61/289"
+      "note": "#794 已关、Open Issues -1，但 >30d 仍有 61/289"
     }
   ],
   "prs": {
@@ -414,7 +414,7 @@ const REPORT = {
       {
         "num": 466,
         "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
-        "status": "ready",
+        "status": "locked",
         "branch": "feature/issue-421-worker-agent"
       }
     ],
@@ -466,46 +466,46 @@ const REPORT = {
       "P2",
       "UI",
       "Tauri",
-      "??",
+      "架构",
       "Web",
       "enhancement",
       "P1",
-      "???",
+      "移动端",
       "research",
       "Agent",
-      "???",
-      "????",
-      "???"
+      "时间块",
+      "事件日志",
+      "信号池"
     ],
     "data": [
       227,
       106,
       100,
-      0,
+      80,
       78,
       77,
       60,
-      0,
+      45,
       34,
       33,
-      0,
-      0,
-      0
+      23,
+      22,
+      12
     ],
     "deltas": [
       "0",
       "0",
-      "-1",
       "0",
-      "-1",
-      "0",
-      "-1",
+      "+80",
       "0",
       "0",
       "0",
+      "+45",
       "0",
       "0",
-      "0"
+      "+23",
+      "+22",
+      "+12"
     ],
     "highlights": {
       "P0": "#532 #527",
@@ -544,31 +544,31 @@ const REPORT = {
         "pr": 798,
         "issue": 795,
         "prTitle": "chore(icon): polish SVG mascot highlight and silhouette",
-        "issueTitle": "chore(icon): ???? SVG ??? + ?????????????"
+        "issueTitle": "chore(icon): 当前图标 SVG 矢量化 + 透明背景，生成全平台图标源"
       },
       {
         "pr": 593,
         "issue": 591,
-        "prTitle": "feat: ?? Ritual Home ???",
-        "issueTitle": "??????????????????????"
+        "prTitle": "feat: 新增 Ritual Home 入口流",
+        "issueTitle": "基于用户历史与当下状态的图形化交互式功能导航"
       },
       {
         "pr": 579,
         "issue": 575,
-        "prTitle": "fix(voice/runtime): ?????? NowInputRow ???? EventLog (#575 #576)",
-        "issueTitle": "bug: ??????? EventLog ??????3???=??3??"
+        "prTitle": "fix(voice/runtime): 双层去重修复 NowInputRow 与多实例 EventLog (#575 #576)",
+        "issueTitle": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）"
       },
       {
         "pr": 577,
         "issue": 418,
-        "prTitle": "feat: ???????????????????? Tab?#418 #516?",
-        "issueTitle": "tracking: ??????????????????????"
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab（#418 #516）",
+        "issueTitle": "tracking: 任务与时间块解耦、关联语义与反馈联动状态更新"
       },
       {
         "pr": 517,
         "issue": 514,
-        "prTitle": "feat(issue-514): ??????????????",
-        "issueTitle": "feat(dev): ???????????????????"
+        "prTitle": "feat(issue-514): 新增开发态实例诊断与标题同步",
+        "issueTitle": "feat(dev): 开发态多实例窗口标题辨认与实例诊断信息"
       }
     ],
     "staleHighPriority": [
@@ -683,21 +683,21 @@ const REPORT = {
   },
   "actions": [
     {
-      "text": "??? #777 / #795 ????????",
-      "detail": "????????issue ????????????"
+      "text": "先处理 #777 / #795 的关单或补单语义",
+      "detail": "别让“代码已合、issue 仍开”继续跨到下一份日报"
     },
     {
-      "text": "? #532 / #527 ?????????",
-      "detail": "???? 2 ? P0??????????????"
+      "text": "把 #532 / #527 提到今天第一执行位",
+      "detail": "现在只剩 2 个 P0，再拖只会让同步主线持续失真"
     },
     {
-      "text": "????? Proposal / Agent API ????? #677 / #799 / #791 ???",
-      "detail": "???????????issue ???????????"
+      "text": "把新落地的 Proposal / Agent API 代码绑定回 #677 / #799 / #791 验收面",
+      "detail": "实现已经开始跑在前面，issue 契约和收口标准必须跟上"
     }
   ],
   "insight": {
-    "text": "???????????????????????????????????????? + ?????????????? 6e6e95fe / 9c445486 / c776bc23 ???????? Proposal / Agent API ? docs/plans ?? runtime ? UI??????#803 / #804 ? #794 ????? RT-only ???????????????????????#532 / #527 ?????#777 / #795 ???????PR #790 ??? draft?????????????????????????????????????",
-    "author": "?????Windows [Codex GPT-5]"
+    "text": "这份早报和昨晚晚报最大的不同，不是数字，而是主航道的性质变了。昨晚还是“设计收口 + 发布链整理”，今早则已经出现 6e6e95fe / 9c445486 / c776bc23 这种连续实装，把 Proposal / Agent API 从 docs/plans 拉进 runtime 与 UI。与此同时，#803 / #804 把 #794 关掉，说明 RT-only 同步收口开始真正兑现。但治理面并没有同步变轻：#532 / #527 继续悬空，#777 / #795 继续战果未清，PR #790 仍卡在 draft。现在项目不是没在前进，而是在“新主线起跑”和“旧尾巴没清”之间同时拉扯。",
+    "author": "外心史官·Windows [Codex GPT-5]"
   }
 };
 

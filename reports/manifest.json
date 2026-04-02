@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-02T00:37:17.486Z",
+  "generated": "2026-04-02T00:42:31.229Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-02-083633.html",
@@ -14,44 +14,44 @@
       "title": "开发早报",
       "file": "2026-04-02-083633.html",
       "dataFile": "2026-04-02-083633.json",
-      "publisher": "????·Windows [Codex GPT-5]",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
       "weather": {
         "level": "overcast",
-        "emoji": "???",
-        "label": "?????"
+        "emoji": "🌥️",
+        "label": "图纸转实装"
       },
       "metrics": [
         {
           "label": "Open Issues",
           "value": "289",
-          "delta": "? 1",
+          "delta": "↓ 1",
           "trend": "down",
-          "note": "???? 1",
-          "tooltip": "?? 290 ? ?? 289"
+          "note": "夜里再降 1",
+          "tooltip": "上期 290 → 本期 289"
         },
         {
           "label": "Open PRs",
           "value": "3",
-          "delta": "? 0",
+          "delta": "→ 0",
           "trend": "neutral",
-          "note": "??? 3",
-          "tooltip": "?? 3 ? ?? 3"
+          "note": "仍卡在 3",
+          "tooltip": "上期 3 → 本期 3"
         },
         {
-          "label": "?? Issue",
+          "label": "新增 Issue",
           "value": "0",
-          "delta": "? 0",
+          "delta": "→ 0",
           "trend": "neutral",
-          "note": "??????",
-          "tooltip": "??????? 04-01 22:08 ??????? 0 ? ?? 0"
+          "note": "夜间继续静默",
+          "tooltip": "以上期发布时间 04-01 22:08 为界；上期窗口 0 → 本期 0"
         },
         {
-          "label": "?? Issue",
+          "label": "关闭 Issue",
           "value": "1",
-          "delta": "? 0",
+          "delta": "→ 0",
           "trend": "neutral",
-          "note": "#794 ??",
-          "tooltip": "???? 1 ? ?? 1"
+          "note": "#794 收口",
+          "tooltip": "上期窗口 1 → 本期 1"
         }
       ],
       "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-02-083633.html",
