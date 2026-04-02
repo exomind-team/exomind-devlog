@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-02T00:37:53.165Z",
+  "generated": "2026-04-02T00:43:10.414Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-02-083633.html",
@@ -11,35 +11,35 @@
     {
       "date": "2026-04-02",
       "time": "083633",
-      "title": "????",
+      "title": "开发航线",
       "file": "2026-04-02-083633.html",
       "dataFile": "2026-04-02-083633.json",
-      "publisher": "?????·Windows [Codex GPT-5]",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
       "status": {
         "level": "overcast",
-        "emoji": "???",
-        "label": "????"
+        "emoji": "🌥️",
+        "label": "航道拥挤"
       },
       "metrics": [
         {
-          "label": "???",
+          "label": "总批次",
           "value": "13",
           "note": "M~Y"
         },
         {
-          "label": "??",
+          "label": "就绪",
           "value": "5",
           "note": "M / N / W / X / Y"
         },
         {
-          "label": "???",
+          "label": "进行中",
           "value": "2",
           "note": "R / T"
         },
         {
-          "label": "?? Issues",
+          "label": "覆盖 Issues",
           "value": "116",
-          "note": "289 ?? 40%"
+          "note": "289 中的 40%"
         }
       ],
       "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-02-083633.html",
