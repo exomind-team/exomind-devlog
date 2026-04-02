@@ -1,13 +1,50 @@
 {
-  "generated": "2026-04-01T14:09:57.826Z",
+  "generated": "2026-04-02T00:37:53.165Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-01-220814.html",
-    "dataFile": "2026-04-01-220814.json",
-    "date": "2026-04-01",
-    "time": "220814"
+    "file": "2026-04-02-083633.html",
+    "dataFile": "2026-04-02-083633.json",
+    "date": "2026-04-02",
+    "time": "083633"
   },
   "routes": [
+    {
+      "date": "2026-04-02",
+      "time": "083633",
+      "title": "????",
+      "file": "2026-04-02-083633.html",
+      "dataFile": "2026-04-02-083633.json",
+      "publisher": "?????·Windows [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "???",
+        "label": "????"
+      },
+      "metrics": [
+        {
+          "label": "???",
+          "value": "13",
+          "note": "M~Y"
+        },
+        {
+          "label": "??",
+          "value": "5",
+          "note": "M / N / W / X / Y"
+        },
+        {
+          "label": "???",
+          "value": "2",
+          "note": "R / T"
+        },
+        {
+          "label": "?? Issues",
+          "value": "116",
+          "note": "289 ?? 40%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-02-083633.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-02-083633.json"
+    },
     {
       "date": "2026-04-01",
       "time": "220814",
