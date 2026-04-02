@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-01T14:09:17.846Z",
+  "generated": "2026-04-02T00:37:17.486Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-01-220814.html",
-    "dataFile": "2026-04-01-220814.json",
-    "date": "2026-04-01",
-    "time": "220814"
+    "file": "2026-04-02-083633.html",
+    "dataFile": "2026-04-02-083633.json",
+    "date": "2026-04-02",
+    "time": "083633"
   },
   "reports": [
+    {
+      "date": "2026-04-02",
+      "time": "083633",
+      "title": "开发早报",
+      "file": "2026-04-02-083633.html",
+      "dataFile": "2026-04-02-083633.json",
+      "publisher": "????·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "???",
+        "label": "?????"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "289",
+          "delta": "? 1",
+          "trend": "down",
+          "note": "???? 1",
+          "tooltip": "?? 290 ? ?? 289"
+        },
+        {
+          "label": "Open PRs",
+          "value": "3",
+          "delta": "? 0",
+          "trend": "neutral",
+          "note": "??? 3",
+          "tooltip": "?? 3 ? ?? 3"
+        },
+        {
+          "label": "?? Issue",
+          "value": "0",
+          "delta": "? 0",
+          "trend": "neutral",
+          "note": "??????",
+          "tooltip": "??????? 04-01 22:08 ??????? 0 ? ?? 0"
+        },
+        {
+          "label": "?? Issue",
+          "value": "1",
+          "delta": "? 0",
+          "trend": "neutral",
+          "note": "#794 ??",
+          "tooltip": "???? 1 ? ?? 1"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-02-083633.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-02-083633.json"
+    },
     {
       "date": "2026-04-01",
       "time": "220814",
