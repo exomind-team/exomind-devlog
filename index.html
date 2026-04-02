@@ -160,11 +160,18 @@ function toggleSection(bodyId, header) {
   }
 }
 
+async function fetchJsonFresh(relativePath) {
+  const url = new URL(relativePath, window.location.href);
+  url.searchParams.set('_ts', String(Date.now()));
+  const response = await fetch(url.toString(), { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Failed to load ${relativePath}: ${response.status}`);
+  return response.json();
+}
+
 // ── Reports ──
 const reportsContainer = document.getElementById('reports');
 
-fetch('reports/manifest.json')
-  .then(r => r.json())
+fetchJsonFresh('reports/manifest.json')
   .then(data => {
     const reports = data.reports || [];
     if (!reports.length) {
@@ -196,8 +203,7 @@ fetch('reports/manifest.json')
 // ── Routes ──
 const routesContainer = document.getElementById('routes');
 
-fetch('routes/manifest.json')
-  .then(r => r.json())
+fetchJsonFresh('routes/manifest.json')
   .then(data => {
     const routes = data.routes || [];
     if (!routes.length) {
