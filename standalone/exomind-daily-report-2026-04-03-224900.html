@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发日报模板</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;
+  --radius:10px;--radius-sm:6px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.8}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2.5rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:2.2rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.3em;text-transform:uppercase}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Top Row */
+.top-row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;margin:1.5rem 0}
+.weather-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s}
+.weather-card:hover{transform:scale(1.01)}
+.weather-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.12),transparent 60%)}
+.weather-emoji{font-size:2.5rem;position:relative}
+.weather-label{font-size:1.3rem;font-weight:700;margin-top:.3rem;position:relative}
+.weather-sub{font-size:.85rem;opacity:.85;margin-top:.3rem;position:relative}
+.weather-details{max-height:0;overflow:hidden;transition:max-height .4s ease;position:relative}
+.weather-details.open{max-height:500px}
+.weather-details ul{list-style:none;margin-top:.8rem;font-size:.82rem;line-height:1.8}
+.weather-details li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.5rem;vertical-align:middle}
+.weather-details .up li::before{background:#2ea043}
+.weather-details .down li::before{background:var(--p1)}
+
+/* Metrics */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:1.05rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;margin:.3rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .delta{font-size:1.08rem;font-family:'JetBrains Mono',monospace;font-weight:700}
+.metric-card .delta.up{color:var(--p1)}
+.metric-card .delta.down{color:var(--green)}
+.metric-card .delta.neutral{color:var(--text-faint)}
+.metric-card .note{font-size:.75rem;color:var(--text-dim);margin-top:.2rem}
+.metric-card .tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1c2128;border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem .7rem;font-size:.82rem;white-space:nowrap;z-index:10;color:var(--text-dim)}
+.metric-card:hover .tooltip{display:block}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Mainlines */
+.mainline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:.6rem;cursor:pointer;transition:border-color .2s}
+.mainline:hover{border-color:var(--accent)}
+.mainline-header{display:flex;align-items:center;justify-content:space-between}
+.mainline-name{font-weight:500;font-size:.92rem}
+.mainline-name .tag{display:inline-block;font-size:.75rem;padding:.1rem .4rem;border-radius:3px;margin-left:.5rem;vertical-align:middle;font-weight:700;letter-spacing:.05em}
+.mainline-name .tag.new{background:rgba(46,160,67,.2);color:var(--green)}
+.mainline-name .tag.stall{background:rgba(248,81,73,.15);color:var(--p0)}
+.mainline-pct{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent)}
+.mainline-bar{height:6px;background:var(--border);border-radius:3px;margin-top:.6rem;overflow:hidden}
+.mainline-fill{height:100%;border-radius:3px;transition:width .8s ease;background:linear-gradient(90deg,var(--green-dim),var(--green))}
+.mainline-fill.stall{background:linear-gradient(90deg,#6e4020,var(--p1))}
+.mainline-subtasks{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mainline-subtasks.open{max-height:600px}
+.mainline-subtasks ul{list-style:none;margin-top:.7rem;font-size:.8rem;color:var(--text-dim)}
+.mainline-subtasks li{padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.mainline-subtasks .done{color:var(--green)}
+.mainline-subtasks .pending{color:var(--text-faint)}
+.mainline-chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.mainline-chevron.open{transform:rotate(90deg)}
+
+/* Headlines */
+.headline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;border-left:3px solid var(--accent);transition:border-color .2s}
+.headline-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+.headline-body{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+.gh-link{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);border-bottom:1px dotted rgba(88,166,255,.3)}
+
+/* Collapsibles */
+.collapsible{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.6rem;overflow:hidden}
+.collapsible-header{padding:.8rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:.88rem;transition:background .15s}
+.collapsible-header:hover{background:var(--card-hover)}
+.collapsible-header .chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.collapsible-header .chevron.open{transform:rotate(90deg)}
+.collapsible-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.collapsible-body.open{max-height:2000px}
+.collapsible-content{padding:0 1.2rem 1rem}
+
+/* Scorecard */
+.score-row{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.score-row:last-child{border-bottom:none}
+.score-badge{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700}
+.score-badge.pass{background:rgba(46,160,67,.15);color:var(--green)}
+.score-badge.fail{background:rgba(248,81,73,.12);color:var(--p0)}
+.score-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.score-text{flex:1;color:var(--text-dim)}
+.score-note{font-size:.82rem;color:var(--text-faint)}
+
+/* PR Table */
+.pr-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.pr-table th{text-align:left;color:var(--text-faint);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.pr-table td{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.pr-table .num{font-family:'JetBrains Mono',monospace;color:var(--accent)}
+.pr-status{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.pr-status.locked{background:rgba(248,81,73,.12);color:var(--p0)}
+.pr-status.review{background:rgba(88,166,255,.12);color:var(--accent)}
+.pr-status.merged{background:rgba(46,160,67,.15);color:var(--green)}
+.pr-status.docs{background:rgba(110,118,129,.15);color:var(--text-dim)}
+
+/* Chart */
+.chart-wrap{height:280px;position:relative}
+
+/* Truth Table */
+.truth-group-title{font-size:.85rem;color:var(--text-faint);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:1rem 0 .5rem}
+.truth-row{display:grid;grid-template-columns:60px 1fr 100px 100px;gap:.5rem;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.truth-row:last-child{border-bottom:none}
+.truth-num{font-family:'JetBrains Mono',monospace}
+.truth-badge{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.78rem;font-weight:700;text-align:center}
+.truth-badge.open{background:rgba(248,81,73,.12);color:var(--p0)}
+.truth-badge.closed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.fixed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.none{background:rgba(110,118,129,.12);color:var(--text-faint)}
+.truth-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.truth-mismatch{background:rgba(210,153,34,.06);border-radius:var(--radius-sm)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.97rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.97rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.82rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.truth-row{grid-template-columns:50px 1fr;gap:.3rem}.truth-row>:nth-child(3),.truth-row>:nth-child(4){grid-column:span 1}.logo{font-size:2rem}.header h1{font-size:1.4rem}.collapsible-body.open{max-height:3000px}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发日报 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 修改下方 REPORT 对象中的数据                                 ║
+// ║  2. 在浏览器中打开此文件即可                                     ║
+// ║  3. 所有 HTML 由 JS 从 REPORT 数据自动渲染                       ║
+// ║                                                                  ║
+// ║  天气等级:                                                       ║
+// ║    sun    = ☀️ 晴        (无阻塞)                                ║
+// ║    cloudy = ⛅ 晴转多云  (有关注项)                               ║
+// ║    overcast = 🌥️ 多云   (多项阻塞)                               ║
+// ║    rain   = 🌧️ 阵雨     (关键路径受阻)                           ║
+// ║    storm  = ⛈️ 雷暴      (生产事故)                               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT = {
+  "schema": "exomind-devlog-report",
+  "version": "1.0",
+  "generated": "2026-04-03T14:46:21.401Z",
+  "meta": {
+    "title": "开发晚报",
+    "date": "2026-04-03",
+    "coverage": "04-03 16:45 ~ 04-03 22:39",
+    "baseline": "51cf3188",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Android",
+    "model": "Codex",
+    "version": "GPT-5"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "inflow 收窄，Q/T/R 同时兑现",
+    "ups": [
+      "PR #827 于 2026-04-03 16:56 +08:00 合入，RT-native CLI shell phase 1 进入 dev，并同步关掉 #825。",
+      "origin/dev 在 2026-04-03 18:07~21:49 +08:00 连续前推 5 个提交；70c2e8a5 把 batch Q task-dag 交互升级压进主线，51cf3188 又补上 real-upstream ls/cd broker flow 测试。",
+      "本窗口 open issues 维持在 303，新增 inflow 从上轮的 6 条收窄到 1 条，仅新增 #829。"
+    ],
+    "downs": [
+      "PR #811 到 2026-04-03 18:55 +08:00 仍是 mergeStateStatus=UNKNOWN，且 Workers Builds: exomind 为 FAILURE。",
+      "#823 / #828 / #829 说明 Agent session 契约、Windows dev-runtime 与 terminal 绑定层还在继续外溢，T/R 仍未真正收口。",
+      "#527 / #532 / #731 仍无新的跨端同步验证证据，P0 主风险继续被更高频的新 inflow 挤压。"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "303",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "#825 关 / #829 开",
+      "tooltip": "上期 303 → 本期 303"
+    },
+    {
+      "label": "Open PRs",
+      "value": "4",
+      "delta": "↓ 1",
+      "trend": "down",
+      "note": "#827 已合入",
+      "tooltip": "上期 5 → 本期 4"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "1",
+      "delta": "↓ 5",
+      "trend": "down",
+      "note": "仅 #829",
+      "tooltip": "以上期 coverage 终点 04-03 16:45 为界；上期窗口 6 → 本期 1"
+    },
+    {
+      "label": "合并 PR",
+      "value": "1",
+      "delta": "↓ 2",
+      "trend": "down",
+      "note": "#827",
+      "tooltip": "以上期 coverage 终点 04-03 16:45 为界；上期窗口 3 → 本期 1"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "Q 批次首次真正落到 dev",
+      "tag": "new",
+      "pct": 22,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "4345dc39 刷新 batch q dag 决策文档",
+          "done": true
+        },
+        {
+          "text": "70c2e8a5 land batch q interaction upgrades",
+          "done": true
+        },
+        {
+          "text": "#501 仍 OPEN，task-dag epic 还没关账",
+          "done": false,
+          "issue": 501
+        },
+        {
+          "text": "#700 / #701 的模式命名与空白创建语义还没从代码推进到关单",
+          "done": false
+        },
+        {
+          "text": "#660 / #653 / #639 等后续交互仍未切入",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "CLI shell phase 1 已进主线，但 T 继续扩边",
+      "tag": "new",
+      "pct": 38,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "PR #827 已合入，RT-native connect-first CLI shell 落入 dev",
+          "done": true
+        },
+        {
+          "text": "#825 已 CLOSED",
+          "done": true
+        },
+        {
+          "text": "#829 新开，开始收口 session.id / inner_session_id / pty_id / 视图绑定契约",
+          "done": false,
+          "issue": 829
+        },
+        {
+          "text": "PR #811 仍 OPEN 且 Workers Build 失败",
+          "done": false
+        },
+        {
+          "text": "#821 / #824 仍待和新 CLI / terminal surface 收成一条线",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "R 批次继续补 RT broker / session 基建",
+      "pct": 26,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "51cf3188 add real-upstream ls cd broker flow",
+          "done": true
+        },
+        {
+          "text": "#823 session 定义工具集 + history 续跑仍 OPEN",
+          "done": false,
+          "issue": 823
+        },
+        {
+          "text": "#828 Windows dev-runtime 假加载问题仍 OPEN",
+          "done": false,
+          "issue": 828
+        },
+        {
+          "text": "#805 契约 / 状态机测试网兜仍未完成",
+          "done": false,
+          "issue": 805
+        }
+      ]
+    },
+    {
+      "name": "Issue inflow 已降温，但旧债治理没跟上",
+      "pct": 36,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "新增 issue 从 6 收到 1",
+          "done": true
+        },
+        {
+          "text": "#825 关单抵消 #829 新增，open issues 守在 303",
+          "done": true
+        },
+        {
+          "text": "#809 仍 OPEN，残余治理没动",
+          "done": false,
+          "issue": 809
+        },
+        {
+          "text": "#591 / #575 / #418 / #514 等 code-fixed issue 仍 OPEN",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "跨端同步 P0 继续冻结",
+      "tag": "stall",
+      "pct": 5,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#527 手机↔电脑 RT SQLite 互通无新推进",
+          "done": false,
+          "issue": 527
+        },
+        {
+          "text": "#532 新 RT + ECS 跨端同步无新推进",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "#731 热点下安卓↔安卓验证仍无新证据",
+          "done": false,
+          "issue": 731
+        }
+      ]
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧭",
+      "title": "PR #827 合入并关掉 #825，CLI shell 先拿到主线入口",
+      "color": "var(--green)",
+      "body": "16:56 +08:00 合入的不是抽象规划，而是 RT-native connect-first CLI shell phase 1。T 批次第一次有了真正进入 dev 的第三客户端壳。"
+    },
+    {
+      "emoji": "🕸️",
+      "title": "Q 批次交互升级 + RT broker flow 测试在同一晚压进 dev",
+      "color": "var(--accent)",
+      "body": "18:58 的 4345dc39 先刷新 batch q 方案，20:22 的 70c2e8a5 紧跟着把 task-dag 交互升级落地；21:49 的 51cf3188 又把 broker flow 测试补上。"
+    },
+    {
+      "emoji": "🧷",
+      "title": "#829 新开，T 的命名/绑定契约开始显性化",
+      "color": "var(--orange)",
+      "body": "CLI 入口刚落下，session.id / inner_session_id / pty_id / 视图绑定的分层契约就被单独拉成 issue，说明 T 真正的收口点已经从“能不能接上”转成“怎么保证语义统一”。"
+    },
+    {
+      "emoji": "🧪",
+      "title": "#811 仍卡 Workers Build failure，merge 瓶颈没有真正松动",
+      "color": "var(--p0)",
+      "body": "当前最明确的未收口风险，依旧不是没人做，而是现成入口还过不了验证。#827 已 merge，但 #811 还没过线。"
+    }
+  ],
+  "scorecard": [
+    {
+      "text": "先把 PR #811 与 PR #827 的 Workers Build 失败修掉",
+      "result": "partial",
+      "note": "#827 已 merge，但 #811 仍 FAILURE"
+    },
+    {
+      "text": "把 #823 放到 R、把 #821/#824/#825 放到 T 的明确执行顺序里",
+      "result": "partial",
+      "note": "#825 已关，#823/#821/#824 仍 OPEN，且又新增 #829"
+    },
+    {
+      "text": "对 #809 补关单或拆 residual issue",
+      "result": "fail",
+      "note": "#809 仍 OPEN"
+    },
+    {
+      "text": "给 #807 追加 phase 3 / shell-aftercare 的下一组 slice",
+      "result": "fail",
+      "note": "这轮主线转向 Q/T/R，没有新的 #807 slice 证据"
+    },
+    {
+      "text": "保住 #527 / #532 / #731 的执行时段",
+      "result": "fail",
+      "note": "本窗口仍无新的跨端同步验证证据"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 811,
+        "title": "feat: 规范化 PTY 终端会话生命周期",
+        "status": "ready",
+        "branch": "feature/issue-806-terminal-lifecycle"
+      },
+      {
+        "num": 790,
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "status": "draft",
+        "branch": "feature/issue-789-session-runtime-federation"
+      },
+      {
+        "num": 565,
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "status": "docs",
+        "branch": "ex/govn-governance-docs"
+      },
+      {
+        "num": 466,
+        "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+        "status": "locked",
+        "branch": "feature/issue-421-worker-agent"
+      }
+    ],
+    "merged": [
+      {
+        "num": 827,
+        "title": "feat(cli): add RT-native connect-first CLI shell",
+        "date": "04-03"
+      },
+      {
+        "num": 826,
+        "title": "refactor(ui-system): finish issue 807 ordinary page shell unification",
+        "date": "04-03"
+      },
+      {
+        "num": 820,
+        "title": "test(settings): sync qwen omni registry coverage",
+        "date": "04-03"
+      },
+      {
+        "num": 819,
+        "title": "refactor(ui-system): finish issue 807 phase 2 ordinary page migration",
+        "date": "04-03"
+      }
+    ]
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "架构",
+      "Web",
+      "enhancement",
+      "P1",
+      "移动端",
+      "Agent",
+      "research",
+      "时间块",
+      "事件日志"
+    ],
+    "data": [
+      226,
+      114,
+      108,
+      86,
+      80,
+      77,
+      71,
+      45,
+      41,
+      32,
+      23,
+      22
+    ],
+    "deltas": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "highlights": {
+      "P0": "#807 #532 #527",
+      "P1": "71 issues",
+      "Agent": "#806 #821 #823 #824 #829 #816 #817 #818",
+      "No Priority": "4 issues"
+    }
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 809,
+        "title": "bug(voice-shortcut): overlay partial transcript duplicates and init race leaves stale listeners",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 591,
+        "title": "基于用户历史与当下状态的图形化交互式功能导航",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 575,
+        "title": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 418,
+        "title": "tracking: 任务与时间块解耦、关联语义与反馈联动状态更新",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      },
+      {
+        "num": 514,
+        "title": "feat(dev): 开发态多实例窗口标题辨认与实例诊断信息",
+        "gh": "OPEN",
+        "code": "FIXED",
+        "mismatch": true
+      }
+    ]
+  },
+  "poolHealth": {
+    "prIssueMismatch": [
+      {
+        "pr": 593,
+        "issue": 591,
+        "prTitle": "feat: 新增 Ritual Home 入口流",
+        "issueTitle": "基于用户历史与当下状态的图形化交互式功能导航"
+      },
+      {
+        "pr": 579,
+        "issue": 575,
+        "prTitle": "fix(voice/runtime): 双层去重修复 NowInputRow 与多实例 EventLog (#575 #576)",
+        "issueTitle": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）"
+      },
+      {
+        "pr": 577,
+        "issue": 418,
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab（#418 #516）",
+        "issueTitle": "tracking: 任务与时间块解耦、关联语义与反馈联动状态更新"
+      },
+      {
+        "pr": 517,
+        "issue": 514,
+        "prTitle": "feat(issue-514): 新增开发态实例诊断与标题同步",
+        "issueTitle": "feat(dev): 开发态多实例窗口标题辨认与实例诊断信息"
+      }
+    ],
+    "staleHighPriority": [
+      {
+        "num": 368,
+        "title": "feat(ecs-2): 提取 Transport 抽象并统一 HTTP/SSE adapter",
+        "priority": "P1",
+        "staleDays": 28
+      },
+      {
+        "num": 455,
+        "title": "test: 核心模块测试覆盖缺口补充（runtime-client / runtime-manager / AgentsPage）",
+        "priority": "P1",
+        "staleDays": 25
+      },
+      {
+        "num": 457,
+        "title": "fix(rust): 消除不安全 unwrap + Cargo.toml edition 修正 + 依赖更新",
+        "priority": "P1",
+        "staleDays": 25
+      },
+      {
+        "num": 317,
+        "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+        "priority": "P1",
+        "staleDays": 19
+      },
+      {
+        "num": 366,
+        "title": "epic(ecs): ExoMind Communication Stack 实施总计划（优先补 ECS-2/ECS-3）",
+        "priority": "P1",
+        "staleDays": 19
+      },
+      {
+        "num": 385,
+        "title": "feat(agent-hub): 接入 Claude CLI / Codex，支持流式会话与动态 Agent 生命周期",
+        "priority": "P1",
+        "staleDays": 16
+      },
+      {
+        "num": 534,
+        "title": "tech-debt: 安全修复 + 死代码清理",
+        "priority": "P1",
+        "staleDays": 16
+      },
+      {
+        "num": 553,
+        "title": "feat(dev-manager): up 前台模式 — 多实例管理 + 流式日志 + graceful stop",
+        "priority": "P1",
+        "staleDays": 16
+      }
+    ],
+    "stalePriority": [
+      {
+        "num": 368,
+        "title": "feat(ecs-2): 提取 Transport 抽象并统一 HTTP/SSE adapter",
+        "priority": "P1",
+        "staleDays": 28
+      },
+      {
+        "num": 455,
+        "title": "test: 核心模块测试覆盖缺口补充（runtime-client / runtime-manager / AgentsPage）",
+        "priority": "P1",
+        "staleDays": 25
+      },
+      {
+        "num": 457,
+        "title": "fix(rust): 消除不安全 unwrap + Cargo.toml edition 修正 + 依赖更新",
+        "priority": "P1",
+        "staleDays": 25
+      },
+      {
+        "num": 317,
+        "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+        "priority": "P1",
+        "staleDays": 19
+      },
+      {
+        "num": 366,
+        "title": "epic(ecs): ExoMind Communication Stack 实施总计划（优先补 ECS-2/ECS-3）",
+        "priority": "P1",
+        "staleDays": 19
+      },
+      {
+        "num": 385,
+        "title": "feat(agent-hub): 接入 Claude CLI / Codex，支持流式会话与动态 Agent 生命周期",
+        "priority": "P1",
+        "staleDays": 16
+      },
+      {
+        "num": 534,
+        "title": "tech-debt: 安全修复 + 死代码清理",
+        "priority": "P1",
+        "staleDays": 16
+      },
+      {
+        "num": 553,
+        "title": "feat(dev-manager): up 前台模式 — 多实例管理 + 流式日志 + graceful stop",
+        "priority": "P1",
+        "staleDays": 16
+      }
+    ],
+    "noPriority": {
+      "current": 4,
+      "previous": 4
+    },
+    "aging": {
+      "oldCount": 66,
+      "total": 303,
+      "pct": 22,
+      "samples": [
+        {
+          "num": 25,
+          "title": "[EPIC] ExoMind v4架构统一与技术债务收敛",
+          "ageDays": 52,
+          "priority": "P1"
+        },
+        {
+          "num": 36,
+          "title": "design(product): 纸质·现有软件·外心三级运行体系",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 37,
+          "title": "feat(exobuffer): 通知拦截转发到外心缓冲区",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 38,
+          "title": "feat(exobuffer): 微信聊天转发到外心缓冲区",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 43,
+          "title": "feat(asr): 本地语音识别接口（Whisper/Vosk）",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 44,
+          "title": "feat(llm): 本地大语言模型接入（Ollama/Llama.cpp）",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 45,
+          "title": "feat(ui): 更多外观主题 — 主题系统扩展",
+          "ageDays": 51,
+          "priority": "P2"
+        },
+        {
+          "num": 47,
+          "title": "feat(tts): 云端语音合成 API 接入",
+          "ageDays": 51,
+          "priority": "P2"
+        }
+      ]
+    }
+  },
+  "actions": [
+    {
+      "text": "先把 PR #811 的 Workers Build 失败修掉",
+      "detail": "当前最明确的 merge 瓶颈还没松动"
+    },
+    {
+      "text": "把 #829 并进 T 的 session / pty / view 命名契约收口",
+      "detail": "CLI 入口已落地，下一步该压语义统一"
+    },
+    {
+      "text": "给 Q 补 issue 闭环，至少明确 #501 / #700 / #701 的 residual slice",
+      "detail": "不能让 task-dag 再出现“代码已进 dev，但 issue 仍全挂着”的失配"
+    },
+    {
+      "text": "把 #823 / #828 压成 R 的下一组测试与修复链",
+      "detail": "tool calls/history 续跑与 Windows dev-runtime 是当前硬底座"
+    },
+    {
+      "text": "强制留出 #527 / #532 / #731 的同步验证窗口",
+      "detail": "P0 不能继续被晚间 inflow 挤出主执行位"
+    }
+  ],
+  "insight": {
+    "text": "和 16:45 那版午报相比，这轮最大变化不是数字，而是兑现关系开始变好。上一轮看到的是新 inflow 一口气长出 #821~#828；这一轮真正落下来的，是 PR #827 merge 并关掉 #825、Q 批次交互升级进入 dev、RT broker flow 测试补上。于是盘面从“边界持续膨胀”改成“边界开始消化”，但只消化了一半：#811 仍卡在 failure，#829 又把 terminal 会话命名契约显性化，P0 同步仍没回到执行位。如果今晚不先把 #811 和 T/R 的契约残差收住，这波兑现很快又会重新被 inflow 吞掉。",
+    "author": "外心史官·Android [Codex GPT-5]"
+  }
+};
+
+// Weather gradient map
+const WEATHER_GRADIENTS = {
+  sun:      'linear-gradient(135deg, #f0a500, #ff6b00)',
+  cloudy:   'linear-gradient(135deg, #58a6ff, #8957e5)',
+  overcast: 'linear-gradient(135deg, #6e7681, #484f58)',
+  rain:     'linear-gradient(135deg, #6e40c9, #f85149)',
+  storm:    'linear-gradient(135deg, #f85149, #da3633)',
+};
+
+const HEADLINE_COLORS = ['var(--green)', 'var(--accent)', 'var(--purple)', 'var(--orange)', 'var(--p0)', 'var(--text-dim)'];
+
+function render() {
+  const R = REPORT;
+  const app = document.getElementById('app');
+  document.title = `ExoMind ${R.meta.title} · ${R.meta.date}`;
+
+  let html = '';
+
+  // ── Header ──
+  html += `<header class="header animate">
+    <div class="logo">EXOMIND</div>
+    <h1>${R.meta.title}</h1>
+    <div class="meta">${R.meta.date} · 覆盖 ${R.meta.coverage} · 基线 <span class="mono">${R.meta.baseline}</span></div>
+  </header>`;
+
+  // ── Weather + Metrics ──
+  const wGrad = WEATHER_GRADIENTS[R.weather.level] || WEATHER_GRADIENTS.cloudy;
+  html += `<div class="top-row">
+    <div class="weather-card animate d1" style="background:${wGrad}" onclick="toggleWeather()">
+      <div class="weather-emoji">${R.weather.emoji}</div>
+      <div class="weather-label">${R.weather.label}</div>
+      <div class="weather-sub">点击查看详情 ▾</div>
+      <div class="weather-details" id="weatherDetails">
+        <div class="up"><ul>${R.weather.ups.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+        <div class="down"><ul>${R.weather.downs.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      ${R.metrics.map((m, i) => `<div class="metric-card animate d${i+2}">
+        <div class="tooltip">${m.tooltip}</div>
+        <div class="label">${m.label}</div>
+        <div class="value">${m.value}</div>
+        <div class="delta ${m.trend}">${m.delta}</div>
+        <div class="note">${m.note}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // ── Mainlines ──
+  html += `<div class="section-title animate d3">主线追踪</div>`;
+  R.mainlines.forEach((m, i) => {
+    const tag = m.tag === 'new' ? '<span class="tag new">NEW</span>'
+      : m.tag === 'stall' ? '<span class="tag stall">STALL</span>' : '';
+    const subs = m.subtasks.map(s => {
+      const icon = s.done ? '<span class="done">✓</span>' : '<span class="pending">○</span>';
+      const link = s.issue ? ` ${ghLink(s.issue)}` : '';
+      return `<li>${icon} ${s.text}${link}</li>`;
+    }).join('');
+    html += `<div class="mainline animate d${Math.min(i+2,6)}">
+      <div class="mainline-header" onclick="toggleMainline(this)">
+        <span class="mainline-name">${m.name} ${tag}</span>
+        <span style="display:flex;align-items:center;gap:.6rem">
+          <span class="mainline-pct">${m.pct}%</span>
+          <span class="mainline-chevron">▶</span>
+        </span>
+      </div>
+      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${m.pct}%"></div></div>
+      <div class="mainline-subtasks"><ul>${subs}</ul></div>
+    </div>`;
+  });
+
+  // ── Headlines ──
+  html += `<div class="section-title animate d4">头条</div>`;
+  R.headlines.forEach((h, i) => {
+    const color = h.color || HEADLINE_COLORS[i] || 'var(--accent)';
+    html += `<div class="headline animate d${Math.min(i+4,6)}" style="border-left-color:${color}">
+      <div class="headline-title">${h.emoji} ${h.title}</div>
+      <div class="headline-body">${autoLink(h.body)}</div>
+    </div>`;
+  });
+
+  // ── Scorecard (collapsible) ──
+  html += renderCollapsible('📋 上期建议执行记分卡', '', 'd5', () => {
+    return R.scorecard.map(s => {
+      const icon = s.result === 'pass' ? '✓' : s.result === 'fail' ? '✗' : '△';
+      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text)}<div class="score-note">${autoLink(s.note)}</div></div></div>`;
+    }).join('');
+  });
+
+  // ── PR Board (collapsible) ──
+  const prSummary = `· Open ${R.prs.open.length} · Merged ${R.prs.merged.length}`;
+  html += renderCollapsible('🚦 PR 看板', prSummary, 'd5', () => {
+    let t = '<table class="pr-table"><tr><th>#</th><th>标题</th><th>状态</th></tr>';
+    R.prs.open.forEach(p => {
+      const extra = p.extra ? ` ${p.extra}` : '';
+      t += `<tr><td class="num"><a href="${GH_BASE}${p.num}">#${p.num}</a></td><td>${p.title}</td><td><span class="pr-status ${p.status}">${p.status}${extra}</span></td></tr>`;
+    });
+    t += '</table>';
+    if (R.prs.merged.length) {
+      t += '<div style="margin-top:.8rem;font-size:.85rem;color:var(--text-dim)">合并: ';
+      t += R.prs.merged.map(p => `${prLink(p.num)} ${p.title} (${p.date})`).join(' · ');
+      t += '</div>';
+    }
+    return t;
+  });
+
+  // ── Terrain (collapsible with chart) ──
+  html += renderCollapsible('🏔️ Issue 地形图', '', 'd5', () => {
+    return '<div class="chart-wrap"><canvas id="terrainChart"></canvas></div>';
+  }, true);
+
+  // ── Truth Table (collapsible) ──
+  html += renderCollapsible('🔬 代码 vs GitHub 真相表', '', 'd6', () => {
+    let t = '<div class="truth-row" style="font-size:.8rem;color:var(--text-faint);font-weight:700;border-bottom:1px solid var(--border)"><div></div><div>ISSUE</div><div>GITHUB</div><div>CODE</div></div>';
+    if (R.truth.closed.length) t += renderTruthGroup('已关闭 · 代码验证通过', R.truth.closed);
+    if (R.truth.stillOpen.length) t += renderTruthGroup('仍 OPEN · 代码已修复 ⚠️', R.truth.stillOpen);
+    return t;
+  });
+
+  // ── Pool Health (Issue 时效清点) ──
+  if (R.poolHealth) {
+    const ph = R.poolHealth;
+    // Build summary chips for collapsible header (like PR board)
+    const phChips = [];
+    if (ph.prIssueMismatch.length > 0) phChips.push(`<span style="color:var(--p1)">${ph.prIssueMismatch.length} 战果未清</span>`);
+    if (ph.staleHighPriority.length > 0) phChips.push(`<span style="color:var(--p0)">${ph.staleHighPriority.length} 僵持</span>`);
+    if (ph.noPriority.current > 0) phChips.push(`<span style="color:var(--p1)">${ph.noPriority.current} 未编入</span>`);
+    else phChips.push(`<span style="color:var(--green)">全编入</span>`);
+    if (ph.aging.pct > 0) phChips.push(`<span style="color:${ph.aging.pct > 40 ? 'var(--p0)' : ph.aging.pct > 25 ? 'var(--p1)' : 'var(--text-faint)'}">${ph.aging.pct}% 陈年</span>`);
+    const phSummary = phChips.length ? ' · ' + phChips.join(' · ') : '';
+    html += renderCollapsible('🕒 Issue 时效清点', phSummary, 'd6', () => {
+      let c = '';
+      // PR→Issue 断裂
+      if (ph.prIssueMismatch.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p1);margin-bottom:.3rem">🚩 战果未清</div>';
+        ph.prIssueMismatch.forEach(m => {
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0">PR ${prLink(m.pr)} 已合并 → ${ghLink(m.issue)} 仍 OPEN</div>`;
+        });
+        c += '</div>';
+      }
+      // P0/P1 停滞
+      if (ph.staleHighPriority.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p0);margin-bottom:.3rem">⏳ 僵持线</div>';
+        ph.staleHighPriority.forEach(s => {
+          const barLen = Math.min(Math.round(s.staleDays / 2), 15);
+          const bar = '█'.repeat(barLen) + '░'.repeat(Math.max(15 - barLen, 0));
+          const cls = s.priority === 'P0' ? 'color:var(--p0)' : 'color:var(--p1)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0;font-family:'JetBrains Mono',monospace">${ghLink(s.num)} <span style="${cls}">${s.priority}</span> <span style="color:var(--text-faint)">${bar}</span> ${s.staleDays}d ${s.title}</div>`;
+        });
+        c += '</div>';
+      }
+      // 无优先级
+      const npText = ph.noPriority.current === 0
+        ? `<span style="color:var(--green)">全部编入 ✅</span>`
+        : `<span style="color:var(--p1)">${ph.noPriority.current}</span>`;
+      const npDelta = ph.noPriority.previous !== ph.noPriority.current
+        ? ` <span style="color:var(--text-faint)">(上期 ${ph.noPriority.previous})</span>` : '';
+      c += `<div style="font-size:.82rem;color:var(--text-dim);margin-top:.5rem">🏷 未编入 ${npText}${npDelta}</div>`;
+      // 陈年阵地 — 总览 + 具体 issue 列表
+      const agePct = ph.aging.pct;
+      const ageColor = agePct > 40 ? 'var(--p0)' : agePct > 25 ? 'var(--p1)' : 'var(--text-dim)';
+      c += `<div style="margin-top:.8rem"><div style="font-size:.85rem;font-weight:700;color:${ageColor};margin-bottom:.3rem">📦 陈年阵地 ${agePct}% &gt;30d (${ph.aging.oldCount}/${ph.aging.total})</div>`;
+      if (ph.aging.samples && ph.aging.samples.length > 0) {
+        ph.aging.samples.forEach(s => {
+          const pColor = s.priority === 'P0' ? 'var(--p0)' : s.priority === 'P1' ? 'var(--p1)' : 'var(--text-faint)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.15rem 0">${ghLink(s.num)} <span style="color:${pColor}">${s.priority}</span> <span style="color:var(--text-faint)">${s.ageDays}d</span> ${s.title}</div>`;
+        });
+      }
+      c += '</div>';
+      return c;
+    });
+  }
+
+  // ── Actions ──
+  html += `<div class="section-title animate d6">建议行动</div>`;
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  html += `<div id="actions" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem">`;
+  R.actions.forEach((a, i) => {
+    const checked = stored[i] ? 'checked' : '';
+    html += `<div class="action-item">
+      <input type="checkbox" class="action-check" ${checked} onchange="saveAction(${i}, this.checked)">
+      <div><div class="action-text">${autoLink(a.text)}</div><div class="action-detail">${autoLink(a.detail)}</div></div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // ── Insight ──
+  html += `<div class="insight animate d6">
+    <p>${autoLink(R.insight.text)}</p>
+    <div class="author">— ${R.insight.author} · ${R.meta.date}</div>
+  </div>`;
+
+  // ── Footer ──
+  const pub = R.publisher;
+  const pubStr = pub ? `${pub.identity}·${pub.os} [${pub.model} ${pub.version}]` : 'ExoMind dev-daily agent';
+  html += `<div class="footer">${pubStr}</div>`;
+
+  app.innerHTML = html;
+}
+
+function renderCollapsible(title, subtitle, delay, contentFn, hasChart) {
+  const sub = subtitle ? ` <span style="color:var(--text-faint);font-size:.75rem">${subtitle}</span>` : '';
+  return `<div class="collapsible animate ${delay}">
+    <div class="collapsible-header" onclick="toggleCollapsible(this${hasChart ? ',true' : ''})">
+      <span>${title}${sub}</span><span class="chevron">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="collapsible-content">${contentFn()}</div></div>
+  </div>`;
+}
+
+function renderTruthGroup(title, items) {
+  let h = `<div class="truth-group-title">${title}</div>`;
+  items.forEach(t => {
+    const cls = t.mismatch ? ' truth-mismatch' : '';
+    h += `<div class="truth-row${cls}">
+      <div class="truth-num"><a href="${GH_BASE}${t.num}">#${t.num}</a></div>
+      <div style="color:var(--text-dim)">${t.title}</div>
+      <div><span class="truth-badge ${t.gh.toLowerCase()}">${t.gh}</span></div>
+      <div><span class="truth-badge ${t.code.toLowerCase()}">${t.code}</span></div>
+    </div>`;
+  });
+  return h;
+}
+
+// ── Interactions ──
+function toggleWeather() { document.getElementById('weatherDetails').classList.toggle('open'); }
+function toggleMainline(header) {
+  const card = header.closest('.mainline');
+  card.querySelector('.mainline-subtasks').classList.toggle('open');
+  card.querySelector('.mainline-chevron').classList.toggle('open');
+}
+let chartInstance = null;
+function toggleCollapsible(header, hasChart) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+  if (hasChart && body.classList.contains('open')) setTimeout(renderChart, 50);
+}
+function saveAction(i, checked) {
+  const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  s[i] = checked;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+function renderChart() {
+  const ctx = document.getElementById('terrainChart');
+  if (!ctx) return;
+  if (chartInstance) chartInstance.destroy();
+  const d = REPORT.terrain;
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        data: d.data,
+        backgroundColor: d.labels.map(l => l === 'P0' ? 'rgba(248,81,73,.7)' : l === 'P1' ? 'rgba(210,153,34,.7)' : 'rgba(88,166,255,.4)'),
+        borderColor: d.labels.map(l => l === 'P0' ? '#f85149' : l === 'P1' ? '#d29922' : '#58a6ff'),
+        borderWidth: 1, borderRadius: 3,
+      }],
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: (ctx) => {
+              const label = ctx.label;
+              const delta = d.deltas[d.labels.indexOf(label)];
+              const hl = d.highlights[label];
+              let r = delta ? `变化: ${delta}` : '';
+              if (hl) r += (r ? '\n' : '') + hl;
+              return r;
+            }
+          },
+          backgroundColor: '#1c2128', borderColor: '#30363d', borderWidth: 1,
+          titleColor: '#e6edf3', bodyColor: '#8b949e',
+          titleFont: { family: 'JetBrains Mono' },
+        },
+      },
+      scales: {
+        x: { grid: { color: 'rgba(48,54,61,.5)' }, ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 } } },
+        y: { grid: { display: false }, ticks: { color: '#e6edf3', font: { family: 'Outfit', size: 12 } } },
+      },
+    },
+  });
+}
+
+// Boot
+render();
+</script>
+</body>
+</html>
