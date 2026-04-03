@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-03T02:42:46.098Z",
+  "generated": "2026-04-03T09:00:47.922Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-03-102500.html",
-    "dataFile": "2026-04-03-102500.json",
+    "file": "2026-04-03-164518.html",
+    "dataFile": "2026-04-03-164518.json",
     "date": "2026-04-03",
-    "time": "102500"
+    "time": "164518"
   },
   "reports": [
+    {
+      "date": "2026-04-03",
+      "time": "164518",
+      "title": "开发午报",
+      "file": "2026-04-03-164518.html",
+      "dataFile": "2026-04-03-164518.json",
+      "publisher": "外心史官·Android [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "主线继续推进，Agent/CLI 面快速增压"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "303",
+          "delta": "↑ 6",
+          "trend": "up",
+          "note": "新增 #821~#825 #828",
+          "tooltip": "上期 297 → 本期 303"
+        },
+        {
+          "label": "Open PRs",
+          "value": "5",
+          "delta": "↑ 1",
+          "trend": "up",
+          "note": "新增 PR #827",
+          "tooltip": "上期 4 → 本期 5"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "6",
+          "delta": "↑ 3",
+          "trend": "up",
+          "note": "#821~#825 #828",
+          "tooltip": "以上期 coverage 终点 04-03 10:24 为界；上期窗口 3 → 本期 6"
+        },
+        {
+          "label": "合并 PR",
+          "value": "3",
+          "delta": "↑ 3",
+          "trend": "down",
+          "note": "#819 #820 #826",
+          "tooltip": "以上期 coverage 终点 04-03 10:24 为界；上期窗口 0 → 本期 3"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-03-164518.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-03-164518.json"
+    },
     {
       "date": "2026-04-03",
       "time": "102500",
