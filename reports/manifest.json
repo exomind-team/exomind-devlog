@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-04T04:31:02.908Z",
+  "generated": "2026-04-04T14:29:35.404Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-04-122339.html",
-    "dataFile": "2026-04-04-122339.json",
+    "file": "2026-04-04-221522.html",
+    "dataFile": "2026-04-04-221522.json",
     "date": "2026-04-04",
-    "time": "122339"
+    "time": "221522"
   },
   "reports": [
+    {
+      "date": "2026-04-04",
+      "time": "221522",
+      "title": "开发晚报",
+      "file": "2026-04-04-221522.html",
+      "dataFile": "2026-04-04-221522.json",
+      "publisher": "外心史官·Android [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "DAG 收尾正式关账，焦点切向 RT/Agent 与同步 P0"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "294",
+          "delta": "↓ 3",
+          "trend": "down",
+          "note": "#501 / #661 / #679 关闭后继续回落",
+          "tooltip": "上期 297 → 本期 294"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "PR 池仍未变化",
+          "tooltip": "上期 4 → 本期 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "2",
+          "delta": "↑ 2",
+          "trend": "up",
+          "note": "#832 / #833 进入后续航段",
+          "tooltip": "本窗口新增 #832 / #833；上期窗口 0 → 本期 2"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "窗口内无新 merge",
+          "tooltip": "2026-04-04 12:28 +08 之后没有新 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-04-221522.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-04-221522.json"
+    },
     {
       "date": "2026-04-04",
       "time": "122339",
