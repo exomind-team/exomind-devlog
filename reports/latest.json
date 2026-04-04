@@ -9,10 +9,22 @@
     "file": "2026-04-04-122339.html",
     "dataFile": "2026-04-04-122339.json"
   },
+  "_devlogSource": {
+    "requestedSource": "auto",
+    "resolvedSource": "pages-json",
+    "trust": "high",
+    "consistency": "ok",
+    "guarantee": "manifest + data + latest 已一致校验",
+    "manifest": "https://exomind-team.github.io/exomind-devlog/reports/manifest.json",
+    "data": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-04-122339.json",
+    "latest": "https://exomind-team.github.io/exomind-devlog/reports/latest.json",
+    "fallbackUsed": false,
+    "notes": []
+  },
   "meta": {
     "title": "开发午报",
     "date": "2026-04-04",
-    "coverage": "04-03 22:39 ~ 04-04 12:23",
+    "coverage": "04-03 22:39 ~ 04-04 12:28",
     "baseline": "260c1151",
     "repo": "exomind-team/exomind"
   },
@@ -25,16 +37,16 @@
   "weather": {
     "level": "cloudy",
     "emoji": "⛅",
-    "label": "Q 全批收口，T/R 与 P0 旧债继续顶压",
+    "label": "Batch Q 关账，DAG 交互批次完成收口",
     "ups": [
-      "origin/dev 已推进到 260c1151，Batch Q 最后一段 focus-series refinement 落地，任务依赖图这一轮批次功能与收尾验证已全部压入主线。",
-      "Batch Q 七个子 issue #639 #653 #660 #694 #698 #700 #701 已在 2026-04-04 12:13 +08:00 前后全部关闭，issue 侧与代码侧首次完整对齐。",
-      "#501 在保持 OPEN 的同时追加了明确的 Batch Q close-out 评论，当前 broader interactive DAG epic 与已完成批次边界已经分清。"
+      "2026-04-04 12:13 +08:00，Batch Q 子 issue #639 #653 #660 #694 #698 #700 #701 已全部 CLOSED，open issues 从 303 降到 297。",
+      "dev 分支当前基线是 260c1151（2026-04-04），提交信息为 fix(task-dag): refine multi-anchor focus series，说明 Batch Q 最后一段聚焦系列修补已经落在主线。",
+      "#501 在 2026-04-04 12:13:56 +08:00 已追加 Batch Q final close-out sync 评论，问题侧收口证据齐全。"
     ],
     "downs": [
-      "PR #811 到 2026-04-04 12:15 +08:00 仍是 mergeStateStatus=DIRTY，Workers Builds: exomind 持续 FAILURE，terminal lifecycle 主入口还没过线。",
-      "#823 / #828 / #829 / #830 说明 T/R 的 session、Windows dev-runtime 与 proposal broker 契约继续增厚，Q 收口后压力没有消失，只是转移。",
-      "#527 / #532 / #731 仍无新的跨端同步验证证据；P0 主风险继续被近期的 DAG/Agent inflow 压在边缘。"
+      "#501 仍保持 OPEN，因为它还是更大的交互式 DAG epic；Batch Q 关账并不等于整个 DAG epic 结束。",
+      "#823 / #824 / #828 / #829 仍 OPEN，Terminal / RT session 契约和 Windows dev-runtime 仍是下一段主风险。",
+      "#527 / #532 / #731 依旧 OPEN，跨端同步 P0 仍没有新的验证推进。"
     ]
   },
   "metrics": [
@@ -43,7 +55,7 @@
       "value": "297",
       "delta": "↓ 6",
       "trend": "down",
-      "note": "Batch Q 七关 + #831 关",
+      "note": "Batch Q issue-side 全关",
       "tooltip": "上期 303 → 本期 297"
     },
     {
@@ -51,94 +63,77 @@
       "value": "4",
       "delta": "→ 0",
       "trend": "neutral",
-      "note": "仍为 #811 #790 #565 #466",
+      "note": "PR 池未变",
       "tooltip": "上期 4 → 本期 4"
     },
     {
       "label": "新增 Issue",
-      "value": "1",
-      "delta": "→ 0",
-      "trend": "neutral",
-      "note": "#831 已关，不留存 open 池",
-      "tooltip": "以上期 coverage 终点 04-03 22:39 为界；本窗口新增 1"
+      "value": "0",
+      "delta": "↓ 1",
+      "trend": "down",
+      "note": "本窗口无新增 inflow",
+      "tooltip": "以上期 coverage 终点 04-03 22:39 为界；上期窗口 1 → 本期 0"
     },
     {
       "label": "合并 PR",
       "value": "0",
       "delta": "↓ 1",
       "trend": "down",
-      "note": "本窗口无新增 merge",
+      "note": "本窗口无新 merge",
       "tooltip": "以上期 coverage 终点 04-03 22:39 为界；上期窗口 1 → 本期 0"
     }
   ],
   "mainlines": [
     {
-      "name": "Batch Q 在 issue 侧完成整批关账",
+      "name": "Batch Q 已从代码落地推进到 issue 侧正式收口",
       "tag": "new",
-      "pct": 100,
+      "pct": 94,
       "stall": false,
       "subtasks": [
         {
-          "text": "260c1151 fix(task-dag): refine multi-anchor focus series",
+          "text": "dev 基线前推到 260c1151",
           "done": true
         },
         {
-          "text": "#639 #653 #660 #694 #698 #700 #701 全部 CLOSED",
+          "text": "#639 / #653 / #660 / #694 / #698 / #700 / #701 全部 CLOSED",
           "done": true
         },
         {
-          "text": "#501 追加 Batch Q close-out 评论，但 broader epic 继续保持 OPEN",
+          "text": "#501 已追加 Batch Q final close-out 评论",
           "done": true,
           "issue": 501
         },
         {
-          "text": "Batch Q 已不再是当前执行阻塞，后续转入 broader DAG residual planning",
-          "done": true
+          "text": "#501 作为更大的 DAG epic 仍 OPEN",
+          "done": false,
+          "issue": 501
         }
       ]
     },
     {
-      "name": "T / R 接过主压力，terminal 与 runtime 契约继续外溢",
-      "pct": 34,
+      "name": "T / R 批次继续承接 Agent terminal 与 RT session 底座",
+      "pct": 36,
       "stall": false,
       "subtasks": [
         {
-          "text": "PR #811 仍 OPEN，Workers Build failure 未解",
-          "done": false
-        },
-        {
-          "text": "#823 继续承接 session 工具集与 history 续跑",
+          "text": "#823 session 工具集 / tool calls / history 续跑仍 OPEN",
           "done": false,
           "issue": 823
         },
         {
-          "text": "#828 继续暴露 Windows dev-runtime 假加载/端口残留",
+          "text": "#824 会话页活跃数与 Terminal 进入契约仍 OPEN",
+          "done": false,
+          "issue": 824
+        },
+        {
+          "text": "#828 Windows dev-runtime 假加载问题仍 OPEN",
           "done": false,
           "issue": 828
         },
         {
-          "text": "#829 / #830 把 terminal id 契约与 proposal broker 接口继续显性化",
-          "done": false
-        }
-      ]
-    },
-    {
-      "name": "客户端体系 Z 仍在，但当前不是最紧急收口位",
-      "pct": 40,
-      "stall": false,
-      "subtasks": [
-        {
-          "text": "#807 仍 OPEN，客户端体系总 epic 未关",
+          "text": "#829 session.id / inner_session_id / pty_id / 视图绑定分层契约仍 OPEN",
           "done": false,
-          "issue": 807
-        },
-        {
-          "text": "ordinary page shell / migration 已落在更早窗口，本窗口无新增 merge",
-          "done": true
-        },
-        {
-          "text": "Q 收口后，DAG 残余不再与 Z 的壳层推进混在一条批次里",
-          "done": true
+          "issue": 829
         }
       ]
     },
@@ -149,17 +144,17 @@
       "stall": true,
       "subtasks": [
         {
-          "text": "#527 手机↔电脑 RT SQLite 互通无新推进",
+          "text": "#527 手机↔电脑 RT SQLite 数据互通仍 OPEN",
           "done": false,
           "issue": 527
         },
         {
-          "text": "#532 新 RT + ECS 跨端同步无新推进",
+          "text": "#532 新 RT + ECS 跨端同步仍 OPEN",
           "done": false,
           "issue": 532
         },
         {
-          "text": "#731 热点下安卓↔安卓验证仍无新证据",
+          "text": "#731 热点下安卓↔安卓验证仍 OPEN",
           "done": false,
           "issue": 731
         }
@@ -169,54 +164,48 @@
   "headlines": [
     {
       "emoji": "✅",
-      "title": "Batch Q 七个子 issue 在同一轮全部关闭，Q 批次正式从 active 转为 done",
+      "title": "Batch Q 子 issue #639 #653 #660 #694 #698 #700 #701 已在 2026-04-04 上午全部关单",
       "color": "var(--green)",
-      "body": "04-04 12:13 +08:00 左右，#639 #653 #660 #694 #698 #700 #701 连续关单；这次不是单点代码落地，而是批次级交付与 issue 侧闭环同时完成。"
+      "body": "这不是单点修复，而是任务 DAG Batch Q 的正式 issue-side close-out。open issues 同步从 303 降到 297。"
     },
     {
-      "emoji": "🧭",
-      "title": "260c1151 成为 Batch Q 最终基线，multi-anchor focus series 合同补齐",
+      "emoji": "🧩",
+      "title": "dev 已前推到 260c1151，最后一块是 #660 的 multi-anchor focus series 修补",
       "color": "var(--accent)",
-      "body": "最后一笔 refine multi-anchor focus series 把 OR-union、same-visible-series removal、已锚定 badge 和 filtered split-series regression 一起收完，Q 才真正结束。"
+      "body": "提交 260c1151 对应 fix(task-dag): refine multi-anchor focus series，说明 Batch Q 的最后一段不是停在文档，而是已经真正落进主线。"
     },
     {
-      "emoji": "📝",
-      "title": "#501 保持 OPEN，但已追加明确的 Batch Q close-out 评论",
+      "emoji": "🧾",
+      "title": "#501 已追加 final close-out sync 评论，但仍保持 OPEN 作为更大的 DAG epic",
       "color": "var(--orange)",
-      "body": "这把 broader interactive DAG epic 与已完成的 Batch Q 切开了：批次已完成，不再继续挂在“代码进了 dev 但 issue 没收”的模糊状态里。"
-    },
-    {
-      "emoji": "🧪",
-      "title": "真正还卡主线的是 #811，而不是 Q 本身",
-      "color": "var(--p0)",
-      "body": "到 12:15 +08:00，PR #811 仍 DIRTY 且 Workers Builds: exomind 失败。Q 关账后，终端生命周期与 RT 会话契约成了更明确的下一阻塞点。"
+      "body": "2026-04-04 12:13:56 +08:00 的评论已把 Batch Q 子 issue 全关、验证命令和基线提交都写清；保留 OPEN 是为了继续承接更广义的交互式 DAG 范围。"
     }
   ],
   "scorecard": [
     {
-      "text": "先把 PR #811 的 Workers Build 失败修掉",
+      "text": "让 Batch Q 子 issue 进入正式 issue 侧收口",
+      "result": "done",
+      "note": "#639 #653 #660 #694 #698 #700 #701 已全部 CLOSED"
+    },
+    {
+      "text": "把 Batch Q 的最后一个主线补丁落到 dev",
+      "result": "done",
+      "note": "260c1151 已在 dev"
+    },
+    {
+      "text": "给 #501 追加正式收口同步，但保留更大 epic 语义",
+      "result": "done",
+      "note": "#501 已补评论且仍 OPEN"
+    },
+    {
+      "text": "继续压缩 #823 / #824 / #828 / #829 的 terminal / RT 契约残差",
       "result": "fail",
-      "note": "#811 仍 DIRTY + FAILURE"
+      "note": "本窗口仍无关单证据"
     },
     {
-      "text": "把 #829 并进 T 的 session / pty / view 命名契约收口",
-      "result": "partial",
-      "note": "#829 在，但 T 仍继续增厚到 #830"
-    },
-    {
-      "text": "给 Q 补 issue 闭环，至少明确 #501 / #700 / #701 的 residual slice",
-      "result": "pass",
-      "note": "Batch Q 七子 issue 已关；#501 追加 close-out 评论并保持 broader epic OPEN"
-    },
-    {
-      "text": "把 #823 / #828 压成 R 的下一组测试与修复链",
-      "result": "partial",
-      "note": "问题已清楚，但本窗口没有新的 merge"
-    },
-    {
-      "text": "强制留出 #527 / #532 / #731 的同步验证窗口",
+      "text": "保住 #527 / #532 / #731 的同步验证窗口",
       "result": "fail",
-      "note": "P0 仍无新验证证据"
+      "note": "本窗口仍无新的跨端同步验证证据"
     }
   ],
   "prs": {
@@ -246,28 +235,7 @@
         "branch": "feature/issue-421-worker-agent"
       }
     ],
-    "merged": [
-      {
-        "num": 827,
-        "title": "feat(cli): add RT-native connect-first CLI shell",
-        "date": "04-03"
-      },
-      {
-        "num": 826,
-        "title": "refactor(ui-system): finish issue 807 ordinary page shell unification",
-        "date": "04-03"
-      },
-      {
-        "num": 820,
-        "title": "test(settings): sync qwen omni registry coverage",
-        "date": "04-03"
-      },
-      {
-        "num": 819,
-        "title": "refactor(ui-system): finish issue 807 phase 2 ordinary page migration",
-        "date": "04-03"
-      }
-    ]
+    "merged": []
   },
   "terrain": {
     "labels": [
@@ -315,7 +283,7 @@
     "highlights": {
       "P0": "#807 #532 #527",
       "P1": "72 issues",
-      "Agent": "#830 #829 #824 #823 #822 #821 #817 #816",
+      "Agent": "#806 #821 #823 #824 #829 #816 #817 #818",
       "No Priority": "4 issues"
     }
   },
@@ -548,24 +516,20 @@
   },
   "actions": [
     {
-      "text": "先修 PR #811 的 Workers Build failure",
-      "detail": "Q 已关账，terminal lifecycle 重新成为最明确的 merge 瓶颈"
+      "text": "把 #501 与 Batch Q 的边界固定为“epic 继续 open，但不再回流到 Batch Q 未完成”",
+      "detail": "避免 DAG epic 与已完成批次重新混写"
     },
     {
-      "text": "把 #823 / #828 / #829 / #830 压成 T/R 的下一组合同与测试链",
-      "detail": "session history、Windows dev-runtime 与 proposal broker 现在是同一簇问题"
+      "text": "继续压 #823 / #824 / #828 / #829 这组 terminal / RT session 契约问题",
+      "detail": "这是 Batch Q 之后最明确的下一段工程收口"
     },
     {
-      "text": "对 #501 写出 post-Batch-Q residual slice，而不是继续混挂已完成子项",
-      "detail": "broader interactive DAG epic 应继续 open，但边界要比 Batch Q 更清楚"
-    },
-    {
-      "text": "给 #527 / #532 / #731 排一次专用同步验证窗口",
-      "detail": "P0 主风险不能继续被 DAG/Agent inflow 挤出主执行位"
+      "text": "优先恢复 #527 / #532 / #731 的同步验证时段",
+      "detail": "P0 不能继续被 UI / terminal inflow 挤出主执行位"
     }
   ],
   "insight": {
-    "text": "和昨晚那版晚报相比，盘面最大的变化不是新增代码，而是 Q 终于完成了“代码、测试、issue 关单、epic 口径”四件事的同时收口。260c1151 让 Batch Q 的最后一块 focus-series 合同补齐，随后七个子 issue 连续关掉，#501 也追加了清晰的 close-out 评论。这意味着 task-dag 不再是当前最模糊的执行面，真正的下一阻塞重新暴露为 #811 以及 T/R 的 session、Windows dev-runtime 与 proposal broker 契约。若今天后半段还继续把注意力停留在已经关账的 Q，而不是转去解 #811 与 P0 同步旧债，项目会再次回到“局部漂亮、主线未通”的节奏。",
+    "text": "这一窗口里最关键的变化不是新增多少功能，而是 Batch Q 从“代码已落地”推进到了“issue 侧也正式关账”。当前 dev 基线已经来到 260c1151，Batch Q 的七个子 issue 也在 2026-04-04 上午一起关单，说明任务 DAG 这一轮收尾终于完成了从实现、验证到治理回链的闭环。但 #501 仍然 open，提醒我们它还是一个更大的 DAG epic，不该把“Batch Q 已结束”误解成“整个 DAG 工作面已经收尾”。因此下一段的重点自然从 Q 切回 T / R 与同步 P0：terminal / RT session 契约、Windows dev-runtime、以及跨端同步验证，仍然是当前更硬的主风险。",
     "author": "外心史官·Android [Codex GPT-5]"
   }
 }

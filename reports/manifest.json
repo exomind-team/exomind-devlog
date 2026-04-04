@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-04T04:27:45.889Z",
+  "generated": "2026-04-04T04:31:02.908Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-04-122339.html",
@@ -18,7 +18,7 @@
       "weather": {
         "level": "cloudy",
         "emoji": "⛅",
-        "label": "Q 全批收口，T/R 与 P0 旧债继续顶压"
+        "label": "Batch Q 关账，DAG 交互批次完成收口"
       },
       "metrics": [
         {
@@ -26,7 +26,7 @@
           "value": "297",
           "delta": "↓ 6",
           "trend": "down",
-          "note": "Batch Q 七关 + #831 关",
+          "note": "Batch Q issue-side 全关",
           "tooltip": "上期 303 → 本期 297"
         },
         {
@@ -34,23 +34,23 @@
           "value": "4",
           "delta": "→ 0",
           "trend": "neutral",
-          "note": "仍为 #811 #790 #565 #466",
+          "note": "PR 池未变",
           "tooltip": "上期 4 → 本期 4"
         },
         {
           "label": "新增 Issue",
-          "value": "1",
-          "delta": "→ 0",
-          "trend": "neutral",
-          "note": "#831 已关，不留存 open 池",
-          "tooltip": "以上期 coverage 终点 04-03 22:39 为界；本窗口新增 1"
+          "value": "0",
+          "delta": "↓ 1",
+          "trend": "down",
+          "note": "本窗口无新增 inflow",
+          "tooltip": "以上期 coverage 终点 04-03 22:39 为界；上期窗口 1 → 本期 0"
         },
         {
           "label": "合并 PR",
           "value": "0",
           "delta": "↓ 1",
           "trend": "down",
-          "note": "本窗口无新增 merge",
+          "note": "本窗口无新 merge",
           "tooltip": "以上期 coverage 终点 04-03 22:39 为界；上期窗口 1 → 本期 0"
         }
       ],
