@@ -1,11 +1,11 @@
 {
-  "generated": "2026-04-04T04:20:55.782Z",
+  "generated": "2026-04-04T04:21:31.146Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-03-26-042055.html",
-    "dataFile": "2026-03-26-042055.json",
+    "file": "2026-03-26-042131.html",
+    "dataFile": "2026-03-26-042131.json",
     "date": "2026-03-26",
-    "time": "042055"
+    "time": "042131"
   },
   "routes": [
     {
@@ -895,6 +895,43 @@
       "dataFile": "2026-03-26-092923.json",
       "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-092923.html",
       "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-092923.json"
+    },
+    {
+      "date": "2026-03-26",
+      "time": "042131",
+      "title": "开发航线",
+      "file": "2026-03-26-042131.html",
+      "dataFile": "2026-03-26-042131.json",
+      "publisher": "航线规划师·Android [Claude Opus 4.6]",
+      "status": {
+        "level": "rain",
+        "emoji": "🌧️",
+        "label": "逆风"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "12",
+          "note": "M~X"
+        },
+        {
+          "label": "就绪",
+          "value": "2",
+          "note": "M, W 可立即启动"
+        },
+        {
+          "label": "进行中",
+          "value": "0",
+          "note": "尚未启动"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "106",
+          "note": "266 中的 40%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-042131.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-03-26-042131.json"
     },
     {
       "date": "2026-03-26",
