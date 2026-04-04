@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-04T18:31:25.419Z",
+  "generated": "2026-04-04T18:44:58.926Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-04-221522.html",
-    "dataFile": "2026-04-04-221522.json",
-    "date": "2026-04-04",
-    "time": "221522"
+    "file": "2026-04-05-023932.html",
+    "dataFile": "2026-04-05-023932.json",
+    "date": "2026-04-05",
+    "time": "023932"
   },
   "reports": [
+    {
+      "date": "2026-04-05",
+      "time": "023932",
+      "title": "开发夜报",
+      "file": "2026-04-05-023932.html",
+      "dataFile": "2026-04-05-023932.json",
+      "publisher": "外心史官·Android [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "夜间无新增 merge，主线进入观察窗口"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "294",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜间无新增开关单",
+          "tooltip": "上窗口 294 → 本窗口 294"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "PR 池未变化",
+          "tooltip": "上窗口 4 → 本窗口 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "0",
+          "delta": "↓ 2",
+          "trend": "down",
+          "note": "夜间无新 inflow",
+          "tooltip": "上窗口 2 → 本窗口 0"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜间无新 merge",
+          "tooltip": "2026-04-04 22:15 +08 之后没有新 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-05-023932.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-05-023932.json"
+    },
     {
       "date": "2026-04-04",
       "time": "221522",
