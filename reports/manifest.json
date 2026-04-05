@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-04T18:44:58.926Z",
+  "generated": "2026-04-05T16:51:02.217Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-05-023932.html",
-    "dataFile": "2026-04-05-023932.json",
-    "date": "2026-04-05",
-    "time": "023932"
+    "file": "2026-04-06-004506.html",
+    "dataFile": "2026-04-06-004506.json",
+    "date": "2026-04-06",
+    "time": "004506"
   },
   "reports": [
+    {
+      "date": "2026-04-06",
+      "time": "004506",
+      "title": "开发夜报",
+      "file": "2026-04-06-004506.html",
+      "dataFile": "2026-04-06-004506.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "Terminal work still moves, but the window added 3 issues and 0 merges."
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "297",
+          "delta": "+3",
+          "trend": "up",
+          "note": "#834 / #835 / #836 opened in this window.",
+          "tooltip": "Previous 294 -> current 297"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "0",
+          "trend": "neutral",
+          "note": "The open PR pool is still flat at 4.",
+          "tooltip": "Previous 4 -> current 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "3",
+          "delta": "+3",
+          "trend": "up",
+          "note": "All new inflow landed on Q / X / T.",
+          "tooltip": "04-05 02:39 +08 added #834 / #835 / #836"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "0",
+          "trend": "neutral",
+          "note": "There is still no new merge in this window.",
+          "tooltip": "04-05 02:39 +08 merged PR = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-06-004506.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-06-004506.json"
+    },
     {
       "date": "2026-04-05",
       "time": "023932",
