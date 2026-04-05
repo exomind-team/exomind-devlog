@@ -1,13 +1,50 @@
 {
-  "generated": "2026-04-05T16:57:04.692Z",
+  "generated": "2026-04-05T17:03:23.513Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-06-010500.html",
-    "dataFile": "2026-04-06-010500.json",
+    "file": "2026-04-06-010502.html",
+    "dataFile": "2026-04-06-010502.json",
     "date": "2026-04-06",
-    "time": "010500"
+    "time": "010502"
   },
   "routes": [
+    {
+      "date": "2026-04-06",
+      "time": "010502",
+      "title": "开发航线",
+      "file": "2026-04-06-010502.html",
+      "dataFile": "2026-04-06-010502.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "Task DAG 回潮，R / T / Client-system 与新 P1 终端缺口继续挤压 ready 批次"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "14",
+          "note": "M~Z"
+        },
+        {
+          "label": "就绪",
+          "value": "5",
+          "note": "M / N / W / X / Y"
+        },
+        {
+          "label": "进行中",
+          "value": "4",
+          "note": "Q / R / T / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "122",
+          "note": "297 中的 41%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-06-010502.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-06-010502.json"
+    },
     {
       "date": "2026-04-06",
       "time": "010500",
