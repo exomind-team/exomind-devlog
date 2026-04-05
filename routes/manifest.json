@@ -1,13 +1,50 @@
 {
-  "generated": "2026-04-04T18:45:29.696Z",
+  "generated": "2026-04-05T16:57:04.692Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-05-023933.html",
-    "dataFile": "2026-04-05-023933.json",
-    "date": "2026-04-05",
-    "time": "023933"
+    "file": "2026-04-06-010500.html",
+    "dataFile": "2026-04-06-010500.json",
+    "date": "2026-04-06",
+    "time": "010500"
   },
   "routes": [
+    {
+      "date": "2026-04-06",
+      "time": "010500",
+      "title": "开发航线",
+      "file": "2026-04-06-010500.html",
+      "dataFile": "2026-04-06-010500.json",
+      "publisher": "Route Planner·Windows [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "Q reopened, T gained a fullscreen-route gap, and R / T / Sync still define the main path."
+      },
+      "metrics": [
+        {
+          "label": "Total Batches",
+          "value": "14",
+          "note": "M~Z"
+        },
+        {
+          "label": "Ready",
+          "value": "6",
+          "note": "M / N / Q / W / X / Y"
+        },
+        {
+          "label": "Active",
+          "value": "3",
+          "note": "R / T / Z"
+        },
+        {
+          "label": "Covered Issues",
+          "value": "125",
+          "note": "125 of 297 open issues"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-06-010500.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-06-010500.json"
+    },
     {
       "date": "2026-04-05",
       "time": "023933",
