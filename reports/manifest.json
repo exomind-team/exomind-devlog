@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-07T17:19:20.350Z",
+  "generated": "2026-04-07T18:29:11.543Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-08-205000.html",
@@ -23,10 +23,10 @@
       "metrics": [
         {
           "label": "Open Issues",
-          "value": "~326",
+          "value": "326",
           "delta": "+4",
           "trend": "up",
-          "note": "估算 #862~#870 新开，#864/#865/#866 达到 P1 级"
+          "note": "#862~#870 新开，#864/#865/#866 达到 P1 级"
         },
         {
           "label": "Open PRs",
@@ -37,7 +37,7 @@
         },
         {
           "label": "新增 Issue",
-          "value": "~9",
+          "value": "9",
           "delta": "+6",
           "trend": "up",
           "note": "#862~#870，agent-terminal 相关占多数"

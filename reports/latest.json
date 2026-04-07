@@ -1,7 +1,7 @@
 {
   "schema": "exomind-devlog-report",
   "version": "1.0",
-  "generated": "2026-04-07T17:19:20.342Z",
+  "generated": "2026-04-07T18:29:11.539Z",
   "_published": {
     "kind": "report",
     "date": "2026-04-08",
@@ -38,10 +38,10 @@
   "metrics": [
     {
       "label": "Open Issues",
-      "value": "~326",
+      "value": "326",
       "delta": "+4",
       "trend": "up",
-      "note": "估算 #862~#870 新开，#864/#865/#866 达到 P1 级"
+      "note": "#862~#870 新开，#864/#865/#866 达到 P1 级"
     },
     {
       "label": "Open PRs",
@@ -52,7 +52,7 @@
     },
     {
       "label": "新增 Issue",
-      "value": "~9",
+      "value": "9",
       "delta": "+6",
       "trend": "up",
       "note": "#862~#870，agent-terminal 相关占多数"
@@ -67,18 +67,22 @@
   ],
   "headlines": [
     {
+      "emoji": "🛠️",
       "title": "#864 把 archive-first 从讨论簇推成 P1，archive-os / 默认档案 / switcher 进入 Phase 1",
       "body": "#837 epic(archive-first) + #864 配合，把 archive 术语迁移、默认档案、ArchiveSession/UiSession 与 switcher 压成第一个明确的 Phase 1 入口，说明 Y' 从讨论层毕业了。#858 / #859 / #860 继续代表 signal-network / blackboard / collective-agent 的运行语义走向设计面。"
     },
     {
+      "emoji": "📚",
       "title": "#865 / #866 让 docs / website / user-manual 形成独立子轨，W 需要再拆出 W'",
-      "body": "#847 workflow(docs) + #865 把面向普通使用者的共读手册抬进 Phase 1；#866 把 website 独立仓库化问题正式提出。两条 inflow 同时达到成批粒度，说明 docs / website 这块不再适合挂在旧 W 批次，应该拆成 W' 独立推进。"
+      "body": "#847 workflow(docs) + #865 把面向普通使用者的共读手册抬进 Phase 1；#866 把 website 独立仓库化问题正式提出。两条 inflow 同时达到成批粒度，说明 docs / website 这块不再适合挂在旧 W 批次，应该拆成 W' 独立批次。"
     },
     {
+      "emoji": "🔧",
       "title": "15 个新 commit 持续推进 devlog gate / settings / agent-hub，但 GitHub 面仍无 merge/close",
       "body": "cd9b432b..6e666bb5 的 15 个 commit 命中：devlog gate 双层 schema 拦截、settings 快捷键统一、cli runtime 格式标准化、agent-hub tiled workbench 路由覆盖。问题是这些 commit 仍集中在 repo 内部，没有扩散到 GitHub issue/PR 结果面，所以 open issues / open PRs 仍然双升。"
     },
     {
+      "emoji": "🔄",
       "title": "#868 bug(sync-recovery) 把离线重连缺失补齐，P0 同步窗口正式出现技术设计面",
       "body": "#868 第一次把「配对 RT 断线重连后缺少恢复性同步」写成 bug，并加上了 🙋needs-human-test 标签。这是 #532 epic(sync/rt-ecs) 第一次出现明确的离线路径技术面——#869 接着定义离线分叉后的冲突处理契约。同步 P0 终于有了设计文档跟进，不是继续停在 epic 层。"
     }
@@ -86,39 +90,87 @@
   "mainlines": [
     {
       "name": "T' / S 从 commit 密度向 visible shell 收口推进",
-      "notes": [
-        "#836 / #840 / #842 继续代表 T' visible shell 的三条子轨（#836 P1 未找到页面、#840 窗格快捷键、#842 窗格树骨架）",
-        "6e666bb5 style(rust): normalize cli runtime and tauri formatting — cli 格式标准化推进 S 的 settings 基础",
-        "#852 shortcut contract + #851 sidebar configurable shortcuts 让 S 从 commit 密度向 settings 可操作面迁移",
-        "问题：visible shell 仍是 commit 密度驱动，没有按 P1/P2 优先级形成明确的收口节奏"
+      "pct": 25,
+      "tag": "",
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "闭环 #836（未找到页面，P1）— 优先",
+          "done": false,
+          "issue": 836
+        },
+        {
+          "text": "闭环 #842（窗格树骨架，P2 跟随其后）",
+          "done": false,
+          "issue": 842
+        },
+        {
+          "text": "闭环 #840（窗格快捷键，P2）",
+          "done": false,
+          "issue": 840
+        },
+        {
+          "text": "PR #863 review 之后一次性收尾，不要单独再开新 issue",
+          "done": false
+        }
       ]
     },
     {
       "name": "Y' archive-first + archive-os Phase 1 正式从讨论簇升为 P1",
-      "notes": [
-        "#864 design(archive-os) 把 archive-first epic 的第一步从讨论簇推成 Phase 1 表面",
-        "#858 design(signal-network-v1) / #859 design(blackboard) / #860 discussion(collective-agent) 继续推进 Y' 的运行语义设计",
-        "#861 discussion(identity-trust) / #862 discussion(audit-ui) 把治理和防伪留在了同一档案轨中",
-        "问题：Y' 的 P1 虽然有了，但本轮没有 merge/close，open 量仍在上升"
+      "pct": 14,
+      "tag": "new",
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "archive 术语迁移 + 默认档案 + ArchiveSession/UiSession + switcher",
+          "done": false,
+          "issue": 864
+        },
+        {
+          "text": "signal-network / blackboard / collective-agent 留在第二批次",
+          "done": false
+        }
       ]
     },
     {
       "name": "W 需要拆出 W'：docs / website / user-manual 达到成批独立粒度",
-      "notes": [
-        "#844 / #847 已把验证里程碑转文档 workflow 压进 W",
-        "#865 把面向普通使用者的共读手册推进 Phase 1",
-        "#866 把 website 独立仓库化 + 与 canonical 内容源仓的关系正式提出",
-        "#706 单一版本号 + 通道分离机制让对外文档发布有了可追溯门禁",
-        "问题：W 批次已承载过多不同类型 inflow，需要按文档/网站/手册拆成 W' 独立批次"
+      "pct": 9,
+      "tag": "",
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "#865 把面向普通使用者的共读手册推进 Phase 1",
+          "done": false,
+          "issue": 865
+        },
+        {
+          "text": "#866 把 website 独立仓库化 + 与 canonical 内容源仓关系正式提出",
+          "done": false,
+          "issue": 866
+        },
+        {
+          "text": "#847 验证里程碑转文档 workflow + #706 版本号机制",
+          "done": false,
+          "issue": 847
+        }
       ]
     },
     {
       "name": "同步 P0（#532 / #868）首次出现技术设计文档，但实测仍停滞",
-      "notes": [
-        "#868 bug(sync-recovery) + 🙋needs-human-test 标签出现，离线重连补齐问题正式被文档化",
-        "#869 design(sync-conflict) 定义配对 RT 离线分叉后的对象级冲突处理契约（任务/时间块/提案）",
-        "#532 epic(sync/rt-ecs) 本轮无实测推进，P0 仍只有 epic 无闭环",
-        "问题：文档跟进了但 human-test 仍未做，同步 P0 的结构性停滞没有缓解"
+      "pct": 6,
+      "tag": "stall",
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "补 #868 / #869 同步 bug 的 human-test 证据",
+          "done": false,
+          "issue": 868
+        },
+        {
+          "text": "推进同步 P0 从文档走向实测，不要停在 epic + design 层面",
+          "done": false,
+          "issue": 532
+        }
       ]
     }
   ],
@@ -252,118 +304,119 @@
     "stillOpen": [
       {
         "num": 870,
-        "title": "网络/会话：Terminal 弹窗先分流创建/恢复，恢复模式不再暴露路径输入",
-        "priority": "P2"
+        "title": "网络/会话：Terminal 弹窗先分流创建/恢复，恢复模式不再暴露路径输入"
       },
       {
         "num": 869,
-        "title": "design(sync-conflict): 配对 RT 离线分叉后的对象级冲突处理契约",
-        "priority": "P1"
+        "title": "design(sync-conflict): 配对 RT 离线分叉后的对象级冲突处理契约"
       },
       {
         "num": 868,
-        "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步，🙋needs-human-test",
-        "priority": "P0"
+        "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步，🙋needs-human-test"
       },
       {
         "num": 867,
-        "title": "bug(agent-terminal): PTY 内 Ctrl+点击外链无法拉起系统默认浏览器",
-        "priority": "P2"
+        "title": "bug(agent-terminal): PTY 内 Ctrl+点击外链无法拉起系统默认浏览器"
       },
       {
         "num": 866,
-        "title": "architecture(docs): 官网 website 是否独立仓库化，与 canonical 内容源仓关系",
-        "priority": "P2"
+        "title": "architecture(docs): 官网 website 是否独立仓库化，与 canonical 内容源仓关系"
       },
       {
         "num": 865,
-        "title": "docs(user-manual): 面向普通使用者的共读手册与操作指南 Phase 1",
-        "priority": "P2"
+        "title": "docs(user-manual): 面向普通使用者的共读手册与操作指南 Phase 1"
       },
       {
         "num": 864,
-        "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
-        "priority": "P1"
+        "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1"
       },
       {
         "num": 863,
-        "title": "fix: restore agent hub tiled workbench build surface",
-        "priority": "P1"
+        "title": "fix: restore agent hub tiled workbench build surface"
       },
       {
         "num": 862,
-        "title": "discussion(audit-ui): 对象局部历史、黑板移出痕迹与全局审计界面",
-        "priority": "P2"
+        "title": "discussion(audit-ui): 对象局部历史、黑板移出痕迹与全局审计界面"
       },
       {
         "num": 861,
-        "title": "discussion(identity-trust): 档案防伪、公开标识轮换与邀请信任责任",
-        "priority": "P2"
+        "title": "discussion(identity-trust): 档案防伪、公开标识轮换与邀请信任责任"
       }
     ]
   },
   "poolHealth": {
     "aging": {
       "total": 326,
+      "pct": 38,
       "samples": [
         {
           "num": 821,
           "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
-          "age": "long-standing"
+          "staleDays": 30,
+          "priority": "P1"
         },
         {
           "num": 790,
           "title": "feat(workbench): start session-runtime federation for issue 789",
-          "age": "long-standing"
+          "staleDays": 28,
+          "priority": "P2"
         },
         {
           "num": 565,
           "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
-          "age": "long-standing"
+          "staleDays": 90,
+          "priority": "P2"
         },
         {
           "num": 466,
           "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
-          "age": "long-standing"
+          "staleDays": 120,
+          "priority": "P2"
         },
         {
           "num": 532,
           "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
-          "age": "long-standing"
+          "staleDays": 14,
+          "priority": "P0"
         },
         {
           "num": 864,
           "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
-          "age": "new"
+          "staleDays": 1,
+          "priority": "P1"
         },
         {
           "num": 865,
           "title": "docs(user-manual): 面向普通使用者的人类/Agent 共读用户手册 Phase 1",
-          "age": "new"
+          "staleDays": 1,
+          "priority": "P2"
         },
         {
           "num": 868,
           "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步",
-          "age": "new"
+          "staleDays": 1,
+          "priority": "P0"
         }
       ]
     },
-    "stalePriority": [
+    "prIssueMismatch": [],
+    "staleHighPriority": [
       {
-        "num": 821
+        "num": 821,
+        "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
+        "staleDays": 30,
+        "priority": "P1"
       },
       {
-        "num": 790
-      },
-      {
-        "num": 565
-      },
-      {
-        "num": 466
-      },
-      {
-        "num": 532
+        "num": 532,
+        "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
+        "staleDays": 14,
+        "priority": "P0"
       }
-    ]
+    ],
+    "noPriority": {
+      "current": 0,
+      "previous": 2
+    }
   }
 }
