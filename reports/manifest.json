@@ -1,11 +1,11 @@
 {
-  "generated": "2026-04-07T19:41:06.986Z",
+  "generated": "2026-04-07T20:12:23.828Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-08-205000.html",
-    "dataFile": "2026-04-08-205000.json",
+    "file": "2026-04-08-041017.html",
+    "dataFile": "2026-04-08-041017.json",
     "date": "2026-04-08",
-    "time": "205000"
+    "time": "041017"
   },
   "reports": [
     {
@@ -56,6 +56,55 @@
       ],
       "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-205000.html",
       "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-205000.json"
+    },
+    {
+      "date": "2026-04-08",
+      "time": "041017",
+      "title": "开发夜报",
+      "file": "2026-04-08-041017.html",
+      "dataFile": "2026-04-08-041017.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "4 条夜间 inflow 叠加 2 条关闭后，open issue 净增 3；4 条 open PR 与同步 P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "325",
+          "delta": "↑ 3",
+          "trend": "up",
+          "note": "#867 #868 #869 #871 新开，#626 关闭后净增 3（#870 已在窗口内关闭）",
+          "tooltip": "上一份已发布 322 → 本期 325"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "上一份已发布 4 → 本期 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "4",
+          "delta": "↑ 1",
+          "trend": "up",
+          "note": "#867 #868 #869 #871（#870 已关，不计入当前 open inflow）",
+          "tooltip": "以上一份已发布时间 04-07 20:54 为界；当前仍 OPEN 的新 issue 为 4"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "本窗口无新 merge",
+          "tooltip": "以上一份已发布时间 04-07 20:54 为界；本窗口 merged PR 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-041017.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-041017.json"
     },
     {
       "date": "2026-04-07",
