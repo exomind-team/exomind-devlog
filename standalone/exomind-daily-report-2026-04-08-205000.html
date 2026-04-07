@@ -198,226 +198,218 @@ code,.mono{font-family:'JetBrains Mono',monospace}
 const REPORT = {
   "meta": {
     "date": "2026-04-08",
-    "baseline": "dev@6e666bb5",
-    "title": "开发日志",
-    "coverage": "",
+    "baseline": "dev@2c0d66b9",
+    "title": "开发晚报",
+    "coverage": "重发校准：2026-04-08 live snapshot（GitHub + origin/dev）",
     "repo": "exomind-team/exomind"
   },
   "publisher": {
     "identity": "外心史官",
     "os": "Windows",
-    "model": "Claude Sonnet 4",
-    "version": "2.6"
+    "model": "Codex",
+    "version": "GPT-5"
   },
   "weather": {
     "level": "cloudy",
-    "emoji": "🌥️",
-    "label": "15 个新 commit 但 GitHub 面仍未产生 merge/close，open 量继续双升",
+    "emoji": "⛅",
+    "label": "devlog 发布链恢复，live issue 池回到 325，但 4 条 open PR 与同步 P0 仍未松动",
     "ups": [
-      "15 个新 commit 推进 agent-terminal 生命周期、settings 统一与 devlog gate",
-      "#864 让 archive-first 从设计簇升为 P1，archive-os / 默认档案 / switcher 进入 Phase 1",
-      "#865 / #866 让 docs / website / user-manual 第一次形成独立子轨，W 需要拆出 W'"
+      "2c0d66b9 把 report schema / truth renderer / latest 校验一起补齐，Pages 默认入口重新回到 pages-json / high / ok",
+      "Open Issues live 从上一份已发布晚报的 326 回落到 325，当前刷新不再沿用失真的池健康统计",
+      "#864 / #865 / #866 与 PR #863 仍维持 W' / Y' / shell 三块清晰执行面，没有继续扩散出新的临时 inflow"
     ],
     "downs": [
-      "窗口内 0 merged PR、0 closed issue，open 总量仍在上升通道",
-      "同步 P0（#532 / #868）仍是结构性停滞，无实测进展",
-      "T' 的 visible shell 虽有多 commit 推进，但 #836 / #840 / #842 仍未闭环"
+      "4 条 open PR 仍全部悬而未决，PR #863 之外没有新的收口入口",
+      "同步 P0 仍卡在 #532 / #527 / #868，跨端验证与 human-test 证据没有新增",
+      "issue 池重新算数后暴露出 7 条未打 P 标签条目，说明 triage 仍有漏口"
     ]
   },
   "metrics": [
     {
       "label": "Open Issues",
-      "value": "326",
-      "delta": "+4",
-      "trend": "up",
-      "note": "#862~#870 新开，#864/#865/#866 达到 P1 级",
-      "tooltip": "#862~#870 新开，#864/#865/#866 达到 P1 级"
+      "value": "325",
+      "delta": "-1",
+      "trend": "down",
+      "note": "较已发布 2026-04-08 20:50 晚报回落 1",
+      "tooltip": "live GitHub open issue count = 325；上一份已发布晚报为 326"
     },
     {
       "label": "Open PRs",
       "value": "4",
       "delta": "→0",
       "trend": "neutral",
-      "note": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入",
-      "tooltip": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入"
+      "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+      "tooltip": "当前 open PR 仍为 4；其中 #790 为 draft，#466 带 locked 标签"
     },
     {
       "label": "新增 Issue",
-      "value": "9",
-      "delta": "+6",
-      "trend": "up",
-      "note": "#862~#870，agent-terminal 相关占多数",
-      "tooltip": "#862~#870，agent-terminal 相关占多数"
+      "value": "0",
+      "delta": "-9",
+      "trend": "down",
+      "note": "本次刷新窗口无新增；主变化是发布链修复",
+      "tooltip": "这次是对已发布晚报的 live 重算，不是新一轮 inflow 爆发"
     },
     {
       "label": "合并 PR",
       "value": "0",
       "delta": "→0",
       "trend": "neutral",
-      "note": "窗口内无 merge，本轮无闭环结果",
-      "tooltip": "窗口内无 merge，本轮无闭环结果"
+      "note": "本次刷新窗口无 merge，结果面仍偏静止",
+      "tooltip": "当前可见变化主要来自 dev 分支上的 devlog 修复提交，而不是新的 PR merge"
     }
   ],
   "headlines": [
     {
-      "emoji": "🛠️",
-      "title": "#864 把 archive-first 从讨论簇推成 P1，archive-os / 默认档案 / switcher 进入 Phase 1",
-      "body": "#837 epic(archive-first) + #864 配合，把 archive 术语迁移、默认档案、ArchiveSession/UiSession 与 switcher 压成第一个明确的 Phase 1 入口，说明 Y' 从讨论层毕业了。#858 / #859 / #860 继续代表 signal-network / blackboard / collective-agent 的运行语义走向设计面。"
+      "emoji": "🧯",
+      "title": "2c0d66b9 把日报 schema / renderer / latest 入口一起修回可发布状态",
+      "body": "2c0d66b9 fix(devlog) 接上 e37bf7bb，把 truth gh/code 正规化、report renderer null guard 与发布侧 schema 校验一起补齐；GitHub Pages 默认入口重新回到 pages-json / high / ok。当前对外可见的 repo 结果面仍主要落在 PR #863 与 #864 / #865 / #866 这几条执行线上。"
     },
     {
-      "emoji": "📚",
-      "title": "#865 / #866 让 docs / website / user-manual 形成独立子轨，W 需要再拆出 W'",
-      "body": "#847 workflow(docs) + #865 把面向普通使用者的共读手册抬进 Phase 1；#866 把 website 独立仓库化问题正式提出。两条 inflow 同时达到成批粒度，说明 docs / website 这块不再适合挂在旧 W 批次，应该拆成 W' 独立批次。"
+      "emoji": "🚩",
+      "title": "#579 / #577 已合，但 #575 / #418 / #516 仍留在 open pool，战果未清从 0 升到 3",
+      "body": "重新计算 pool health 后，已合并 PR 与仍 OPEN issue 的断裂重新暴露出来：PR #579 对应 #575，PR #577 对应 #418 / #516。说明 eventlog / now 工作台有真实产出，但 issue 侧没有同步收口。"
     },
     {
-      "emoji": "🔧",
-      "title": "15 个新 commit 持续推进 devlog gate / settings / agent-hub，但 GitHub 面仍无 merge/close",
-      "body": "cd9b432b..6e666bb5 的 15 个 commit 命中：devlog gate 双层 schema 拦截、settings 快捷键统一、cli runtime 格式标准化、agent-hub tiled workbench 路由覆盖。问题是这些 commit 仍集中在 repo 内部，没有扩散到 GitHub issue/PR 结果面，所以 open issues / open PRs 仍然双升。"
+      "emoji": "🏷️",
+      "title": "issue 池 live 重算后暴露 7 条未编入优先级，之前“全编入”并不可靠",
+      "body": "上一份已发布晚报把 noPriority 算成 0，但基于 2026-04-08 03:26 +08:00 的 live snapshot，当前仍有 7 条 open issue 没有 P0/P1/P2 标签。#861 / #862 这类 discussion inflow 说明 triage 侧仍有遗漏，不能继续把池健康看成“已治理完成”。"
     },
     {
-      "emoji": "🔄",
-      "title": "#868 bug(sync-recovery) 把离线重连缺失补齐，P0 同步窗口正式出现技术设计面",
-      "body": "#868 第一次把「配对 RT 断线重连后缺少恢复性同步」写成 bug，并加上了 🙋needs-human-test 标签。这是 #532 epic(sync/rt-ecs) 第一次出现明确的离线路径技术面——#869 接着定义离线分叉后的冲突处理契约。同步 P0 终于有了设计文档跟进，不是继续停在 epic 层。"
+      "emoji": "🧭",
+      "title": "#864 / #865 / #866 + PR #863 继续定义 W' / Y' / shell 三个最清晰执行面",
+      "body": "结构上没有比昨晚再多出新的 inflow：archive-first Phase 1、docs / website / user-manual、以及 agent-hub visible shell 仍是最清晰的三条执行线。真正没有松动的是同步 P0：#532 / #527 / #868 依然缺新的跨端验证证据。"
     }
   ],
   "mainlines": [
     {
-      "name": "T' / S 从 commit 密度向 visible shell 收口推进",
-      "pct": 25,
+      "name": "PR #863 / T' / S 仍是最近的可见执行面",
+      "pct": 28,
       "tag": "",
       "stall": false,
       "subtasks": [
         {
-          "text": "闭环 #836（未找到页面，P1）— 优先",
+          "text": "先借 PR #863 收口 #836（未找到页面，P1）",
           "done": false,
           "issue": 836
         },
         {
-          "text": "闭环 #842（窗格树骨架，P2 跟随其后）",
+          "text": "随后关 #842（窗格树骨架）与 #840（窗格快捷键）",
           "done": false,
           "issue": 842
         },
         {
-          "text": "闭环 #840（窗格快捷键，P2）",
+          "text": "把 settings shortcut contract 继续压回 S，而不是再散出临时 inflow",
           "done": false,
-          "issue": 840
-        },
-        {
-          "text": "PR #863 review 之后一次性收尾，不要单独再开新 issue",
-          "done": false
+          "issue": 852
         }
       ]
     },
     {
-      "name": "Y' archive-first + archive-os Phase 1 正式从讨论簇升为 P1",
-      "pct": 14,
+      "name": "Y' archive-first Phase 1 已成形，但边界仍要收紧",
+      "pct": 18,
       "tag": "new",
       "stall": false,
       "subtasks": [
         {
-          "text": "archive 术语迁移 + 默认档案 + ArchiveSession/UiSession + switcher",
+          "text": "#864 只收 archive 术语迁移 + 默认档案 + ArchiveSession/UiSession + switcher",
           "done": false,
           "issue": 864
         },
         {
-          "text": "signal-network / blackboard / collective-agent 留在第二批次",
+          "text": "signal-network / blackboard / collective-agent 留在下一轮，不和 Phase 1 混批",
           "done": false
         }
       ]
     },
     {
-      "name": "W 需要拆出 W'：docs / website / user-manual 达到成批独立粒度",
-      "pct": 9,
+      "name": "W' docs / website / user-manual 已能独立成批",
+      "pct": 15,
       "tag": "",
       "stall": false,
       "subtasks": [
         {
-          "text": "#865 把面向普通使用者的共读手册推进 Phase 1",
+          "text": "#865 人类/Agent 共读手册 Phase 1",
           "done": false,
           "issue": 865
         },
         {
-          "text": "#866 把 website 独立仓库化 + 与 canonical 内容源仓关系正式提出",
+          "text": "#866 website 独立仓库化与 canonical 内容源关系",
           "done": false,
           "issue": 866
         },
         {
-          "text": "#847 验证里程碑转文档 workflow + #706 版本号机制",
+          "text": "#847 文档 workflow 与 #706 版本号机制对齐",
           "done": false,
           "issue": 847
         }
       ]
     },
     {
-      "name": "同步 P0（#532 / #868）首次出现技术设计文档，但实测仍停滞",
+      "name": "同步 P0 仍然是最硬的结构性停滞",
       "pct": 6,
       "tag": "stall",
       "stall": true,
       "subtasks": [
         {
-          "text": "补 #868 / #869 同步 bug 的 human-test 证据",
-          "done": false,
-          "issue": 868
-        },
-        {
-          "text": "推进同步 P0 从文档走向实测，不要停在 epic + design 层面",
+          "text": "给 #532 / #527 补新的跨端实测证据",
           "done": false,
           "issue": 532
+        },
+        {
+          "text": "给 #868 / #869 补 human-test 与离线恢复证据",
+          "done": false,
+          "issue": 868
         }
       ]
     }
   ],
   "actions": [
     {
-      "text": "把 T' 的 #836 / #840 / #842 visible shell 三轨按 P1 优先级排收口顺序，不要让它们继续散落在 commit 密度里",
-      "detail": "优先闭环 #836（未找到页面，P1），#842（窗格树骨架，P2 跟随其后）。这三条轨目前都是 agent-hub tiled workbench build surface 的子目标，应该在 PR #863 review 之后一次性收尾，不要单独再开新 issue。"
+      "text": "清掉 PR #579 / #577 对应的 #575 / #418 / #516 战果未清条目",
+      "detail": "先决定这三条是直接关闭、转为 follow-up，还是补回新的 implementation issue；不要继续让 merge 结果和 issue 池状态分裂。"
     },
     {
-      "text": "把 #864 并入 Y' 的 archive-first Phase 1 批次，并定义本轮收口边界",
-      "detail": "Y' 的 P1 有了，但需要明确本轮只收口：archive 术语迁移 + 默认档案 + ArchiveSession/UiSession + switcher 这四项。signal-network / blackboard / collective-agent 留在 Y' 的第二批次，不要在这轮一起收。"
+      "text": "给 7 条未打 P 标签的 open issue 补优先级，先从 #861 / #862 一类 discussion inflow 开始",
+      "detail": "当前 noPriority 已从上一份已发布晚报的 0 回到 7。至少把 discussion / research / docs inflow 先分到 P2 或 research 轨，不要继续留空。"
     },
     {
-      "text": "把 docs / website / user-manual 三条 inflow 从 W 拆出为 W' 独立轨",
-      "detail": "W 当前承载：#847 验证里程碑转文档、#865 共读手册 Phase 1、#866 website 独立仓库化、#706 版本号机制。这四条 inflow 已达到成批独立粒度，应该给它们独立的批次节奏，不要挂在旧的 CI/工具 W 批次里。"
+      "text": "按 PR #863 → #836 → #842 / #840 的顺序收口 visible shell",
+      "detail": "这条线仍是最接近可交付结果面的执行入口。优先把 P1 的 #836 收掉，再处理 #842 / #840，避免继续在 commit 面上显得很忙、结果面却不变。"
     },
     {
-      "text": "补 #868 / #869 同步 bug 的 human-test 证据，推进同步 P0 从文档走向实测",
-      "detail": "现在有 bug(sync-recovery) 和 design(sync-conflict) 两份技术文档，但 🙋needs-human-test 标签标注的离线路径实测仍然没有证据。把重连 / 离线变更补齐作为本轮同步 P0 的第一步，不要让它继续停在 epic + design 文档层面。"
-    },
-    {
-      "text": "把 S 的 shortcut contract 收口作为 settings 统一的收尾步骤",
-      "detail": "#852 shortcut contract + #851 sidebar configurable shortcuts + 6e666bb5 的 cli formatting normalized 已经让 S 有了一个可操作的基础面。这轮应该把 shortcut 数据模型 + 录制式选择器的设计确认下来，作为 settings 统一的收尾，而不是让它们继续散落在 #851 / #852 的独立 issue 里。"
+      "text": "把 #532 / #527 / #868 的验证证据补上，并把同步 P0 从“文档存在”推进到“跨端已证实”",
+      "detail": "M 批次继续停滞会拖累所有 docs / archive / shell 新轨。先补最小可复现的 cross-device / reconnect 证据，再谈下一轮批次扩展。"
     }
   ],
   "insight": {
-    "text": "这轮最值得注意的不是数字，而是「哪些批次的粒度变了」。#864 让 archive-first 从讨论簇升成 P1，#865 / #866 让 docs / website 达到成批独立粒度——这两个变化说明 W 和 Y 的 inflow 都已经不是在「增长」，而是在「成形」。但 GitHub 面上仍然 0 merge / 0 close，所以 open 双升的本质不是 inflow 过多，而是没有结果对冲新增 commit 推进的系统。同步 P0（#532 / #868）虽然第一次有了技术文档跟进，但 🙋needs-human-test 标签说明它仍在等待实测落地，不是真正的闭环。",
-    "author": "外心史官"
+    "text": "这次刷新最重要的变化不是 issue 池只回落了 1，而是“我们终于重新看到了真实的盘面”。2c0d66b9 让日报发布链回到 schema 正常、truth 可渲染、Pages latest 可校验的状态，结果就是之前被自动填平的池健康失真重新暴露出来：战果未清不是 0，而是 3；未编入不是 0，而是 7；陈年 issue 不是 38%，而是 28%。这说明当前最需要警惕的不是 inflow 继续爆炸，而是当可视化链路失真时，团队会误判治理是否真的发生过。开发主线本身其实没变，仍然是 PR #863 的壳层收口、#864/#865/#866 的批次成形，以及 #532 / #527 / #868 的同步 P0 停滞。",
+    "author": "外心史官·Windows [Codex GPT-5]"
   },
   "scorecard": [
     {
-      "text": "T' visible shell 三轨（#836/#840/#842）收口",
+      "text": "PR #863 收口 #836 / #842 / #840",
       "result": "fail",
-      "note": "仍是 commit 密度，没有 P1 优先级收口节奏"
+      "note": "PR 仍 OPEN，visible shell 三轨没有真正闭环"
     },
     {
-      "text": "Y' archive-first Phase 1 批次成形",
+      "text": "Y' archive-first Phase 1 进入正式批次",
       "result": "pass",
-      "note": "#864 让 Y' 从讨论簇升为明确 P1，archive-os 进入 Phase 1"
+      "note": "#864 已稳定成为 Y' 的第一阶段入口"
     },
     {
-      "text": "W 拆出 W' docs/website 子轨",
-      "result": "fail",
-      "note": "文档上已提出，但还没有正式拆分批次"
+      "text": "W' docs / website / user-manual 独立成批",
+      "result": "pass",
+      "note": "这轮刷新后 W' 已作为独立航线批次固化"
     },
     {
-      "text": "同步 P0（#532 / #868）补 human-test 证据",
+      "text": "同步 P0 补 human-test / cross-device 证据",
       "result": "fail",
-      "note": "文档跟进有了（#868 + #869），但实测仍停滞"
+      "note": "#532 / #527 / #868 仍缺新的验证闭环"
     },
     {
-      "text": "S shortcut contract 收口",
-      "result": "fail",
-      "note": "cli formatting normalized 了，但 shortcut 数据模型尚未正式确认"
+      "text": "devlog 发布链恢复到 pages-json / high / ok",
+      "result": "pass",
+      "note": "2c0d66b9 让 schema / renderer / latest 入口重新一致"
     }
   ],
   "prs": {
@@ -425,22 +417,24 @@ const REPORT = {
       {
         "num": 863,
         "title": "fix: restore agent hub tiled workbench build surface",
-        "status": "open"
+        "status": "review"
       },
       {
         "num": 790,
         "title": "feat(workbench): start session-runtime federation for issue 789",
-        "status": "open"
+        "status": "review",
+        "extra": "draft"
       },
       {
         "num": 565,
         "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
-        "status": "open"
+        "status": "docs"
       },
       {
         "num": 466,
         "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
-        "status": "open"
+        "status": "locked",
+        "extra": "🔒"
       }
     ],
     "merged": []
@@ -602,85 +596,140 @@ const REPORT = {
     ]
   },
   "poolHealth": {
-    "prIssueMismatch": [],
+    "prIssueMismatch": [
+      {
+        "pr": 579,
+        "issue": 575,
+        "prTitle": "feat(runtime): 外部输入管线接入信号池",
+        "issueTitle": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）"
+      },
+      {
+        "pr": 577,
+        "issue": 418,
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab",
+        "issueTitle": "tracking: 任务与时间块解耦、关联语义与反馈联动状态更新"
+      },
+      {
+        "pr": 577,
+        "issue": 516,
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab",
+        "issueTitle": "feat(now): 当下页重构为 Tab 工作台（专注 / 记录 / 今日）"
+      }
+    ],
     "staleHighPriority": [
       {
-        "num": 821,
-        "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
-        "staleDays": 30,
+        "num": 532,
+        "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性（Web/Windows/Android）",
+        "staleDays": 24,
+        "priority": "P0"
+      },
+      {
+        "num": 527,
+        "title": "epic(sync-e2e): 手机↔电脑 RT SQLite 数据互通端到端验证与打通",
+        "staleDays": 24,
+        "priority": "P0"
+      },
+      {
+        "num": 53,
+        "title": "feat(eventlog): 事件标签展示 — 参考 exobuffer-connector 呈现标签",
+        "staleDays": 56,
         "priority": "P1"
       },
       {
-        "num": 532,
-        "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
-        "staleDays": 14,
-        "priority": "P0"
+        "num": 25,
+        "title": "[EPIC] ExoMind v4架构统一与技术债务收敛",
+        "staleDays": 56,
+        "priority": "P1"
+      },
+      {
+        "num": 317,
+        "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+        "staleDays": 36,
+        "priority": "P1"
+      },
+      {
+        "num": 321,
+        "title": "bug(timeblock): [回归] 倒计时超时计时在暂停后被清零",
+        "staleDays": 35,
+        "priority": "P1"
+      },
+      {
+        "num": 385,
+        "title": "feat(agent-hub): 接入 Claude CLI / Codex，支持流式会话与动态 Agent 生命周期",
+        "staleDays": 32,
+        "priority": "P1"
+      },
+      {
+        "num": 373,
+        "title": "test(ecs): 多 RT 协议栈集成测试、故障注入与回归基线",
+        "staleDays": 32,
+        "priority": "P1"
       }
     ],
     "noPriority": {
-      "current": 0,
-      "previous": 2
+      "current": 7,
+      "previous": 0
     },
     "aging": {
-      "oldCount": 124,
-      "total": 326,
-      "pct": 38,
+      "oldCount": 92,
+      "total": 325,
+      "pct": 28,
       "samples": [
         {
-          "num": 821,
-          "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
-          "staleDays": 30,
-          "priority": "P1",
-          "ageDays": 30
+          "num": 71,
+          "title": "feat(agent): Agent 自动记忆系统 — 存储·检索·遗忘",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 790,
-          "title": "feat(workbench): start session-runtime federation for issue 789",
-          "staleDays": 28,
-          "priority": "P2",
-          "ageDays": 28
+          "num": 70,
+          "title": "feat(exobuffer): 外心缓冲区通用接口 — RSS/Webhook/API",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 565,
-          "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
-          "staleDays": 90,
-          "priority": "P2",
-          "ageDays": 90
+          "num": 69,
+          "title": "feat(exobuffer): 外心缓冲区 UI 设计",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 466,
-          "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
-          "staleDays": 120,
-          "priority": "P2",
-          "ageDays": 120
+          "num": 67,
+          "title": "feat(eventlog): 事件引用 — 在新事件中引用历史事件",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 532,
-          "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
-          "staleDays": 14,
-          "priority": "P0",
-          "ageDays": 14
+          "num": 66,
+          "title": "feat(eventlog): 事件唯一链接 — 可分享的事件永久地址",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 864,
-          "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
-          "staleDays": 1,
-          "priority": "P1",
-          "ageDays": 1
+          "num": 61,
+          "title": "feat(me): 身份目标可视化 — 目标体系与身份定位",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 865,
-          "title": "docs(user-manual): 面向普通使用者的人类/Agent 共读用户手册 Phase 1",
-          "staleDays": 1,
-          "priority": "P2",
-          "ageDays": 1
+          "num": 60,
+          "title": "feat(me): 知识学习与间隔复习系统",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         },
         {
-          "num": 868,
-          "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步",
-          "staleDays": 1,
-          "priority": "P0",
-          "ageDays": 1
+          "num": 59,
+          "title": "feat(me): 知识网络可视化",
+          "ageDays": 56,
+          "staleDays": 56,
+          "priority": "P2"
         }
       ]
     }
