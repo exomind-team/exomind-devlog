@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-07T20:12:23.828Z",
+  "generated": "2026-04-07T20:15:39.431Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-08-041017.html",
@@ -8,55 +8,6 @@
     "time": "041017"
   },
   "reports": [
-    {
-      "date": "2026-04-08",
-      "time": "205000",
-      "title": "开发晚报",
-      "file": "2026-04-08-205000.html",
-      "dataFile": "2026-04-08-205000.json",
-      "publisher": "外心史官·Windows [Codex GPT-5]",
-      "weather": {
-        "level": "cloudy",
-        "emoji": "⛅",
-        "label": "devlog 发布链恢复，live issue 池回到 325，但 4 条 open PR 与同步 P0 仍未松动"
-      },
-      "metrics": [
-        {
-          "label": "Open Issues",
-          "value": "325",
-          "delta": "-1",
-          "trend": "down",
-          "note": "较已发布 2026-04-08 20:50 晚报回落 1",
-          "tooltip": "live GitHub open issue count = 325；上一份已发布晚报为 326"
-        },
-        {
-          "label": "Open PRs",
-          "value": "4",
-          "delta": "→0",
-          "trend": "neutral",
-          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
-          "tooltip": "当前 open PR 仍为 4；其中 #790 为 draft，#466 带 locked 标签"
-        },
-        {
-          "label": "新增 Issue",
-          "value": "0",
-          "delta": "-9",
-          "trend": "down",
-          "note": "本次刷新窗口无新增；主变化是发布链修复",
-          "tooltip": "这次是对已发布晚报的 live 重算，不是新一轮 inflow 爆发"
-        },
-        {
-          "label": "合并 PR",
-          "value": "0",
-          "delta": "→0",
-          "trend": "neutral",
-          "note": "本次刷新窗口无 merge，结果面仍偏静止",
-          "tooltip": "当前可见变化主要来自 dev 分支上的 devlog 修复提交，而不是新的 PR merge"
-        }
-      ],
-      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-205000.html",
-      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-205000.json"
-    },
     {
       "date": "2026-04-08",
       "time": "041017",
