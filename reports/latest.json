@@ -1,7 +1,7 @@
 {
   "schema": "exomind-devlog-report",
   "version": "1.0",
-  "generated": "2026-04-07T18:29:11.539Z",
+  "generated": "2026-04-07T19:15:01.805Z",
   "_published": {
     "kind": "report",
     "date": "2026-04-08",
@@ -12,7 +12,9 @@
   "meta": {
     "date": "2026-04-08",
     "baseline": "dev@6e666bb5",
-    "title": "开发晚报"
+    "title": "开发晚报",
+    "coverage": "",
+    "repo": "exomind-team/exomind"
   },
   "publisher": {
     "identity": "外心史官",
@@ -41,28 +43,32 @@
       "value": "326",
       "delta": "+4",
       "trend": "up",
-      "note": "#862~#870 新开，#864/#865/#866 达到 P1 级"
+      "note": "#862~#870 新开，#864/#865/#866 达到 P1 级",
+      "tooltip": "#862~#870 新开，#864/#865/#866 达到 P1 级"
     },
     {
       "label": "Open PRs",
       "value": "4",
       "delta": "→0",
-      "trend": "flat",
-      "note": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入"
+      "trend": "neutral",
+      "note": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入",
+      "tooltip": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入"
     },
     {
       "label": "新增 Issue",
       "value": "9",
       "delta": "+6",
       "trend": "up",
-      "note": "#862~#870，agent-terminal 相关占多数"
+      "note": "#862~#870，agent-terminal 相关占多数",
+      "tooltip": "#862~#870，agent-terminal 相关占多数"
     },
     {
       "label": "合并 PR",
       "value": "0",
       "delta": "→0",
-      "trend": "flat",
-      "note": "窗口内无 merge，本轮无闭环结果"
+      "trend": "neutral",
+      "note": "窗口内无 merge，本轮无闭环结果",
+      "tooltip": "窗口内无 merge，本轮无闭环结果"
     }
   ],
   "headlines": [
@@ -203,27 +209,27 @@
   "scorecard": [
     {
       "text": "T' visible shell 三轨（#836/#840/#842）收口",
-      "result": "miss",
+      "result": "fail",
       "note": "仍是 commit 密度，没有 P1 优先级收口节奏"
     },
     {
       "text": "Y' archive-first Phase 1 批次成形",
-      "result": "hit",
+      "result": "pass",
       "note": "#864 让 Y' 从讨论簇升为明确 P1，archive-os 进入 Phase 1"
     },
     {
       "text": "W 拆出 W' docs/website 子轨",
-      "result": "miss",
+      "result": "fail",
       "note": "文档上已提出，但还没有正式拆分批次"
     },
     {
       "text": "同步 P0（#532 / #868）补 human-test 证据",
-      "result": "miss",
+      "result": "fail",
       "note": "文档跟进有了（#868 + #869），但实测仍停滞"
     },
     {
       "text": "S shortcut contract 收口",
-      "result": "miss",
+      "result": "fail",
       "note": "cli formatting normalized 了，但 shortcut 数据模型尚未正式确认"
     }
   ],
@@ -231,19 +237,23 @@
     "open": [
       {
         "num": 863,
-        "title": "fix: restore agent hub tiled workbench build surface"
+        "title": "fix: restore agent hub tiled workbench build surface",
+        "status": "open"
       },
       {
         "num": 790,
-        "title": "feat(workbench): start session-runtime federation for issue 789"
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "status": "open"
       },
       {
         "num": 565,
-        "title": "docs(governance): ExoMind 集体经济与治理体系 v1"
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "status": "open"
       },
       {
         "num": 466,
-        "title": "feat(worker-agent): 增加主提示词状态机和锁流程"
+        "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+        "status": "open"
       }
     ],
     "merged": []
@@ -253,152 +263,158 @@
       {
         "num": 834,
         "title": "bug(task-dag): 强聚焦下手动布局触摸拖拽会让聚焦系列整组消失",
-        "closedAt": "2026-04-05"
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 831,
         "title": "feat(rt/api-agent): Rust 内置 proposal service 接入 API Agent",
-        "closedAt": "2026-04-03"
+        "closedAt": "2026-04-03",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 825,
         "title": "故事(cli): RT-native CLI 作为 ExoMind 第三客户端壳",
-        "closedAt": "2026-04-03"
+        "closedAt": "2026-04-03",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 824,
         "title": "bug(agent-hub): 会话页活跃数需与 RT 一致",
-        "closedAt": "2026-04-05"
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 818,
         "title": "任务(agent-terminal)：Claude/Codex 终端 Agent 会话支持跨 RT 重启自动恢复",
-        "closedAt": "2026-04-05"
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 808,
         "title": "fix(dev-setup): Windows 下 .codex 软链接报 os error 267",
-        "closedAt": "2026-04-02"
+        "closedAt": "2026-04-02",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 806,
         "title": "任务(agent-terminal)：终端 PTY Agent 会话生命周期正常化",
-        "closedAt": "2026-04-05"
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 795,
         "title": "chore(icon): 当前图标 SVG 矢量化 + 透明背景",
-        "closedAt": "2026-04-02"
+        "closedAt": "2026-04-02",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 794,
         "title": "epic(sync-rt): 移除 Pouch 主链路并以 RT mesh + RT SQLite 统一跨设备同步",
-        "closedAt": "2026-04-01"
+        "closedAt": "2026-04-01",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       },
       {
         "num": 792,
         "title": "security(rt/config): /config 路由缺少认证保护",
-        "closedAt": "2026-04-01"
+        "closedAt": "2026-04-01",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
       }
     ],
     "stillOpen": [
       {
         "num": 870,
-        "title": "网络/会话：Terminal 弹窗先分流创建/恢复，恢复模式不再暴露路径输入"
+        "title": "网络/会话：Terminal 弹窗先分流创建/恢复，恢复模式不再暴露路径输入",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 869,
-        "title": "design(sync-conflict): 配对 RT 离线分叉后的对象级冲突处理契约"
+        "title": "design(sync-conflict): 配对 RT 离线分叉后的对象级冲突处理契约",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 868,
-        "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步，🙋needs-human-test"
+        "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步，🙋needs-human-test",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 867,
-        "title": "bug(agent-terminal): PTY 内 Ctrl+点击外链无法拉起系统默认浏览器"
+        "title": "bug(agent-terminal): PTY 内 Ctrl+点击外链无法拉起系统默认浏览器",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 866,
-        "title": "architecture(docs): 官网 website 是否独立仓库化，与 canonical 内容源仓关系"
+        "title": "architecture(docs): 官网 website 是否独立仓库化，与 canonical 内容源仓关系",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 865,
-        "title": "docs(user-manual): 面向普通使用者的共读手册与操作指南 Phase 1"
+        "title": "docs(user-manual): 面向普通使用者的共读手册与操作指南 Phase 1",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 864,
-        "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1"
+        "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 863,
-        "title": "fix: restore agent hub tiled workbench build surface"
+        "title": "fix: restore agent hub tiled workbench build surface",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 862,
-        "title": "discussion(audit-ui): 对象局部历史、黑板移出痕迹与全局审计界面"
+        "title": "discussion(audit-ui): 对象局部历史、黑板移出痕迹与全局审计界面",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       },
       {
         "num": 861,
-        "title": "discussion(identity-trust): 档案防伪、公开标识轮换与邀请信任责任"
+        "title": "discussion(identity-trust): 档案防伪、公开标识轮换与邀请信任责任",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
       }
     ]
   },
   "poolHealth": {
-    "aging": {
-      "total": 326,
-      "pct": 38,
-      "samples": [
-        {
-          "num": 821,
-          "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
-          "staleDays": 30,
-          "priority": "P1"
-        },
-        {
-          "num": 790,
-          "title": "feat(workbench): start session-runtime federation for issue 789",
-          "staleDays": 28,
-          "priority": "P2"
-        },
-        {
-          "num": 565,
-          "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
-          "staleDays": 90,
-          "priority": "P2"
-        },
-        {
-          "num": 466,
-          "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
-          "staleDays": 120,
-          "priority": "P2"
-        },
-        {
-          "num": 532,
-          "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
-          "staleDays": 14,
-          "priority": "P0"
-        },
-        {
-          "num": 864,
-          "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
-          "staleDays": 1,
-          "priority": "P1"
-        },
-        {
-          "num": 865,
-          "title": "docs(user-manual): 面向普通使用者的人类/Agent 共读用户手册 Phase 1",
-          "staleDays": 1,
-          "priority": "P2"
-        },
-        {
-          "num": 868,
-          "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步",
-          "staleDays": 1,
-          "priority": "P0"
-        }
-      ]
-    },
     "prIssueMismatch": [],
     "staleHighPriority": [
       {
@@ -417,6 +433,69 @@
     "noPriority": {
       "current": 0,
       "previous": 2
+    },
+    "aging": {
+      "oldCount": 124,
+      "total": 326,
+      "pct": 38,
+      "samples": [
+        {
+          "num": 821,
+          "title": "故事(agent-terminal)：在 Tauri 外心中调用 Codex/Claude 终端 Agent 审查当前工作",
+          "staleDays": 30,
+          "priority": "P1",
+          "ageDays": 30
+        },
+        {
+          "num": 790,
+          "title": "feat(workbench): start session-runtime federation for issue 789",
+          "staleDays": 28,
+          "priority": "P2",
+          "ageDays": 28
+        },
+        {
+          "num": 565,
+          "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+          "staleDays": 90,
+          "priority": "P2",
+          "ageDays": 90
+        },
+        {
+          "num": 466,
+          "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+          "staleDays": 120,
+          "priority": "P2",
+          "ageDays": 120
+        },
+        {
+          "num": 532,
+          "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性",
+          "staleDays": 14,
+          "priority": "P0",
+          "ageDays": 14
+        },
+        {
+          "num": 864,
+          "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession Phase 1",
+          "staleDays": 1,
+          "priority": "P1",
+          "ageDays": 1
+        },
+        {
+          "num": 865,
+          "title": "docs(user-manual): 面向普通使用者的人类/Agent 共读用户手册 Phase 1",
+          "staleDays": 1,
+          "priority": "P2",
+          "ageDays": 1
+        },
+        {
+          "num": 868,
+          "title": "bug(sync-recovery): 配对 RT 断线重连缺少恢复性同步",
+          "staleDays": 1,
+          "priority": "P0",
+          "ageDays": 1
+        }
+      ]
     }
   }
 }

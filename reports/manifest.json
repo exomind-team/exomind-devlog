@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-07T18:29:11.543Z",
+  "generated": "2026-04-07T19:15:01.809Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-08-205000.html",
@@ -26,28 +26,32 @@
           "value": "326",
           "delta": "+4",
           "trend": "up",
-          "note": "#862~#870 新开，#864/#865/#866 达到 P1 级"
+          "note": "#862~#870 新开，#864/#865/#866 达到 P1 级",
+          "tooltip": "#862~#870 新开，#864/#865/#866 达到 P1 级"
         },
         {
           "label": "Open PRs",
           "value": "4",
           "delta": "→0",
-          "trend": "flat",
-          "note": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入"
+          "trend": "neutral",
+          "note": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入",
+          "tooltip": "#863/#790/#565/#466 全部 OPEN，无新 PR 加入"
         },
         {
           "label": "新增 Issue",
           "value": "9",
           "delta": "+6",
           "trend": "up",
-          "note": "#862~#870，agent-terminal 相关占多数"
+          "note": "#862~#870，agent-terminal 相关占多数",
+          "tooltip": "#862~#870，agent-terminal 相关占多数"
         },
         {
           "label": "合并 PR",
           "value": "0",
           "delta": "→0",
-          "trend": "flat",
-          "note": "窗口内无 merge，本轮无闭环结果"
+          "trend": "neutral",
+          "note": "窗口内无 merge，本轮无闭环结果",
+          "tooltip": "窗口内无 merge，本轮无闭环结果"
         }
       ],
       "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-205000.html",
