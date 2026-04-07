@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-06T18:09:32.902Z",
+  "generated": "2026-04-07T12:55:29.662Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-07-020726.html",
-    "dataFile": "2026-04-07-020726.json",
+    "file": "2026-04-07-205451.html",
+    "dataFile": "2026-04-07-205451.json",
     "date": "2026-04-07",
-    "time": "020726"
+    "time": "205451"
   },
   "reports": [
+    {
+      "date": "2026-04-07",
+      "time": "205451",
+      "title": "开发晚报",
+      "file": "2026-04-07-205451.html",
+      "dataFile": "2026-04-07-205451.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "3 条新 inflow + 1 条新 PR 把 archive/docs 再抬上台面，但终端 contract 与同步停滞仍未闭环"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "322",
+          "delta": "↑ 3",
+          "trend": "up",
+          "note": "#864~#866 新开",
+          "tooltip": "上一份已发布 319 → 本期 322"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "↑ 1",
+          "trend": "up",
+          "note": "#863 加入后 PR 池为 #863 / #790 / #565 / #466",
+          "tooltip": "上一份已发布 3 → 本期 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "3",
+          "delta": "↓ 11",
+          "trend": "down",
+          "note": "#864~#866",
+          "tooltip": "以上一份已发布时间 04-07 02:07 为界；本窗口新开 3"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "本窗口仍未破零",
+          "tooltip": "上一份已发布 0 → 本期 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-07-205451.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-07-205451.json"
+    },
     {
       "date": "2026-04-07",
       "time": "020726",
