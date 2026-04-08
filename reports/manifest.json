@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-07T20:15:39.431Z",
+  "generated": "2026-04-08T01:54:07.581Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-08-041017.html",
-    "dataFile": "2026-04-08-041017.json",
+    "file": "2026-04-08-095251.html",
+    "dataFile": "2026-04-08-095251.json",
     "date": "2026-04-08",
-    "time": "041017"
+    "time": "095251"
   },
   "reports": [
+    {
+      "date": "2026-04-08",
+      "time": "095251",
+      "title": "开发早报",
+      "file": "2026-04-08-095251.html",
+      "dataFile": "2026-04-08-095251.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "#872 把 ECS Mesh 研究并入 Y，但 4 条 open PR 与同步 P0 仍没有结果面推进"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "326",
+          "delta": "+1",
+          "trend": "up",
+          "note": "较夜报 +1；新增 #872",
+          "tooltip": "live GitHub open issue count = 326；夜报基线为 325"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "1",
+          "delta": "-3",
+          "trend": "down",
+          "note": "本窗口仅 #872（ECS Mesh 交叉分析）",
+          "tooltip": "2026-04-07 新增 #872"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口无 merge，结果面仍静止",
+          "tooltip": "04:10 之后没有新的 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-095251.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-095251.json"
+    },
     {
       "date": "2026-04-08",
       "time": "041017",
