@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-08T08:40:55.068Z",
+  "generated": "2026-04-08T16:53:48.274Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-08-164029.html",
-    "dataFile": "2026-04-08-164029.json",
-    "date": "2026-04-08",
-    "time": "164029"
+    "file": "2026-04-09-005325.html",
+    "dataFile": "2026-04-09-005325.json",
+    "date": "2026-04-09",
+    "time": "005325"
   },
   "reports": [
+    {
+      "date": "2026-04-09",
+      "time": "005325",
+      "title": "开发夜报",
+      "file": "2026-04-09-005325.html",
+      "dataFile": "2026-04-09-005325.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "#874~#884 一次性涌入 11 条新问题；release flow 已推进到 24122938，但结果面仍 0 merge / 0 close"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "338",
+          "delta": "+11",
+          "trend": "up",
+          "note": "较午报 +11；新增 #884~#874",
+          "tooltip": "live GitHub open issue count = 338；午报基线为 327"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "11",
+          "delta": "+10",
+          "trend": "up",
+          "note": "#874~#884：settings、updater、pairing、eventlog 快捷入口集中涌入",
+          "tooltip": "2026-04-08~2026-04-08 共 11 条"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口无 merge，结果面仍静止",
+          "tooltip": "16:40 之后没有新的 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-005325.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-005325.json"
+    },
     {
       "date": "2026-04-08",
       "time": "164029",
