@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-08T08:42:07.040Z",
+  "generated": "2026-04-08T16:54:24.897Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-08-164029.html",
-    "dataFile": "2026-04-08-164029.json",
-    "date": "2026-04-08",
-    "time": "164029"
+    "file": "2026-04-09-005325.html",
+    "dataFile": "2026-04-09-005325.json",
+    "date": "2026-04-09",
+    "time": "005325"
   },
   "routes": [
+    {
+      "date": "2026-04-09",
+      "time": "005325",
+      "title": "开发航线",
+      "file": "2026-04-09-005325.html",
+      "dataFile": "2026-04-09-005325.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "#874~#884 新 inflow 形成 S′/W″/V/P 四块执行面；20 批次结构可吸收，但同步 P0 与 5 条 blocked 链仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "20",
+          "note": "M~Z + S' + T' + T'' + W' + W'' + Y'",
+          "trend": "neutral",
+          "tooltip": "M~Z + S' + T' + T'' + W' + W'' + Y'"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "M / N / S' / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "8",
+          "note": "R / S / T / T' / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "R / S / T / T' / W / W' / W'' / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "151",
+          "note": "338 中的 45%（新增 #874~#884 已编入批次）",
+          "trend": "neutral",
+          "tooltip": "338 中的 45%（新增 #874~#884 已编入批次）"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-005325.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-005325.json"
+    },
     {
       "date": "2026-04-08",
       "time": "164029",
