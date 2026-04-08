@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<!-- exomind-devlog-rendered: kind=report gate=ok -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发日报模板</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;
+  --radius:10px;--radius-sm:6px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.8}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2.5rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:2.2rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.3em;text-transform:uppercase}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Top Row */
+.top-row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;margin:1.5rem 0}
+.weather-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s}
+.weather-card:hover{transform:scale(1.01)}
+.weather-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.12),transparent 60%)}
+.weather-emoji{font-size:2.5rem;position:relative}
+.weather-label{font-size:1.3rem;font-weight:700;margin-top:.3rem;position:relative}
+.weather-sub{font-size:.85rem;opacity:.85;margin-top:.3rem;position:relative}
+.weather-details{max-height:0;overflow:hidden;transition:max-height .4s ease;position:relative}
+.weather-details.open{max-height:500px}
+.weather-details ul{list-style:none;margin-top:.8rem;font-size:.82rem;line-height:1.8}
+.weather-details li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.5rem;vertical-align:middle}
+.weather-details .up li::before{background:#2ea043}
+.weather-details .down li::before{background:var(--p1)}
+
+/* Metrics */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:1.05rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;margin:.3rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .delta{font-size:1.08rem;font-family:'JetBrains Mono',monospace;font-weight:700}
+.metric-card .delta.up{color:var(--p1)}
+.metric-card .delta.down{color:var(--green)}
+.metric-card .delta.neutral,.metric-card .delta.flat{color:var(--text-faint)}
+.metric-card .note{font-size:.75rem;color:var(--text-dim);margin-top:.2rem}
+.metric-card .tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1c2128;border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem .7rem;font-size:.82rem;white-space:nowrap;z-index:10;color:var(--text-dim)}
+.metric-card:hover .tooltip{display:block}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Mainlines */
+.mainline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:.6rem;cursor:pointer;transition:border-color .2s}
+.mainline:hover{border-color:var(--accent)}
+.mainline-header{display:flex;align-items:center;justify-content:space-between}
+.mainline-name{font-weight:500;font-size:.92rem}
+.mainline-name .tag{display:inline-block;font-size:.75rem;padding:.1rem .4rem;border-radius:3px;margin-left:.5rem;vertical-align:middle;font-weight:700;letter-spacing:.05em}
+.mainline-name .tag.new{background:rgba(46,160,67,.2);color:var(--green)}
+.mainline-name .tag.stall{background:rgba(248,81,73,.15);color:var(--p0)}
+.mainline-pct{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent)}
+.mainline-bar{height:6px;background:var(--border);border-radius:3px;margin-top:.6rem;overflow:hidden}
+.mainline-fill{height:100%;border-radius:3px;transition:width .8s ease;background:linear-gradient(90deg,var(--green-dim),var(--green))}
+.mainline-fill.stall{background:linear-gradient(90deg,#6e4020,var(--p1))}
+.mainline-subtasks{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mainline-subtasks.open{max-height:600px}
+.mainline-subtasks ul{list-style:none;margin-top:.7rem;font-size:.8rem;color:var(--text-dim)}
+.mainline-subtasks li{padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.mainline-subtasks .done{color:var(--green)}
+.mainline-subtasks .pending{color:var(--text-faint)}
+.mainline-chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.mainline-chevron.open{transform:rotate(90deg)}
+
+/* Headlines */
+.headline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;border-left:3px solid var(--accent);transition:border-color .2s}
+.headline-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+.headline-body{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+.gh-link{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);border-bottom:1px dotted rgba(88,166,255,.3)}
+
+/* Collapsibles */
+.collapsible{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.6rem;overflow:hidden}
+.collapsible-header{padding:.8rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:.88rem;transition:background .15s}
+.collapsible-header:hover{background:var(--card-hover)}
+.collapsible-header .chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.collapsible-header .chevron.open{transform:rotate(90deg)}
+.collapsible-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.collapsible-body.open{max-height:2000px}
+.collapsible-content{padding:0 1.2rem 1rem}
+
+/* Scorecard */
+.score-row{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.score-row:last-child{border-bottom:none}
+.score-badge{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700}
+.score-badge.pass{background:rgba(46,160,67,.15);color:var(--green)}
+.score-badge.fail{background:rgba(248,81,73,.12);color:var(--p0)}
+.score-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.score-text{flex:1;color:var(--text-dim)}
+.score-note{font-size:.82rem;color:var(--text-faint)}
+
+/* PR Table */
+.pr-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.pr-table th{text-align:left;color:var(--text-faint);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.pr-table td{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.pr-table .num{font-family:'JetBrains Mono',monospace;color:var(--accent)}
+.pr-status{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.pr-status.open{background:rgba(110,118,129,.15);color:var(--text-dim)}
+.pr-status.locked{background:rgba(248,81,73,.12);color:var(--p0)}
+.pr-status.review{background:rgba(88,166,255,.12);color:var(--accent)}
+.pr-status.merged{background:rgba(46,160,67,.15);color:var(--green)}
+.pr-status.docs{background:rgba(110,118,129,.15);color:var(--text-dim)}
+
+/* Chart */
+.chart-wrap{height:280px;position:relative}
+
+/* Truth Table */
+.truth-group-title{font-size:.85rem;color:var(--text-faint);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:1rem 0 .5rem}
+.truth-row{display:grid;grid-template-columns:60px 1fr 100px 100px;gap:.5rem;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.truth-row:last-child{border-bottom:none}
+.truth-num{font-family:'JetBrains Mono',monospace}
+.truth-badge{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.78rem;font-weight:700;text-align:center}
+.truth-badge.open{background:rgba(248,81,73,.12);color:var(--p0)}
+.truth-badge.closed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.fixed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.none{background:rgba(110,118,129,.12);color:var(--text-faint)}
+.truth-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.truth-mismatch{background:rgba(210,153,34,.06);border-radius:var(--radius-sm)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.97rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.97rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.82rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.truth-row{grid-template-columns:50px 1fr;gap:.3rem}.truth-row>:nth-child(3),.truth-row>:nth-child(4){grid-column:span 1}.logo{font-size:2rem}.header h1{font-size:1.4rem}.collapsible-body.open{max-height:3000px}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发日报 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 修改下方 REPORT 对象中的数据                                 ║
+// ║  2. 在浏览器中打开此文件即可                                     ║
+// ║  3. 所有 HTML 由 JS 从 REPORT 数据自动渲染                       ║
+// ║                                                                  ║
+// ║  天气等级:                                                       ║
+// ║    sun    = ☀️ 晴        (无阻塞)                                ║
+// ║    cloudy = ⛅ 晴转多云  (有关注项)                               ║
+// ║    overcast = 🌥️ 多云   (多项阻塞)                               ║
+// ║    rain   = 🌧️ 阵雨     (关键路径受阻)                           ║
+// ║    storm  = ⛈️ 雷暴      (生产事故)                               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT = {
+  "meta": {
+    "date": "2026-04-08",
+    "baseline": "dev@30fd0472",
+    "title": "开发午报",
+    "coverage": "2026-04-08 09:52 +08:00 -> 2026-04-08 16:40:29 +08:00 live snapshot（GitHub + origin/dev）",
+    "repo": "exomind-team/exomind"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Windows",
+    "model": "Codex",
+    "version": "GPT-5"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "Pages/website 修复进入 commit 面，但 #873 只让 open issue +1；4 条 open PR 与同步 P0 仍无结果面推进",
+    "ups": [
+      "origin/dev 已到 30fd0472；30fd0472 与前 5 个 commit 连续命中 website / Pages / CI 产物链，W / W' 首次出现明确执行信号",
+      "09:52 早报之后只新增 1 条 open issue（#873 workflow(paper)），说明 inflow 没有继续扩散成第二波",
+      "#873 可以直接并入 W' 的外部文档 / website / user-manual 轨，不需要为论文线再新开批次"
+    ],
+    "downs": [
+      "09:52 -> 16:36 这段窗口内仍然 0 merged PR、0 closed issue，结果面对冲继续为 0",
+      "4 条 open PR 仍全部悬而未决；PR #863 之外没有新的 review / merge 入口",
+      "同步 P0 仍停在 #532 / #527 / #868，cross-device / reconnect / human-test 证据没有新增"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Open Issues",
+      "value": "327",
+      "delta": "+1",
+      "trend": "up",
+      "note": "较早报 +1；新增 #873",
+      "tooltip": "live GitHub open issue count = 327；早报基线为 326"
+    },
+    {
+      "label": "Open PRs",
+      "value": "4",
+      "delta": "→0",
+      "trend": "neutral",
+      "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+      "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+    },
+    {
+      "label": "新增 Issue",
+      "value": "1",
+      "delta": "→0",
+      "trend": "neutral",
+      "note": "本窗口仅 #873（workflow(paper)）",
+      "tooltip": "2026-04-08 新增 #873"
+    },
+    {
+      "label": "合并 PR",
+      "value": "0",
+      "delta": "→0",
+      "trend": "neutral",
+      "note": "本窗口无 merge，结果面仍静止",
+      "tooltip": "09:52 之后没有新的 merged PR"
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🛠️",
+      "title": "30fd0472 把 website / Pages artifact 修复线拉成连续 5 commit，但仍未形成 PR / issue 收口",
+      "body": "30fd0472、e6d49502、64a795ee、5a9f8642、4535f01d 连续命中 website base path、Pages artifact tar 格式与 Node 24 Actions 运行时。这说明 W / W' 已经有真实执行面，但 09:52 之后仍没有 merged PR 或 closed issue 去承接这些 commit。"
+    },
+    {
+      "emoji": "📄",
+      "title": "#873 workflow(paper) 把对外论文线并入 W'，公共材料治理轨开始变宽",
+      "body": "#873 在 2026-04-08 10:50 +08:00 进入 open pool，主题是把对外论文线纳入已验证里程碑驱动的材料治理序列。这不是要新开 research 字母批次，而是应该直接并回 W' 的 README / website / user-manual / public materials 轨。"
+    },
+    {
+      "emoji": "⏸️",
+      "title": "09:52 -> 16:36 仍然 0 merge / 0 close，盘面的主要问题继续是结果面对冲停摆",
+      "body": "午前到午后这段窗口里，open issue 从 326 变成 327，变化只有 #873；open PR 仍是 4，closed issue 仍没有新增。说明现在不是新故障爆发，而是 commit 与结果面之间的脱节没有被缩短。"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "W / W' 的 Pages / website / public-docs 线已进入 active commit 面",
+      "pct": 36,
+      "tag": "new",
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "保持 website base path 与 Pages artifact 链路稳定，不再回退",
+          "done": false
+        },
+        {
+          "text": "把 #873 并入 W'，与 #844 / #847 / #865 / #866 一起治理公共材料输出",
+          "done": false,
+          "issue": 873
+        },
+        {
+          "text": "让 commit 面尽快对应到可关闭的 issue/PR，而不是继续停在分支日志里",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "T' visible shell 仍是最接近结果面的另一条执行线",
+      "pct": 30,
+      "tag": "",
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "按 PR #863 先关 #836（未找到页面，P1）",
+          "done": false,
+          "issue": 836
+        },
+        {
+          "text": "把 #867（默认浏览器）与 #871（窗格换位 PTY）并回同一条 shell 收口线",
+          "done": false,
+          "issue": 867
+        },
+        {
+          "text": "随后处理 #842（窗格树骨架）与 #840（窗格快捷键）",
+          "done": false,
+          "issue": 842
+        }
+      ]
+    },
+    {
+      "name": "M 同步 P0 仍代表最硬的结构性停滞",
+      "pct": 8,
+      "tag": "stall",
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "给 #532 / #527 补新的跨端实测证据",
+          "done": false,
+          "issue": 532
+        },
+        {
+          "text": "把 #868 的 reconnect / recovery human-test 真正跑出来",
+          "done": false,
+          "issue": 868
+        },
+        {
+          "text": "让 #869 的 conflict contract 成为实现前置，而不是停在设计讨论里",
+          "done": false,
+          "issue": 869
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "把 #873 固定到 W'，并把 paper / README / website / user-manual 统一成一条公共材料输出轨",
+      "detail": "现在 public-docs 线已经不只是 README / website / manual，还新增了 paper workflow。先把 #873 与 #844 / #847 / #865 / #866 放在同一个批次节奏里，不要再为对外材料线分裂新轨。"
+    },
+    {
+      "text": "把 W / W' 的 commit 面尽快转成 issue / PR 结果面",
+      "detail": "当前 5 个连续 commit 已经说明 Pages / website / CI 修复在推进，但午报窗口内依然 0 merged PR、0 closed issue。至少需要把最近动作挂回可关闭的问题或新的 review 入口。"
+    },
+    {
+      "text": "按 PR #863 -> #836 -> #867 / #871 -> #842 / #840 的顺序收口 visible shell",
+      "detail": "这条线仍是除 W / W' 外最接近结果面的执行入口。优先把 P1 的 #836 收掉，再把默认浏览器和窗格换位这两个新增残余面并回 T'。"
+    },
+    {
+      "text": "把 #532 / #527 / #868 的验证证据补上，并让 #869 成为实现前置合同",
+      "detail": "如果同步 P0 继续只有 design / issue 而没有实测，午后所有 docs / website / shell 推进都只是在更拥挤的盘面上叠加压力。"
+    },
+    {
+      "text": "给 7 条无 P 标签 open issue 补优先级，避免 pool health 继续失真",
+      "detail": "noPriority 仍是 7。至少先把 #859 / #860 / #861 / #862 / #810 / #800 / #515 固定到 P2 或 research 轨，不要继续留空。"
+    }
+  ],
+  "insight": {
+    "text": "这份午报和 09:52 的早报相比，真正新增的盘面信息不是故障，而是“哪条线开始从想法变成连续 commit”。origin/dev 已推进到 30fd0472，而最近 5 个 commit 连续命中 website / Pages artifact / CI runtime，这让 W / W' 第一次具备了可以被称为 active 的执行信号。与此同时，#873 又把 paper workflow 并进了公共材料治理线，说明外部叙事与发布材料正在从单点议题长成一条批次轨。但另一面没有变：0 merge、0 close、4 open PR、同步 P0 继续停滞。风险因此不在于我们看不见新方向，而在于已有方向开始推进后，结果面对冲依然没有跟上。",
+    "author": "外心史官·Windows [Codex GPT-5]"
+  },
+  "scorecard": [
+    {
+      "text": "PR #863 继续带动 #836 / #842 / #840 / #871 收口",
+      "result": "fail",
+      "note": "PR 仍 OPEN，shell 残余面还在扩而不是收"
+    },
+    {
+      "text": "给 7 条 noPriority open issue 补齐 triage",
+      "result": "fail",
+      "note": "current noPriority 仍是 7，没有从早报再下降"
+    },
+    {
+      "text": "同步 P0 补 human-test / reconnect / cross-device 证据",
+      "result": "fail",
+      "note": "#532 / #527 / #868 依然没有新的验证闭环"
+    },
+    {
+      "text": "#872 保持在 Y，新增 public-docs inflow 由 W′ 吸收",
+      "result": "pass",
+      "note": "#872 继续留在 Y，而 #873 也被既有 W′ 轨承接，没有再发明新字母批次"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 863,
+        "title": "fix: restore agent hub tiled workbench build surface",
+        "status": "review"
+      },
+      {
+        "num": 790,
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "status": "review",
+        "extra": "draft"
+      },
+      {
+        "num": 565,
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "status": "docs"
+      },
+      {
+        "num": 466,
+        "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+        "status": "locked",
+        "extra": "🔒"
+      }
+    ],
+    "merged": []
+  },
+  "truth": {
+    "closed": [
+      {
+        "num": 870,
+        "title": "网络 / 会话：Terminal 弹窗先分流“创建新终端 / 恢复已有终端”，恢复模式不再暴露路径输入",
+        "closedAt": "2026-04-07",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 834,
+        "title": "bug(task-dag): 强聚焦下手动布局触摸拖拽会让聚焦系列整组消失",
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 831,
+        "title": "feat(rt/api-agent): Rust 内置 proposal service 接入 API Agent，并用真实 ProposalStore 验证提案创建",
+        "closedAt": "2026-04-03",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 825,
+        "title": "故事(cli): RT-native CLI 作为 ExoMind 第三客户端壳，并为个人知识库 skill 提供统一入口",
+        "closedAt": "2026-04-03",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 824,
+        "title": "bug(agent-hub): 会话页活跃数需与 RT 一致且会话卡片进入 Terminal 必须成功或明确失败",
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 818,
+        "title": "任务(agent-terminal)：Claude/Codex 终端 Agent 会话支持跨 RT 重启自动恢复（基于持久会话信息重放）",
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 808,
+        "title": "fix(dev-setup): Windows 下 .codex 软链接因 core.symlinks=false 降级为文本文件，导致 Codex 启动报 os error 267",
+        "closedAt": "2026-04-02",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 806,
+        "title": "任务(agent-terminal)：终端 PTY Agent 会话生命周期正常化：结束态优化、恢复修复与拓扑节点收敛",
+        "closedAt": "2026-04-05",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 795,
+        "title": "chore(icon): 当前图标 SVG 矢量化 + 透明背景，生成全平台图标源",
+        "closedAt": "2026-04-02",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      },
+      {
+        "num": 794,
+        "title": "epic(sync-rt): 移除 Pouch 主链路并以 RT mesh + RT SQLite 统一跨设备同步",
+        "closedAt": "2026-04-01",
+        "gh": "CLOSED",
+        "code": "FIXED",
+        "mismatch": false
+      }
+    ],
+    "stillOpen": [
+      {
+        "num": 873,
+        "title": "workflow(paper): 对外论文线纳入已验证里程碑驱动的材料治理序列",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 872,
+        "title": "research(ecs): ECS Mesh 组网与机会同步 — libp2p/inet256 交叉分析",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 871,
+        "title": "网络 / 平铺：支持通过拖动窗格顶部在各窗格间移动/换位 PTY 终端",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 869,
+        "title": "design(sync-conflict): 定义配对 RT 离线分叉后的对象级冲突处理契约（任务/时间块/提案）",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 868,
+        "title": "bug(sync-recovery): 配对 RT 在断线重连 / RT 重启后缺少恢复性同步，离线窗口内变更无法保证补齐",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 867,
+        "title": "bug(agent-terminal): PTY 终端内 Ctrl+点击外链无法拉起系统默认浏览器",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 866,
+        "title": "architecture(docs): 官网 website 是否独立仓库化，以及与 canonical 内容源仓的关系",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 865,
+        "title": "docs(user-manual): 面向普通使用者的人类/Agent 共读用户手册与操作指南 Phase 1",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 864,
+        "title": "design(archive-os): archive 术语迁移、默认档案、ArchiveSession/UiSession 与档案切换器 Phase 1",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 862,
+        "title": "discussion(audit-ui): 对象局部历史、黑板移出痕迹与全局审计界面",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      }
+    ]
+  },
+  "poolHealth": {
+    "prIssueMismatch": [
+      {
+        "pr": 579,
+        "issue": 575,
+        "prTitle": "fix(voice/runtime): 双层去重修复 NowInputRow 与多实例 EventLog (#575 #576)",
+        "issueTitle": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）"
+      },
+      {
+        "pr": 577,
+        "issue": 418,
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab（#418 #516）",
+        "issueTitle": "tracking: 任务与时间块解耦、关联语义与反馈联动状态更新"
+      },
+      {
+        "pr": 577,
+        "issue": 516,
+        "prTitle": "feat: 解耦时间块与单任务绑定，并新增当下工作台 Tab（#418 #516）",
+        "issueTitle": "feat(now): 当下页重构为 Tab 工作台（专注 / 记录 / 今日）"
+      }
+    ],
+    "staleHighPriority": [
+      {
+        "num": 368,
+        "title": "feat(ecs-2): 提取 Transport 抽象并统一 HTTP/SSE adapter",
+        "staleDays": 33,
+        "priority": "P1"
+      },
+      {
+        "num": 457,
+        "title": "fix(rust): 消除不安全 unwrap + Cargo.toml edition 修正 + 依赖更新",
+        "staleDays": 29,
+        "priority": "P1"
+      },
+      {
+        "num": 455,
+        "title": "test: 核心模块测试覆盖缺口补充（runtime-client / runtime-manager / AgentsPage）",
+        "staleDays": 29,
+        "priority": "P1"
+      },
+      {
+        "num": 366,
+        "title": "epic(ecs): ExoMind Communication Stack 实施总计划（优先补 ECS-2/ECS-3）",
+        "staleDays": 24,
+        "priority": "P1"
+      },
+      {
+        "num": 317,
+        "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+        "staleDays": 23,
+        "priority": "P1"
+      },
+      {
+        "num": 575,
+        "title": "bug: 多实例并发导致 EventLog 重复写入（开3个外心=重复3次）",
+        "staleDays": 21,
+        "priority": "P1"
+      },
+      {
+        "num": 572,
+        "title": "bug(android-nav): 根路由返回应直接退出 App，而非反复回退 Web 历史",
+        "staleDays": 21,
+        "priority": "P1"
+      },
+      {
+        "num": 553,
+        "title": "feat(dev-manager): up 前台模式 — 多实例管理 + 流式日志 + graceful stop",
+        "staleDays": 21,
+        "priority": "P1"
+      }
+    ],
+    "noPriority": {
+      "current": 7,
+      "previous": 7
+    },
+    "aging": {
+      "oldCount": 97,
+      "total": 327,
+      "pct": 30,
+      "samples": [
+        {
+          "num": 91,
+          "title": "feat(timeblock): 多时间块并行 — 支持同时进行多个任务计时",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        },
+        {
+          "num": 90,
+          "title": "feat(settings): 字体大小调节",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        },
+        {
+          "num": 74,
+          "title": "feat(cli): ExoMind CLI 命令行工具 — 统一 RT API 多端分发",
+          "ageDays": 56,
+          "staleDays": 17,
+          "priority": "P2"
+        },
+        {
+          "num": 71,
+          "title": "feat(agent): Agent 自动记忆系统 — 存储·检索·遗忘",
+          "ageDays": 56,
+          "staleDays": 1,
+          "priority": "P2"
+        },
+        {
+          "num": 70,
+          "title": "feat(exobuffer): 外心缓冲区通用接口 — RSS/Webhook/API",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        },
+        {
+          "num": 69,
+          "title": "feat(exobuffer): 外心缓冲区 UI 设计",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        },
+        {
+          "num": 67,
+          "title": "feat(eventlog): 事件引用 — 在新事件中引用历史事件",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        },
+        {
+          "num": 66,
+          "title": "feat(eventlog): 事件唯一链接 — 可分享的事件永久地址",
+          "ageDays": 56,
+          "staleDays": 23,
+          "priority": "P2"
+        }
+      ]
+    }
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "UI",
+      "Tauri",
+      "架构",
+      "Web",
+      "enhancement",
+      "P1",
+      "Agent",
+      "移动端",
+      "research",
+      "时间块",
+      "事件日志"
+    ],
+    "data": [
+      239,
+      118,
+      119,
+      93,
+      89,
+      76,
+      76,
+      65,
+      45,
+      31,
+      25,
+      24
+    ],
+    "deltas": [
+      "+1",
+      "+1",
+      "+2",
+      "+2",
+      "+1",
+      "→ 0",
+      "+1",
+      "+2",
+      "-1",
+      "→ 0",
+      "+2",
+      "+2"
+    ],
+    "highlights": {
+      "P0": "#868 #807 #527 #532",
+      "P1": "76 issues",
+      "Agent": "#863 #864 #865 #867 #871",
+      "NoPriority": "325 issues"
+    }
+  }
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  以下为渲染引擎 · 修改数据请改上方 REPORT，无需改动下方代码      ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT_REPO = REPORT.meta?.repo || 'exomind-team/exomind';
+const GH_BASE = `https://github.com/${REPORT_REPO}/issues/`;
+const GH_PR = `https://github.com/${REPORT_REPO}/pull/`;
+const STORAGE_KEY = `exomind-actions-${REPORT.meta.date}`;
+
+function ghLink(num) { return `<a class="gh-link" href="${GH_BASE}${num}">#${num}</a>`; }
+function prLink(num) { return `<a class="gh-link" href="${GH_PR}${num}">#${num}</a>`; }
+
+// Auto-linkify #xxx in plain text
+function autoLink(text) {
+  return text.replace(/#(\d+)/g, (_, n) => ghLink(n));
+}
+
+// Weather gradient map
+const WEATHER_GRADIENTS = {
+  sun:      'linear-gradient(135deg, #f0a500, #ff6b00)',
+  cloudy:   'linear-gradient(135deg, #58a6ff, #8957e5)',
+  overcast: 'linear-gradient(135deg, #6e7681, #484f58)',
+  rain:     'linear-gradient(135deg, #6e40c9, #f85149)',
+  storm:    'linear-gradient(135deg, #f85149, #da3633)',
+};
+
+const HEADLINE_COLORS = ['var(--green)', 'var(--accent)', 'var(--purple)', 'var(--orange)', 'var(--p0)', 'var(--text-dim)'];
+
+function normalizeMetricTrend(trend) {
+  if (typeof trend !== 'string') return 'neutral';
+  const normalized = trend.trim().toLowerCase();
+  if (normalized === 'flat') return 'neutral';
+  return ['up', 'down', 'neutral'].includes(normalized) ? normalized : 'neutral';
+}
+
+function normalizeScoreResult(result) {
+  if (typeof result !== 'string') return 'partial';
+  const normalized = result.trim().toLowerCase();
+  if (['pass', 'hit', 'done'].includes(normalized)) return 'pass';
+  if (['fail', 'miss'].includes(normalized)) return 'fail';
+  return 'partial';
+}
+
+function normalizePrStatus(status) {
+  if (typeof status !== 'string') return 'open';
+  const normalized = status.trim().toLowerCase();
+  return ['open', 'review', 'docs', 'locked', 'merged'].includes(normalized) ? normalized : 'open';
+}
+
+function normalizePriority(priority) {
+  return typeof priority === 'string' && priority.trim() ? priority : 'P2';
+}
+
+function normalizeInsight(insight, publisher) {
+  if (typeof insight === 'string') {
+    return { text: insight, author: publisher?.identity || 'ExoMind' };
+  }
+  if (!insight || typeof insight !== 'object' || Array.isArray(insight)) {
+    return { text: '', author: publisher?.identity || 'ExoMind' };
+  }
+  return {
+    ...insight,
+    text: typeof insight.text === 'string' ? insight.text : '',
+    author: typeof insight.author === 'string' && insight.author.trim() ? insight.author : (publisher?.identity || 'ExoMind'),
+  };
+}
+
+function normalizeTruthItem(item, group) {
+  if (!item || typeof item !== 'object' || Array.isArray(item) || !Number.isFinite(item.num)) return null;
+  const title = typeof item.title === 'string' ? item.title : '';
+  if (!title.trim()) return null;
+  return {
+    ...item,
+    title,
+    gh: typeof item.gh === 'string' && item.gh.trim()
+      ? item.gh.trim().toUpperCase()
+      : group === 'closed' || typeof item.closedAt === 'string'
+        ? 'CLOSED'
+        : 'OPEN',
+    code: typeof item.code === 'string' && item.code.trim()
+      ? item.code.trim().toUpperCase()
+      : group === 'closed'
+        ? 'FIXED'
+        : 'NONE',
+    mismatch: Boolean(item.mismatch),
+  };
+}
+
+function normalizeTruthItems(items, group) {
+  return Array.isArray(items)
+    ? items.map(item => normalizeTruthItem(item, group)).filter(Boolean)
+    : [];
+}
+
+function normalizeStaleItems(items) {
+  return Array.isArray(items)
+    ? items
+        .filter(item => item && typeof item === 'object' && !Array.isArray(item) && Number.isFinite(item.num))
+        .map(item => ({
+          ...item,
+          priority: normalizePriority(item.priority),
+          staleDays: Number.isFinite(item.staleDays) ? item.staleDays : (Number.isFinite(item.ageDays) ? item.ageDays : 0),
+        }))
+    : [];
+}
+
+function normalizeAgingSamples(samples) {
+  return Array.isArray(samples)
+    ? samples
+        .filter(item => item && typeof item === 'object' && !Array.isArray(item) && Number.isFinite(item.num))
+        .map(item => ({
+          ...item,
+          priority: normalizePriority(item.priority),
+          ageDays: Number.isFinite(item.ageDays) ? item.ageDays : (Number.isFinite(item.staleDays) ? item.staleDays : 0),
+        }))
+    : [];
+}
+
+function normalizePoolHealth(poolHealth) {
+  if (!poolHealth || typeof poolHealth !== 'object' || Array.isArray(poolHealth)) return null;
+  const aging = poolHealth.aging && typeof poolHealth.aging === 'object' && !Array.isArray(poolHealth.aging)
+    ? poolHealth.aging
+    : {};
+  const total = Number.isFinite(aging.total) ? aging.total : 0;
+  const pct = Number.isFinite(aging.pct) ? aging.pct : 0;
+  const oldCount = Number.isFinite(aging.oldCount)
+    ? aging.oldCount
+    : total > 0 && pct > 0
+      ? Math.round(total * pct / 100)
+      : 0;
+
+  return {
+    prIssueMismatch: Array.isArray(poolHealth.prIssueMismatch) ? poolHealth.prIssueMismatch : [],
+    staleHighPriority: normalizeStaleItems(poolHealth.staleHighPriority || poolHealth.stalePriority),
+    noPriority: {
+      current: Number.isFinite(poolHealth.noPriority?.current) ? poolHealth.noPriority.current : 0,
+      previous: Number.isFinite(poolHealth.noPriority?.previous) ? poolHealth.noPriority.previous : 0,
+    },
+    aging: {
+      oldCount,
+      total,
+      pct,
+      samples: normalizeAgingSamples(aging.samples),
+    },
+  };
+}
+
+function normalizeReportForRender(report) {
+  const meta = report?.meta || {};
+  const weather = report?.weather || {};
+  const prs = report?.prs || {};
+  const truth = report?.truth || {};
+
+  return {
+    ...report,
+    meta: {
+      ...meta,
+      title: typeof meta.title === 'string' && meta.title.trim() ? meta.title : '开发日志',
+      coverage: typeof meta.coverage === 'string' ? meta.coverage : '',
+      repo: typeof meta.repo === 'string' && meta.repo.trim() ? meta.repo : REPORT_REPO,
+    },
+    weather: {
+      ...weather,
+      ups: Array.isArray(weather.ups) ? weather.ups : [],
+      downs: Array.isArray(weather.downs) ? weather.downs : [],
+    },
+    metrics: Array.isArray(report?.metrics)
+      ? report.metrics.map(metric => ({
+          ...metric,
+          trend: normalizeMetricTrend(metric?.trend),
+          tooltip: typeof metric?.tooltip === 'string' ? metric.tooltip : (typeof metric?.note === 'string' ? metric.note : ''),
+        }))
+      : [],
+    headlines: Array.isArray(report?.headlines)
+      ? report.headlines.map(headline => ({
+          ...headline,
+          emoji: typeof headline?.emoji === 'string' && headline.emoji.trim() ? headline.emoji : '-',
+        }))
+      : [],
+    mainlines: Array.isArray(report?.mainlines)
+      ? report.mainlines.map(mainline => ({
+          ...mainline,
+          subtasks: Array.isArray(mainline?.subtasks)
+            ? mainline.subtasks.map(subtask => typeof subtask === 'string' ? { text: subtask, done: false } : subtask)
+            : [],
+        }))
+      : [],
+    scorecard: Array.isArray(report?.scorecard)
+      ? report.scorecard.map(item => ({
+          ...item,
+          result: normalizeScoreResult(item?.result),
+        }))
+      : [],
+    prs: {
+      open: Array.isArray(prs.open)
+        ? prs.open.map(pr => ({
+            ...pr,
+            status: normalizePrStatus(pr?.status),
+          }))
+        : [],
+      merged: Array.isArray(prs.merged) ? prs.merged : [],
+    },
+    truth: {
+      closed: normalizeTruthItems(truth.closed, 'closed'),
+      stillOpen: normalizeTruthItems(truth.stillOpen, 'stillOpen'),
+    },
+    poolHealth: normalizePoolHealth(report?.poolHealth),
+    actions: Array.isArray(report?.actions)
+      ? report.actions.map(action => typeof action === 'string' ? { text: action, detail: '' } : action)
+      : Array.isArray(weather.actions)
+        ? weather.actions.map(action => typeof action === 'string' ? { text: action, detail: '' } : action)
+        : [],
+    insight: normalizeInsight(report?.insight, report?.publisher),
+    terrain: report?.terrain && Array.isArray(report.terrain.labels) ? report.terrain : null,
+  };
+}
+
+function render() {
+  const R = normalizeReportForRender(REPORT);
+  const app = document.getElementById('app');
+  document.title = `ExoMind ${R.meta.title} · ${R.meta.date}`;
+
+  let html = '';
+  const coverageMeta = R.meta.coverage ? ` · 覆盖 ${R.meta.coverage}` : '';
+
+  // ── Header ──
+  html += `<header class="header animate">
+    <div class="logo">EXOMIND</div>
+    <h1>${R.meta.title}</h1>
+    <div class="meta">${R.meta.date}${coverageMeta} · 基线 <span class="mono">${R.meta.baseline || '-'}</span></div>
+  </header>`;
+
+  // ── Weather + Metrics ──
+  const wGrad = WEATHER_GRADIENTS[R.weather.level] || WEATHER_GRADIENTS.cloudy;
+  html += `<div class="top-row">
+    <div class="weather-card animate d1" style="background:${wGrad}" onclick="toggleWeather()">
+      <div class="weather-emoji">${R.weather.emoji}</div>
+      <div class="weather-label">${R.weather.label}</div>
+      <div class="weather-sub">点击查看详情 ▾</div>
+      <div class="weather-details" id="weatherDetails">
+        <div class="up"><ul>${R.weather.ups.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+        <div class="down"><ul>${R.weather.downs.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      ${R.metrics.map((m, i) => `<div class="metric-card animate d${i+2}">
+        <div class="tooltip">${m.tooltip}</div>
+        <div class="label">${m.label}</div>
+        <div class="value">${m.value}</div>
+        <div class="delta ${m.trend}">${m.delta}</div>
+        <div class="note">${m.note}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // ── Mainlines ──
+  html += `<div class="section-title animate d3">主线追踪</div>`;
+  R.mainlines.forEach((m, i) => {
+    const tag = m.tag === 'new' ? '<span class="tag new">NEW</span>'
+      : m.tag === 'stall' ? '<span class="tag stall">STALL</span>' : '';
+    const subs = m.subtasks.map(s => {
+      const icon = s.done ? '<span class="done">✓</span>' : '<span class="pending">○</span>';
+      const link = s.issue ? ` ${ghLink(s.issue)}` : '';
+      return `<li>${icon} ${s.text}${link}</li>`;
+    }).join('');
+    html += `<div class="mainline animate d${Math.min(i+2,6)}">
+      <div class="mainline-header" onclick="toggleMainline(this)">
+        <span class="mainline-name">${m.name} ${tag}</span>
+        <span style="display:flex;align-items:center;gap:.6rem">
+          <span class="mainline-pct">${m.pct}%</span>
+          <span class="mainline-chevron">▶</span>
+        </span>
+      </div>
+      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${m.pct}%"></div></div>
+      <div class="mainline-subtasks"><ul>${subs}</ul></div>
+    </div>`;
+  });
+
+  // ── Headlines ──
+  html += `<div class="section-title animate d4">头条</div>`;
+  R.headlines.forEach((h, i) => {
+    const color = h.color || HEADLINE_COLORS[i] || 'var(--accent)';
+    html += `<div class="headline animate d${Math.min(i+4,6)}" style="border-left-color:${color}">
+      <div class="headline-title">${h.emoji} ${h.title}</div>
+      <div class="headline-body">${autoLink(h.body)}</div>
+    </div>`;
+  });
+
+  // ── Scorecard (collapsible) ──
+  html += renderCollapsible('📋 上期建议执行记分卡', '', 'd5', () => {
+    return R.scorecard.map(s => {
+      const icon = s.result === 'pass' ? '✓' : s.result === 'fail' ? '✗' : '△';
+      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text)}<div class="score-note">${autoLink(s.note)}</div></div></div>`;
+    }).join('');
+  });
+
+  // ── PR Board (collapsible) ──
+  const prSummary = `· Open ${R.prs.open.length} · Merged ${R.prs.merged.length}`;
+  html += renderCollapsible('🚦 PR 看板', prSummary, 'd5', () => {
+    let t = '<table class="pr-table"><tr><th>#</th><th>标题</th><th>状态</th></tr>';
+    R.prs.open.forEach(p => {
+      const extra = p.extra ? ` ${p.extra}` : '';
+      t += `<tr><td class="num"><a href="${GH_BASE}${p.num}">#${p.num}</a></td><td>${p.title}</td><td><span class="pr-status ${p.status}">${p.status}${extra}</span></td></tr>`;
+    });
+    t += '</table>';
+    if (R.prs.merged.length) {
+      t += '<div style="margin-top:.8rem;font-size:.85rem;color:var(--text-dim)">合并: ';
+      t += R.prs.merged.map(p => `${prLink(p.num)} ${p.title} (${p.date})`).join(' · ');
+      t += '</div>';
+    }
+    return t;
+  });
+
+  // ── Terrain (collapsible with chart) ──
+  const hasTerrain = Array.isArray(R.terrain?.labels) && R.terrain.labels.length > 0;
+  html += renderCollapsible('🏔️ Issue 地形图', '', 'd5', () => {
+    return hasTerrain
+      ? '<div class="chart-wrap"><canvas id="terrainChart"></canvas></div>'
+      : '<div style="font-size:.82rem;color:var(--text-dim)">本期未提供地形图数据</div>';
+  }, hasTerrain);
+
+  // ── Truth Table (collapsible) ──
+  html += renderCollapsible('🔬 代码 vs GitHub 真相表', '', 'd6', () => {
+    let t = '<div class="truth-row" style="font-size:.8rem;color:var(--text-faint);font-weight:700;border-bottom:1px solid var(--border)"><div></div><div>ISSUE</div><div>GITHUB</div><div>CODE</div></div>';
+    if (R.truth.closed.length) t += renderTruthGroup('已关闭 · 代码验证通过', R.truth.closed);
+    if (R.truth.stillOpen.length) t += renderTruthGroup('仍 OPEN · 代码已修复 ⚠️', R.truth.stillOpen);
+    return t;
+  });
+
+  // ── Pool Health (Issue 时效清点) ──
+  if (R.poolHealth) {
+    const ph = R.poolHealth;
+    // Build summary chips for collapsible header (like PR board)
+    const phChips = [];
+    if (ph.prIssueMismatch.length > 0) phChips.push(`<span style="color:var(--p1)">${ph.prIssueMismatch.length} 战果未清</span>`);
+    if (ph.staleHighPriority.length > 0) phChips.push(`<span style="color:var(--p0)">${ph.staleHighPriority.length} 僵持</span>`);
+    if (ph.noPriority.current > 0) phChips.push(`<span style="color:var(--p1)">${ph.noPriority.current} 未编入</span>`);
+    else phChips.push(`<span style="color:var(--green)">全编入</span>`);
+    if (ph.aging.pct > 0) phChips.push(`<span style="color:${ph.aging.pct > 40 ? 'var(--p0)' : ph.aging.pct > 25 ? 'var(--p1)' : 'var(--text-faint)'}">${ph.aging.pct}% 陈年</span>`);
+    const phSummary = phChips.length ? ' · ' + phChips.join(' · ') : '';
+    html += renderCollapsible('🕒 Issue 时效清点', phSummary, 'd6', () => {
+      let c = '';
+      // PR→Issue 断裂
+      if (ph.prIssueMismatch.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p1);margin-bottom:.3rem">🚩 战果未清</div>';
+        ph.prIssueMismatch.forEach(m => {
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0">PR ${prLink(m.pr)} 已合并 → ${ghLink(m.issue)} 仍 OPEN</div>`;
+        });
+        c += '</div>';
+      }
+      // P0/P1 停滞
+      if (ph.staleHighPriority.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p0);margin-bottom:.3rem">⏳ 僵持线</div>';
+        ph.staleHighPriority.forEach(s => {
+          const barLen = Math.min(Math.round(s.staleDays / 2), 15);
+          const bar = '█'.repeat(barLen) + '░'.repeat(Math.max(15 - barLen, 0));
+          const cls = s.priority === 'P0' ? 'color:var(--p0)' : 'color:var(--p1)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0;font-family:'JetBrains Mono',monospace">${ghLink(s.num)} <span style="${cls}">${s.priority}</span> <span style="color:var(--text-faint)">${bar}</span> ${s.staleDays}d ${s.title}</div>`;
+        });
+        c += '</div>';
+      }
+      // 无优先级
+      const npText = ph.noPriority.current === 0
+        ? `<span style="color:var(--green)">全部编入 ✅</span>`
+        : `<span style="color:var(--p1)">${ph.noPriority.current}</span>`;
+      const npDelta = ph.noPriority.previous !== ph.noPriority.current
+        ? ` <span style="color:var(--text-faint)">(上期 ${ph.noPriority.previous})</span>` : '';
+      c += `<div style="font-size:.82rem;color:var(--text-dim);margin-top:.5rem">🏷 未编入 ${npText}${npDelta}</div>`;
+      // 陈年阵地 — 总览 + 具体 issue 列表
+      const agePct = ph.aging.pct;
+      const ageColor = agePct > 40 ? 'var(--p0)' : agePct > 25 ? 'var(--p1)' : 'var(--text-dim)';
+      c += `<div style="margin-top:.8rem"><div style="font-size:.85rem;font-weight:700;color:${ageColor};margin-bottom:.3rem">📦 陈年阵地 ${agePct}% &gt;30d (${ph.aging.oldCount}/${ph.aging.total})</div>`;
+      if (ph.aging.samples && ph.aging.samples.length > 0) {
+        ph.aging.samples.forEach(s => {
+          const pColor = s.priority === 'P0' ? 'var(--p0)' : s.priority === 'P1' ? 'var(--p1)' : 'var(--text-faint)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.15rem 0">${ghLink(s.num)} <span style="color:${pColor}">${s.priority}</span> <span style="color:var(--text-faint)">${s.ageDays}d</span> ${s.title}</div>`;
+        });
+      }
+      c += '</div>';
+      return c;
+    });
+  }
+
+  // ── Actions ──
+  html += `<div class="section-title animate d6">建议行动</div>`;
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  html += `<div id="actions" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem">`;
+  R.actions.forEach((a, i) => {
+    const checked = stored[i] ? 'checked' : '';
+    html += `<div class="action-item">
+      <input type="checkbox" class="action-check" ${checked} onchange="saveAction(${i}, this.checked)">
+      <div><div class="action-text">${autoLink(a.text)}</div><div class="action-detail">${autoLink(a.detail)}</div></div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // ── Insight ──
+  html += `<div class="insight animate d6">
+    <p>${autoLink(R.insight.text || '本期未提供额外洞察。')}</p>
+    <div class="author">— ${R.insight.author} · ${R.meta.date}</div>
+  </div>`;
+
+  // ── Footer ──
+  const pub = R.publisher;
+  const pubStr = pub ? `${pub.identity}·${pub.os} [${pub.model} ${pub.version}]` : 'ExoMind dev-daily agent';
+  html += `<div class="footer">${pubStr}</div>`;
+
+  app.innerHTML = html;
+}
+
+function renderCollapsible(title, subtitle, delay, contentFn, hasChart) {
+  const sub = subtitle ? ` <span style="color:var(--text-faint);font-size:.75rem">${subtitle}</span>` : '';
+  return `<div class="collapsible animate ${delay}">
+    <div class="collapsible-header" onclick="toggleCollapsible(this${hasChart ? ',true' : ''})">
+      <span>${title}${sub}</span><span class="chevron">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="collapsible-content">${contentFn()}</div></div>
+  </div>`;
+}
+
+function renderTruthGroup(title, items) {
+  let h = `<div class="truth-group-title">${title}</div>`;
+  items.forEach(t => {
+    const normalized = normalizeTruthItem(t, title.includes('已关闭') ? 'closed' : 'stillOpen');
+    if (!normalized) return;
+    const cls = normalized.mismatch ? ' truth-mismatch' : '';
+    h += `<div class="truth-row${cls}">
+      <div class="truth-num"><a href="${GH_BASE}${normalized.num}">#${normalized.num}</a></div>
+      <div style="color:var(--text-dim)">${normalized.title}</div>
+      <div><span class="truth-badge ${normalized.gh.toLowerCase()}">${normalized.gh}</span></div>
+      <div><span class="truth-badge ${normalized.code.toLowerCase()}">${normalized.code}</span></div>
+    </div>`;
+  });
+  return h;
+}
+
+// ── Interactions ──
+function toggleWeather() { document.getElementById('weatherDetails').classList.toggle('open'); }
+function toggleMainline(header) {
+  const card = header.closest('.mainline');
+  card.querySelector('.mainline-subtasks').classList.toggle('open');
+  card.querySelector('.mainline-chevron').classList.toggle('open');
+}
+let chartInstance = null;
+function toggleCollapsible(header, hasChart) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+  if (hasChart && body.classList.contains('open')) setTimeout(renderChart, 50);
+}
+function saveAction(i, checked) {
+  const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  s[i] = checked;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+function renderChart() {
+  const ctx = document.getElementById('terrainChart');
+  if (!ctx) return;
+  if (chartInstance) chartInstance.destroy();
+  const d = normalizeReportForRender(REPORT).terrain;
+  if (!d || !Array.isArray(d.labels) || !d.labels.length) return;
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        data: d.data,
+        backgroundColor: d.labels.map(l => l === 'P0' ? 'rgba(248,81,73,.7)' : l === 'P1' ? 'rgba(210,153,34,.7)' : 'rgba(88,166,255,.4)'),
+        borderColor: d.labels.map(l => l === 'P0' ? '#f85149' : l === 'P1' ? '#d29922' : '#58a6ff'),
+        borderWidth: 1, borderRadius: 3,
+      }],
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: (ctx) => {
+              const label = ctx.label;
+              const delta = d.deltas[d.labels.indexOf(label)];
+              const hl = d.highlights[label];
+              let r = delta ? `变化: ${delta}` : '';
+              if (hl) r += (r ? '\n' : '') + hl;
+              return r;
+            }
+          },
+          backgroundColor: '#1c2128', borderColor: '#30363d', borderWidth: 1,
+          titleColor: '#e6edf3', bodyColor: '#8b949e',
+          titleFont: { family: 'JetBrains Mono' },
+        },
+      },
+      scales: {
+        x: { grid: { color: 'rgba(48,54,61,.5)' }, ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 } } },
+        y: { grid: { display: false }, ticks: { color: '#e6edf3', font: { family: 'Outfit', size: 12 } } },
+      },
+    },
+  });
+}
+
+// Boot
+render();
+</script>
+</body>
+</html>

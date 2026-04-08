@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-08T01:54:07.581Z",
+  "generated": "2026-04-08T08:40:55.068Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-08-095251.html",
-    "dataFile": "2026-04-08-095251.json",
+    "file": "2026-04-08-164029.html",
+    "dataFile": "2026-04-08-164029.json",
     "date": "2026-04-08",
-    "time": "095251"
+    "time": "164029"
   },
   "reports": [
+    {
+      "date": "2026-04-08",
+      "time": "164029",
+      "title": "开发午报",
+      "file": "2026-04-08-164029.html",
+      "dataFile": "2026-04-08-164029.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "Pages/website 修复进入 commit 面，但 #873 只让 open issue +1；4 条 open PR 与同步 P0 仍无结果面推进"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "327",
+          "delta": "+1",
+          "trend": "up",
+          "note": "较早报 +1；新增 #873",
+          "tooltip": "live GitHub open issue count = 327；早报基线为 326"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "1",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口仅 #873（workflow(paper)）",
+          "tooltip": "2026-04-08 新增 #873"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口无 merge，结果面仍静止",
+          "tooltip": "09:52 之后没有新的 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-164029.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-08-164029.json"
+    },
     {
       "date": "2026-04-08",
       "time": "095251",
