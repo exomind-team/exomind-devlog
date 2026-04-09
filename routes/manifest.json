@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-08T16:54:24.897Z",
+  "generated": "2026-04-09T01:25:20.532Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-005325.html",
-    "dataFile": "2026-04-09-005325.json",
+    "file": "2026-04-09-092420.html",
+    "dataFile": "2026-04-09-092420.json",
     "date": "2026-04-09",
-    "time": "005325"
+    "time": "092420"
   },
   "routes": [
+    {
+      "date": "2026-04-09",
+      "time": "092420",
+      "title": "开发航线",
+      "file": "2026-04-09-092420.html",
+      "dataFile": "2026-04-09-092420.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "#885 将 pairing stability 再压回 V；20 批次结构仍可吸收，但同步 P0 与 5 条 blocked 链未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "20",
+          "note": "M~Z + S' + T' + T'' + W' + W'' + Y'",
+          "trend": "neutral",
+          "tooltip": "M~Z + S' + T' + T'' + W' + W'' + Y'"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "M / N / S' / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "8",
+          "note": "R / S / T / T' / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "R / S / T / T' / W / W' / W'' / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "152",
+          "note": "339 中的 45%（#885 已并入 V；#874~#884 维持既有编组）",
+          "trend": "neutral",
+          "tooltip": "339 中的 45%（#885 已并入 V；#874~#884 维持既有编组）"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-092420.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-092420.json"
+    },
     {
       "date": "2026-04-09",
       "time": "005325",
