@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-08T16:53:48.274Z",
+  "generated": "2026-04-09T01:24:44.654Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-005325.html",
-    "dataFile": "2026-04-09-005325.json",
+    "file": "2026-04-09-092420.html",
+    "dataFile": "2026-04-09-092420.json",
     "date": "2026-04-09",
-    "time": "005325"
+    "time": "092420"
   },
   "reports": [
+    {
+      "date": "2026-04-09",
+      "time": "092420",
+      "title": "开发早报",
+      "file": "2026-04-09-092420.html",
+      "dataFile": "2026-04-09-092420.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "#885 将 open issue 推到 339；origin/dev 仍停在 24122938，结果面继续 0 merge / 0 close"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "339",
+          "delta": "+1",
+          "trend": "up",
+          "note": "较夜报 +1；新增 #885",
+          "tooltip": "live GitHub open issue count = 339；夜报基线为 338"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "1",
+          "delta": "-10",
+          "trend": "down",
+          "note": "本窗口仅 #885（sync/pairing host_id 持久化缺口）",
+          "tooltip": "相较夜报窗口的 11 条 inflow，本窗口只新增 1 条 issue"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口无 merge，结果面仍静止",
+          "tooltip": "00:53 之后没有新的 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-092420.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-092420.json"
+    },
     {
       "date": "2026-04-09",
       "time": "005325",
