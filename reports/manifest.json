@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-09T06:32:54.798Z",
+  "generated": "2026-04-09T06:40:27.559Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-143225.html",
-    "dataFile": "2026-04-09-143225.json",
+    "file": "2026-04-09-143859.html",
+    "dataFile": "2026-04-09-143859.json",
     "date": "2026-04-09",
-    "time": "143225"
+    "time": "143859"
   },
   "reports": [
+    {
+      "date": "2026-04-09",
+      "time": "143859",
+      "title": "开发午报",
+      "file": "2026-04-09-143859.html",
+      "dataFile": "2026-04-09-143859.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "补录 #896 后 open pool 升到 345；5df940e6 + #891 / #880 / #882 仍是当前结果面基线，但 embedded RT port 线也已进入 R"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "345",
+          "delta": "+1",
+          "trend": "up",
+          "note": "较上一版 +1；补录 #896 后当前 open pool = 345",
+          "tooltip": "live GitHub open issue count = 345；上一版午报基线为 344"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#891 已 merge，但 #863 / #790 / #565 / #466 仍让 review 队列维持 4",
+          "tooltip": "open PR 数量未下降，说明结果面改善还没有转成 review 队列收缩"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "1",
+          "delta": "+1",
+          "trend": "up",
+          "note": "补录到当前快照的新增 issue：#896",
+          "tooltip": "上一版午报未捕捉到的当前 open issue 增量"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "自 14:32 午报后没有新的 merge",
+          "tooltip": "上一版午报发布后 merged PR = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-143859.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-143859.json"
+    },
     {
       "date": "2026-04-09",
       "time": "143225",
