@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-09T06:33:32.393Z",
+  "generated": "2026-04-09T06:46:00.786Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-143225.html",
-    "dataFile": "2026-04-09-143225.json",
+    "file": "2026-04-09-143859.html",
+    "dataFile": "2026-04-09-143859.json",
     "date": "2026-04-09",
-    "time": "143225"
+    "time": "143859"
   },
   "routes": [
+    {
+      "date": "2026-04-09",
+      "time": "143859",
+      "title": "开发航线",
+      "file": "2026-04-09-143859.html",
+      "dataFile": "2026-04-09-143859.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "#896 已并入新增 R'；22 批次仍可吸收 Z 稳定性簇、T‴ PTY 传输簇与 runtime-port 补录面，但同步 P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "up",
+          "tooltip": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'"
+        },
+        {
+          "label": "就绪",
+          "value": "7",
+          "note": "M / N / S' / T‴ / X / Y / Y'",
+          "trend": "up",
+          "tooltip": "M / N / S' / T‴ / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "9",
+          "note": "R / R' / S / T / T' / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "R / R' / S / T / T' / W / W' / W'' / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "162",
+          "note": "345 中的 47%（#788/#791/#828/#896 已拆入 R'；#890/#892/#893/#894/#895 与 #887/#888/#889 维持既有编组）",
+          "trend": "up",
+          "tooltip": "345 中的 47%（#788/#791/#828/#896 已拆入 R'；#890/#892/#893/#894/#895 与 #887/#888/#889 维持既有编组）"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-143859.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-143859.json"
+    },
     {
       "date": "2026-04-09",
       "time": "143225",
