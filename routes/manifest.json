@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-09T06:46:00.786Z",
+  "generated": "2026-04-09T20:00:43.879Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-143859.html",
-    "dataFile": "2026-04-09-143859.json",
-    "date": "2026-04-09",
-    "time": "143859"
+    "file": "2026-04-10-035913.html",
+    "dataFile": "2026-04-10-035913.json",
+    "date": "2026-04-10",
+    "time": "035913"
   },
   "routes": [
+    {
+      "date": "2026-04-10",
+      "time": "035913",
+      "title": "开发航线",
+      "file": "2026-04-10-035913.html",
+      "dataFile": "2026-04-10-035913.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "#897/#900~#904 已被吸收到 T‴ / T' / W / W'；22 批次结构未扩容，但 raw noPriority 已回到 2，sync P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "up",
+          "tooltip": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "down",
+          "tooltip": "M / N / S' / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "R / R' / S / T / T' / T‴ / W / W' / W'' / Z",
+          "trend": "up",
+          "tooltip": "R / R' / S / T / T' / T‴ / W / W' / W'' / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "164",
+          "note": "351 中的 47%（#897/#901/#900/#902/#903/#904 已吸收到 T‴ / T' / W / W'；raw noPriority=2 来自 #895 / #897）",
+          "trend": "up",
+          "tooltip": "351 中的 47%（#897/#901/#900/#902/#903/#904 已吸收到 T‴ / T' / W / W'；raw noPriority=2 来自 #895 / #897）"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-035913.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-035913.json"
+    },
     {
       "date": "2026-04-09",
       "time": "143859",
