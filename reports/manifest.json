@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-09T01:24:44.654Z",
+  "generated": "2026-04-09T01:35:15.966Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-092420.html",
-    "dataFile": "2026-04-09-092420.json",
+    "file": "2026-04-09-093400.html",
+    "dataFile": "2026-04-09-093400.json",
     "date": "2026-04-09",
-    "time": "092420"
+    "time": "093400"
   },
   "reports": [
+    {
+      "date": "2026-04-09",
+      "time": "093400",
+      "title": "开发早报",
+      "file": "2026-04-09-093400.html",
+      "dataFile": "2026-04-09-093400.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "#886 将 open issue 推到 340；release / distribution 线扩到多源分发，但结果面仍 0 merge / 0 close"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "340",
+          "delta": "+1",
+          "trend": "up",
+          "note": "较上一版 +1；新增 #886",
+          "tooltip": "live GitHub open issue count = 340；上一版基线为 339"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 OPEN",
+          "tooltip": "#790 仍是 draft；#466 仍带 locked 标签"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "1",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口仅 #886（distribution 多源分发）",
+          "tooltip": "09:24 之后只新增 1 条 issue"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→0",
+          "trend": "neutral",
+          "note": "本窗口无 merge，结果面仍静止",
+          "tooltip": "09:24 之后没有新的 merged PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-093400.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-09-093400.json"
+    },
     {
       "date": "2026-04-09",
       "time": "092420",
