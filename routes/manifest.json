@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-09T01:35:45.639Z",
+  "generated": "2026-04-09T06:33:32.393Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-09-093400.html",
-    "dataFile": "2026-04-09-093400.json",
+    "file": "2026-04-09-143225.html",
+    "dataFile": "2026-04-09-143225.json",
     "date": "2026-04-09",
-    "time": "093400"
+    "time": "143225"
   },
   "routes": [
+    {
+      "date": "2026-04-09",
+      "time": "143225",
+      "title": "开发航线",
+      "file": "2026-04-09-143225.html",
+      "dataFile": "2026-04-09-143225.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "5df940e6 + #891 / #880 / #882 让结果面重新启动；21 批次可吸收 Z 稳定性簇与 T‴ PTY 传输簇，但同步 P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "21",
+          "note": "M~Z + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "up",
+          "tooltip": "M~Z + S' + T' + T'' + T‴ + W' + W'' + Y'"
+        },
+        {
+          "label": "就绪",
+          "value": "7",
+          "note": "M / N / S' / T‴ / X / Y / Y'",
+          "trend": "up",
+          "tooltip": "M / N / S' / T‴ / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "8",
+          "note": "R / S / T / T' / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "R / S / T / T' / W / W' / W'' / Z"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "161",
+          "note": "344 中的 47%（#890/#892/#893/#894/#895 已编入；#887/#888/#889 并入 Z）",
+          "trend": "up",
+          "tooltip": "344 中的 47%（#890/#892/#893/#894/#895 已编入；#887/#888/#889 并入 Z）"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-143225.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-09-143225.json"
+    },
     {
       "date": "2026-04-09",
       "time": "093400",
