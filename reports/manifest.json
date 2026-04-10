@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-10T07:23:21.051Z",
+  "generated": "2026-04-10T07:34:17.108Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-035913.html",
-    "dataFile": "2026-04-10-035913.json",
+    "file": "2026-04-10-153400.html",
+    "dataFile": "2026-04-10-153400.json",
     "date": "2026-04-10",
-    "time": "035913"
+    "time": "153400"
   },
   "reports": [
+    {
+      "date": "2026-04-10",
+      "time": "153400",
+      "title": "开发午报",
+      "file": "2026-04-10-153400.html",
+      "dataFile": "2026-04-10-153400.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "自 035913 夜报后未见新 inflow 或 merge；open pool 维持 351，但 raw noPriority=2 与 sync P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "351",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "相对 035913 夜报无变化；open pool 仍为 351",
+          "tooltip": "live GitHub open issue count = 351"
+        },
+        {
+          "label": "Open PRs",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "#863 / #790 / #565 / #466 仍全部 open，午间没有新的 merge 帮它收缩",
+          "tooltip": "live GitHub open PR count = 4"
+        },
+        {
+          "label": "新增 Issue",
+          "value": "0",
+          "delta": "-6",
+          "trend": "neutral",
+          "note": "自 035913 夜报后无新增 open issue",
+          "tooltip": "issues created after 2026-04-10 03:59:13 +08:00 and still open = 0"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "自 035913 夜报后无新的 merged PR",
+          "tooltip": "merged PRs after 2026-04-10 03:59:13 +08:00 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-10-153400.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-10-153400.json"
+    },
     {
       "date": "2026-04-10",
       "time": "035913",
