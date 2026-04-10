@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-10T07:34:47.381Z",
+  "generated": "2026-04-10T15:15:57.005Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-153400.html",
-    "dataFile": "2026-04-10-153400.json",
+    "file": "2026-04-10-230330.html",
+    "dataFile": "2026-04-10-230330.json",
     "date": "2026-04-10",
-    "time": "153400"
+    "time": "230330"
   },
   "routes": [
+    {
+      "date": "2026-04-10",
+      "time": "230330",
+      "title": "开发航线",
+      "file": "2026-04-10-230330.html",
+      "dataFile": "2026-04-10-230330.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "22 批次结构没有新增分叉，issue/PR 池也没继续扩大；但 origin/dev 已前进到 734089a2，公开证据层还没跟上"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "neutral",
+          "tooltip": "晚间未出现需要新开批次字母的结构变化"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "ready 批次与午报保持一致"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "R / R' / S / T / T' / T‴ / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "active 批次与午报保持一致"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "164",
+          "note": "351 中的 47%；晚间 issue 池无变化，但 dev 基线前进到了 734089a2",
+          "trend": "neutral",
+          "tooltip": "当前航线结构足以覆盖现有 open issue，新的缺口主要在执行证据而不在批次设计"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-230330.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-230330.json"
+    },
     {
       "date": "2026-04-10",
       "time": "153400",
