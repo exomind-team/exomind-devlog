@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-10T15:15:57.005Z",
+  "generated": "2026-04-10T16:39:28.535Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-230330.html",
-    "dataFile": "2026-04-10-230330.json",
-    "date": "2026-04-10",
-    "time": "230330"
+    "file": "2026-04-11-003235.html",
+    "dataFile": "2026-04-11-003235.json",
+    "date": "2026-04-11",
+    "time": "003235"
   },
   "routes": [
+    {
+      "date": "2026-04-11",
+      "time": "003235",
+      "title": "开发航线",
+      "file": "2026-04-11-003235.html",
+      "dataFile": "2026-04-11-003235.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "22 批次结构不用重画；#885 已关闭、无优先级问题清零，但 #897 升成 P0 后，终端传输线必须前移"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "neutral",
+          "tooltip": "这轮没有出现需要新开批次字母的结构变化"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量没有变化，但 T‴ 的优先级已经上移到 P0"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "R / R' / S / T / T' / T‴ / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "active 批次数量不变，真正变化的是其中一条 active 线被抬进了 P0"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "184",
+          "note": "350 中的 53%；#885 关闭后问题池少 1 条，无优先级问题清零",
+          "trend": "neutral",
+          "tooltip": "当前航线结构无需重画，变化主要来自优先级治理和单点消化"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-11-003235.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-11-003235.json"
+    },
     {
       "date": "2026-04-10",
       "time": "230330",
