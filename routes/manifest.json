@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-10T07:24:03.127Z",
+  "generated": "2026-04-10T07:34:47.381Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-035913.html",
-    "dataFile": "2026-04-10-035913.json",
+    "file": "2026-04-10-153400.html",
+    "dataFile": "2026-04-10-153400.json",
     "date": "2026-04-10",
-    "time": "035913"
+    "time": "153400"
   },
   "routes": [
+    {
+      "date": "2026-04-10",
+      "time": "153400",
+      "title": "开发航线",
+      "file": "2026-04-10-153400.html",
+      "dataFile": "2026-04-10-153400.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "自 035913 起 #897/#900~#904 未继续扩散；22 批次结构保持稳定，但 raw noPriority=2 与 sync P0 仍未松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "M~Z + R' + S' + T' + T'' + T‴ + W' + W'' + Y'",
+          "trend": "neutral",
+          "tooltip": "22 批次结构相对夜报无变化"
+        },
+        {
+          "label": "就绪",
+          "value": "6",
+          "note": "M / N / S' / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "ready 批次与夜报保持一致"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "R / R' / S / T / T' / T‴ / W / W' / W'' / Z",
+          "trend": "neutral",
+          "tooltip": "active 批次与夜报保持一致"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "164",
+          "note": "351 中的 47%；相对 035913 无变化，#897/#901/#900/#902/#903/#904 仍被吸收到既有批次",
+          "trend": "neutral",
+          "tooltip": "22 批次午间没有扩容，但也没有进一步收缩 open pool"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-153400.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-10-153400.json"
+    },
     {
       "date": "2026-04-10",
       "time": "035913",
