@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-10T07:34:17.108Z",
+  "generated": "2026-04-10T08:36:35.428Z",
   "repo": "exomind-team/exomind",
   "latest": {
     "file": "2026-04-10-153400.html",
@@ -18,40 +18,40 @@
       "weather": {
         "level": "cloudy",
         "emoji": "⛅",
-        "label": "自 035913 夜报后未见新 inflow 或 merge；open pool 维持 351，但 raw noPriority=2 与 sync P0 仍未松动"
+        "label": "从凌晨 03:59 到下午 15:34，没有新增待处理问题，也没有新的改动合入主线；待处理总量仍是 351，但还有 2 个问题没标优先级，同步相关最高优先级问题也还没推进"
       },
       "metrics": [
         {
-          "label": "Open Issues",
+          "label": "待处理问题",
           "value": "351",
           "delta": "→ 0",
           "trend": "neutral",
-          "note": "相对 035913 夜报无变化；open pool 仍为 351",
-          "tooltip": "live GitHub open issue count = 351"
+          "note": "相比 03:59 的夜报没有变化；待处理总量仍是 351",
+          "tooltip": "当前待处理问题总数 = 351"
         },
         {
-          "label": "Open PRs",
+          "label": "待合入改动",
           "value": "4",
           "delta": "→ 0",
           "trend": "neutral",
-          "note": "#863 / #790 / #565 / #466 仍全部 open，午间没有新的 merge 帮它收缩",
-          "tooltip": "live GitHub open PR count = 4"
+          "note": "#863、#790、#565、#466 仍都在等待处理，中午没有新的合入让队列变短",
+          "tooltip": "当前待合入改动总数 = 4"
         },
         {
-          "label": "新增 Issue",
+          "label": "新增问题",
           "value": "0",
           "delta": "-6",
           "trend": "neutral",
-          "note": "自 035913 夜报后无新增 open issue",
-          "tooltip": "issues created after 2026-04-10 03:59:13 +08:00 and still open = 0"
+          "note": "自 03:59 夜报后没有新增待处理问题",
+          "tooltip": "2026-04-10 03:59:13 +08:00 之后新增且仍未关闭的问题数 = 0"
         },
         {
-          "label": "合并 PR",
+          "label": "已合入改动",
           "value": "0",
           "delta": "→ 0",
           "trend": "neutral",
-          "note": "自 035913 夜报后无新的 merged PR",
-          "tooltip": "merged PRs after 2026-04-10 03:59:13 +08:00 = 0"
+          "note": "自 03:59 夜报后没有新的改动合入主线",
+          "tooltip": "2026-04-10 03:59:13 +08:00 之后合入主线的改动数 = 0"
         }
       ],
       "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-10-153400.html",
