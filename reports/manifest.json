@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-10T08:36:35.428Z",
+  "generated": "2026-04-10T15:15:07.770Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-153400.html",
-    "dataFile": "2026-04-10-153400.json",
+    "file": "2026-04-10-230330.html",
+    "dataFile": "2026-04-10-230330.json",
     "date": "2026-04-10",
-    "time": "153400"
+    "time": "230330"
   },
   "reports": [
+    {
+      "date": "2026-04-10",
+      "time": "230330",
+      "title": "开发晚报",
+      "file": "2026-04-10-230330.html",
+      "dataFile": "2026-04-10-230330.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "自 04-10 15:34 到 04-10 23:03，待处理问题仍是 351、待合入改动仍是 4，但 dev 主线已前进到 734089a2"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "351",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "相比 15:34 的午报没有变化；待处理总量仍是 351",
+          "tooltip": "当前待处理问题总数 = 351"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "#466、#565、#790、#863 仍在等待处理，晚间没有新的合入让队列变短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "04-10 15:34 之后没有新增待处理问题",
+          "tooltip": "2026-04-10 15:34:00 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已合入改动",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "04-10 15:34 之后没有新的改动合入主线",
+          "tooltip": "2026-04-10 15:34:00 +08:00 之后合入主线的改动数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-10-230330.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-10-230330.json"
+    },
     {
       "date": "2026-04-10",
       "time": "153400",
