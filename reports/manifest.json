@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-10T15:15:07.770Z",
+  "generated": "2026-04-10T16:38:52.193Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-10-230330.html",
-    "dataFile": "2026-04-10-230330.json",
-    "date": "2026-04-10",
-    "time": "230330"
+    "file": "2026-04-11-003235.html",
+    "dataFile": "2026-04-11-003235.json",
+    "date": "2026-04-11",
+    "time": "003235"
   },
   "reports": [
+    {
+      "date": "2026-04-11",
+      "time": "003235",
+      "title": "开发夜报",
+      "file": "2026-04-11-003235.html",
+      "dataFile": "2026-04-11-003235.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "夜里问题池少 1 条、无优先级问题清零，但待合入改动仍是 4，恢复线还没补足验收"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "350",
+          "delta": "↓ 1",
+          "trend": "down",
+          "note": "相比 04-10 23:03 的上一报少 1 条；#885 已关闭，问题池回落到 350",
+          "tooltip": "当前待处理问题总数 = 350"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "#466、#565、#790、#863 仍在等待处理，夜里没有新的合入让评审队列变短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "从 2026-04-10 23:03:30 +08:00 到 2026-04-11 00:32:35 +08:00 没有新增且仍保持 open 的问题",
+          "tooltip": "2026-04-10 23:03:30 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已合入改动",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "从 2026-04-10 23:03:30 +08:00 到 2026-04-11 00:32:35 +08:00 没有新的 merged PR",
+          "tooltip": "2026-04-10 23:03:30 +08:00 之后合入主线的改动数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-11-003235.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-11-003235.json"
+    },
     {
       "date": "2026-04-10",
       "time": "230330",
