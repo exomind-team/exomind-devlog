@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-10T16:38:52.193Z",
+  "generated": "2026-04-10T20:55:01.236Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-11-003235.html",
-    "dataFile": "2026-04-11-003235.json",
+    "file": "2026-04-11-044716.html",
+    "dataFile": "2026-04-11-044716.json",
     "date": "2026-04-11",
-    "time": "003235"
+    "time": "044716"
   },
   "reports": [
+    {
+      "date": "2026-04-11",
+      "time": "044716",
+      "title": "开发夜报",
+      "file": "2026-04-11-044716.html",
+      "dataFile": "2026-04-11-044716.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-11 00:32 到 04-11 04:47 的公开盘面基本停表：待处理问题仍是 350、待合入改动仍是 4，dev 只新增一笔发布治理文档提交"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "350",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "相比 00:32 的上一报没有变化；公开问题池仍停在 350",
+          "tooltip": "当前待处理问题总数 = 350"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "#466、#565、#790、#863 仍在等待处理，公开评审队列没有缩短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "04-11 00:32 之后没有新增且仍保持 open 的问题",
+          "tooltip": "2026-04-11 00:32:35 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已合入改动",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "04-11 00:32 之后没有新的 merged PR",
+          "tooltip": "2026-04-11 00:32:35 +08:00 之后合入主线的改动数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-11-044716.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-11-044716.json"
+    },
     {
       "date": "2026-04-11",
       "time": "003235",
