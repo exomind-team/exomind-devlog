@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-10T20:55:36.769Z",
+  "generated": "2026-04-11T05:14:11.482Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-11-044716.html",
-    "dataFile": "2026-04-11-044716.json",
+    "file": "2026-04-11-131322.html",
+    "dataFile": "2026-04-11-131322.json",
     "date": "2026-04-11",
-    "time": "044716"
+    "time": "131322"
   },
   "routes": [
+    {
+      "date": "2026-04-11",
+      "time": "131322",
+      "title": "开发航线",
+      "file": "2026-04-11-131322.html",
+      "dataFile": "2026-04-11-131322.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "22 批次骨架未重排；T‴ 已完结、T' 升到 55%，但恢复线和工程止血仍堵"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "骨架不必重画，重点是更新几个已经明显松动的航段",
+          "trend": "neutral",
+          "tooltip": "这轮没有出现需要新开字母或重排 DAG 的结构变化"
+        },
+        {
+          "label": "就绪",
+          "value": "5",
+          "note": "M / N / X / Y / Y' 仍可直接启动；S' 已从就绪转入执行",
+          "trend": "neutral",
+          "tooltip": "ready 批次减少 1，因为 S' 已开始消化"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "T' 拉到 55%，R / R' / W / Z 等主战区不变",
+          "trend": "neutral",
+          "tooltip": "active 批次数量未变，但内部进度明显刷新"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "152",
+          "note": "339 个 open issue 里已有 152 个被当前 22 批次吸住；另有 32 个已关单 issue 仍保留在批次里作为进度证据",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 45%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-11-131322.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-11-131322.json"
+    },
     {
       "date": "2026-04-11",
       "time": "044716",
