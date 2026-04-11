@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-11T11:51:11.915Z",
+  "generated": "2026-04-11T18:51:04.782Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-11-194924.html",
-    "dataFile": "2026-04-11-194924.json",
-    "date": "2026-04-11",
-    "time": "194924"
+    "file": "2026-04-12-023902.html",
+    "dataFile": "2026-04-12-023902.json",
+    "date": "2026-04-12",
+    "time": "023902"
   },
   "routes": [
+    {
+      "date": "2026-04-12",
+      "time": "023902",
+      "title": "开发航线",
+      "file": "2026-04-12-023902.html",
+      "dataFile": "2026-04-12-023902.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "22 批次骨架维持原位；夜间没有新 inflow 也没有新释放，恢复线和终端尾项都停在昨晚的位置"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "夜间没有出现需要重画 DAG 的新 inflow 或新完成",
+          "trend": "neutral",
+          "tooltip": "这轮不需要新增字母或重排依赖图"
+        },
+        {
+          "label": "就绪",
+          "value": "5",
+          "note": "M / N / X / Y / Y' 仍可直接启动，但数量没有增加",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量未变"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "没有任何 active 批次在夜间转成 done 或 ready",
+          "trend": "neutral",
+          "tooltip": "active 批次数量未变"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "153",
+          "note": "340 个 open issue 里已有 153 个被当前航线吸住，骨架保持稳定",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 45%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-12-023902.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-12-023902.json"
+    },
     {
       "date": "2026-04-11",
       "time": "194924",
