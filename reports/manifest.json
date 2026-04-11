@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-11T11:51:11.897Z",
+  "generated": "2026-04-11T18:50:19.806Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-11-194924.html",
-    "dataFile": "2026-04-11-194924.json",
-    "date": "2026-04-11",
-    "time": "194924"
+    "file": "2026-04-12-023902.html",
+    "dataFile": "2026-04-12-023902.json",
+    "date": "2026-04-12",
+    "time": "023902"
   },
   "reports": [
+    {
+      "date": "2026-04-12",
+      "time": "023902",
+      "title": "开发夜报",
+      "file": "2026-04-12-023902.html",
+      "dataFile": "2026-04-12-023902.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-11 19:49 到 04-12 02:22 的公开盘面基本停表：待处理问题仍是 340、待合入改动仍是 4，没有新增关单或合并，30 天以上旧问题升到 122"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "340",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜间没有新增 inflow，也没有继续消化",
+          "tooltip": "当前待处理问题总数 = 340"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开评审队列仍是 4 条，整夜没有缩短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "19:49 之后没有新增且仍保持 open 的问题",
+          "tooltip": "2026-04-11 19:49:24 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜间没有新的公开关单，盘面维持原位",
+          "tooltip": "2026-04-11 19:49:24 +08:00 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-023902.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-023902.json"
+    },
     {
       "date": "2026-04-11",
       "time": "194924",
