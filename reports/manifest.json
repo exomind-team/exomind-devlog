@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-12T07:34:58.874Z",
+  "generated": "2026-04-12T14:29:35.683Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-12-151430.html",
-    "dataFile": "2026-04-12-151430.json",
+    "file": "2026-04-12-220948.html",
+    "dataFile": "2026-04-12-220948.json",
     "date": "2026-04-12",
-    "time": "151430"
+    "time": "220948"
   },
   "reports": [
+    {
+      "date": "2026-04-12",
+      "time": "220948",
+      "title": "开发晚报",
+      "file": "2026-04-12-220948.html",
+      "dataFile": "2026-04-12-220948.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-12 15:14 到 04-12 22:09 的公开盘面继续停表：待处理问题仍是 340、待合入改动仍是 4，唯一新增的坏消息是 30 天以上旧问题升到 128"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "340",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "晚间没有新增 inflow，也没有继续消化",
+          "tooltip": "当前待处理问题总数 = 340"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开评审队列仍是 4 条，傍晚后没有缩短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "15:14 之后没有新增且仍保持 open 的问题",
+          "tooltip": "2026-04-12 15:14:30 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "傍晚到夜间没有新的公开关单，盘面继续停表",
+          "tooltip": "2026-04-12 15:14:30 +08:00 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-220948.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-220948.json"
+    },
     {
       "date": "2026-04-12",
       "time": "151430",
