@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-11T18:50:19.806Z",
+  "generated": "2026-04-12T07:30:14.782Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-12-023902.html",
-    "dataFile": "2026-04-12-023902.json",
+    "file": "2026-04-12-151430.html",
+    "dataFile": "2026-04-12-151430.json",
     "date": "2026-04-12",
-    "time": "023902"
+    "time": "151430"
   },
   "reports": [
+    {
+      "date": "2026-04-12",
+      "time": "151430",
+      "title": "开发午报",
+      "file": "2026-04-12-151430.html",
+      "dataFile": "2026-04-12-151430.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-12 02:22 到 04-12 15:14 的公开盘面继续停表：待处理问题仍是 340、待合入改动仍是 4，唯一更糟的是 30 天以上旧问题升到 126"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "340",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "白天没有新增 inflow，也没有继续消化，问题池维持在 340",
+          "tooltip": "当前待处理问题总数 = 340"
+        },
+        {
+          "label": "待合入改动",
+          "value": "4",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开评审队列仍是 4 条，白天没有缩短",
+          "tooltip": "当前待合入改动总数 = 4"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "从 2026-04-12 02:22 之后没有新增且仍保持 open 的问题",
+          "tooltip": "2026-04-12 02:22:54 +08:00 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "这一窗口里没有新的公开关单，白天盘面处于停表状态",
+          "tooltip": "2026-04-12 02:22:54 +08:00 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-151430.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-12-151430.json"
+    },
     {
       "date": "2026-04-12",
       "time": "023902",
