@@ -1,7 +1,7 @@
 {
   "schema": "exomind-devlog-route",
   "version": "1.0",
-  "generated": "2026-04-13T08:06:21.688Z",
+  "generated": "2026-04-13T08:09:18.569Z",
   "_published": {
     "kind": "route",
     "date": "2026-04-13",
@@ -13,7 +13,7 @@
     "title": "开发航线",
     "baseline": "d60f1a04",
     "repo": "exomind-team/exomind",
-    "coverage": "2026-04-12 15:14:30 +08:00 -> 2026-04-13 16:04:16 +08:00 live snapshot（GitHub open 池 + origin/dev）",
+    "coverage": "2026-04-12 22:09:48 +08:00 -> 2026-04-13 16:04:16 +08:00 live snapshot（GitHub open 池 + origin/dev）",
     "date": "2026-04-13"
   },
   "publisher": {
