@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-13T14:52:49.687Z",
+  "generated": "2026-04-13T23:12:00.986Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-13-224758.html",
-    "dataFile": "2026-04-13-224758.json",
-    "date": "2026-04-13",
-    "time": "224758"
+    "file": "2026-04-14-061459.html",
+    "dataFile": "2026-04-14-061459.json",
+    "date": "2026-04-14",
+    "time": "061459"
   },
   "routes": [
+    {
+      "date": "2026-04-14",
+      "time": "061459",
+      "title": "开发航线",
+      "file": "2026-04-14-061459.html",
+      "dataFile": "2026-04-14-061459.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "22 批次骨架仍不必重画；#66 / #67 已关，但 #908 / #909 / #910 / #911 四条 inflow 已把事件日志、网络页 Agent 与研究线重新抬高"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "4 条新增 inflow 仍可吸入既有骨架，不需要新开字母",
+          "trend": "neutral",
+          "tooltip": "既有 22 批次骨架继续有效"
+        },
+        {
+          "label": "就绪",
+          "value": "5",
+          "note": "M / N / X / Y / Y' 仍可直接启动",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量未变"
+        },
+        {
+          "label": "进行中",
+          "value": "10",
+          "note": "P / T' / W 等批次继续活跃，但没有批次完成转段",
+          "trend": "neutral",
+          "tooltip": "active 批次数量未变"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "155",
+          "note": "340 个 open issue 里已有 155 个被当前航线吸住，新增 #908 / #909 / #910 / #911 可并入既有批次",
+          "trend": "up",
+          "tooltip": "当前 open issue 覆盖率 = 45.6%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-14-061459.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-14-061459.json"
+    },
     {
       "date": "2026-04-13",
       "time": "224758",
