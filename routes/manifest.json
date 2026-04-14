@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-14T15:38:29.265Z",
+  "generated": "2026-04-14T23:39:41.971Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-14-213031.html",
-    "dataFile": "2026-04-14-213031.json",
-    "date": "2026-04-14",
-    "time": "213031"
+    "file": "2026-04-15-065232.html",
+    "dataFile": "2026-04-15-065232.json",
+    "date": "2026-04-15",
+    "time": "065232"
   },
   "routes": [
+    {
+      "date": "2026-04-15",
+      "time": "065232",
+      "title": "开发航线",
+      "file": "2026-04-15-065232.html",
+      "dataFile": "2026-04-15-065232.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "夜里没有再长出新 inflow；M 的 SQLite JSON Bridge prototype 已进 dev，O 的时间块倒计时修补也有了代码出口，但公开 issue/PR 仍停在 342/3，client shell 与旧堵点还没松动"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "夜里没有新的 open issue，因此不需要新开字母",
+          "trend": "neutral",
+          "tooltip": "既有 22 批次骨架继续有效"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "M 转 active 后，当前可直接启动的是 N / X / Y / Y'",
+          "trend": "down",
+          "tooltip": "ready 批次数量从 5 降到 4"
+        },
+        {
+          "label": "进行中",
+          "value": "12",
+          "note": "M 与 O 都出现了新的代码信号，active 批次从 10 升到 12",
+          "trend": "up",
+          "tooltip": "active 批次数量从 10 升到 12"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "158",
+          "note": "342 个 open issue 里仍有 158 个被既有航线吸住；夜里没有新 inflow，也没有新的 close / merge",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 46.2%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-15-065232.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-15-065232.json"
+    },
     {
       "date": "2026-04-14",
       "time": "213031",
