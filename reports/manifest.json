@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-14T06:37:00.237Z",
+  "generated": "2026-04-14T15:38:29.215Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-14-142600.html",
-    "dataFile": "2026-04-14-142600.json",
+    "file": "2026-04-14-213031.html",
+    "dataFile": "2026-04-14-213031.json",
     "date": "2026-04-14",
-    "time": "142600"
+    "time": "213031"
   },
   "reports": [
+    {
+      "date": "2026-04-14",
+      "time": "213031",
+      "title": "开发晚报",
+      "file": "2026-04-14-213031.html",
+      "dataFile": "2026-04-14-213031.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-14 14:26 到 21:30 的公开盘面又抬到 342：0.4.9 和 frozen architecture plan 已进 dev，但 #912 / #913 / #914 / #915 四条新增问题把待处理问题重新顶高，待合入改动仍是 3"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "342",
+          "delta": "+4",
+          "trend": "up",
+          "note": "#912 / #913 / #914 / #915 四条新增问题把公开池从 338 顶到 342",
+          "tooltip": "当前待处理问题总数 = 342"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，晚间没有新的合入出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "4",
+          "delta": "+4",
+          "trend": "up",
+          "note": "覆盖区间内新增且仍 open 的是 #912 / #913 / #914 / #915",
+          "tooltip": "2026-04-14T06:26:00.000Z 之后新增且仍未关闭的问题数 = 4"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开关单",
+          "tooltip": "2026-04-14T06:26:00.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-14-213031.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-14-213031.json"
+    },
     {
       "date": "2026-04-14",
       "time": "142600",
