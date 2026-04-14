@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-13T23:12:01.034Z",
+  "generated": "2026-04-14T06:37:00.237Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-14-061459.html",
-    "dataFile": "2026-04-14-061459.json",
+    "file": "2026-04-14-142600.html",
+    "dataFile": "2026-04-14-142600.json",
     "date": "2026-04-14",
-    "time": "061459"
+    "time": "142600"
   },
   "reports": [
+    {
+      "date": "2026-04-14",
+      "time": "142600",
+      "title": "开发午报",
+      "file": "2026-04-14-142600.html",
+      "dataFile": "2026-04-14-142600.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-14 06:14 到 14:26 的公开盘面回到 338：#454 / #458 关单了，origin/dev 已推进到 4cdc6f8f，但 merged PR 仍是 0"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "338",
+          "delta": "-2",
+          "trend": "down",
+          "note": "覆盖区间内 #454 / #458 关单，公开池从 340 回到 338",
+          "tooltip": "当前待处理问题总数 = 338"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，午前没有新的合入出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新增且仍 open 的问题，盘面没有继续变宽",
+          "tooltip": "2026-04-13T22:14:59.000Z 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "2",
+          "delta": "+2",
+          "trend": "up",
+          "note": "覆盖区间内公开关掉了 #454 / #458",
+          "tooltip": "2026-04-13T22:14:59.000Z 之后关闭的问题数 = 2"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-14-142600.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-14-142600.json"
+    },
     {
       "date": "2026-04-14",
       "time": "061459",
