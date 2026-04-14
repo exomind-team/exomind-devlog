@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-14T15:38:29.215Z",
+  "generated": "2026-04-14T23:39:10.765Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-14-213031.html",
-    "dataFile": "2026-04-14-213031.json",
-    "date": "2026-04-14",
-    "time": "213031"
+    "file": "2026-04-15-065232.html",
+    "dataFile": "2026-04-15-065232.json",
+    "date": "2026-04-15",
+    "time": "065232"
   },
   "reports": [
+    {
+      "date": "2026-04-15",
+      "time": "065232",
+      "title": "开发早报",
+      "file": "2026-04-15-065232.html",
+      "dataFile": "2026-04-15-065232.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-14 21:30 到 04-15 06:52 的公开盘面停在 342：新 inflow 没再继续加厚，SQLite JSON Bridge prototype 与时间块倒计时修补已进 dev，但待处理问题和待合入改动都没有被消化"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "342",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜里没有新的 open issue，公开池没有继续加厚",
+          "tooltip": "当前待处理问题总数 = 342"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，夜里没有新的合入出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "-4",
+          "trend": "down",
+          "note": "覆盖区间内没有新增 open issue，昨晚四条 inflow 没再继续加厚",
+          "tooltip": "2026-04-14T13:30:31.000Z 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "夜里没有新的公开关单，止涨还没有转成消化",
+          "tooltip": "2026-04-14T13:30:31.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-15-065232.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-15-065232.json"
+    },
     {
       "date": "2026-04-14",
       "time": "213031",

@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<!-- exomind-devlog-rendered: kind=report gate=ok -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发日报模板</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;
+  --radius:10px;--radius-sm:6px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.8}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2.5rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:2.2rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.3em;text-transform:uppercase}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Top Row */
+.top-row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;margin:1.5rem 0}
+.weather-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;cursor:pointer;transition:transform .2s}
+.weather-card:hover{transform:scale(1.01)}
+.weather-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.12),transparent 60%)}
+.weather-emoji{font-size:2.5rem;position:relative}
+.weather-label{font-size:1.3rem;font-weight:700;margin-top:.3rem;position:relative}
+.weather-sub{font-size:.85rem;opacity:.85;margin-top:.3rem;position:relative}
+.weather-details{max-height:0;overflow:hidden;transition:max-height .4s ease;position:relative}
+.weather-details.open{max-height:500px}
+.weather-details ul{list-style:none;margin-top:.8rem;font-size:.82rem;line-height:1.8}
+.weather-details li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:.5rem;vertical-align:middle}
+.weather-details .up li::before{background:#2ea043}
+.weather-details .down li::before{background:var(--p1)}
+
+/* Metrics */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:1.05rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;margin:.3rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .delta{font-size:1.08rem;font-family:'JetBrains Mono',monospace;font-weight:700}
+.metric-card .delta.up{color:var(--p1)}
+.metric-card .delta.down{color:var(--green)}
+.metric-card .delta.neutral,.metric-card .delta.flat{color:var(--text-faint)}
+.metric-card .note{font-size:.75rem;color:var(--text-dim);margin-top:.2rem}
+.metric-card .tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1c2128;border:1px solid var(--border);border-radius:var(--radius-sm);padding:.5rem .7rem;font-size:.82rem;white-space:nowrap;z-index:10;color:var(--text-dim)}
+.metric-card:hover .tooltip{display:block}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Mainlines */
+.mainline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:.6rem;cursor:pointer;transition:border-color .2s}
+.mainline:hover{border-color:var(--accent)}
+.mainline-header{display:flex;align-items:center;justify-content:space-between}
+.mainline-name{font-weight:500;font-size:.92rem}
+.mainline-name .tag{display:inline-block;font-size:.75rem;padding:.1rem .4rem;border-radius:3px;margin-left:.5rem;vertical-align:middle;font-weight:700;letter-spacing:.05em}
+.mainline-name .tag.new{background:rgba(46,160,67,.2);color:var(--green)}
+.mainline-name .tag.stall{background:rgba(248,81,73,.15);color:var(--p0)}
+.mainline-pct{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent)}
+.mainline-bar{height:6px;background:var(--border);border-radius:3px;margin-top:.6rem;overflow:hidden}
+.mainline-fill{height:100%;border-radius:3px;transition:width .8s ease;background:linear-gradient(90deg,var(--green-dim),var(--green))}
+.mainline-fill.stall{background:linear-gradient(90deg,#6e4020,var(--p1))}
+.mainline-subtasks{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mainline-subtasks.open{max-height:600px}
+.mainline-subtasks ul{list-style:none;margin-top:.7rem;font-size:.8rem;color:var(--text-dim)}
+.mainline-subtasks li{padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.mainline-subtasks .done{color:var(--green)}
+.mainline-subtasks .pending{color:var(--text-faint)}
+.mainline-chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.mainline-chevron.open{transform:rotate(90deg)}
+
+/* Headlines */
+.headline{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;border-left:3px solid var(--accent);transition:border-color .2s}
+.headline-title{font-weight:700;font-size:1rem;margin-bottom:.3rem}
+.headline-body{font-size:.82rem;color:var(--text-dim);line-height:1.7}
+.gh-link{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);border-bottom:1px dotted rgba(88,166,255,.3)}
+
+/* Collapsibles */
+.collapsible{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:.6rem;overflow:hidden}
+.collapsible-header{padding:.8rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:.88rem;transition:background .15s}
+.collapsible-header:hover{background:var(--card-hover)}
+.collapsible-header .chevron{font-size:.8rem;color:var(--text-faint);transition:transform .2s}
+.collapsible-header .chevron.open{transform:rotate(90deg)}
+.collapsible-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.collapsible-body.open{max-height:2000px}
+.collapsible-content{padding:0 1.2rem 1rem}
+
+/* Scorecard */
+.score-row{display:flex;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.score-row:last-child{border-bottom:none}
+.score-badge{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700}
+.score-badge.pass{background:rgba(46,160,67,.15);color:var(--green)}
+.score-badge.fail{background:rgba(248,81,73,.12);color:var(--p0)}
+.score-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.score-text{flex:1;color:var(--text-dim)}
+.score-note{font-size:.82rem;color:var(--text-faint)}
+
+/* PR Table */
+.pr-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.pr-table th{text-align:left;color:var(--text-faint);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.pr-table td{padding:.5rem 0;border-bottom:1px solid var(--border);color:var(--text-dim)}
+.pr-table .num{font-family:'JetBrains Mono',monospace;color:var(--accent)}
+.pr-status{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-size:.78rem;font-weight:700}
+.pr-status.open{background:rgba(110,118,129,.15);color:var(--text-dim)}
+.pr-status.locked{background:rgba(248,81,73,.12);color:var(--p0)}
+.pr-status.review{background:rgba(88,166,255,.12);color:var(--accent)}
+.pr-status.merged{background:rgba(46,160,67,.15);color:var(--green)}
+.pr-status.docs{background:rgba(110,118,129,.15);color:var(--text-dim)}
+
+/* Chart */
+.chart-wrap{height:280px;position:relative}
+
+/* Truth Table */
+.truth-group-title{font-size:.85rem;color:var(--text-faint);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:1rem 0 .5rem}
+.truth-row{display:grid;grid-template-columns:60px 1fr 100px 100px;gap:.5rem;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.truth-row:last-child{border-bottom:none}
+.truth-num{font-family:'JetBrains Mono',monospace}
+.truth-badge{display:inline-block;padding:.1rem .45rem;border-radius:3px;font-size:.78rem;font-weight:700;text-align:center}
+.truth-badge.open{background:rgba(248,81,73,.12);color:var(--p0)}
+.truth-badge.closed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.fixed{background:rgba(46,160,67,.15);color:var(--green)}
+.truth-badge.none{background:rgba(110,118,129,.12);color:var(--text-faint)}
+.truth-badge.partial{background:rgba(210,153,34,.12);color:var(--p1)}
+.truth-mismatch{background:rgba(210,153,34,.06);border-radius:var(--radius-sm)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.97rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.97rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.82rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.truth-row{grid-template-columns:50px 1fr;gap:.3rem}.truth-row>:nth-child(3),.truth-row>:nth-child(4){grid-column:span 1}.logo{font-size:2rem}.header h1{font-size:1.4rem}.collapsible-body.open{max-height:3000px}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发日报 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 修改下方 REPORT 对象中的数据                                 ║
+// ║  2. 在浏览器中打开此文件即可                                     ║
+// ║  3. 所有 HTML 由 JS 从 REPORT 数据自动渲染                       ║
+// ║                                                                  ║
+// ║  天气等级:                                                       ║
+// ║    sun    = ☀️ 晴        (无阻塞)                                ║
+// ║    cloudy = ⛅ 晴转多云  (有关注项)                               ║
+// ║    overcast = 🌥️ 多云   (多项阻塞)                               ║
+// ║    rain   = 🌧️ 阵雨     (关键路径受阻)                           ║
+// ║    storm  = ⛈️ 雷暴      (生产事故)                               ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT = {
+  "meta": {
+    "baseline": "dev@cb02f653",
+    "title": "开发早报",
+    "coverage": "2026-04-14 21:30:31 +08:00 -> 2026-04-15 06:52:32 +08:00 实时快照（GitHub open 池 + origin/dev）",
+    "repo": "exomind-team/exomind",
+    "date": "2026-04-15"
+  },
+  "publisher": {
+    "identity": "外心史官",
+    "os": "Windows",
+    "model": "Codex",
+    "version": "GPT-5"
+  },
+  "weather": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "04-14 21:30 到 04-15 06:52 的公开盘面停在 342：新 inflow 没再继续加厚，SQLite JSON Bridge prototype 与时间块倒计时修补已进 dev，但待处理问题和待合入改动都没有被消化",
+    "ups": [
+      "origin/dev 已从 a83404ad 前进到 cb02f653，期间新增 0e4a0dd7 / 0219d866 / cb02f653 / e6af9e1f 四个提交。",
+      "cb02f653 已把 sqlite_json_bridge 与 task bridge prototype 写进 runtime，#912 不再只是计划文件。",
+      "e6af9e1f 已把时间块倒计时 hydration 修补和三组测试补进 dev，夜里终于出现一段真正的时间块代码释放。",
+      "覆盖区间内没有新的 open issue，晚盘四条 inflow 暂时没有继续把公开池顶高。"
+    ],
+    "downs": [
+      "open issues / PRs 仍是 342 / 3，close = 0，merged = 0，盘面止涨但没有开始消化。",
+      "#910 / #911 仍然没有优先级，SQLite JSON Bridge 与 EDS 成型性评估还没有被编进明确执行队列。",
+      "30 天以上旧问题已到 142 / 342，占比约 41.5%，#53 / #908 / #909 / #868 / #893 / #900 / #902 / #907 这组旧堵点仍没松。"
+    ]
+  },
+  "metrics": [
+    {
+      "label": "待处理问题",
+      "value": "342",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "夜里没有新的 open issue，公开池没有继续加厚",
+      "tooltip": "当前待处理问题总数 = 342"
+    },
+    {
+      "label": "待合入改动",
+      "value": "3",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "评审队列仍是 #790 / #565 / #466，夜里没有新的合入出口",
+      "tooltip": "当前待合入改动总数 = 3"
+    },
+    {
+      "label": "新增问题",
+      "value": "0",
+      "delta": "-4",
+      "trend": "down",
+      "note": "覆盖区间内没有新增 open issue，昨晚四条 inflow 没再继续加厚",
+      "tooltip": "2026-04-14T13:30:31.000Z 之后新增且仍未关闭的问题数 = 0"
+    },
+    {
+      "label": "已关闭问题",
+      "value": "0",
+      "delta": "→ 0",
+      "trend": "neutral",
+      "note": "夜里没有新的公开关单，止涨还没有转成消化",
+      "tooltip": "2026-04-14T13:30:31.000Z 之后关闭的问题数 = 0"
+    }
+  ],
+  "headlines": [
+    {
+      "emoji": "🧬",
+      "title": "SQLite JSON Bridge Phase 1 prototype 已落到 runtime 代码，不再只是调研计划",
+      "body": "0e4a0dd7 和 0219d866 先补齐 Pinned/Unpinned 概念图、EDS freeze 参考材料、sync research 与 prototype plan，cb02f653 再把 sqlite_json_bridge 与 task bridge prototype 写进 runtime；#912 对应工作已从文档走到 dev 代码。"
+    },
+    {
+      "emoji": "⏱️",
+      "title": "时间块倒计时 hydration 修补和三组测试进了 dev，时间块体验线终于重新出现代码释放",
+      "body": "e6af9e1f 修改了 timeblock.service.ts 与 countdown-progress.ts，并新增 timeblock.service.rt-sqlite / countdown-overrun / countdown-progress 三组测试；这说明 O 线里与 #321 同类的倒计时退化问题已经开始重新被执行，但 GitHub 端还没有新的关单或 PR 合入。"
+    },
+    {
+      "emoji": "🧱",
+      "title": "公开池夜里止涨，但还没有开始消化",
+      "body": "从 2026-04-14 21:30:31 +08:00 到 2026-04-15 06:52:32 +08:00，open issues / PRs 仍是 342 / 3，新增 issue = 0，closed issue = 0，merged PR = 0；#910 / #911 仍无优先级，30 天以上旧问题升到 142。"
+    }
+  ],
+  "mainlines": [
+    {
+      "name": "EDS / 同步底座线终于从冻结计划走到 runtime prototype，但执行归属还没补齐",
+      "tag": "push",
+      "pct": 61,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "0e4a0dd7 / 0219d866 把 Pinned/Unpinned 概念图、EDS freeze 参考材料、sync research 和 prototype plan 一次补厚",
+          "done": true
+        },
+        {
+          "text": "cb02f653 已把 sqlite_json_bridge/mod.rs 与 task/bridge_prototype.rs 写进 runtime，#912 从计划文件走到了 dev 代码",
+          "done": true,
+          "issue": 912
+        },
+        {
+          "text": "#910 / #911 仍 open 且没有优先级，prototype 还没有被压回明确执行顺序",
+          "done": false,
+          "issue": 910
+        }
+      ]
+    },
+    {
+      "name": "时间块体验线凌晨终于拿到第一段修补，但公开回填还没有出现",
+      "tag": "push",
+      "pct": 45,
+      "stall": false,
+      "subtasks": [
+        {
+          "text": "e6af9e1f 修补 transition countdown hydration，并补了 timeblock.service.rt-sqlite / countdown-overrun / countdown-progress 三组测试",
+          "done": true
+        },
+        {
+          "text": "这次代码落点和 O 线里的 #321 这类倒计时退化问题属于同一主题，说明时间块体验线重新出现执行信号",
+          "done": true,
+          "issue": 321
+        },
+        {
+          "text": "#321 / #571 / #702 / #704 仍全部 open，GitHub 端还没有新的关单或 PR 出口",
+          "done": false,
+          "issue": 321
+        }
+      ]
+    },
+    {
+      "name": "客户端壳 / 正式工作台线一夜没有继续推进，仍停在新 inflow 阶段",
+      "tag": "stall",
+      "pct": 38,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#913 / #914 / #915 仍 open，没有新的 commit、PR 或关单把这条线继续往前推",
+          "done": false,
+          "issue": 913
+        },
+        {
+          "text": "open PR 仍只有 #790 / #565 / #466，客户端壳这组 inflow 还没有形成评审出口",
+          "done": false
+        },
+        {
+          "text": "如果不尽快给 workbench 正式页和 client shell 基线排先后，这条线会继续停在“问题已经公开，执行尚未开始”",
+          "done": false
+        }
+      ]
+    },
+    {
+      "name": "eventlog / 恢复 / 对外交付线仍没有松动，止涨没有转成恢复",
+      "tag": "stall",
+      "pct": 34,
+      "stall": true,
+      "subtasks": [
+        {
+          "text": "#53 / #908 / #909 / #868 / #893 / #900 / #902 / #907 仍全部 open，eventlog、恢复与工程成本线没有新的公开释放",
+          "done": false,
+          "issue": 53
+        },
+        {
+          "text": "#886 / #903 / #904 也没有新出口，0.4.9 仍主要停在 dev 内可见，而不是对外交付可见",
+          "done": false,
+          "issue": 886
+        },
+        {
+          "text": "30 天以上旧问题已到 142 / 342，公开盘面虽然没继续变坏，但还谈不上开始收口",
+          "done": false
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "把 cb02f653 的 prototype 继续接到 #868 / #532 / #527 的恢复与跨端验证，别让 #912 再漂回研究堆。",
+      "detail": "现在最缺的不是再多一篇研究材料，而是把已经进代码的 prototype 压回恢复链和跨端验证链。"
+    },
+    {
+      "text": "把 #910 / #911 的优先级补齐，并把 #905 / #906 / #910 / #911 / #912 的先后关系写成明确执行归属。",
+      "detail": "否则 SQLite JSON Bridge 和 EDS 成型性评估还会继续停在“文档更厚、队列未定”的状态。"
+    },
+    {
+      "text": "趁 e6af9e1f 已经补上时间块倒计时修补和测试，继续收口 #321 / #571 / #702 / #704，别让 O 线只停在单点修补。",
+      "detail": "这波凌晨代码已经给了 O 线一个切入口，下一步应该把它扩成可见的关单和批次推进。"
+    },
+    {
+      "text": "客户端壳 / 正式工作台和对外交付继续压 #913 / #914 / #915 / #886 / #903 / #904，别让 0.4.9 只在 dev 里可见。",
+      "detail": "如果 workbench 正式页、client shell 基线和下载/docs/showcase 继续悬空，外部看到的仍然只是版本号变化。"
+    }
+  ],
+  "insight": {
+    "text": "和 <a class=\"gh-link\" href=\"https://exomind-team.github.io/exomind-devlog/reports/2026-04-14-213031.html\">上一份开发晚报</a> 相比，这个早盘最关键的变化不是公开池数字，而是盘面先止涨、再出现两段真正进代码的推进。<a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/commit/0e4a0dd7\">0e4a0dd7</a> 与 <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/commit/0219d866\">0219d866</a> 先把 Pinned/Unpinned 与 EDS freeze 参考材料铺平，随后 <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/commit/cb02f653\">cb02f653</a> 把 SQLite JSON Bridge Phase 1 prototype 直接写进 runtime，<a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/commit/e6af9e1f\">e6af9e1f</a> 又把时间块倒计时 hydration 和三组测试补进 dev。也就是说，昨晚四条 inflow 没再继续把公开池往上顶，但这还不是“已经消化”，而是“先止跌，再开始出现代码推进”。因为 close / merge 仍都是 0，<a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/910\">#910</a> / <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/911\">#911</a> 依然没有优先级，<a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/913\">#913</a> / <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/914\">#914</a> / <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/915\">#915</a> 也没有新出口，所以这轮最该做的不是继续堆研究材料，而是把 <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/issues/912\">#912</a> 的 prototype 接到恢复与跨端验证，并趁 <a class=\"gh-link\" href=\"https://github.com/exomind-team/exomind/commit/e6af9e1f\">e6af9e1f</a> 的修补去收口时间块 backlog。",
+    "author": "外心史官·Windows [Codex GPT-5]"
+  },
+  "scorecard": [
+    {
+      "text": "先给 #912 / #913 / #914 / #915 排出执行顺序",
+      "result": "partial",
+      "note": "#912 已经拿到 cb02f653 这段 prototype 代码，但 #913 / #914 / #915 仍没有新的执行出口。"
+    },
+    {
+      "text": "把 #910 / #911 的优先级补齐，并把 #905 / #906 / #910 / #911 / #912 的先后关系写成执行归属",
+      "result": "fail",
+      "note": "#910 / #911 仍然没有优先级，执行归属还没有补齐。"
+    },
+    {
+      "text": "继续压 #53 / #908 / #909 / #868 / #893 / #900 / #902 / #907",
+      "result": "fail",
+      "note": "这组旧堵点夜里没有新增公开释放，open 池保持原样。"
+    },
+    {
+      "text": "继续推进 #886 / #903 / #904 的下载链路、docs 入口与 showcase",
+      "result": "fail",
+      "note": "0.4.9 已在 dev 中可见，但下载链路、docs 入口和 showcase 仍没有新的公开出口。"
+    }
+  ],
+  "prs": {
+    "open": [
+      {
+        "num": 790,
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "status": "review",
+        "extra": "draft"
+      },
+      {
+        "num": 565,
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "status": "docs",
+        "extra": "ex/govn-governance-docs"
+      },
+      {
+        "num": 466,
+        "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+        "status": "locked",
+        "extra": "feature/issue-421-worker-agent"
+      }
+    ],
+    "merged": []
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 912,
+        "title": "prototype(sqlite-json-bridge): Phase 1 同步 internal module 与 tasks 域外并行原型",
+        "gh": "OPEN",
+        "code": "IN_PROGRESS",
+        "mismatch": false
+      },
+      {
+        "num": 910,
+        "title": "EDS 架构成型性评估报告",
+        "gh": "OPEN",
+        "code": "DOCS",
+        "mismatch": false
+      },
+      {
+        "num": 911,
+        "title": "SQLite JSON Bridge：Schema 注册式 JSON→SQLite 映射层（调研阶段）",
+        "gh": "OPEN",
+        "code": "DOCS",
+        "mismatch": false
+      },
+      {
+        "num": 321,
+        "title": "bug(timeblock): [回归] 倒计时超时计时在暂停后被清零",
+        "gh": "OPEN",
+        "code": "IN_PROGRESS",
+        "mismatch": false
+      },
+      {
+        "num": 913,
+        "title": "refactor(agent-workbench): 将网络/平铺独立成正式工作台页，替代当前白板式 /workbench 兼容页",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 914,
+        "title": "design(client-shell): 定义 Web/Tauri 客户端更像 App 而非网页的体验基线",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 915,
+        "title": "bug(tauri-shell): 安卓/Windows 端双指缩放会放大整个页面，暴露网页感",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 53,
+        "title": "feat(eventlog): 事件标签展示 — 参考 exobuffer-connector 呈现标签",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 908,
+        "title": "design(tauri/deeplink): 定义外部环境跳入指定外心 Tauri 实例/档案/事件的深链接契约",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 909,
+        "title": "feat(agent-terminal/eventlog): 网络页终端 Agent 对话可选择接入事件日志，作为日常行为参考",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 868,
+        "title": "bug(sync-recovery): 配对 RT 恢复性同步仍处于过渡态，离线窗口内变更无法保证补齐",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 893,
+        "title": "bug(reminder/headless): 到期触发与状态推进仍依赖前端 scheduler，UI 断开时外心不完整",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 900,
+        "title": "test: Bun 1.3.8 与 Vitest 4.0.18 全局 vi 不兼容，137 测试失败",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 902,
+        "title": "perf(dev-manager): Tauri manager 多实例应复用增量构建产物，而不是每实例独立重建",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 907,
+        "title": "bug(dev-manager): stop/prune 未跟踪 actual RT/raw bridge/默认 TS agents，stale 实例会被误判为已清理",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 886,
+        "title": "feat(distribution): 增加国内可达的官网/下载多源分发（对象存储 + OneDrive 兜底）",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 903,
+        "title": "docs(website): 将 Agent 终端 / 信号网络纳入 /docs 参考与快速起步",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      },
+      {
+        "num": 904,
+        "title": "feat(website/features): 功能简介页升级为截图 / 演示型 showcase 页面",
+        "gh": "OPEN",
+        "code": "NONE",
+        "mismatch": false
+      }
+    ]
+  },
+  "poolHealth": {
+    "prIssueMismatch": [],
+    "staleHighPriority": [
+      {
+        "num": 25,
+        "title": "[EPIC] ExoMind v4架构统一与技术债务收敛",
+        "priority": "P1",
+        "staleDays": 63
+      },
+      {
+        "num": 53,
+        "title": "feat(eventlog): 事件标签展示 — 参考 exobuffer-connector 呈现标签",
+        "priority": "P1",
+        "staleDays": 63
+      },
+      {
+        "num": 317,
+        "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+        "priority": "P1",
+        "staleDays": 43
+      },
+      {
+        "num": 366,
+        "title": "epic(ecs): ExoMind Communication Stack 实施总计划（优先补 ECS-2/ECS-3）",
+        "priority": "P1",
+        "staleDays": 39
+      },
+      {
+        "num": 368,
+        "title": "feat(ecs-2): 提取 Transport 抽象并统一 HTTP/SSE adapter",
+        "priority": "P1",
+        "staleDays": 39
+      },
+      {
+        "num": 373,
+        "title": "test(ecs): 多 RT 协议栈集成测试、故障注入与回归基线",
+        "priority": "P1",
+        "staleDays": 39
+      },
+      {
+        "num": 385,
+        "title": "feat(agent-hub): 接入 Claude CLI / Codex，支持流式会话与动态 Agent 生命周期",
+        "priority": "P1",
+        "staleDays": 39
+      },
+      {
+        "num": 420,
+        "title": "feat(signal-pool): 将 RouteTable 和 Journal 持久化到 Runtime SQLite",
+        "priority": "P1",
+        "staleDays": 37
+      }
+    ],
+    "noPriority": {
+      "current": 2,
+      "previous": 2
+    },
+    "aging": {
+      "oldCount": 142,
+      "total": 342,
+      "pct": 41.5,
+      "samples": [
+        {
+          "num": 25,
+          "title": "[EPIC] ExoMind v4架构统一与技术债务收敛",
+          "priority": "P1",
+          "ageDays": 63
+        },
+        {
+          "num": 36,
+          "title": "design(product): 纸质·现有软件·外心三级运行体系",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 37,
+          "title": "feat(exobuffer): 通知拦截转发到外心缓冲区",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 38,
+          "title": "feat(exobuffer): 微信聊天转发到外心缓冲区",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 43,
+          "title": "feat(asr): 本地语音识别接口（Whisper/Vosk）",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 44,
+          "title": "feat(llm): 本地大语言模型接入（Ollama/Llama.cpp）",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 45,
+          "title": "feat(ui): 更多外观主题 — 主题系统扩展",
+          "priority": "P2",
+          "ageDays": 63
+        },
+        {
+          "num": 47,
+          "title": "feat(tts): 云端语音合成 API 接入",
+          "priority": "P2",
+          "ageDays": 63
+        }
+      ]
+    }
+  },
+  "terrain": {
+    "labels": [
+      "P2",
+      "Tauri",
+      "UI",
+      "架构",
+      "Web",
+      "P1",
+      "enhancement",
+      "Agent",
+      "移动端",
+      "research",
+      "事件日志",
+      "时间块"
+    ],
+    "data": [
+      251,
+      128,
+      123,
+      105,
+      92,
+      85,
+      80,
+      63,
+      47,
+      37,
+      26,
+      26
+    ],
+    "deltas": [
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0",
+      "→ 0"
+    ],
+    "highlights": {
+      "P0": "#868、#810、#807、#532、#527",
+      "P1": "85 个 P1 问题",
+      "Agent": "#913、#909、#867",
+      "NoPriority": "2 个（#910、#911）"
+    }
+  }
+};
+
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  以下为渲染引擎 · 修改数据请改上方 REPORT，无需改动下方代码      ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const REPORT_REPO = REPORT.meta?.repo || 'exomind-team/exomind';
+const GH_BASE = `https://github.com/${REPORT_REPO}/issues/`;
+const GH_PR = `https://github.com/${REPORT_REPO}/pull/`;
+const STORAGE_KEY = `exomind-actions-${REPORT.meta.date}`;
+
+function ghLink(num) { return `<a class="gh-link" href="${GH_BASE}${num}">#${num}</a>`; }
+function prLink(num) { return `<a class="gh-link" href="${GH_PR}${num}">#${num}</a>`; }
+
+// Auto-linkify #xxx in plain text
+function autoLink(text) {
+  return text.replace(/#(\d+)/g, (_, n) => ghLink(n));
+}
+
+// Weather gradient map
+const WEATHER_GRADIENTS = {
+  sun:      'linear-gradient(135deg, #f0a500, #ff6b00)',
+  cloudy:   'linear-gradient(135deg, #58a6ff, #8957e5)',
+  overcast: 'linear-gradient(135deg, #6e7681, #484f58)',
+  rain:     'linear-gradient(135deg, #6e40c9, #f85149)',
+  storm:    'linear-gradient(135deg, #f85149, #da3633)',
+};
+
+const HEADLINE_COLORS = ['var(--green)', 'var(--accent)', 'var(--purple)', 'var(--orange)', 'var(--p0)', 'var(--text-dim)'];
+
+function normalizeMetricTrend(trend) {
+  if (typeof trend !== 'string') return 'neutral';
+  const normalized = trend.trim().toLowerCase();
+  if (normalized === 'flat') return 'neutral';
+  return ['up', 'down', 'neutral'].includes(normalized) ? normalized : 'neutral';
+}
+
+function normalizeScoreResult(result) {
+  if (typeof result !== 'string') return 'partial';
+  const normalized = result.trim().toLowerCase();
+  if (['pass', 'hit', 'done'].includes(normalized)) return 'pass';
+  if (['fail', 'miss'].includes(normalized)) return 'fail';
+  return 'partial';
+}
+
+function normalizePrStatus(status) {
+  if (typeof status !== 'string') return 'open';
+  const normalized = status.trim().toLowerCase();
+  return ['open', 'review', 'docs', 'locked', 'merged'].includes(normalized) ? normalized : 'open';
+}
+
+function normalizePriority(priority) {
+  return typeof priority === 'string' && priority.trim() ? priority : 'P2';
+}
+
+function normalizeInsight(insight, publisher) {
+  if (typeof insight === 'string') {
+    return { text: insight, author: publisher?.identity || 'ExoMind' };
+  }
+  if (!insight || typeof insight !== 'object' || Array.isArray(insight)) {
+    return { text: '', author: publisher?.identity || 'ExoMind' };
+  }
+  return {
+    ...insight,
+    text: typeof insight.text === 'string' ? insight.text : '',
+    author: typeof insight.author === 'string' && insight.author.trim() ? insight.author : (publisher?.identity || 'ExoMind'),
+  };
+}
+
+function normalizeTruthItem(item, group) {
+  if (!item || typeof item !== 'object' || Array.isArray(item) || !Number.isFinite(item.num)) return null;
+  const title = typeof item.title === 'string' ? item.title : '';
+  if (!title.trim()) return null;
+  return {
+    ...item,
+    title,
+    gh: typeof item.gh === 'string' && item.gh.trim()
+      ? item.gh.trim().toUpperCase()
+      : group === 'closed' || typeof item.closedAt === 'string'
+        ? 'CLOSED'
+        : 'OPEN',
+    code: typeof item.code === 'string' && item.code.trim()
+      ? item.code.trim().toUpperCase()
+      : group === 'closed'
+        ? 'FIXED'
+        : 'NONE',
+    mismatch: Boolean(item.mismatch),
+  };
+}
+
+function normalizeTruthItems(items, group) {
+  return Array.isArray(items)
+    ? items.map(item => normalizeTruthItem(item, group)).filter(Boolean)
+    : [];
+}
+
+function normalizeStaleItems(items) {
+  return Array.isArray(items)
+    ? items
+        .filter(item => item && typeof item === 'object' && !Array.isArray(item) && Number.isFinite(item.num))
+        .map(item => ({
+          ...item,
+          priority: normalizePriority(item.priority),
+          staleDays: Number.isFinite(item.staleDays) ? item.staleDays : (Number.isFinite(item.ageDays) ? item.ageDays : 0),
+        }))
+    : [];
+}
+
+function normalizeAgingSamples(samples) {
+  return Array.isArray(samples)
+    ? samples
+        .filter(item => item && typeof item === 'object' && !Array.isArray(item) && Number.isFinite(item.num))
+        .map(item => ({
+          ...item,
+          priority: normalizePriority(item.priority),
+          ageDays: Number.isFinite(item.ageDays) ? item.ageDays : (Number.isFinite(item.staleDays) ? item.staleDays : 0),
+        }))
+    : [];
+}
+
+function normalizePoolHealth(poolHealth) {
+  if (!poolHealth || typeof poolHealth !== 'object' || Array.isArray(poolHealth)) return null;
+  const aging = poolHealth.aging && typeof poolHealth.aging === 'object' && !Array.isArray(poolHealth.aging)
+    ? poolHealth.aging
+    : {};
+  const total = Number.isFinite(aging.total) ? aging.total : 0;
+  const pct = Number.isFinite(aging.pct) ? aging.pct : 0;
+  const oldCount = Number.isFinite(aging.oldCount)
+    ? aging.oldCount
+    : total > 0 && pct > 0
+      ? Math.round(total * pct / 100)
+      : 0;
+
+  return {
+    prIssueMismatch: Array.isArray(poolHealth.prIssueMismatch) ? poolHealth.prIssueMismatch : [],
+    staleHighPriority: normalizeStaleItems(poolHealth.staleHighPriority || poolHealth.stalePriority),
+    noPriority: {
+      current: Number.isFinite(poolHealth.noPriority?.current) ? poolHealth.noPriority.current : 0,
+      previous: Number.isFinite(poolHealth.noPriority?.previous) ? poolHealth.noPriority.previous : 0,
+    },
+    aging: {
+      oldCount,
+      total,
+      pct,
+      samples: normalizeAgingSamples(aging.samples),
+    },
+  };
+}
+
+function normalizeReportForRender(report) {
+  const meta = report?.meta || {};
+  const weather = report?.weather || {};
+  const prs = report?.prs || {};
+  const truth = report?.truth || {};
+
+  return {
+    ...report,
+    meta: {
+      ...meta,
+      title: typeof meta.title === 'string' && meta.title.trim() ? meta.title : '开发日志',
+      coverage: typeof meta.coverage === 'string' ? meta.coverage : '',
+      repo: typeof meta.repo === 'string' && meta.repo.trim() ? meta.repo : REPORT_REPO,
+    },
+    weather: {
+      ...weather,
+      ups: Array.isArray(weather.ups) ? weather.ups : [],
+      downs: Array.isArray(weather.downs) ? weather.downs : [],
+    },
+    metrics: Array.isArray(report?.metrics)
+      ? report.metrics.map(metric => ({
+          ...metric,
+          trend: normalizeMetricTrend(metric?.trend),
+          tooltip: typeof metric?.tooltip === 'string' ? metric.tooltip : (typeof metric?.note === 'string' ? metric.note : ''),
+        }))
+      : [],
+    headlines: Array.isArray(report?.headlines)
+      ? report.headlines.map(headline => ({
+          ...headline,
+          emoji: typeof headline?.emoji === 'string' && headline.emoji.trim() ? headline.emoji : '-',
+        }))
+      : [],
+    mainlines: Array.isArray(report?.mainlines)
+      ? report.mainlines.map(mainline => ({
+          ...mainline,
+          subtasks: Array.isArray(mainline?.subtasks)
+            ? mainline.subtasks.map(subtask => typeof subtask === 'string' ? { text: subtask, done: false } : subtask)
+            : [],
+        }))
+      : [],
+    scorecard: Array.isArray(report?.scorecard)
+      ? report.scorecard.map(item => ({
+          ...item,
+          result: normalizeScoreResult(item?.result),
+        }))
+      : [],
+    prs: {
+      open: Array.isArray(prs.open)
+        ? prs.open.map(pr => ({
+            ...pr,
+            status: normalizePrStatus(pr?.status),
+          }))
+        : [],
+      merged: Array.isArray(prs.merged) ? prs.merged : [],
+    },
+    truth: {
+      closed: normalizeTruthItems(truth.closed, 'closed'),
+      stillOpen: normalizeTruthItems(truth.stillOpen, 'stillOpen'),
+    },
+    poolHealth: normalizePoolHealth(report?.poolHealth),
+    actions: Array.isArray(report?.actions)
+      ? report.actions.map(action => typeof action === 'string' ? { text: action, detail: '' } : action)
+      : Array.isArray(weather.actions)
+        ? weather.actions.map(action => typeof action === 'string' ? { text: action, detail: '' } : action)
+        : [],
+    insight: normalizeInsight(report?.insight, report?.publisher),
+    terrain: report?.terrain && Array.isArray(report.terrain.labels) ? report.terrain : null,
+  };
+}
+
+function render() {
+  const R = normalizeReportForRender(REPORT);
+  const app = document.getElementById('app');
+  document.title = `ExoMind ${R.meta.title} · ${R.meta.date}`;
+
+  let html = '';
+  const coverageMeta = R.meta.coverage ? ` · 覆盖 ${R.meta.coverage}` : '';
+
+  // ── Header ──
+  html += `<header class="header animate">
+    <div class="logo">EXOMIND</div>
+    <h1>${R.meta.title}</h1>
+    <div class="meta">${R.meta.date}${coverageMeta} · 基线 <span class="mono">${R.meta.baseline || '-'}</span></div>
+  </header>`;
+
+  // ── Weather + Metrics ──
+  const wGrad = WEATHER_GRADIENTS[R.weather.level] || WEATHER_GRADIENTS.cloudy;
+  html += `<div class="top-row">
+    <div class="weather-card animate d1" style="background:${wGrad}" onclick="toggleWeather()">
+      <div class="weather-emoji">${R.weather.emoji}</div>
+      <div class="weather-label">${R.weather.label}</div>
+      <div class="weather-sub">点击查看详情 ▾</div>
+      <div class="weather-details" id="weatherDetails">
+        <div class="up"><ul>${R.weather.ups.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+        <div class="down"><ul>${R.weather.downs.map(t => `<li>${autoLink(t)}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      ${R.metrics.map((m, i) => `<div class="metric-card animate d${i+2}">
+        <div class="tooltip">${m.tooltip}</div>
+        <div class="label">${m.label}</div>
+        <div class="value">${m.value}</div>
+        <div class="delta ${m.trend}">${m.delta}</div>
+        <div class="note">${m.note}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // ── Mainlines ──
+  html += `<div class="section-title animate d3">主线追踪</div>`;
+  R.mainlines.forEach((m, i) => {
+    const tag = m.tag === 'new' ? '<span class="tag new">NEW</span>'
+      : m.tag === 'stall' ? '<span class="tag stall">STALL</span>' : '';
+    const subs = m.subtasks.map(s => {
+      const icon = s.done ? '<span class="done">✓</span>' : '<span class="pending">○</span>';
+      const link = s.issue ? ` ${ghLink(s.issue)}` : '';
+      return `<li>${icon} ${s.text}${link}</li>`;
+    }).join('');
+    html += `<div class="mainline animate d${Math.min(i+2,6)}">
+      <div class="mainline-header" onclick="toggleMainline(this)">
+        <span class="mainline-name">${m.name} ${tag}</span>
+        <span style="display:flex;align-items:center;gap:.6rem">
+          <span class="mainline-pct">${m.pct}%</span>
+          <span class="mainline-chevron">▶</span>
+        </span>
+      </div>
+      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${m.pct}%"></div></div>
+      <div class="mainline-subtasks"><ul>${subs}</ul></div>
+    </div>`;
+  });
+
+  // ── Headlines ──
+  html += `<div class="section-title animate d4">头条</div>`;
+  R.headlines.forEach((h, i) => {
+    const color = h.color || HEADLINE_COLORS[i] || 'var(--accent)';
+    html += `<div class="headline animate d${Math.min(i+4,6)}" style="border-left-color:${color}">
+      <div class="headline-title">${h.emoji} ${h.title}</div>
+      <div class="headline-body">${autoLink(h.body)}</div>
+    </div>`;
+  });
+
+  // ── Scorecard (collapsible) ──
+  html += renderCollapsible('📋 上期建议执行记分卡', '', 'd5', () => {
+    return R.scorecard.map(s => {
+      const icon = s.result === 'pass' ? '✓' : s.result === 'fail' ? '✗' : '△';
+      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text)}<div class="score-note">${autoLink(s.note)}</div></div></div>`;
+    }).join('');
+  });
+
+  // ── PR Board (collapsible) ──
+  const prSummary = `· Open ${R.prs.open.length} · Merged ${R.prs.merged.length}`;
+  html += renderCollapsible('🚦 PR 看板', prSummary, 'd5', () => {
+    let t = '<table class="pr-table"><tr><th>#</th><th>标题</th><th>状态</th></tr>';
+    R.prs.open.forEach(p => {
+      const extra = p.extra ? ` ${p.extra}` : '';
+      t += `<tr><td class="num"><a href="${GH_BASE}${p.num}">#${p.num}</a></td><td>${p.title}</td><td><span class="pr-status ${p.status}">${p.status}${extra}</span></td></tr>`;
+    });
+    t += '</table>';
+    if (R.prs.merged.length) {
+      t += '<div style="margin-top:.8rem;font-size:.85rem;color:var(--text-dim)">合并: ';
+      t += R.prs.merged.map(p => `${prLink(p.num)} ${p.title} (${p.date})`).join(' · ');
+      t += '</div>';
+    }
+    return t;
+  });
+
+  // ── Terrain (collapsible with chart) ──
+  const hasTerrain = Array.isArray(R.terrain?.labels) && R.terrain.labels.length > 0;
+  html += renderCollapsible('🏔️ Issue 地形图', '', 'd5', () => {
+    return hasTerrain
+      ? '<div class="chart-wrap"><canvas id="terrainChart"></canvas></div>'
+      : '<div style="font-size:.82rem;color:var(--text-dim)">本期未提供地形图数据</div>';
+  }, hasTerrain);
+
+  // ── Truth Table (collapsible) ──
+  html += renderCollapsible('🔬 代码 vs GitHub 真相表', '', 'd6', () => {
+    let t = '<div class="truth-row" style="font-size:.8rem;color:var(--text-faint);font-weight:700;border-bottom:1px solid var(--border)"><div></div><div>ISSUE</div><div>GITHUB</div><div>CODE</div></div>';
+    if (R.truth.closed.length) t += renderTruthGroup('已关闭 · 代码验证通过', R.truth.closed);
+    if (R.truth.stillOpen.length) t += renderTruthGroup('仍 OPEN · 代码已修复 ⚠️', R.truth.stillOpen);
+    return t;
+  });
+
+  // ── Pool Health (Issue 时效清点) ──
+  if (R.poolHealth) {
+    const ph = R.poolHealth;
+    // Build summary chips for collapsible header (like PR board)
+    const phChips = [];
+    if (ph.prIssueMismatch.length > 0) phChips.push(`<span style="color:var(--p1)">${ph.prIssueMismatch.length} 战果未清</span>`);
+    if (ph.staleHighPriority.length > 0) phChips.push(`<span style="color:var(--p0)">${ph.staleHighPriority.length} 僵持</span>`);
+    if (ph.noPriority.current > 0) phChips.push(`<span style="color:var(--p1)">${ph.noPriority.current} 未编入</span>`);
+    else phChips.push(`<span style="color:var(--green)">全编入</span>`);
+    if (ph.aging.pct > 0) phChips.push(`<span style="color:${ph.aging.pct > 40 ? 'var(--p0)' : ph.aging.pct > 25 ? 'var(--p1)' : 'var(--text-faint)'}">${ph.aging.pct}% 陈年</span>`);
+    const phSummary = phChips.length ? ' · ' + phChips.join(' · ') : '';
+    html += renderCollapsible('🕒 Issue 时效清点', phSummary, 'd6', () => {
+      let c = '';
+      // PR→Issue 断裂
+      if (ph.prIssueMismatch.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p1);margin-bottom:.3rem">🚩 战果未清</div>';
+        ph.prIssueMismatch.forEach(m => {
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0">PR ${prLink(m.pr)} 已合并 → ${ghLink(m.issue)} 仍 OPEN</div>`;
+        });
+        c += '</div>';
+      }
+      // P0/P1 停滞
+      if (ph.staleHighPriority.length > 0) {
+        c += '<div style="margin-bottom:.8rem"><div style="font-size:.85rem;font-weight:700;color:var(--p0);margin-bottom:.3rem">⏳ 僵持线</div>';
+        ph.staleHighPriority.forEach(s => {
+          const barLen = Math.min(Math.round(s.staleDays / 2), 15);
+          const bar = '█'.repeat(barLen) + '░'.repeat(Math.max(15 - barLen, 0));
+          const cls = s.priority === 'P0' ? 'color:var(--p0)' : 'color:var(--p1)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.2rem 0;font-family:'JetBrains Mono',monospace">${ghLink(s.num)} <span style="${cls}">${s.priority}</span> <span style="color:var(--text-faint)">${bar}</span> ${s.staleDays}d ${s.title}</div>`;
+        });
+        c += '</div>';
+      }
+      // 无优先级
+      const npText = ph.noPriority.current === 0
+        ? `<span style="color:var(--green)">全部编入 ✅</span>`
+        : `<span style="color:var(--p1)">${ph.noPriority.current}</span>`;
+      const npDelta = ph.noPriority.previous !== ph.noPriority.current
+        ? ` <span style="color:var(--text-faint)">(上期 ${ph.noPriority.previous})</span>` : '';
+      c += `<div style="font-size:.82rem;color:var(--text-dim);margin-top:.5rem">🏷 未编入 ${npText}${npDelta}</div>`;
+      // 陈年阵地 — 总览 + 具体 issue 列表
+      const agePct = ph.aging.pct;
+      const ageColor = agePct > 40 ? 'var(--p0)' : agePct > 25 ? 'var(--p1)' : 'var(--text-dim)';
+      c += `<div style="margin-top:.8rem"><div style="font-size:.85rem;font-weight:700;color:${ageColor};margin-bottom:.3rem">📦 陈年阵地 ${agePct}% &gt;30d (${ph.aging.oldCount}/${ph.aging.total})</div>`;
+      if (ph.aging.samples && ph.aging.samples.length > 0) {
+        ph.aging.samples.forEach(s => {
+          const pColor = s.priority === 'P0' ? 'var(--p0)' : s.priority === 'P1' ? 'var(--p1)' : 'var(--text-faint)';
+          c += `<div style="font-size:.82rem;color:var(--text-dim);padding:.15rem 0">${ghLink(s.num)} <span style="color:${pColor}">${s.priority}</span> <span style="color:var(--text-faint)">${s.ageDays}d</span> ${s.title}</div>`;
+        });
+      }
+      c += '</div>';
+      return c;
+    });
+  }
+
+  // ── Actions ──
+  html += `<div class="section-title animate d6">建议行动</div>`;
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  html += `<div id="actions" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem">`;
+  R.actions.forEach((a, i) => {
+    const checked = stored[i] ? 'checked' : '';
+    html += `<div class="action-item">
+      <input type="checkbox" class="action-check" ${checked} onchange="saveAction(${i}, this.checked)">
+      <div><div class="action-text">${autoLink(a.text)}</div><div class="action-detail">${autoLink(a.detail)}</div></div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // ── Insight ──
+  html += `<div class="insight animate d6">
+    <p>${autoLink(R.insight.text || '本期未提供额外洞察。')}</p>
+    <div class="author">— ${R.insight.author} · ${R.meta.date}</div>
+  </div>`;
+
+  // ── Footer ──
+  const pub = R.publisher;
+  const pubStr = pub ? `${pub.identity}·${pub.os} [${pub.model} ${pub.version}]` : 'ExoMind dev-daily agent';
+  html += `<div class="footer">${pubStr}</div>`;
+
+  app.innerHTML = html;
+}
+
+function renderCollapsible(title, subtitle, delay, contentFn, hasChart) {
+  const sub = subtitle ? ` <span style="color:var(--text-faint);font-size:.75rem">${subtitle}</span>` : '';
+  return `<div class="collapsible animate ${delay}">
+    <div class="collapsible-header" onclick="toggleCollapsible(this${hasChart ? ',true' : ''})">
+      <span>${title}${sub}</span><span class="chevron">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="collapsible-content">${contentFn()}</div></div>
+  </div>`;
+}
+
+function renderTruthGroup(title, items) {
+  let h = `<div class="truth-group-title">${title}</div>`;
+  items.forEach(t => {
+    const normalized = normalizeTruthItem(t, title.includes('已关闭') ? 'closed' : 'stillOpen');
+    if (!normalized) return;
+    const cls = normalized.mismatch ? ' truth-mismatch' : '';
+    h += `<div class="truth-row${cls}">
+      <div class="truth-num"><a href="${GH_BASE}${normalized.num}">#${normalized.num}</a></div>
+      <div style="color:var(--text-dim)">${normalized.title}</div>
+      <div><span class="truth-badge ${normalized.gh.toLowerCase()}">${normalized.gh}</span></div>
+      <div><span class="truth-badge ${normalized.code.toLowerCase()}">${normalized.code}</span></div>
+    </div>`;
+  });
+  return h;
+}
+
+// ── Interactions ──
+function toggleWeather() { document.getElementById('weatherDetails').classList.toggle('open'); }
+function toggleMainline(header) {
+  const card = header.closest('.mainline');
+  card.querySelector('.mainline-subtasks').classList.toggle('open');
+  card.querySelector('.mainline-chevron').classList.toggle('open');
+}
+let chartInstance = null;
+function toggleCollapsible(header, hasChart) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+  if (hasChart && body.classList.contains('open')) setTimeout(renderChart, 50);
+}
+function saveAction(i, checked) {
+  const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  s[i] = checked;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+function renderChart() {
+  const ctx = document.getElementById('terrainChart');
+  if (!ctx) return;
+  if (chartInstance) chartInstance.destroy();
+  const d = normalizeReportForRender(REPORT).terrain;
+  if (!d || !Array.isArray(d.labels) || !d.labels.length) return;
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        data: d.data,
+        backgroundColor: d.labels.map(l => l === 'P0' ? 'rgba(248,81,73,.7)' : l === 'P1' ? 'rgba(210,153,34,.7)' : 'rgba(88,166,255,.4)'),
+        borderColor: d.labels.map(l => l === 'P0' ? '#f85149' : l === 'P1' ? '#d29922' : '#58a6ff'),
+        borderWidth: 1, borderRadius: 3,
+      }],
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: (ctx) => {
+              const label = ctx.label;
+              const delta = d.deltas[d.labels.indexOf(label)];
+              const hl = d.highlights[label];
+              let r = delta ? `变化: ${delta}` : '';
+              if (hl) r += (r ? '\n' : '') + hl;
+              return r;
+            }
+          },
+          backgroundColor: '#1c2128', borderColor: '#30363d', borderWidth: 1,
+          titleColor: '#e6edf3', bodyColor: '#8b949e',
+          titleFont: { family: 'JetBrains Mono' },
+        },
+      },
+      scales: {
+        x: { grid: { color: 'rgba(48,54,61,.5)' }, ticks: { color: '#8b949e', font: { family: 'JetBrains Mono', size: 11 } } },
+        y: { grid: { display: false }, ticks: { color: '#e6edf3', font: { family: 'Outfit', size: 12 } } },
+      },
+    },
+  });
+}
+
+// Boot
+render();
+</script>
+</body>
+</html>
