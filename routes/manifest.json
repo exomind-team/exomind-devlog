@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-16T20:54:02.771Z",
+  "generated": "2026-04-16T21:13:42.488Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-222521.html",
-    "dataFile": "2026-04-16-222521.json",
-    "date": "2026-04-16",
-    "time": "222521"
+    "file": "2026-04-17-045738.html",
+    "dataFile": "2026-04-17-045738.json",
+    "date": "2026-04-17",
+    "time": "045738"
   },
   "routes": [
+    {
+      "date": "2026-04-17",
+      "time": "045738",
+      "title": "开发航线",
+      "file": "2026-04-17-045738.html",
+      "dataFile": "2026-04-17-045738.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "公开池先减重，航线也把旧闭环里残留的已关闭 issue 清了出去；接下来最厚的三段是 R 的 proposal 基建、W'' 的更新分发收口和 Z 的客户端总线。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "20",
+          "note": "Q 并回 Z，PTY 回放批次退场，骨架从 22 收成 20 批次。",
+          "trend": "down",
+          "tooltip": "当前航线批次数量 = 20"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "当前可立即启动的是 N / X / Y / Y'。",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量 = 4"
+        },
+        {
+          "label": "进行中",
+          "value": "14",
+          "note": "R 吸收 #921/#922，U / W' / W'' / Z 仍在 active。",
+          "trend": "down",
+          "tooltip": "active 批次数量 = 14"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "161",
+          "note": "343 个 open issue 里有 161 个被当前航线覆盖；这次顺手清掉了上一轮混进覆盖面的 41 条已关闭 issue。",
+          "trend": "down",
+          "tooltip": "当前 open issue 覆盖率 = 46.9%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-17-045738.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-17-045738.json"
+    },
     {
       "date": "2026-04-16",
       "time": "222521",
