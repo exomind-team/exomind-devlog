@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-16T14:11:44.926Z",
+  "generated": "2026-04-16T14:29:01.099Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-220445.html",
-    "dataFile": "2026-04-16-220445.json",
+    "file": "2026-04-16-222521.html",
+    "dataFile": "2026-04-16-222521.json",
     "date": "2026-04-16",
-    "time": "220445"
+    "time": "222521"
   },
   "reports": [
+    {
+      "date": "2026-04-16",
+      "time": "222521",
+      "title": "开发晚报",
+      "file": "2026-04-16-222521.html",
+      "dataFile": "2026-04-16-222521.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-16 22:04 到 22:25 的公开盘面仍是 347 / 3；但这轮已经把时间块反馈报告、手机全屏沉浸壳层、关于页版本 fallback 和 Android 验证文档一起往前推了一截。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "347",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开池仍维持在 347，没有新的 inflow 继续加厚",
+          "tooltip": "当前待处理问题总数 = 347"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，没有新增挤压也没有新增出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开问题，盘面继续止涨",
+          "tooltip": "2026-04-16T14:04:45.000Z 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开关单，代码推进还没走到盘面消化",
+          "tooltip": "2026-04-16T14:04:45.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-222521.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-222521.json"
+    },
     {
       "date": "2026-04-16",
       "time": "220445",
