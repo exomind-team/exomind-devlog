@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-14T23:39:10.765Z",
+  "generated": "2026-04-16T04:26:18.304Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-15-065232.html",
-    "dataFile": "2026-04-15-065232.json",
-    "date": "2026-04-15",
-    "time": "065232"
+    "file": "2026-04-16-121816.html",
+    "dataFile": "2026-04-16-121816.json",
+    "date": "2026-04-16",
+    "time": "121816"
   },
   "reports": [
+    {
+      "date": "2026-04-16",
+      "time": "121816",
+      "title": "开发午报",
+      "file": "2026-04-16-121816.html",
+      "dataFile": "2026-04-16-121816.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "overcast",
+        "emoji": "🌥️",
+        "label": "04-15 06:52 到 04-16 12:18 的公开盘面重新加厚到 347：0.4.10 基线已经抬到 dev，但 5 条新问题涌入、close / merge 仍是 0，客户端、Agent 与时间块体验面的积压重新抬头"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "347",
+          "delta": "+5",
+          "trend": "up",
+          "note": "#916 到 #920 进入公开池，客户端与 Agent 体验面重新加厚",
+          "tooltip": "当前待处理问题总数 = 347"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，没有新增出口也没有新增堵点",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "5",
+          "delta": "+5",
+          "trend": "up",
+          "note": "#916 / #917 / #918 / #919 / #920 在覆盖区间内新开且仍然 open",
+          "tooltip": "2026-04-14T22:52:32.000Z 之后新增且仍未关闭的问题数 = 5"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开关单，盘面重新加厚但没有消化",
+          "tooltip": "2026-04-14T22:52:32.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-121816.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-121816.json"
+    },
     {
       "date": "2026-04-15",
       "time": "065232",
