@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-16T04:28:21.288Z",
+  "generated": "2026-04-16T10:42:43.136Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-121816.html",
-    "dataFile": "2026-04-16-121816.json",
+    "file": "2026-04-16-183503.html",
+    "dataFile": "2026-04-16-183503.json",
     "date": "2026-04-16",
-    "time": "121816"
+    "time": "183503"
   },
   "routes": [
+    {
+      "date": "2026-04-16",
+      "time": "183503",
+      "title": "开发航线",
+      "file": "2026-04-16-183503.html",
+      "dataFile": "2026-04-16-183503.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "问题池维持在 347 / 3，没有新的 inflow；Q 因 99c48241 从 ready 转到 active，R 线也继续吃到 runtime / auth 提交，但公开 issue/PR 还没打开消化出口。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "没有新增 inflow 逼出新字母，现有骨架继续有效",
+          "trend": "neutral",
+          "tooltip": "既有 22 批次骨架保持不变"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "Q 转 active 后，当前可立即启动的是 N / X / Y / Y'",
+          "trend": "down",
+          "tooltip": "ready 批次数量从 5 降到 4"
+        },
+        {
+          "label": "进行中",
+          "value": "13",
+          "note": "Q 因 task-dag 修补重回执行态，R 继续吸收 runtime/auth 推进",
+          "trend": "up",
+          "tooltip": "active 批次数量从 12 升到 13"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "200",
+          "note": "347 个 open issue 里有 200 个被现有航线吸住；这 6 小时没有新的 inflow",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 57.6%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-183503.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-183503.json"
+    },
     {
       "date": "2026-04-16",
       "time": "121816",
