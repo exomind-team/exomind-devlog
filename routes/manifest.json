@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-16T14:12:25.203Z",
+  "generated": "2026-04-16T14:29:42.654Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-220445.html",
-    "dataFile": "2026-04-16-220445.json",
+    "file": "2026-04-16-222521.html",
+    "dataFile": "2026-04-16-222521.json",
     "date": "2026-04-16",
-    "time": "220445"
+    "time": "222521"
   },
   "routes": [
+    {
+      "date": "2026-04-16",
+      "time": "222521",
+      "title": "开发航线",
+      "file": "2026-04-16-222521.html",
+      "dataFile": "2026-04-16-222521.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "公开问题池仍是 347 / 3；P 已离开 blocked，U / Z / S / W'' 正在把反馈、移动壳层和版本显示往前推，W' 则继续吸收 Android AVD 验证经验。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "没有新增 inflow 逼出新字母，现有骨架继续有效",
+          "trend": "neutral",
+          "tooltip": "既有 22 批次骨架保持不变"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "当前可立即启动的是 N / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量从 4 保持 4"
+        },
+        {
+          "label": "进行中",
+          "value": "15",
+          "note": "P 因 RT 默认反馈报告进入 active；S / W'' 把版本显示链继续往前推，W' 继续吸收 Android AVD 验证经验",
+          "trend": "up",
+          "tooltip": "active 批次数量从 14 升到 15"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "200",
+          "note": "347 个 open issue 里有 200 个被现有航线吸住；这轮变化主要发生在执行面而不是 inflow",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 57.6%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-222521.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-222521.json"
+    },
     {
       "date": "2026-04-16",
       "time": "220445",
