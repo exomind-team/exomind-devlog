@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-16T04:26:18.304Z",
+  "generated": "2026-04-16T10:40:48.355Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-121816.html",
-    "dataFile": "2026-04-16-121816.json",
+    "file": "2026-04-16-183503.html",
+    "dataFile": "2026-04-16-183503.json",
     "date": "2026-04-16",
-    "time": "121816"
+    "time": "183503"
   },
   "reports": [
+    {
+      "date": "2026-04-16",
+      "time": "183503",
+      "title": "开发晚报",
+      "file": "2026-04-16-183503.html",
+      "dataFile": "2026-04-16-183503.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-16 12:18 到 18:35 的公开盘面维持在 347 / 3：没有新的 inflow，也没有公开消化；Runtime auth / plugins 与任务 DAG 有了连续代码推进，但这些推进还没有转成关单、合入或优先级收口。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "347",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开池维持在 347，没有新 inflow 继续加厚",
+          "tooltip": "当前待处理问题总数 = 347"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，没有新增挤压也没有新增出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "-5",
+          "trend": "down",
+          "note": "覆盖区间内没有新的公开问题，盘面先止涨",
+          "tooltip": "2026-04-16T04:18:16.000Z 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开关单，代码推进还没走到盘面消化",
+          "tooltip": "2026-04-16T04:18:16.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-183503.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-183503.json"
+    },
     {
       "date": "2026-04-16",
       "time": "121816",
