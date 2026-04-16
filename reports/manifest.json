@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-16T20:54:02.691Z",
+  "generated": "2026-04-16T21:13:03.054Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-222521.html",
-    "dataFile": "2026-04-16-222521.json",
-    "date": "2026-04-16",
-    "time": "222521"
+    "file": "2026-04-17-045738.html",
+    "dataFile": "2026-04-17-045738.json",
+    "date": "2026-04-17",
+    "time": "045738"
   },
   "reports": [
+    {
+      "date": "2026-04-17",
+      "time": "045738",
+      "title": "开发夜报",
+      "file": "2026-04-17-045738.html",
+      "dataFile": "2026-04-17-045738.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "公开池从 347 降到 343，上一轮还停在 dev 内部的移动端、时间块和版本显示收口开始公开化；但 0.4.11 目前主要落在版本线与验证证据层，评审队列仍是 3。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "343",
+          "delta": "↓ 4",
+          "trend": "down",
+          "note": "公开池终于从 347 降到 343，开始减重，但还谈不上清仓。",
+          "tooltip": "当前待处理问题总数 = 343"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "仍是 #790 / #565 / #466 三条队列，没有新增挤压，也没有新增合流。",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "2",
+          "delta": "↑ 2",
+          "trend": "up",
+          "note": "新增 inflow 全部落在 RT proposal：#921 / #922。",
+          "tooltip": "2026-04-16T14:25:21Z 之后新增且仍 open 的问题数 = 2"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "6",
+          "delta": "↑ 6",
+          "trend": "up",
+          "note": "本窗口公开关掉 6 条，移动端、时间块、版本显示与开发态诊断一起落账。",
+          "tooltip": "2026-04-16T14:25:21Z 之后关闭的问题数 = 6"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-17-045738.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-17-045738.json"
+    },
     {
       "date": "2026-04-16",
       "time": "222521",
