@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-16T10:42:43.136Z",
+  "generated": "2026-04-16T14:12:25.203Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-183503.html",
-    "dataFile": "2026-04-16-183503.json",
+    "file": "2026-04-16-220445.html",
+    "dataFile": "2026-04-16-220445.json",
     "date": "2026-04-16",
-    "time": "183503"
+    "time": "220445"
   },
   "routes": [
+    {
+      "date": "2026-04-16",
+      "time": "220445",
+      "title": "开发航线",
+      "file": "2026-04-16-220445.html",
+      "dataFile": "2026-04-16-220445.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "问题池维持在 347 / 3，没有新的 inflow；U 因 a7346591 从 blocked 转到 active，移动端原生 keep-awake 与时间块结束提醒终于出现了真实代码通路。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "没有新增 inflow 逼出新字母，现有骨架继续有效",
+          "trend": "neutral",
+          "tooltip": "既有 22 批次骨架保持不变"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "当前可立即启动的是 N / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量从 4 保持 4"
+        },
+        {
+          "label": "进行中",
+          "value": "14",
+          "note": "U 因 Android 原生 keep-awake / end-alert 提交从 blocked 转为 active",
+          "trend": "up",
+          "tooltip": "active 批次数量从 13 升到 14"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "200",
+          "note": "347 个 open issue 里有 200 个被现有航线吸住；这几个小时没有新的 inflow",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 57.6%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-220445.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-16-220445.json"
+    },
     {
       "date": "2026-04-16",
       "time": "183503",
