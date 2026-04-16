@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-16T10:40:48.355Z",
+  "generated": "2026-04-16T14:11:44.926Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-16-183503.html",
-    "dataFile": "2026-04-16-183503.json",
+    "file": "2026-04-16-220445.html",
+    "dataFile": "2026-04-16-220445.json",
     "date": "2026-04-16",
-    "time": "183503"
+    "time": "220445"
   },
   "reports": [
+    {
+      "date": "2026-04-16",
+      "time": "220445",
+      "title": "开发晚报",
+      "file": "2026-04-16-220445.html",
+      "dataFile": "2026-04-16-220445.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "04-16 18:35 到 22:04 的公开盘面维持在 347 / 3：没有新的 inflow，也没有公开消化；唯一新的代码推进是 Android 端把专注 keep-awake 和时间块结束提醒真正写进了 dev。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "347",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开池维持在 347，没有新 inflow 继续加厚",
+          "tooltip": "当前待处理问题总数 = 347"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "评审队列仍是 #790 / #565 / #466，没有新增挤压也没有新增出口",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开问题，盘面继续止涨",
+          "tooltip": "2026-04-16T10:35:03.000Z 之后新增且仍未关闭的问题数 = 0"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "0",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "覆盖区间内没有新的公开关单，代码推进还没走到盘面消化",
+          "tooltip": "2026-04-16T10:35:03.000Z 之后关闭的问题数 = 0"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-220445.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-16-220445.json"
+    },
     {
       "date": "2026-04-16",
       "time": "183503",
