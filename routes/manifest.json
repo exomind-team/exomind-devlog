@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-16T21:13:42.488Z",
+  "generated": "2026-04-19T14:06:56.160Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-17-045738.html",
-    "dataFile": "2026-04-17-045738.json",
-    "date": "2026-04-17",
-    "time": "045738"
+    "file": "2026-04-19-220437.html",
+    "dataFile": "2026-04-19-220437.json",
+    "date": "2026-04-19",
+    "time": "220437"
   },
   "routes": [
+    {
+      "date": "2026-04-19",
+      "time": "220437",
+      "title": "开发航线",
+      "file": "2026-04-19-220437.html",
+      "dataFile": "2026-04-19-220437.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "公开池从 343 回升到 348，但新增主压在两条可解释航段：O' 的任务状态历史 / 时间块延迟收口，以及 T''' 的外部 Agent await / 访问契约。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "22",
+          "note": "O' 与 T''' 把两组新 inflow 收成独立航段，骨架从 20 扩到 22。",
+          "trend": "up",
+          "tooltip": "当前航线批次数量 = 22"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "当前可立即启动的仍是 N / X / Y / Y'，说明新增压力主要落在 active 轨。",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量 = 4"
+        },
+        {
+          "label": "进行中",
+          "value": "16",
+          "note": "新增 active 主要来自 O' 与 T'''，不是旧批次随机膨胀。",
+          "trend": "up",
+          "tooltip": "active 批次数量 = 16"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "166",
+          "note": "348 个 open issue 里有 166 个被当前航线覆盖；新增覆盖主要来自 #926 / #928 / #929 / #930 / #931。",
+          "trend": "up",
+          "tooltip": "当前 open issue 覆盖率 = 47.7%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-19-220437.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-19-220437.json"
+    },
     {
       "date": "2026-04-17",
       "time": "045738",
