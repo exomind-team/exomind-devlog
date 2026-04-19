@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-19T14:06:56.160Z",
+  "generated": "2026-04-19T19:10:50.899Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-19-220437.html",
-    "dataFile": "2026-04-19-220437.json",
-    "date": "2026-04-19",
-    "time": "220437"
+    "file": "2026-04-20-030809.html",
+    "dataFile": "2026-04-20-030809.json",
+    "date": "2026-04-20",
+    "time": "030809"
   },
   "routes": [
+    {
+      "date": "2026-04-20",
+      "time": "030809",
+      "title": "开发航线",
+      "file": "2026-04-20-030809.html",
+      "dataFile": "2026-04-20-030809.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "临时 await 子航段已经回收入主线：/act/await 已落地并关闭 #930，当前剩下的是提案 contract、EventLog 留痕与日志阅读体验收尾。"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "21",
+          "note": "临时 await 子航段回收入主线，骨架从 22 缩到 21。",
+          "trend": "down",
+          "tooltip": "当前航线批次数量 = 21"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "当前可立即启动的仍是 N / X / Y / Y'，说明这轮变化主要发生在 active 批次内部。",
+          "trend": "neutral",
+          "tooltip": "ready 批次数量 = 4"
+        },
+        {
+          "label": "进行中",
+          "value": "15",
+          "note": "await 从独立航段收口后，进行中批次从 16 回到 15；不是变慢，而是把已落地能力整理回主线。",
+          "trend": "down",
+          "tooltip": "active 批次数量 = 15"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "166",
+          "note": "关掉 #921 / #930 并新增 #932 / #933 后，覆盖总数仍是 166；这一轮是重分组，不是扩大战线。",
+          "trend": "neutral",
+          "tooltip": "当前 open issue 覆盖率 = 47.7%"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-20-030809.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-20-030809.json"
+    },
     {
       "date": "2026-04-19",
       "time": "220437",
