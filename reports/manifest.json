@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-19T14:06:25.795Z",
+  "generated": "2026-04-19T19:09:53.649Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-19-220437.html",
-    "dataFile": "2026-04-19-220437.json",
-    "date": "2026-04-19",
-    "time": "220437"
+    "file": "2026-04-20-030809.html",
+    "dataFile": "2026-04-20-030809.json",
+    "date": "2026-04-20",
+    "time": "030809"
   },
   "reports": [
+    {
+      "date": "2026-04-20",
+      "time": "030809",
+      "title": "开发夜报",
+      "file": "2026-04-20-030809.html",
+      "dataFile": "2026-04-20-030809.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "提案编辑面与单次等待都已落地并关单，公开池维持 348；剩下的不是能不能做，而是统一契约、EventLog 留痕与事件日志阅读收尾。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "348",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "公开池维持 348；关闭两条 capability issue 的同时，新开了两条收尾单。",
+          "tooltip": "当前待处理问题总数 = 348"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "待合入改动仍是 #790 / #565 / #466，公开合流出口没有变化。",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "2",
+          "delta": "↓ 5",
+          "trend": "down",
+          "note": "新增只剩 #932 / #933 两条收尾单，说明这轮主要是在把已落地能力写清缺口。",
+          "tooltip": "2026-04-19T14:04:37.000Z 之后新增且仍 open 的问题数 = 2"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "2",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "本窗口关闭的是 #921 / #930 两条能力单，而不是重复单清理。",
+          "tooltip": "2026-04-19T14:04:37.000Z 之后关闭的问题数 = 2"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-20-030809.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-20-030809.json"
+    },
     {
       "date": "2026-04-19",
       "time": "220437",
