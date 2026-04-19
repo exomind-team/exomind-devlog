@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-16T21:13:03.054Z",
+  "generated": "2026-04-19T14:06:25.795Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-17-045738.html",
-    "dataFile": "2026-04-17-045738.json",
-    "date": "2026-04-17",
-    "time": "045738"
+    "file": "2026-04-19-220437.html",
+    "dataFile": "2026-04-19-220437.json",
+    "date": "2026-04-19",
+    "time": "220437"
   },
   "reports": [
+    {
+      "date": "2026-04-19",
+      "time": "220437",
+      "title": "开发晚报",
+      "file": "2026-04-19-220437.html",
+      "dataFile": "2026-04-19-220437.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "公开池从 343 回升到 348，但新增不是四散噪声：一组落在任务状态历史与时间块延迟收口，一组落在外部 Agent await / 访问契约；评审队列仍是 3，公开合流仍然空白。"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "348",
+          "delta": "↑ 5",
+          "trend": "up",
+          "note": "公开池从 343 回升到 348，新增集中在两条真实主线，不是随机噪声。",
+          "tooltip": "当前待处理问题总数 = 348"
+        },
+        {
+          "label": "待合入改动",
+          "value": "3",
+          "delta": "→ 0",
+          "trend": "neutral",
+          "note": "待合入改动仍是 #790 / #565 / #466，评审出口没有恢复。",
+          "tooltip": "当前待合入改动总数 = 3"
+        },
+        {
+          "label": "新增问题",
+          "value": "7",
+          "delta": "↑ 5",
+          "trend": "up",
+          "note": "新增 open 7 条，主因是 #926 / #928 / #929 / #930 / #931 抬头；#925 / #927 已被快速去重。",
+          "tooltip": "2026-04-16T21:12:15.000Z 之后新增且仍 open 的问题数 = 7"
+        },
+        {
+          "label": "已关闭问题",
+          "value": "2",
+          "delta": "↓ 4",
+          "trend": "down",
+          "note": "本窗口只关掉 2 条同题重复单，还没有形成真正的公开出清。",
+          "tooltip": "2026-04-16T21:12:15.000Z 之后关闭的问题数 = 2"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-19-220437.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-19-220437.json"
+    },
     {
       "date": "2026-04-17",
       "time": "045738",
