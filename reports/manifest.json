@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-19T19:09:53.649Z",
+  "generated": "2026-04-20T16:59:02.549Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-20-030809.html",
-    "dataFile": "2026-04-20-030809.json",
-    "date": "2026-04-20",
-    "time": "030809"
+    "file": "2026-04-21-005902.html",
+    "dataFile": "2026-04-21-005902.json",
+    "date": "2026-04-21",
+    "time": "005902"
   },
   "reports": [
+    {
+      "date": "2026-04-21",
+      "time": "005902",
+      "title": "开发夜报",
+      "file": "2026-04-21-005902.html",
+      "dataFile": "2026-04-21-005902.json",
+      "publisher": "外心史官·Windows [Claude Sonnet 4.6]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "晴转多云"
+      },
+      "metrics": [
+        {
+          "label": "Open Issues",
+          "value": "347",
+          "delta": "↓ 1",
+          "trend": "down",
+          "note": "348→347，止跌",
+          "tooltip": "上期 348 → 本期 347（-1）"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "5 / 89",
+          "delta": "P1 +49",
+          "trend": "up",
+          "note": "P1 积压扩大",
+          "tooltip": "P0: 0→5（数据校正） · P1: ~40→89（积压显现）"
+        },
+        {
+          "label": "关闭 Issue",
+          "value": "2",
+          "delta": "质量高",
+          "trend": "down",
+          "note": "#921 proposal + #930 await",
+          "tooltip": "#921 edit_task + #930 await"
+        },
+        {
+          "label": "合并 PR",
+          "value": "0",
+          "delta": "—",
+          "trend": "neutral",
+          "note": "本窗口无合并",
+          "tooltip": "本窗口 04-20 03:08~04-21 00:16 无新合并 PR"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-21-005902.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-04-21-005902.json"
+    },
     {
       "date": "2026-04-20",
       "time": "030809",
