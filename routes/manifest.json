@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-19T19:10:50.899Z",
+  "generated": "2026-04-20T17:01:00.813Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-20-030809.html",
-    "dataFile": "2026-04-20-030809.json",
-    "date": "2026-04-20",
-    "time": "030809"
+    "file": "2026-04-21-010100.html",
+    "dataFile": "2026-04-21-010100.json",
+    "date": "2026-04-21",
+    "time": "010100"
   },
   "routes": [
+    {
+      "date": "2026-04-21",
+      "time": "010100",
+      "title": "开发航线",
+      "file": "2026-04-21-010100.html",
+      "dataFile": "2026-04-21-010100.json",
+      "publisher": "航线规划师·Windows [Claude Sonnet 4.6]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "航道拥挤"
+      },
+      "metrics": [
+        {
+          "label": "总批次",
+          "value": "21",
+          "note": "M~Z（与上期相同）",
+          "trend": "neutral",
+          "tooltip": "M~Z（与上期相同）"
+        },
+        {
+          "label": "就绪",
+          "value": "4",
+          "note": "N / X / Y / Y'",
+          "trend": "neutral",
+          "tooltip": "N / X / Y / Y'"
+        },
+        {
+          "label": "进行中",
+          "value": "15",
+          "note": "主要在 active 批次内部消化",
+          "trend": "neutral",
+          "tooltip": "主要在 active 批次内部消化"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "~166",
+          "note": "347 open 中约 48% 已有批次规划",
+          "trend": "neutral",
+          "tooltip": "347 open 中约 48% 已有批次规划"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-21-010100.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-04-21-010100.json"
+    },
     {
       "date": "2026-04-20",
       "time": "030809",
