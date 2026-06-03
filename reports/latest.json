@@ -92,7 +92,8 @@
           "text": "WebView2 长时运行回归证据补齐",
           "done": false
         }
-      ]
+      ],
+      "pct": 80
     },
     {
       "name": "版本与发布链路",
@@ -116,7 +117,8 @@
           "text": "实验分支与 dev 差异复核",
           "done": false
         }
-      ]
+      ],
+      "pct": 65
     },
     {
       "name": "语音设置简化",
@@ -136,7 +138,8 @@
           "text": "设置页四层策展 #948 待规划",
           "done": false
         }
-      ]
+      ],
+      "pct": 45
     },
     {
       "name": "旧 PR 阵地",
@@ -156,7 +159,8 @@
           "text": "#466 worker-agent 锁定分支处理",
           "done": false
         }
-      ]
+      ],
+      "pct": 20
     },
     {
       "name": "Issue 池治理",
@@ -176,7 +180,8 @@
           "text": "旧航线批次重分组",
           "done": false
         }
-      ]
+      ],
+      "pct": 10
     }
   ],
   "headlines": [

@@ -174,12 +174,21 @@ function normalizeReportForRender(report) {
         }))
       : [],
     mainlines: Array.isArray(report?.mainlines)
-      ? report.mainlines.map(mainline => ({
-          ...mainline,
-          subtasks: Array.isArray(mainline?.subtasks)
-            ? mainline.subtasks.map(subtask => typeof subtask === 'string' ? { text: subtask, done: false } : subtask)
-            : [],
-        }))
+      ? report.mainlines.map(mainline => {
+          const progress = Number.isFinite(mainline?.progress)
+            ? mainline.progress
+            : Number.isFinite(mainline?.pct)
+              ? mainline.pct
+              : 0;
+          return {
+            ...mainline,
+            progress,
+            pct: progress,
+            subtasks: Array.isArray(mainline?.subtasks)
+              ? mainline.subtasks.map(subtask => typeof subtask === 'string' ? { text: subtask, done: false } : subtask)
+              : [],
+          };
+        })
       : [],
     scorecard: Array.isArray(report?.scorecard)
       ? report.scorecard.map(item => ({
@@ -263,11 +272,11 @@ function render() {
       <div class="mainline-header" onclick="toggleMainline(this)">
         <span class="mainline-name">${m.name} ${tag}</span>
         <span style="display:flex;align-items:center;gap:.6rem">
-          <span class="mainline-pct">${m.pct}%</span>
+          <span class="mainline-pct">${(Number.isFinite(m.pct) ? m.pct : Number.isFinite(m.progress) ? m.progress : 0)}%</span>
           <span class="mainline-chevron">▶</span>
         </span>
       </div>
-      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${m.pct}%"></div></div>
+      <div class="mainline-bar"><div class="mainline-fill${m.stall?' stall':''}" style="width:${(Number.isFinite(m.pct) ? m.pct : Number.isFinite(m.progress) ? m.progress : 0)}%"></div></div>
       <div class="mainline-subtasks"><ul>${subs}</ul></div>
     </div>`;
   });
