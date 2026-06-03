@@ -8,7 +8,7 @@ function prLink(num) { return `<a class="gh-link" href="${GH_PR}${num}">#${num}<
 
 // Auto-linkify #xxx in plain text
 function autoLink(text) {
-  return text.replace(/#(\d+)/g, (_, n) => ghLink(n));
+  return String(text ?? '').replace(/#(\d+)/g, (_, n) => ghLink(n));
 }
 
 // Weather gradient map
@@ -286,7 +286,7 @@ function render() {
   html += renderCollapsible('📋 上期建议执行记分卡', '', 'd5', () => {
     return R.scorecard.map(s => {
       const icon = s.result === 'pass' ? '✓' : s.result === 'fail' ? '✗' : '△';
-      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text)}<div class="score-note">${autoLink(s.note)}</div></div></div>`;
+      return `<div class="score-row"><div class="score-badge ${s.result}">${icon}</div><div class="score-text">${autoLink(s.text ?? s.label)}<div class="score-note">${autoLink(s.note ?? s.detail)}</div></div></div>`;
     }).join('');
   });
 
@@ -498,3 +498,4 @@ function renderChart() {
 
 // Boot
 render();
+

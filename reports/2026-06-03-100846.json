@@ -205,22 +205,30 @@
     {
       "label": "上期建议：补 #932/#933 优先级",
       "result": "partial",
-      "detail": "#932 仍无优先级；#933 已不在 open 池，本项只能算部分达成。"
+      "detail": "#932 仍无优先级；#933 已不在 open 池，本项只能算部分达成。",
+      "text": "上期建议：补 #932/#933 优先级",
+      "note": "#932 仍无优先级；#933 已不在 open 池，本项只能算部分达成。"
     },
     {
       "label": "上期建议：推进 proposal 留痕决策",
       "result": "fail",
-      "detail": "#932 仍为 open，proposal await 与 EventLog 留痕的分层断口尚未闭环。"
+      "detail": "#932 仍为 open，proposal await 与 EventLog 留痕的分层断口尚未闭环。",
+      "text": "上期建议：推进 proposal 留痕决策",
+      "note": "#932 仍为 open，proposal await 与 EventLog 留痕的分层断口尚未闭环。"
     },
     {
       "label": "上期建议：处理 P0/P1 陈年积压",
       "result": "fail",
-      "detail": "P1 从 89 增至 93，>30 天 open issue 达 352 个。"
+      "detail": "P1 从 89 增至 93，>30 天 open issue 达 352 个。",
+      "text": "上期建议：处理 P0/P1 陈年积压",
+      "note": "P1 从 89 增至 93，>30 天 open issue 达 352 个。"
     },
     {
       "label": "运行稳定性止血",
       "result": "pass",
-      "detail": "OOM 崩溃与 SSE 长连泄漏通过 #945 合并并关闭对应 issue。"
+      "detail": "OOM 崩溃与 SSE 长连泄漏通过 #945 合并并关闭对应 issue。",
+      "text": "运行稳定性止血",
+      "note": "OOM 崩溃与 SSE 长连泄漏通过 #945 合并并关闭对应 issue。"
     }
   ],
   "prs": {
