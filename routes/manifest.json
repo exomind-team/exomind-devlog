@@ -1,13 +1,58 @@
 {
-  "generated": "2026-04-20T17:01:00.813Z",
+  "generated": "2026-06-03T02:09:20.081Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-21-010100.html",
-    "dataFile": "2026-04-21-010100.json",
-    "date": "2026-04-21",
-    "time": "010100"
+    "file": "2026-06-03-100920.html",
+    "dataFile": "2026-06-03-100920.json",
+    "date": "2026-06-03",
+    "time": "100920"
   },
   "routes": [
+    {
+      "date": "2026-06-03",
+      "time": "100920",
+      "title": "开发航线",
+      "file": "2026-06-03-100920.html",
+      "dataFile": "2026-06-03-100920.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "storm",
+        "emoji": "🧭",
+        "label": "旧航线失真，先清池再推进"
+      },
+      "metrics": [
+        {
+          "label": "重排批次",
+          "value": "8",
+          "note": "A~H，按当前真实状态重组",
+          "trend": "down",
+          "tooltip": "旧航线 20+ 批次过期，本期压缩为 8 条可执行航线"
+        },
+        {
+          "label": "优先入口",
+          "value": "3",
+          "note": "A 稳定性 / B 语音 / E 治理",
+          "trend": "neutral",
+          "tooltip": "A 已止血待回归，B 有新 PR，E 负责 P1 池治理"
+        },
+        {
+          "label": "阻塞批次",
+          "value": "2",
+          "note": "C / D 均为陈年 PR 决策",
+          "trend": "down",
+          "tooltip": "#790/#565/#466 不应再被算作直接推进进度"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "~30",
+          "note": "先覆盖高风险入口，不追求全池塞满",
+          "trend": "neutral",
+          "tooltip": "本期航线覆盖关键 issue/PR 与 stale P1 样本，剩余进入 E 批次审核"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-06-03-100920.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-06-03-100920.json"
+    },
     {
       "date": "2026-04-21",
       "time": "010100",
