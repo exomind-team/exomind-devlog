@@ -1,13 +1,62 @@
 {
-  "generated": "2026-04-20T16:59:02.549Z",
+  "generated": "2026-06-03T02:08:46.757Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-04-21-005902.html",
-    "dataFile": "2026-04-21-005902.json",
-    "date": "2026-04-21",
-    "time": "005902"
+    "file": "2026-06-03-100846.html",
+    "dataFile": "2026-06-03-100846.json",
+    "date": "2026-06-03",
+    "time": "100846"
   },
   "reports": [
+    {
+      "date": "2026-06-03",
+      "time": "100846",
+      "title": "开发早报",
+      "file": "2026-06-03-100846.html",
+      "dataFile": "2026-06-03-100846.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "🌥️",
+        "label": "积压升温，主线有止血"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "355",
+          "delta": "+8",
+          "trend": "up",
+          "note": "347→355，积压升温",
+          "tooltip": "上期 2026-04-21 为 347；本期 GitHub 实时 open issue 为 355"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "5 / 93",
+          "delta": "P1 +4",
+          "trend": "up",
+          "note": "高优先级继续扩大",
+          "tooltip": "P0 仍为 5；P1 从 89 增至 93"
+        },
+        {
+          "label": "关闭 Issue",
+          "value": "3",
+          "delta": "+3",
+          "trend": "up",
+          "note": "#942/#944/#346",
+          "tooltip": "覆盖上一期日报之后关闭的 GitHub issue：#942、#944、#346"
+        },
+        {
+          "label": "合并 PR",
+          "value": "1",
+          "delta": "+1",
+          "trend": "up",
+          "note": "#945 内存止血",
+          "tooltip": "上一期之后合并 PR #945：OOM 崩溃与 SSE signal stream leak 修复"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-06-03-100846.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-06-03-100846.json"
+    },
     {
       "date": "2026-04-21",
       "time": "005902",
