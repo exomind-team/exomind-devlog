@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<!-- exomind-devlog-rendered: kind=route gate=ok -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExoMind 开发航线</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--card:#0d1117;--card-hover:#161b22;--border:#21262d;
+  --text:#e6edf3;--text-dim:#8b949e;--text-faint:#484f58;
+  --accent:#58a6ff;--accent-glow:rgba(88,166,255,.15);
+  --p0:#f85149;--p1:#d29922;--p2:#6e7681;
+  --green:#2ea043;--green-dim:#238636;
+  --purple:#8957e5;--orange:#d29922;--cyan:#39d2c0;
+  --radius:10px;--radius-sm:6px;
+  /* Track colors */
+  --track-web:#58a6ff;--track-rt:#d29922;--track-desktop:#8957e5;
+  --track-android:#2ea043;--track-cross:#f778ba;--track-ci:#6e7681;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:300;
+  line-height:1.6;min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(88,166,255,.06),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%,rgba(137,87,229,.04),transparent);
+}
+a{color:var(--accent);text-decoration:none}
+code,.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1200px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Header */
+.header{text-align:center;padding:2rem 0 1.5rem;position:relative}
+.header::after{content:'';display:block;width:80px;height:2px;margin:1rem auto 0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
+.header h1{font-size:1.6rem;font-weight:500;color:var(--text-dim);margin-top:.3rem;letter-spacing:.4em}
+.header .meta{font-size:.85rem;color:var(--text-dim);margin-top:.5rem}
+.header .meta .mono{color:var(--accent)}
+
+/* Status + Metrics row */
+.top-row{display:grid;grid-template-columns:1fr 3fr;gap:1rem;margin:1.5rem 0}
+.status-card{border-radius:var(--radius);padding:1.4rem;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(88,166,255,.12),rgba(137,87,229,.08));border:1px solid rgba(88,166,255,.15)}
+.status-emoji{font-size:2.5rem}
+.status-label{font-size:1.2rem;font-weight:700;margin-top:.3rem}
+.status-sub{font-size:.82rem;color:var(--text-dim);margin-top:.2rem}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;transition:border-color .2s,box-shadow .2s}
+.metric-card:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+.metric-card .label{font-size:.85rem;color:var(--text-dim);letter-spacing:.08em}
+.metric-card .value{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;margin:.2rem 0;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-card .note{font-size:.72rem;color:var(--text-faint)}
+
+/* Section Titles */
+.section-title{font-size:.82rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+.section-title::before{content:'';flex:0 0 3px;height:1rem;background:var(--accent);border-radius:2px}
+
+/* Route Map (DAG) */
+.route-map-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative;overflow-x:auto}
+.route-map-canvas{display:block;margin:0 auto}
+
+/* Track Legend */
+.track-legend{display:flex;flex-wrap:wrap;gap:1rem;margin:.8rem 0;font-size:.78rem}
+.track-legend-item{display:flex;align-items:center;gap:.35rem}
+.track-dot{width:10px;height:10px;border-radius:50%}
+
+/* Batch Detail Panel */
+.batch-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-top:.8rem;overflow:hidden;transition:max-height .4s ease,opacity .3s;max-height:0;opacity:0}
+.batch-panel.open{max-height:800px;opacity:1}
+.batch-panel-inner{padding:1.2rem}
+.batch-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.batch-panel-title{font-weight:700;font-size:1.1rem}
+.batch-panel-close{cursor:pointer;color:var(--text-faint);font-size:1.2rem;padding:.2rem .5rem;border-radius:var(--radius-sm);transition:background .15s}
+.batch-panel-close:hover{background:var(--card-hover)}
+.batch-meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;font-size:.78rem}
+.batch-meta-tag{padding:.2rem .6rem;border-radius:3px;font-weight:700;letter-spacing:.05em}
+.batch-meta-tag.platform{background:rgba(88,166,255,.1);color:var(--accent)}
+.batch-meta-tag.priority-p0{background:rgba(248,81,73,.12);color:var(--p0)}
+.batch-meta-tag.priority-p1{background:rgba(210,153,34,.12);color:var(--p1)}
+.batch-meta-tag.priority-p2{background:rgba(110,118,129,.12);color:var(--text-dim)}
+.batch-meta-tag.status-ready{background:rgba(88,166,255,.1);color:var(--accent)}
+.batch-meta-tag.status-active{background:rgba(46,160,67,.15);color:var(--green)}
+.batch-meta-tag.status-done{background:rgba(46,160,67,.3);color:var(--green)}
+.batch-meta-tag.status-blocked{background:rgba(248,81,73,.1);color:var(--p0)}
+.batch-progress{height:6px;background:var(--border);border-radius:3px;margin:.6rem 0;overflow:hidden}
+.batch-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green-dim),var(--green));transition:width .5s}
+.batch-issue-list{list-style:none;margin-top:.5rem}
+.batch-issue-item{display:flex;align-items:center;gap:.6rem;padding:.35rem 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.batch-issue-item:last-child{border-bottom:none}
+.batch-issue-num{font-family:'JetBrains Mono',monospace;color:var(--accent);min-width:45px}
+.batch-issue-pri{font-size:.7rem;font-weight:700;padding:.1rem .35rem;border-radius:2px}
+.batch-issue-pri.p0{background:rgba(248,81,73,.15);color:var(--p0)}
+.batch-issue-pri.p1{background:rgba(210,153,34,.15);color:var(--p1)}
+.batch-issue-pri.p2{background:rgba(110,118,129,.15);color:var(--text-dim)}
+.batch-issue-title{color:var(--text-dim);flex:1}
+.batch-deps{font-size:.78rem;color:var(--text-faint);margin-top:.5rem}
+.batch-deps strong{color:var(--text-dim)}
+
+/* Heatmap */
+.heatmap-grid{display:grid;grid-template-columns:100px repeat(7,1fr);gap:2px;font-size:.75rem}
+.heatmap-header{background:var(--card-hover);padding:.4rem;text-align:center;font-weight:700;color:var(--text-dim);border-radius:var(--radius-sm)}
+.heatmap-label{background:var(--card);padding:.4rem;display:flex;align-items:center;font-weight:500;color:var(--text-dim);border-radius:var(--radius-sm)}
+.heatmap-cell{padding:.5rem;text-align:center;border-radius:var(--radius-sm);font-family:'JetBrains Mono',monospace;font-weight:700;transition:transform .15s}
+.heatmap-cell:hover{transform:scale(1.1)}
+.heatmap-cell.heat-0{background:rgba(110,118,129,.08);color:var(--text-faint)}
+.heatmap-cell.heat-1{background:rgba(88,166,255,.1);color:var(--accent)}
+.heatmap-cell.heat-2{background:rgba(210,153,34,.15);color:var(--p1)}
+.heatmap-cell.heat-3{background:rgba(248,81,73,.15);color:var(--p0)}
+.heatmap-cell.heat-4{background:rgba(248,81,73,.25);color:var(--p0)}
+
+/* Actions */
+.action-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+.action-check{flex-shrink:0;width:20px;height:20px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.action-text{font-size:.88rem}
+.action-detail{font-size:.78rem;color:var(--text-dim);margin-top:.2rem}
+
+/* Insight */
+.insight{margin-top:2rem;padding:1.5rem;border-radius:var(--radius);background:linear-gradient(135deg,rgba(88,166,255,.04),rgba(137,87,229,.04));border:1px solid rgba(88,166,255,.1);position:relative}
+.insight::before{content:'\2605';position:absolute;top:-.5rem;left:1.2rem;background:var(--bg);padding:0 .4rem;color:var(--accent);font-size:.9rem}
+.insight p{font-size:.88rem;color:var(--text-dim);line-height:1.8;font-style:italic}
+.insight .author{font-size:.78rem;color:var(--text-faint);margin-top:.5rem;text-align:right}
+
+/* Footer */
+.footer{text-align:center;padding:2rem 0 1rem;font-size:.78rem;color:var(--text-faint)}
+.devlog-nav{text-align:center;padding:1rem 0;font-size:.85rem}
+.devlog-nav a{color:var(--accent);font-family:'JetBrains Mono',monospace}
+
+/* Responsive */
+@media(max-width:1199px){.top-row{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){html{font-size:14px}.metrics-grid{grid-template-columns:repeat(2,1fr)}.logo{font-size:2rem}.heatmap-grid{grid-template-columns:80px repeat(7,1fr);font-size:.65rem}}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(88,166,255,.4)}50%{box-shadow:0 0 12px 4px rgba(88,166,255,.2)}}
+.animate{animation:fadeUp .5s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}
+.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  ExoMind 开发航线 · 数据模板                                    ║
+// ║                                                                  ║
+// ║  使用方法:                                                       ║
+// ║  1. 复制此文件并重命名为 route-YYYY-MM-DD.html                    ║
+// ║  2. 填写下方 ROUTE 对象中的数据                                   ║
+// ║  3. 在浏览器中打开此文件即可                                       ║
+// ║  4. 所有 HTML 由 JS 从 ROUTE 数据自动渲染                         ║
+// ╚══════════════════════════════════════════════════════════════════╝
+
+const ROUTE = {
+  "meta": {
+    "title": "开发航线",
+    "date": "2026-06-08",
+    "baseline": "07aed44d",
+    "repo": "exomind-team/exomind",
+    "coverage": "06-03 10:08 ~ 06-08 00:22"
+  },
+  "publisher": {
+    "identity": "航线规划师",
+    "os": "Windows",
+    "model": "Codex",
+    "version": "GPT-5"
+  },
+  "status": {
+    "level": "cloudy",
+    "emoji": "⛅",
+    "label": "主攻转向 Agent 可观测性",
+    "summary": "8 个批次；3 个就绪，4 个推进，1 个需裁决；新增 P1 #949 是最近航向变化。"
+  },
+  "metrics": [
+    {
+      "label": "批次",
+      "value": "8",
+      "note": "A~H 手动刷新",
+      "trend": "neutral",
+      "tooltip": "A~H 手动刷新"
+    },
+    {
+      "label": "就绪",
+      "value": "3",
+      "note": "B / C / H",
+      "trend": "up",
+      "tooltip": "B / C / H"
+    },
+    {
+      "label": "推进中",
+      "value": "4",
+      "note": "A / D / F / G",
+      "trend": "neutral",
+      "tooltip": "A / D / F / G"
+    },
+    {
+      "label": "覆盖 Issues",
+      "value": "28",
+      "note": "open 356 中的关键入口",
+      "trend": "neutral",
+      "tooltip": "open 356 中的关键入口"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "web",
+      "name": "Web-only",
+      "color": "#58a6ff",
+      "desc": "设置页、网站、普通 Web UI"
+    },
+    {
+      "id": "rt",
+      "name": "RT Rust",
+      "color": "#f97316",
+      "desc": "运行时、SSE、EventLog、Agent harness"
+    },
+    {
+      "id": "cross",
+      "name": "Cross-client",
+      "color": "#a78bfa",
+      "desc": "Workbench、session、同步、Reticulum mesh"
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "color": "#22c55e",
+      "desc": "移动端竖屏、原生壳与触摸路径"
+    },
+    {
+      "id": "ci",
+      "name": "CI / Governance",
+      "color": "#facc15",
+      "desc": "issue 池、发布治理、文档清理"
+    },
+    {
+      "id": "desktop",
+      "name": "Desktop",
+      "color": "#fb7185",
+      "desc": "Windows/Tauri 桌面验证"
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "color": "#14b8a6",
+      "desc": "架构调研与治理研究"
+    }
+  ],
+  "batches": [
+    {
+      "id": "A",
+      "name": "内置 Agent / timeblock_summary 收口",
+      "track": "rt",
+      "status": "active",
+      "priority": "P2",
+      "progress": 78,
+      "branch": "dev",
+      "deps": [],
+      "fileDomain": "src/actor/timeblock_summary; src/services/signal; src/ui/app/pages/agents",
+      "issues": [
+        {
+          "num": 555,
+          "title": "feat: 内置 LLM Agent — 替代 TS Agent CLI，设置页面直接配置",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/555",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 917,
+          "title": "epic(agent): 全自动工作 Agent——自主读取任务、执行、写回结果",
+          "priority": "P1",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/917",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 909,
+          "title": "feat(agent-terminal/eventlog): 网络页终端 Agent 对话可选择接入事件日志，作为日常行为参考",
+          "priority": "P1",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/909",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "大量实现已进 dev，下一步是回填完成边界、补移动端可观测性和拆剩余范围。",
+      "pct": 78
+    },
+    {
+      "id": "B",
+      "name": "移动端 Agent 详情路径",
+      "track": "android",
+      "status": "ready",
+      "priority": "P1",
+      "progress": 15,
+      "branch": "fix/mobile-agent-detail-949",
+      "deps": [
+        {
+          "id": "A",
+          "reason": "复用 Agent 详情/WorkspaceTabs 数据面"
+        }
+      ],
+      "fileDomain": "src/ui/app/pages/AgentsPage.tsx; src/ui/app/pages/agents/AgentDetailPage.tsx; tests/e2e",
+      "issues": [
+        {
+          "num": 949,
+          "title": "bug(mobile/agent-hub): 竖屏信号网络节点缺少 Agent 详情路径",
+          "priority": "P1",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/949",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 743,
+          "title": "feat(network): 常驻普通用户网络页，设置项改为高级功能开关",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/743",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 440,
+          "title": "Agent UI 详情 / 能量 / 可视化",
+          "priority": "P2",
+          "state": "unknown",
+          "url": "https://github.com/exomind-team/exomind/issues/440",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "#949 是新 P1，且已有代码定位；应先做移动端详情路径，不重做整页信息架构。",
+      "pct": 15
+    },
+    {
+      "id": "C",
+      "name": "语音设置简化与设置页策展",
+      "track": "web",
+      "status": "ready",
+      "priority": "P1",
+      "progress": 45,
+      "branch": "fix/voice-omni-devonly-946",
+      "deps": [],
+      "fileDomain": "src/ui/app/pages/settings; src/lib/services/voice; provider config",
+      "issues": [
+        {
+          "num": 946,
+          "title": "简化语音识别：隐藏全模态（Omni）ASR，仅保留简单语音识别配置",
+          "priority": "P1",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/946",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 947,
+          "title": "feat(voice): hide Omni providers behind developer mode",
+          "priority": "P1",
+          "state": "review",
+          "url": "https://github.com/exomind-team/exomind/pull/947",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 948,
+          "title": "feat(settings-ui): 设置页渐进式披露——四层策展(删除/日常/高级/开发者) + 折叠",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/948",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "同一设置复杂度问题应合并处理，避免 #947 合入后 #946/#948 仍裸奔。",
+      "pct": 45
+    },
+    {
+      "id": "D",
+      "name": "运行稳定性与 proposal/EventLog 留痕",
+      "track": "rt",
+      "status": "active",
+      "priority": "P1",
+      "progress": 70,
+      "branch": "fix/runtime-eventlog-proposal-932",
+      "deps": [],
+      "fileDomain": "crates/exomind-runtime/src/routes; EventLog service; proposal await",
+      "issues": [
+        {
+          "num": 932,
+          "title": "bug(rt/proposal): 提案生命周期尚未写入 EventLog，await 命中与事件日志留痕割裂",
+          "priority": "none",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/932",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 942,
+          "title": "内存分配失败导致崩溃",
+          "priority": "P0",
+          "state": "done",
+          "url": "https://github.com/exomind-team/exomind/issues/942",
+          "done": true,
+          "size": "M"
+        },
+        {
+          "num": 944,
+          "title": "SSE signal stream memory leak",
+          "priority": "P0",
+          "state": "done",
+          "url": "https://github.com/exomind-team/exomind/issues/944",
+          "done": true,
+          "size": "M"
+        }
+      ],
+      "rationale": "稳定性止血已完成，剩余关键断口是 proposal / await / EventLog 留痕。",
+      "pct": 70
+    },
+    {
+      "id": "E",
+      "name": "陈年 PR 裁决",
+      "track": "cross",
+      "status": "blocked",
+      "priority": "P1",
+      "progress": 10,
+      "branch": "chore/stale-pr-decision",
+      "deps": [],
+      "fileDomain": "PR governance; workbench/session runtime; governance docs; worker-agent",
+      "issues": [
+        {
+          "num": 790,
+          "title": "feat(workbench): start session-runtime federation for issue 789",
+          "priority": "P1",
+          "state": "dirty-pr",
+          "url": "https://github.com/exomind-team/exomind/pull/790",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 565,
+          "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+          "priority": "P2",
+          "state": "dirty-pr",
+          "url": "https://github.com/exomind-team/exomind/pull/565",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 466,
+          "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+          "priority": "P1",
+          "state": "locked-pr",
+          "url": "https://github.com/exomind-team/exomind/pull/466",
+          "done": false,
+          "size": "L"
+        }
+      ],
+      "rationale": "这些 PR 已不提供真实推进信号，必须裁决后再排 Workbench/worker-agent。",
+      "pct": 10
+    },
+    {
+      "id": "F",
+      "name": "同步与 Reticulum mesh 续接",
+      "track": "cross",
+      "status": "active",
+      "priority": "P0",
+      "progress": 35,
+      "branch": "feat/ret-mesh-prototype",
+      "deps": [
+        {
+          "id": "D",
+          "reason": "需要稳定的 RT/EventLog 基线"
+        }
+      ],
+      "fileDomain": "crates/exomind-net-pairing; mesh routes; paired RT model",
+      "issues": [
+        {
+          "num": 527,
+          "title": "epic(sync-e2e): 手机↔电脑 RT SQLite 数据互通端到端验证与打通",
+          "priority": "P0",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/527",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 532,
+          "title": "epic(sync/rt-ecs): 新 RT + ECS 跨端同步与稳定性（Web/Windows/Android）",
+          "priority": "P0",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/532",
+          "done": false,
+          "size": "XL"
+        },
+        {
+          "num": 868,
+          "title": "bug(sync-recovery): 配对 RT 恢复性同步仍处于过渡态，离线窗口内变更无法保证补齐",
+          "priority": "P0",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/868",
+          "done": false,
+          "size": "L"
+        },
+        {
+          "num": 905,
+          "title": "research(sync-architecture): DSON / Yrs / Automerge 作为 ExoMind greenfield 多 rail 同步底座的可行性与分工",
+          "priority": "P1",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/905",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "仍是高价值方向，但不应抢在 #949/#555 边界回填之前扩大实现面。",
+      "pct": 35
+    },
+    {
+      "id": "G",
+      "name": "发布与官网更新链路",
+      "track": "web",
+      "status": "active",
+      "priority": "P2",
+      "progress": 60,
+      "branch": "dev",
+      "deps": [],
+      "fileDomain": "website; release scripts; GitHub Pages; updater metadata",
+      "issues": [
+        {
+          "num": 890,
+          "title": "feat(update-source): 支持切换更新源（GitHub | 官网 | 内地）",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/890",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 881,
+          "title": "bug(updater): 「自动下载预览版更新」开关未接线，当前仅自动检查 + 手动下载安装",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/881",
+          "done": false,
+          "size": "S"
+        },
+        {
+          "num": 904,
+          "title": "feat(website/features): 功能简介页升级为截图 / 演示型 showcase 页面",
+          "priority": "P2",
+          "state": "open",
+          "url": "https://github.com/exomind-team/exomind/issues/904",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "版本已推到 0.4.18，但对外下载、更新源与 showcase 还没完全闭合。",
+      "pct": 60
+    },
+    {
+      "id": "H",
+      "name": "Issue 池治理与 P1 复核",
+      "track": "ci",
+      "status": "ready",
+      "priority": "P1",
+      "progress": 0,
+      "branch": "chore/issue-pool-triage-20260608",
+      "deps": [],
+      "fileDomain": "GitHub issue labels; docs/plans; devlog data",
+      "issues": [
+        {
+          "num": 368,
+          "title": "feat(ecs-2): 提取 Transport 抽象并统一 HTTP/SSE adapter",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/368",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 455,
+          "title": "test: 核心模块测试覆盖缺口补充（runtime-client / runtime-manager / AgentsPage）",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/455",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 457,
+          "title": "fix(rust): 消除不安全 unwrap + Cargo.toml edition 修正 + 依赖更新",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/457",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 366,
+          "title": "epic(ecs): ExoMind Communication Stack 实施总计划（优先补 ECS-2/ECS-3）",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/366",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 317,
+          "title": "feat(rt/timeblock): 当前激活时间块状态机RT化（由#104解锁）",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/317",
+          "done": false,
+          "size": "M"
+        },
+        {
+          "num": 534,
+          "title": "tech-debt: 安全修复 + 死代码清理",
+          "priority": "P1",
+          "state": "audit",
+          "url": "https://github.com/exomind-team/exomind/issues/534",
+          "done": false,
+          "size": "M"
+        }
+      ],
+      "rationale": "P1=94 且陈年比例 99.2%，必须先审旧 P1 与无优先级项。",
+      "pct": 0
+    }
+  ],
+  "heatmap": {
+    "rows": [
+      "web",
+      "rt",
+      "cross",
+      "android",
+      "ci",
+      "desktop",
+      "research"
+    ],
+    "cols": [
+      "ready",
+      "active",
+      "blocked",
+      "done"
+    ],
+    "data": [
+      {
+        "row": "web",
+        "col": "ready",
+        "value": 1
+      },
+      {
+        "row": "web",
+        "col": "active",
+        "value": 1
+      },
+      {
+        "row": "web",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "web",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "rt",
+        "col": "ready",
+        "value": 0
+      },
+      {
+        "row": "rt",
+        "col": "active",
+        "value": 2
+      },
+      {
+        "row": "rt",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "rt",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "cross",
+        "col": "ready",
+        "value": 0
+      },
+      {
+        "row": "cross",
+        "col": "active",
+        "value": 1
+      },
+      {
+        "row": "cross",
+        "col": "blocked",
+        "value": 1
+      },
+      {
+        "row": "cross",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "android",
+        "col": "ready",
+        "value": 1
+      },
+      {
+        "row": "android",
+        "col": "active",
+        "value": 0
+      },
+      {
+        "row": "android",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "android",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "ci",
+        "col": "ready",
+        "value": 1
+      },
+      {
+        "row": "ci",
+        "col": "active",
+        "value": 0
+      },
+      {
+        "row": "ci",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "ci",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "desktop",
+        "col": "ready",
+        "value": 0
+      },
+      {
+        "row": "desktop",
+        "col": "active",
+        "value": 0
+      },
+      {
+        "row": "desktop",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "desktop",
+        "col": "done",
+        "value": 0
+      },
+      {
+        "row": "research",
+        "col": "ready",
+        "value": 0
+      },
+      {
+        "row": "research",
+        "col": "active",
+        "value": 0
+      },
+      {
+        "row": "research",
+        "col": "blocked",
+        "value": 0
+      },
+      {
+        "row": "research",
+        "col": "done",
+        "value": 0
+      }
+    ]
+  },
+  "actions": [
+    {
+      "text": "启动批次 B：先修 #949 移动端 Agent 详情路径",
+      "detail": "这是新增 P1，代码定位和验收条件完整，能最快恢复 Agent 可观测性的移动端闭环。"
+    },
+    {
+      "text": "收口批次 A：回填 #555 完成边界",
+      "detail": "大量实现已进 dev；应决定关闭 #555 还是拆成剩余子 issue。"
+    },
+    {
+      "text": "推进批次 C：把 #947/#946/#948 作为同一设置复杂度问题处理",
+      "detail": "语音设置、开发者模式和设置页分层是同一用户复杂度收口。"
+    },
+    {
+      "text": "执行批次 H：复核 stale P1 与无优先级项",
+      "detail": "P1=94、无优先级=5、陈年=353/356，先清判断系统。"
+    }
+  ],
+  "insight": {
+    "text": "上一版航线仍有效，但本窗口新增了一个明确的航向变化：#949 把 Agent 可观测性问题推到移动端，并且 #555 已经有大量实现进入 dev。新的短航道应从“把 Agent 做出来”转为“让 Agent 在手机和桌面都可被观察、可被解释、可被关闭或拆分”。因此本期航线把 B 批次设为最短入口，把 A 批次设为完成边界回填，把 C/H 作为并行收口：一个收设置复杂度，一个清判断系统。",
+    "author": "航线规划师"
+  },
+  "prs": {
+    "open": [
+      {
+        "num": 947,
+        "title": "feat(voice): hide Omni providers behind developer mode",
+        "status": "review",
+        "detail": "dev ← fix/voice-omni-devonly-946; updated 13d ago; merge=UNSTABLE",
+        "url": "https://github.com/exomind-team/exomind/pull/947"
+      },
+      {
+        "num": 790,
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "status": "locked",
+        "detail": "dev ← feature/issue-789-session-runtime-federation; updated 48d ago; DRAFT; merge=DIRTY",
+        "url": "https://github.com/exomind-team/exomind/pull/790"
+      },
+      {
+        "num": 565,
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "status": "locked",
+        "detail": "dev ← ex/govn-governance-docs; updated 48d ago; CHANGES_REQUESTED; merge=DIRTY",
+        "url": "https://github.com/exomind-team/exomind/pull/565"
+      },
+      {
+        "num": 466,
+        "title": "feat(worker-agent): 增加主提示词状态机和锁流程",
+        "status": "locked",
+        "detail": "dev ← feature/issue-421-worker-agent; updated 48d ago; merge=DIRTY",
+        "url": "https://github.com/exomind-team/exomind/pull/466"
+      }
+    ],
+    "merged": []
+  },
+  "truth": {
+    "closed": [],
+    "stillOpen": [
+      {
+        "num": 949,
+        "title": "bug(mobile/agent-hub): 竖屏信号网络节点缺少 Agent 详情路径",
+        "gh": "OPEN",
+        "code": "P1",
+        "mismatch": false,
+        "url": "https://github.com/exomind-team/exomind/issues/949"
+      },
+      {
+        "num": 555,
+        "title": "feat: 内置 LLM Agent — 替代 TS Agent CLI，设置页面直接配置",
+        "gh": "OPEN",
+        "code": "P2",
+        "mismatch": false,
+        "url": "https://github.com/exomind-team/exomind/issues/555"
+      },
+      {
+        "num": 932,
+        "title": "bug(rt/proposal): 提案生命周期尚未写入 EventLog，await 命中与事件日志留痕割裂",
+        "gh": "OPEN",
+        "code": "NO_PRIORITY",
+        "mismatch": true,
+        "url": "https://github.com/exomind-team/exomind/issues/932"
+      },
+      {
+        "num": 947,
+        "title": "feat(voice): hide Omni providers behind developer mode",
+        "gh": "OPEN-PR",
+        "code": "P1",
+        "mismatch": true,
+        "url": "https://github.com/exomind-team/exomind/pull/947"
+      },
+      {
+        "num": 790,
+        "title": "feat(workbench): start session-runtime federation for issue 789",
+        "gh": "DIRTY-PR",
+        "code": "P1",
+        "mismatch": true,
+        "url": "https://github.com/exomind-team/exomind/pull/790"
+      },
+      {
+        "num": 565,
+        "title": "docs(governance): ExoMind 集体经济与治理体系 v1",
+        "gh": "DIRTY-PR",
+        "code": "P2",
+        "mismatch": true,
+        "url": "https://github.com/exomind-team/exomind/pull/565"
+      }
+    ]
+  },
+  "headlines": [],
+  "mainlines": [],
+  "scorecard": []
+};
+
+// ══════════════════════════════════════════════════════════════
+// Render Engine
+// ══════════════════════════════════════════════════════════════
+
+const R = ROUTE;
+const GH = `https://github.com/${R.meta.repo}/issues/`;
+let selectedBatch = null;
+
+function ghLink(num) {
+  return `<a href="${GH}${num}" target="_blank" class="mono" style="color:var(--accent)">#${num}</a>`;
+}
+
+function renderHeader() {
+  return `
+    <div class="header animate d1">
+      <div class="logo">EXOMIND</div>
+      <h1>开 发 航 线</h1>
+      <div class="meta">
+        ${R.meta.date} · dev@<span class="mono">${R.meta.baseline}</span>
+        · ${R.publisher.identity}·${R.publisher.os} [${R.publisher.model} ${R.publisher.version}]
+      </div>
+    </div>`;
+}
+
+function renderTopRow() {
+  const metricsHtml = R.metrics.map(m => `
+    <div class="metric-card">
+      <div class="label">${m.label}</div>
+      <div class="value">${m.value}</div>
+      <div class="note">${m.note}</div>
+    </div>`).join('');
+
+  return `
+    <div class="top-row animate d2">
+      <div class="status-card">
+        <div class="status-emoji">${R.status.emoji}</div>
+        <div class="status-label">${R.status.label}</div>
+        <div class="status-sub">${R.status.summary}</div>
+      </div>
+      <div class="metrics-grid">${metricsHtml}</div>
+    </div>`;
+}
+
+function renderTrackLegend() {
+  return `
+    <div class="track-legend">
+      ${R.tracks.map(t => `
+        <div class="track-legend-item" title="${t.desc}">
+          <div class="track-dot" style="background:${t.color}"></div>
+          <span style="color:${t.color}">${t.name}</span>
+        </div>`).join('')}
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--green)"></div> 已完成
+      </div>
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--accent);box-shadow:0 0 6px var(--accent)"></div> 就绪
+      </div>
+      <div class="track-legend-item">
+        <div class="track-dot" style="background:var(--text-faint)"></div> 待解锁
+      </div>
+    </div>`;
+}
+
+function getTrackColor(trackId) {
+  const t = R.tracks.find(x => x.id === trackId);
+  return t ? t.color : '#6e7681';
+}
+
+function getStatusColor(status) {
+  switch(status) {
+    case 'done': return 'var(--green)';
+    case 'active': return 'var(--accent)';
+    case 'ready': return 'var(--accent)';
+    case 'blocked': return 'var(--text-faint)';
+    default: return 'var(--text-faint)';
+  }
+}
+
+function renderRouteMap() {
+  // Build dagre graph
+  const g = new dagre.graphlib.Graph();
+  g.setGraph({ rankdir: 'LR', ranksep: 120, nodesep: 50, marginx: 50, marginy: 40 });
+  g.setDefaultEdgeLabel(() => ({}));
+
+  R.batches.forEach(b => {
+    g.setNode(b.id, { label: b.id, width: 140, height: 70 });
+  });
+  R.batches.forEach(b => {
+    b.deps.forEach(dep => {
+      const depId = typeof dep === 'string' ? dep : dep.id;
+      if (R.batches.find(x => x.id === depId)) {
+        g.setEdge(depId, b.id);
+      }
+    });
+  });
+
+  dagre.layout(g);
+
+  const nodes = [];
+  const edges = [];
+  g.nodes().forEach(id => {
+    const n = g.node(id);
+    if (n) nodes.push({ id, x: n.x, y: n.y, w: n.width, h: n.height });
+  });
+  g.edges().forEach(e => {
+    const edge = g.edge(e);
+    edges.push({ from: e.v, to: e.w, points: edge.points });
+  });
+
+  // Calculate canvas size
+  const maxX = Math.max(...nodes.map(n => n.x + n.w / 2)) + 60;
+  const maxY = Math.max(...nodes.map(n => n.y + n.h / 2)) + 60;
+  const canvasW = Math.max(maxX, 600);
+  const canvasH = Math.max(maxY, 200);
+
+  // ExoMind TaskDag-inspired palette
+  const PALETTE = {
+    active:     { border: '#C75B3A', ring: 'rgba(199,91,58,.35)', bg: 'rgba(199,91,58,.08)', text: '#e6edf3' },
+    ready:      { border: '#16A34A', ring: 'rgba(34,197,94,.20)', bg: 'rgba(240,253,244,.06)', text: '#e6edf3' },
+    done:       { border: '#A8A29E', ring: 'rgba(214,211,209,.15)', bg: 'rgba(214,211,209,.06)', text: '#78716C' },
+    blocked:    { border: '#EAB308', ring: 'rgba(234,179,8,.15)', bg: 'rgba(234,179,8,.04)', text: '#8b949e' },
+  };
+  const EDGE_CORNER_RADIUS = 20;
+
+  function drawRoundedRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x + w, y, x + w, y + r, r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+    ctx.lineTo(x + r, y + h);
+    ctx.arcTo(x, y + h, x, y + h - r, r);
+    ctx.lineTo(x, y + r);
+    ctx.arcTo(x, y, x + r, y, r);
+    ctx.closePath();
+  }
+
+  function drawBezierEdge(ctx, pts, color, dashed) {
+    if (pts.length < 2) return;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.25;
+    ctx.setLineDash(dashed ? [7, 5] : []);
+
+    if (pts.length === 2) {
+      // Simple bezier
+      const [p0, p1] = pts;
+      const cpOffset = Math.abs(p1.x - p0.x) * 0.4;
+      ctx.moveTo(p0.x, p0.y);
+      ctx.bezierCurveTo(p0.x + cpOffset, p0.y, p1.x - cpOffset, p1.y, p1.x, p1.y);
+    } else {
+      // Multi-point with rounded corners
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length - 1; i++) {
+        const prev = pts[i-1], cur = pts[i], next = pts[i+1];
+        const r = Math.min(EDGE_CORNER_RADIUS,
+          Math.hypot(cur.x-prev.x, cur.y-prev.y)/2,
+          Math.hypot(next.x-cur.x, next.y-cur.y)/2);
+        const d1 = Math.hypot(cur.x-prev.x, cur.y-prev.y);
+        const d2 = Math.hypot(next.x-cur.x, next.y-cur.y);
+        const cp1x = cur.x - (cur.x-prev.x)/d1*r;
+        const cp1y = cur.y - (cur.y-prev.y)/d1*r;
+        const cp2x = cur.x + (next.x-cur.x)/d2*r;
+        const cp2y = cur.y + (next.y-cur.y)/d2*r;
+        ctx.lineTo(cp1x, cp1y);
+        ctx.quadraticCurveTo(cur.x, cur.y, cp2x, cp2y);
+      }
+      ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Arrow head
+    const last = pts[pts.length - 1];
+    const prev = pts.length >= 2 ? pts[pts.length - 2] : pts[0];
+    const angle = Math.atan2(last.y - prev.y, last.x - prev.x);
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.moveTo(last.x, last.y);
+    ctx.lineTo(last.x - 10 * Math.cos(angle - .35), last.y - 10 * Math.sin(angle - .35));
+    ctx.lineTo(last.x - 10 * Math.cos(angle + .35), last.y - 10 * Math.sin(angle + .35));
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  setTimeout(() => {
+    const canvas = document.getElementById('route-canvas');
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = canvasW * dpr;
+    canvas.height = canvasH * dpr;
+    canvas.style.width = canvasW + 'px';
+    canvas.style.height = canvasH + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    // Draw edges with bezier curves
+    edges.forEach(e => {
+      const toBatch = R.batches.find(b => b.id === e.to);
+      const isBlocked = toBatch && toBatch.status === 'blocked';
+      const color = isBlocked ? 'rgba(234,179,8,.35)' : '#C75B3A';
+      drawBezierEdge(ctx, e.points, color, isBlocked);
+    });
+
+    // Draw nodes (ExoMind TaskDag card style)
+    nodes.forEach(n => {
+      const batch = R.batches.find(b => b.id === n.id);
+      if (!batch) return;
+      const trackColor = getTrackColor(batch.track);
+      const isSelected = selectedBatch === batch.id;
+      const p = PALETTE[batch.status] || PALETTE.blocked;
+      const r = 12; // rounded-xl
+      const x = n.x - n.w/2, y = n.y - n.h/2;
+
+      // Outer ring (glow) for selected or active
+      if (isSelected || batch.status === 'active') {
+        ctx.save();
+        ctx.shadowColor = p.border;
+        ctx.shadowBlur = 12;
+        drawRoundedRect(ctx, x - 2, y - 2, n.w + 4, n.h + 4, r + 2);
+        ctx.strokeStyle = p.ring;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Card background
+      drawRoundedRect(ctx, x, y, n.w, n.h, r);
+      ctx.fillStyle = batch.status === 'blocked' ? 'rgba(13,17,23,.85)' : 'rgba(13,17,23,.95)';
+      ctx.fill();
+
+      // Border (status-driven: blocked=yellow dim, ready=green, active=brown)
+      ctx.strokeStyle = isSelected ? '#C75B3A' : p.border;
+      ctx.lineWidth = isSelected ? 2.5 : 1.8;
+      if (batch.status === 'blocked') { ctx.globalAlpha = 0.6; }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Left track color accent bar (always visible, dimmed if blocked)
+      const barW = 4;
+      ctx.globalAlpha = batch.status === 'blocked' ? 0.6 : 1;
+      drawRoundedRect(ctx, x, y, barW, n.h, [r, 0, 0, r]);
+      ctx.fillStyle = trackColor;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Blocked overlay (subtle dim, preserves track color visibility)
+      if (batch.status === 'blocked') {
+        drawRoundedRect(ctx, x, y, n.w, n.h, r);
+        ctx.fillStyle = 'rgba(6,8,13,.2)';
+        ctx.fill();
+      }
+
+      // Batch ID (large, track-colored, dimmed if blocked)
+      ctx.globalAlpha = batch.status === 'blocked' ? 0.6 : 1;
+      ctx.fillStyle = trackColor;
+      ctx.font = 'bold 18px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(batch.id, n.x, y + 8);
+
+      // Batch name (small, track-colored, dimmed if blocked)
+      ctx.font = '500 10px "Outfit", sans-serif';
+      const nameText = batch.name.length > 14 ? batch.name.slice(0, 13) + '…' : batch.name;
+      ctx.fillText(nameText, n.x, y + 30);
+
+      // Issue count badge
+      ctx.fillStyle = batch.status === 'blocked' ? '#6e7681' : '#8b949e';
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.fillText(`${batch.issues.length} issues`, n.x, y + 44);
+      ctx.globalAlpha = 1;
+
+      // Progress mini-bar (always show)
+      const doneCount = batch.issues.filter(i => i.done).length;
+      const pct = batch.issues.length > 0 ? doneCount / batch.issues.length : 0;
+      if (true) {
+        const barWid = n.w - 24;
+        const barH = 3;
+        const barX = x + 12;
+        const barY = y + n.h - 10;
+        ctx.fillStyle = 'rgba(110,118,129,.2)';
+        ctx.fillRect(barX, barY, barWid, barH);
+        if (pct > 0) {
+          ctx.fillStyle = '#2ea043';
+          ctx.fillRect(barX, barY, barWid * pct, barH);
+        }
+      }
+    });
+
+    // Click handler
+    canvas.onclick = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = (e.clientX - rect.left);
+      const my = (e.clientY - rect.top);
+      let clicked = null;
+      nodes.forEach(n => {
+        if (mx >= n.x - n.w/2 && mx <= n.x + n.w/2 && my >= n.y - n.h/2 && my <= n.y + n.h/2) {
+          clicked = n.id;
+        }
+      });
+      if (clicked) {
+        selectedBatch = selectedBatch === clicked ? null : clicked;
+        renderBatchPanel();
+        // Re-render canvas for selection highlight
+        renderRouteMap();
+      }
+    };
+
+    // Hover cursor
+    canvas.onmousemove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = (e.clientX - rect.left);
+      const my = (e.clientY - rect.top);
+      let hover = false;
+      nodes.forEach(n => {
+        if (mx >= n.x - n.w/2 && mx <= n.x + n.w/2 && my >= n.y - n.h/2 && my <= n.y + n.h/2) {
+          hover = true;
+        }
+      });
+      canvas.style.cursor = hover ? 'pointer' : 'default';
+    };
+
+  }, 50);
+
+  return `
+    <div class="section-title animate d3">🗺️ 航线地图</div>
+    ${renderTrackLegend()}
+    <div class="route-map-wrap animate d3">
+      <canvas id="route-canvas" class="route-map-canvas"></canvas>
+    </div>
+    <div id="batch-panel-container"></div>`;
+}
+
+function renderBatchPanel() {
+  const container = document.getElementById('batch-panel-container');
+  if (!container) return;
+  if (!selectedBatch) {
+    container.innerHTML = '<div class="batch-panel"></div>';
+    return;
+  }
+  const b = R.batches.find(x => x.id === selectedBatch);
+  if (!b) return;
+
+  const doneCount = b.issues.filter(i => i.done).length;
+  const pct = b.issues.length > 0 ? Math.round(doneCount / b.issues.length * 100) : 0;
+
+  const priClass = b.priority === 'P0' ? 'priority-p0' : b.priority === 'P1' ? 'priority-p1' : 'priority-p2';
+  const statusClass = `status-${b.status}`;
+  const statusLabel = { ready: '就绪', active: '进行中', done: '已完成', blocked: '待解锁' }[b.status] || b.status;
+
+  const issuesHtml = b.issues.map(i => {
+    const priCls = i.priority === 'P0' ? 'p0' : i.priority === 'P1' ? 'p1' : 'p2';
+    const icon = i.done ? '✅' : '○';
+    const sizeHtml = i.size ? `<span class="batch-issue-pri" style="background:rgba(137,87,229,.12);color:var(--purple)">${i.size}</span>` : '';
+    return `
+      <li class="batch-issue-item">
+        <span>${icon}</span>
+        <span class="batch-issue-num">${ghLink(i.num)}</span>
+        <span class="batch-issue-pri ${priCls}">${i.priority}</span>
+        ${sizeHtml}
+        <span class="batch-issue-title">${i.title}</span>
+      </li>`;
+  }).join('');
+
+  const depsHtml = b.deps.length > 0
+    ? `<div class="batch-deps"><strong>前置依赖：</strong>${b.deps.map(d => {
+        const depId = typeof d === 'string' ? d : d.id;
+        const reason = typeof d === 'object' && d.reason ? ` <span style="color:var(--text-faint)">(${d.reason})</span>` : '';
+        return `批次 ${depId}${reason}`;
+      }).join(' · ')}</div>`
+    : '';
+
+  container.innerHTML = `
+    <div class="batch-panel open">
+      <div class="batch-panel-inner">
+        <div class="batch-panel-header">
+          <div class="batch-panel-title">批次 ${b.id}：${b.name}</div>
+          <div class="batch-panel-close" onclick="selectedBatch=null;renderBatchPanel()">✕</div>
+        </div>
+        <div class="batch-meta-row">
+          <span class="batch-meta-tag ${statusClass}">${statusLabel}</span>
+          <span class="batch-meta-tag ${priClass}">${b.priority}</span>
+          <span class="batch-meta-tag platform">${R.tracks.find(t=>t.id===b.track)?.name || b.track}</span>
+          <span style="color:var(--text-faint);font-size:.78rem">📁 ${b.fileDomain}</span>
+          <span style="color:var(--text-faint);font-size:.78rem">🌿 ${b.branch}</span>
+        </div>
+        <div class="batch-progress"><div class="batch-progress-fill" style="width:${pct}%"></div></div>
+        <div style="font-size:.78rem;color:var(--text-dim);margin-bottom:.5rem">${doneCount}/${b.issues.length} 完成 (${pct}%)</div>
+        ${depsHtml}
+        <ul class="batch-issue-list">${issuesHtml}</ul>
+      </div>
+    </div>`;
+}
+
+function renderHeatmap() {
+  const H = R.heatmap;
+  const colCount = H.cols.length;
+  let html = `<div class="heatmap-grid" style="grid-template-columns:100px repeat(${colCount},1fr)">`;
+  // Header row
+  html += '<div class="heatmap-header"></div>';
+  H.cols.forEach(c => { html += `<div class="heatmap-header">${c}</div>`; });
+  // Data rows
+  H.rows.forEach((row, ri) => {
+    html += `<div class="heatmap-label">${row}</div>`;
+    H.cols.forEach((_, ci) => {
+      const v = H.data[ri][ci];
+      const heat = v === 0 ? 0 : v <= 2 ? 1 : v <= 5 ? 2 : v <= 10 ? 3 : 4;
+      html += `<div class="heatmap-cell heat-${heat}">${v || '·'}</div>`;
+    });
+  });
+  html += '</div>';
+  return `
+    <div class="section-title animate d5">🔥 优先级 × 平台 热力图</div>
+    <div class="animate d5" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem">
+      ${html}
+      <div style="font-size:.72rem;color:var(--text-faint);margin-top:.6rem;text-align:center">
+        数字 = 该优先级在该平台轨道上的 open issue 数量。颜色越深 = 积压越多
+      </div>
+    </div>`;
+}
+
+function renderActions() {
+  const items = R.actions.map((a, i) => {
+    const key = `action-${i}`;
+    const checked = localStorage.getItem(key) === 'true' ? 'checked' : '';
+    return `
+      <div class="action-item">
+        <input type="checkbox" class="action-check" ${checked} onchange="localStorage.setItem('${key}',this.checked)">
+        <div>
+          <div class="action-text">${a.text}</div>
+          <div class="action-detail">${a.detail}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="section-title animate d6">📌 建议航向</div>
+    <div class="animate d6" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem">
+      ${items}
+    </div>`;
+}
+
+function renderInsight() {
+  return `
+    <div class="insight animate d6">
+      <p>${R.insight.text}</p>
+      <div class="author">— ${R.insight.author}</div>
+    </div>`;
+}
+
+function renderFooter() {
+  return `
+    <div class="footer">
+      ExoMind 开发航线 · ${R.meta.date} · 数据驱动，航段变化时更新
+    </div>
+    <div class="devlog-nav"><a href="../">← DevLog 归档</a></div>`;
+}
+
+// Assemble
+document.getElementById('app').innerHTML = [
+  renderHeader(),
+  renderTopRow(),
+  renderRouteMap(),
+  renderHeatmap(),
+  renderActions(),
+  renderInsight(),
+  renderFooter(),
+].join('');
+
+</script>
+</body>
+</html>
