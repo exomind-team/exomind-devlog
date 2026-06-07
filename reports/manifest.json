@@ -1,13 +1,62 @@
 {
-  "generated": "2026-06-07T16:24:39.261Z",
+  "generated": "2026-06-07T23:56:05.109Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-06-08-002227.html",
-    "dataFile": "2026-06-08-002227.json",
+    "file": "2026-06-08-075000.html",
+    "dataFile": "2026-06-08-075000.json",
     "date": "2026-06-08",
-    "time": "002227"
+    "time": "075000"
   },
   "reports": [
+    {
+      "date": "2026-06-08",
+      "time": "075000",
+      "title": "开发早报",
+      "file": "2026-06-08-075000.html",
+      "dataFile": "2026-06-08-075000.json",
+      "publisher": "外心史官·Windows [Codex GPT-5]",
+      "weather": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "发布链路推进，池子明显降温"
+      },
+      "metrics": [
+        {
+          "label": "待处理问题",
+          "value": "350",
+          "delta": "-6",
+          "trend": "down",
+          "note": "356 -> 350，治理与关闭动作开始消化积压",
+          "tooltip": "对照上一版 2026-06-08 00:22 本地 devlog JSON，当前来自 gh issue list --state open --limit 500。"
+        },
+        {
+          "label": "P0 / P1",
+          "value": "5 / 89",
+          "delta": "P1 -5",
+          "trend": "down",
+          "note": "P0 持平，P1 从 94 降到 89",
+          "tooltip": "P1 降幅来自 #949/#951 关闭及 #455/#366 等治理降级；#950 保持 P1。"
+        },
+        {
+          "label": "Open PRs",
+          "value": "3",
+          "delta": "-1",
+          "trend": "down",
+          "note": "只剩 #790/#565/#466 三个陈年 PR",
+          "tooltip": "PR #947 已于 2026-06-08 01:01 CST 合入。"
+        },
+        {
+          "label": "无优先级",
+          "value": "4",
+          "delta": "-1",
+          "trend": "down",
+          "note": "#910 #911 #932 #948 仍未编入 P0/P1/P2",
+          "tooltip": "上一版无优先级为 5；当前 noPriority=4。"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/reports/2026-06-08-075000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/reports/2026-06-08-075000.json"
+    },
     {
       "date": "2026-06-08",
       "time": "002227",
