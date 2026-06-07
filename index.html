@@ -33,6 +33,13 @@ a:hover{opacity:.8}
 .logo{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-shadow:0 0 30px rgba(88,166,255,.3)}
 .header h1{font-size:1.6rem;font-weight:500;color:var(--text-dim);margin-top:.4rem;letter-spacing:.4em;text-transform:uppercase}
 .header .meta{font-size:.85rem;color:var(--text-faint);margin-top:.5rem}
+.disclaimer{
+  max-width:760px;margin:0 auto 1.5rem;padding:.85rem 1rem;
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:rgba(13,17,23,.72);color:var(--text-dim);
+  font-size:.82rem;text-align:center;
+}
+.disclaimer strong{color:var(--text)}
 
 /* Two-column layout */
 .columns{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
@@ -111,6 +118,10 @@ a:hover{opacity:.8}
     <h1>开 发 归 档</h1>
     <div class="meta">公开归档 · 项目进展追踪 · 日报 / 航线</div>
   </header>
+
+  <div class="disclaimer animate">
+    <strong>说明：</strong>本页内容由 AI Agent 自动生成，仅作为开发过程参考；其中的判断、指标和建议不代表正式发布说明或官方承诺。
+  </div>
 
   <div class="columns">
     <!-- Left: 开发日报 -->
