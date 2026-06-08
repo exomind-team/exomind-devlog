@@ -1,13 +1,58 @@
 {
-  "generated": "2026-06-07T16:25:39.729Z",
+  "generated": "2026-06-08T00:00:26.124Z",
   "repo": "exomind-team/exomind",
   "latest": {
-    "file": "2026-06-08-002227.html",
-    "dataFile": "2026-06-08-002227.json",
+    "file": "2026-06-08-075000.html",
+    "dataFile": "2026-06-08-075000.json",
     "date": "2026-06-08",
-    "time": "002227"
+    "time": "075000"
   },
   "routes": [
+    {
+      "date": "2026-06-08",
+      "time": "075000",
+      "title": "开发航线",
+      "file": "2026-06-08-075000.html",
+      "dataFile": "2026-06-08-075000.json",
+      "publisher": "航线规划师·Windows [Codex GPT-5]",
+      "status": {
+        "level": "cloudy",
+        "emoji": "⛅",
+        "label": "主攻转向发布与 Rust 证据"
+      },
+      "metrics": [
+        {
+          "label": "批次",
+          "value": "8",
+          "note": "A~H 手动刷新",
+          "trend": "neutral",
+          "tooltip": "A~H 手动刷新"
+        },
+        {
+          "label": "就绪",
+          "value": "3",
+          "note": "A / B / H",
+          "trend": "neutral",
+          "tooltip": "A / B / H"
+        },
+        {
+          "label": "推进中",
+          "value": "2",
+          "note": "D / F",
+          "trend": "neutral",
+          "tooltip": "D / F"
+        },
+        {
+          "label": "覆盖 Issues",
+          "value": "28",
+          "note": "350 中的关键入口",
+          "trend": "neutral",
+          "tooltip": "350 中的关键入口"
+        }
+      ],
+      "url": "https://exomind-team.github.io/exomind-devlog/routes/2026-06-08-075000.html",
+      "dataUrl": "https://exomind-team.github.io/exomind-devlog/routes/2026-06-08-075000.json"
+    },
     {
       "date": "2026-06-08",
       "time": "002227",
